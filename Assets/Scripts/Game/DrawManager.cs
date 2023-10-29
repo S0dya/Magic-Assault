@@ -7,9 +7,16 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
 {
     Inputs inputs;
 
+    [Header("SerializeFields")]
+    [SerializeField] Camera cam;
+    [SerializeField] LineRenderer lineRenderer;
+
     //local
     Vector2 touchStartPos;
     bool isInput;
+
+    Touch touch;
+    List<Vector2> drawPoints = new List<Vector2>();
 
     protected override void Awake()
     {
@@ -35,27 +42,50 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
     {
         if (isInput)
         {
-            if (Input.touchCount > 0)
+            Vector2 inputPos = cam.ScreenToWorldPoint(touch.position);
+            if (Vector2.Distance(inputPos, lineRenderer.GetPosition(lineRenderer.positionCount - 1)) > 1f)
             {
-                Debug.Log("asd");
+                DrawLine(inputPos);
             }
-            else if (Input.GetMouseButton(0))
+
+            if (Input.GetMouseButton(0))
             {
                 Debug.Log("123");
             }
+            
         }
     }
 
     //input
     void StartTouch(InputAction.CallbackContext context)
     {
-        touchStartPos = context.ReadValue<Vector2>();
+        touch = context.ReadValue<Touch>();
+        Debug.Log("123");
+        touchStartPos = cam.ScreenToWorldPoint(touch.position);
         isInput = true;
-
+        lineRenderer.positionCount++;
+        lineRenderer.SetPosition(lineRenderer.positionCount - 1, touchStartPos);
     }
     void EndTouch(InputAction.CallbackContext context)
     {
+        Debug.Log("re");
         isInput = false;
-        touchStartPos = Vector2.zero;
+        ClearLine();
+    }
+
+    //line methods
+
+    void DrawLine(Vector2 pos)
+    {
+        drawPoints.Add(pos);
+
+        lineRenderer.positionCount++;
+        lineRenderer.SetPosition(lineRenderer.positionCount-1, pos);
+    }
+
+    void ClearLine()
+    {
+        drawPoints.Clear();
+        lineRenderer.positionCount = 0;
     }
 }

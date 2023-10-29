@@ -9,7 +9,10 @@ public class Player : SingletonMonobehaviour<Player>
 
     [Header("SerializeFields")]
     [SerializeField] Rigidbody2D rb;
-    [SerializeField] Joystick joystick;
+    [Header("UI")]
+    [SerializeField] FloatingJoystick flJoystick;
+    [SerializeField] FixedJoystick fxJoystick;
+    Joystick joystick;
 
 
     //local 
@@ -19,6 +22,7 @@ public class Player : SingletonMonobehaviour<Player>
     {
         base.Awake();
 
+        SetJoystick();
     }
 
     void Update()
@@ -35,5 +39,16 @@ public class Player : SingletonMonobehaviour<Player>
     {
         joystickInput = val;
         if (!val) rb.velocity = Vector2.zero;
+    }
+
+    //other methods
+    void SetJoystick()
+    {
+        bool isFJ = Settings.isFloatingJoystick;
+
+        if (isFJ) flJoystick.gameObject.SetActive(true);
+        else fxJoystick.gameObject.SetActive(true);
+
+        joystick = isFJ ? flJoystick : fxJoystick;
     }
 }

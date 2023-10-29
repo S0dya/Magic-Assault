@@ -33,7 +33,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     [SerializeField] protected RectTransform background = null;
     [SerializeField] private RectTransform handle = null;
-    private RectTransform baseRect = null;
+    RectTransform baseRect = null;
 
     Player player;
     Canvas canvas;
@@ -48,8 +48,6 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         baseRect = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
-        if (canvas == null)
-            Debug.LogError("The Joystick is not placed inside a canvas");
 
         Vector2 center = new Vector2(0.5f, 0.5f);
         background.pivot = center;

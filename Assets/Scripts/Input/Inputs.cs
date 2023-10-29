@@ -31,17 +31,17 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""name"": ""Touch"",
                     ""type"": ""PassThrough"",
                     ""id"": ""9509cf9c-5d85-40f5-b4e5-28754fca9f19"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Touch"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""d672e7de-1336-49f4-a182-35a9a91f15de"",
-                    ""path"": ""<Touchscreen>/position"",
+                    ""path"": ""<Touchscreen>/primaryTouch"",
                     ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": """",

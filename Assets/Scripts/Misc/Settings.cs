@@ -12,7 +12,7 @@ public static class Settings
     //shop
 
     //settings
-    public static bool isFloatingJoystick = true;
+    public static bool isFloatingJoystick = false;
     public static bool firstTime;
     public static bool isMusicOn;
 }
