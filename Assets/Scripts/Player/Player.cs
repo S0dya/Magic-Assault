@@ -16,7 +16,7 @@ public class Player : SingletonMonobehaviour<Player>
 
 
     //local 
-    bool joystickInput;
+    [HideInInspector] public bool joystickInput;
 
     protected override void Awake()
     {
@@ -38,7 +38,17 @@ public class Player : SingletonMonobehaviour<Player>
     public void ToggleJoystickInput(bool val)
     {
         joystickInput = val;
-        if (!val) rb.velocity = Vector2.zero;
+        if (!val)
+        {
+            rb.velocity = Vector2.zero;
+            StartCoroutine(UnSetCheckCor());
+        }
+    }
+    IEnumerator UnSetCheckCor()
+    {
+        yield return null;
+
+        DrawManager.I.inputChecked = false;
     }
 
     //other methods
