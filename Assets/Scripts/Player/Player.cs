@@ -41,6 +41,7 @@ public class Player : SingletonMonobehaviour<Player>
         if (!val)
         {
             rb.velocity = Vector2.zero;
+            //skip this frame for proper value set
             StartCoroutine(UnSetCheckCor());
         }
     }
