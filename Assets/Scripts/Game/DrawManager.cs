@@ -6,11 +6,14 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
 {
     [Header("Settings")]
     public float lineLength;
+    public float[] lineWidth; //1 - min 2 - max 3 - starting value for coroutine 4 - end value for coroutine
 
     public float angleThreshold;
     public float circleTresholdDistance;
 
+
     [Header("SerializeFields")]
+    [SerializeField] SpellsManager spellsManager;
     [SerializeField] Camera cam;
     [SerializeField] LineRenderer lineRenderer;
 
@@ -95,13 +98,14 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
     IEnumerator ChangeSizeOfLineCor()
     {
         powerOfSpell = 0.1f;
+        lineWidth[0] = lineWidth[2];
 
-        while (true)
+        while (lineWidth[0] < lineWidth[1])
         {
-            lineRenderer.startWidth = powerOfSpell;
-            lineRenderer.endWidth = powerOfSpell;
+            lineRenderer.startWidth = lineWidth[0];
+            lineRenderer.endWidth = lineWidth[0];
 
-            powerOfSpell = Mathf.Lerp(powerOfSpell, 1, 0.0005f);
+            lineWidth[0] = Mathf.Lerp(lineWidth[0], lineWidth[3], 0.005f);
 
             yield return null;
         }
@@ -113,7 +117,8 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
     void RecogniseShape()
     {
         //check dot
-        if (positionCount < 3) useDot();
+        spellsManager.drawPoints = drawPoints;
+        if (positionCount < 3) spellsManager.useDot();
 
         float totalAngle = 0;
         float maxAngle = 0;
@@ -137,15 +142,15 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
         if (Mathf.Abs(totalAngle - 360.0f) < angleThreshold && maxAngle < 80 
             && Vector2.Distance(drawPoints[0], drawPoints[^1]) < circleTresholdDistance)//since S shape can still have suitable angle, we check distance of first and last points
         {
-            useCircle();
+            spellsManager.useCircle();
         }
         else if (totalAngle < angleThreshold)
         {
-            useLine();
+            spellsManager.useLine();
         }
         else if (Mathf.Abs(totalAngle - 150) < angleThreshold && maxAngle > 80)
         {
-            useArrow();
+            spellsManager.useArrow();
         }
     }
 
@@ -156,28 +161,5 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
         lineRenderer.positionCount = positionCount = 0;
     }
 
-    //gamePlay mechanics
-    void useDot()
-    {
-        Debug.Log("dot detected");
-
-    }
-
-    void useCircle()
-    {
-        Debug.Log("Circle detected");
-
-    }
-
-    void useArrow()
-    {
-        Debug.Log("Arrow detected");
-
-    }
-
-    void useLine()
-    {
-        Debug.Log("Line detected");
-
-    }
+    
 }
