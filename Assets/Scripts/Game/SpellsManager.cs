@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 {
     [Header("Settings")]
-
+    public float distanceForFire;
 
     [Header("SerializeFields")]
     [SerializeField] DrawManager drawManager;
@@ -45,17 +45,12 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
     public void useLine()
     {
-        Debug.Log("Line detected");
+        float distance = Vector2.Distance(drawPoints[0], drawPoints[^1]);
+        float numObjects = Mathf.CeilToInt(distance / distanceForFire);
 
-        Vector2 step = drawPoints[1] - drawPoints[0] / (drawPoints.Count - 1);
-        float n = (int)Vector2.Distance(drawPoints[0], drawPoints[1]);
-
-        Debug.Log(step + " step");
-        Debug.Log(n + " n");
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < numObjects; i++)
         {
-            Debug.Log("---- " + drawPoints[0] + step * i);
-            var obj = InstantiateEffect(fireEffect, drawPoints[0] + step * i);
+            var obj = InstantiateEffect(fireEffect, Vector2.Lerp(drawPoints[0], drawPoints[^1], i/numObjects));
         }
     }
 

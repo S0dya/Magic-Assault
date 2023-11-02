@@ -11,6 +11,11 @@ public static class Settings
 
     //shop
 
+    //game
+    //spells
+    //fire
+    public static float[] sizeOfFire = { 0.5f, 1f };
+
     //settings
     public static bool isFloatingJoystick = false;
     public static bool firstTime;

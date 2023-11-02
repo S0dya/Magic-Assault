@@ -64,12 +64,20 @@ public class Player : SingletonMonobehaviour<Player>
     }
 
     //trigger
-    void OnTrigerEnter2D(Collider2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Fire"))
         {
-
+            Debug.Log("555");
+        }
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.CompareTag("Fire"))
+        {
+            Debug.Log("555");
         }
     }
 }

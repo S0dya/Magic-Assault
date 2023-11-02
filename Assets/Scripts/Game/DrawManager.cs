@@ -116,9 +116,15 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
 
     void RecogniseShape()
     {
-        //check dot
+        //set points for spell manager
         spellsManager.drawPoints = drawPoints;
-        if (positionCount < 3) spellsManager.useDot();
+        //check dot
+        if (positionCount < 3)
+        {
+            spellsManager.useDot();
+            return;
+        }
+
 
         float totalAngle = 0;
         float maxAngle = 0;
