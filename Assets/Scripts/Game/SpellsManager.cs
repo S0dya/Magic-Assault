@@ -8,10 +8,20 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     public float distanceForFire;
 
     [Header("SerializeFields")]
+    [SerializeField] Player player;
+    Transform playerTransform;
     [SerializeField] DrawManager drawManager;
+    //dot
+    [SerializeField] GameObject stoneEffect;
+    //line
     [SerializeField] GameObject fireEffect;
+    //circle
+    [SerializeField] GameObject waterEffect;
+    //arrow
+    [SerializeField] GameObject windEffect;
 
     [SerializeField] Transform effectsParent;
+
 
     [HideInInspector] public List<Vector2> drawPoints;
 
@@ -19,27 +29,34 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     {
         base.Awake();
 
-
+        playerTransform = player.transform;
     }
 
 
     //Spells
-    public void useDot()
+    public void useDot(float size)
     {
+        var obj = InstantiateEffect(stoneEffect, playerTransform.position);
+        var stone = obj.GetComponent<Stone>();
+        stone.size = size;
 
-        Debug.Log("dot detected");
-
+        Vector2 direction = (drawPoints[^1] - (Vector2)playerTransform.position).normalized;
+        float angleInDegrees = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
+        stone.angle = angleInDegrees;
     }
 
-    public void useCircle()
+    public void useCircle(float size)
     {
-        Debug.Log("Circle detected");
-
+        var obj = InstantiateEffect(waterEffect, Vector2.Lerp(drawPoints[0], drawPoints[drawPoints.Count/2], 0.5f));
+        var water = obj.GetComponent<Water>();
+        water.size = size;
     }
 
-    public void useArrow()
+    public void useArrow(float size, Vector2 middleElementPos)
     {
         Debug.Log("Arrow detected");
+
+        var obj = InstantiateEffect(windEffect, );
 
     }
 

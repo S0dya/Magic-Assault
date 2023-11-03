@@ -6,33 +6,42 @@ public class Spell : MonoBehaviour
 {
     [Header("Settings")]
     public ParticleSystem ps;
-    
-    ParticleSystem.MainModule mainModule;
 
-    protected virtual void Awake()
+    //before play all needed parametrs are set inside other spells scripts
+    protected virtual void Start()
     {
-        mainModule = ps.main;
         ps.Play();
     }
 
+    //main module
     public void SetSize(float min, float max)
     {
         var main = GetMainModule();
         main.startSize = new ParticleSystem.MinMaxCurve(min, max);
     }
+    public void SetSize(float size)
+    {
+        var main = GetMainModule();
+        main.startSize = size;
+    }
 
+
+
+    //since its only can be used as instance
     ParticleSystem.MainModule GetMainModule()
     {
         return ps.main;
     }
 
-    void OnParticleCollision(GameObject obj)
+    //shape 
+    public void SetAngle(float angle)
     {
-        Debug.Log("4");
+        var shape = GetShape();
+        shape.rotation = new Vector3(0f, 0f, angle);
     }
 
-    void OnTrigerEnter2D(Collider2D collision)
+    ParticleSystem.ShapeModule GetShape()
     {
-        Debug.Log("c");
+        return ps.shape;
     }
 }

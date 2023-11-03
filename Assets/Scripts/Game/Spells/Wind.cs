@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Water : Spell
+public class Wind : Spell
 {
     [Header("This spell")]
-    [SerializeField] CircleCollider2D collider;
-
-    //[HideInInspector] 
-    public float size;
+    [SerializeField] BoxCollider2D collider;
 
     protected override void Start()
     {
+        float size = Settings.sizeOfWind;
         SetSize(size);
-        collider.radius = size;
+        collider.size = new Vector2(size, size);
 
         base.Start();
     }

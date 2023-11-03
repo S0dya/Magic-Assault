@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Fire : Spell
 {
-    protected override void Awake()
-    {
-        SetSize(Settings.sizeOfFire[0], Settings.sizeOfFire[1]);
-        base.Awake();
-    }
+    [Header("This spell")]
+    [SerializeField] BoxCollider2D collider;
 
-    void OnParticleCollision(GameObject obj)
+    protected override void Start()
     {
-        Debug.Log("123123");
+        float size = Random.Range(Settings.sizeOfFire[0], Settings.sizeOfFire[1]);
+        SetSize(size);
+        collider.size = new Vector2(size, size);
+
+        base.Start();
     }
 }

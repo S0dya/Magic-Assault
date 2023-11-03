@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Water : Spell
+public class Stone : Spell
 {
     [Header("This spell")]
-    [SerializeField] CircleCollider2D collider;
-
-    //[HideInInspector] 
     public float size;
+    public float angle;
 
     protected override void Start()
     {
         SetSize(size);
-        collider.radius = size;
+        SetAngle(angle);
 
         base.Start();
+    }
+
+    void OnParticleCollider(GameObject obj)
+    {
+        Debug.Log("asd");
     }
 }

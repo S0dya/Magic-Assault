@@ -121,10 +121,9 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
         //check dot
         if (positionCount < 3)
         {
-            spellsManager.useDot();
+            spellsManager.useDot(1);
             return;
         }
-
 
         float totalAngle = 0;
         float maxAngle = 0;
@@ -148,7 +147,9 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
         if (Mathf.Abs(totalAngle - 360.0f) < angleThreshold && maxAngle < 80 
             && Vector2.Distance(drawPoints[0], drawPoints[^1]) < circleTresholdDistance)//since S shape can still have suitable angle, we check distance of first and last points
         {
-            spellsManager.useCircle();
+            //size of water is min between distance and set value
+            float distance = Vector2.Distance(drawPoints[0], drawPoints[positionCount / 2]);
+            spellsManager.useCircle(Mathf.Min(distance, Settings.maxSizeOfWater));
         }
         else if (totalAngle < angleThreshold)
         {
@@ -156,7 +157,7 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
         }
         else if (Mathf.Abs(totalAngle - 150) < angleThreshold && maxAngle > 80)
         {
-            spellsManager.useArrow();
+            spellsManager.useArrow(1);
         }
     }
 
