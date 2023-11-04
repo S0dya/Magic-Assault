@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour
     [Header("SerializeFields")]
     [SerializeField] Rigidbody2D rb;
 
+    //local
+    bool canMove;
+
     void Awake()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -19,7 +22,15 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        Vector2 direction = (playerTransform.position - transform.position).normalized;
-        rb.velocity = direction * movementSpeed;
+        if (canMove)
+        {
+            rb.velocity = (playerTransform.position - transform.position).normalized * movementSpeed;
+        }
+    }
+
+    public void ToggleMovement(bool val)
+    {
+        canMove = val;
+        if (!canMove) rb.velocity = Vector2.zero;
     }
 }

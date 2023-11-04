@@ -12,6 +12,13 @@ public static class Settings
     //shop
 
     //game
+    //player 
+    public static float[] amountOfTimeBeforeRestoringStats = new float[2] { 1, 1 };
+    public static float[] amountOfTimeForRestoringStats = new float[2] { 0.2f, 0.2f };
+    public static float[] amountOfRestoringStats = new float[2] { 5, 5 };
+
+    public static bool canRestoreHp;
+
     //spells
     //dot
 
