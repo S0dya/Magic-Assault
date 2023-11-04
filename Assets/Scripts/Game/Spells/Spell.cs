@@ -7,25 +7,34 @@ public class Spell : MonoBehaviour
     [Header("Settings")]
     public ParticleSystem ps;
 
+    //main
+    public float size;
+    public float rotation;
+    
+    //shape
+    public float angle;
+
+
     //before play all needed parametrs are set inside other spells scripts
-    protected virtual void Start()
+    public void Play()
     {
         ps.Play();
     }
 
     //main module
-    public void SetSize(float min, float max)
+    public void SetSize(float s)
     {
-        var main = GetMainModule();
-        main.startSize = new ParticleSystem.MinMaxCurve(min, max);
-    }
-    public void SetSize(float size)
-    {
+        size = s;
         var main = GetMainModule();
         main.startSize = size;
     }
 
-
+    public void SetRotation(float r)
+    {
+        rotation = r;
+        var main = GetMainModule();
+        main.startRotation = -rotation * Mathf.Deg2Rad;
+    }
 
     //since its only can be used as instance
     ParticleSystem.MainModule GetMainModule()
@@ -34,8 +43,9 @@ public class Spell : MonoBehaviour
     }
 
     //shape 
-    public void SetAngle(float angle)
+    public void SetAngle(float a)
     {
+        angle = a;
         var shape = GetShape();
         shape.rotation = new Vector3(0f, 0f, angle);
     }

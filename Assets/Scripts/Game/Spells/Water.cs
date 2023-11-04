@@ -7,14 +7,8 @@ public class Water : Spell
     [Header("This spell")]
     [SerializeField] CircleCollider2D collider;
 
-    //[HideInInspector] 
-    public float size;
-
-    protected override void Start()
+    void Start()
     {
-        SetSize(size);
         collider.radius = size;
-
-        base.Start();
     }
 }

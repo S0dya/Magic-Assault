@@ -7,12 +7,10 @@ public class Wind : Spell
     [Header("This spell")]
     [SerializeField] BoxCollider2D collider;
 
-    protected override void Start()
+
+    void Start()
     {
-        float size = Settings.sizeOfWind;
-        SetSize(size);
         collider.size = new Vector2(size, size);
 
-        base.Start();
     }
 }

@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Transform playerTransform;
+    
+    [Header("Settings")]
+    public float movementSpeed;
+
+    [Header("SerializeFields")]
+    [SerializeField] Rigidbody2D rb;
+
+    void Awake()
     {
-        
+        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        Vector2 direction = (playerTransform.position - transform.position).normalized;
+        rb.velocity = direction * movementSpeed;
     }
 }

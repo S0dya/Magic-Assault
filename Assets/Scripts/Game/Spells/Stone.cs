@@ -4,20 +4,10 @@ using UnityEngine;
 
 public class Stone : Spell
 {
-    [Header("This spell")]
-    public float size;
-    public float angle;
+    //[Header("This spell")]
 
-    protected override void Start()
+    void Start()
     {
-        SetSize(size);
-        SetAngle(angle);
-
-        base.Start();
-    }
-
-    void OnParticleCollider(GameObject obj)
-    {
-        Debug.Log("asd");
+        
     }
 }

@@ -13,8 +13,17 @@ public static class Settings
 
     //game
     //spells
+    //dot
+
+    //line
+
+    //circle
+
+    //arrow
+    public static bool additionalEffects = true;
+
     //fire
-    public static float[] sizeOfFire = { 0.5f, 1f };
+    public static float sizeOfFire = 1;
 
     //water
     public static float maxSizeOfWater = 3.5f;

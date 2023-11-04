@@ -10,6 +10,7 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
 
     public float angleThreshold;
     public float circleTresholdDistance;
+    public float arrowTresholdDistance;
 
 
     [Header("SerializeFields")]
@@ -22,7 +23,6 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
     [HideInInspector] public bool inputChecked;
     bool isInput;
 
-    float powerOfSpell;
     int touchesCount;
 
     List<Vector2> drawPoints = new List<Vector2>();
@@ -97,7 +97,6 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
 
     IEnumerator ChangeSizeOfLineCor()
     {
-        powerOfSpell = 0.1f;
         lineWidth[0] = lineWidth[2];
 
         while (lineWidth[0] < lineWidth[1])
@@ -118,15 +117,18 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
     {
         //set points for spell manager
         spellsManager.drawPoints = drawPoints;
+        //set size according to length of line (adding 0.5f to make max size = 1)
+        spellsManager.size = lineWidth[0] + 0.5f;
         //check dot
         if (positionCount < 3)
         {
-            spellsManager.useDot(1);
+            spellsManager.useDot();
             return;
         }
 
         float totalAngle = 0;
         float maxAngle = 0;
+        Vector2 maxAnglePosition = new Vector2();
 
         //check all angles
         for (int i = 2; i < positionCount; i++)
@@ -139,8 +141,13 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
             totalAngle += angle;
 
             //angle of 360 can be reached with square shape
-            //arrow's totalAngle can work even if we dont have an angle that is nearly equal to 90(half of a circle for example)
-            maxAngle = Mathf.Max(maxAngle, angle);
+            if (maxAngle < angle)
+            {
+                //arrow's totalAngle can work even if we dont have an angle that is nearly equal to 90(half of a circle for example)
+                maxAngle = angle;
+                //we need to find position of max angle for arrow, to instantiate spell correctly
+                maxAnglePosition = drawPoints[i];
+            }
         }
 
         // Check for shapes based on total angle and treshold
@@ -155,9 +162,10 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
         {
             spellsManager.useLine();
         }
-        else if (Mathf.Abs(totalAngle - 150) < angleThreshold && maxAngle > 80)
+        else if (Mathf.Abs(totalAngle - 150) < angleThreshold && maxAngle > 80
+            && Vector2.Distance(drawPoints[0], drawPoints[^1]) > arrowTresholdDistance)//avoid player drawing beggining and last dots too close to each other
         {
-            spellsManager.useArrow(1);
+            spellsManager.useArrow(maxAnglePosition);
         }
     }
 
@@ -167,6 +175,4 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
         drawPoints.Clear();
         lineRenderer.positionCount = positionCount = 0;
     }
-
-    
 }
