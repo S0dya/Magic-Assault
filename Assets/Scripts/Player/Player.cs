@@ -17,23 +17,28 @@ public class Player : SingletonMonobehaviour<Player>
 
     [SerializeField] Image[] statsImages; //0 - hp, 1 - mana
 
-
+    
     //local 
     [HideInInspector] public bool joystickInput;
 
     //UI
     float[] maxStats;
-    float[] curStats;
+    [HideInInspector] public float[] curStats = { 100, 100 };
 
     float[] amountOfTimeBeforeRestoringStats;
     float[] amountOfTimeForRestoringStats;
     float[] amountOfRestoringStats;
 
+    int durationOfBurning;
+
     bool canRestoreHp;
+    bool isBurning;
 
     //cor
     Coroutine restoreHpCor;
     Coroutine restoreManaCor;
+
+    Coroutine burningCor;
 
     protected override void Awake()
     {
@@ -47,6 +52,8 @@ public class Player : SingletonMonobehaviour<Player>
         amountOfTimeBeforeRestoringStats = Settings.amountOfTimeBeforeRestoringStats;
         amountOfTimeForRestoringStats = Settings.amountOfTimeForRestoringStats;
         amountOfRestoringStats = Settings.amountOfRestoringStats;
+
+        durationOfBurning = Settings.durationOfBurning;
 
         canRestoreHp = Settings.canRestoreHp;
     }
@@ -81,32 +88,73 @@ public class Player : SingletonMonobehaviour<Player>
     //other methods
     void SetJoystick()
     {
+        //set joystick's type
         bool isFJ = Settings.isFloatingJoystick;
 
         if (isFJ) flJoystick.gameObject.SetActive(true);
         else fxJoystick.gameObject.SetActive(true);
 
+        //set this joystick
         joystick = isFJ ? flJoystick : fxJoystick;
     }
 
-    //UI
-    void ChangeStats(float val, int i)
+    public void StartBurning(float damage)
     {
-        //make stats be between 0 to 1
-        float newStat = Mathf.Lerp(0, 1, curStats[i] + val);
-        statsImages[i].fillAmount = newStat;
+        //return if already burning
+        if (isBurning) return;
 
+        //stop restoring hp and start burning
+        isBurning = true;
+        if (restoreHpCor != null) StopCoroutine(restoreHpCor);
+        burningCor = StartCoroutine(BurningCor(damage));
+    }
+    IEnumerator BurningCor(float damage)
+    {
+        int time = 0;
+
+        while (time < durationOfBurning)
+        {
+            time++;
+            ChangeStats(damage, 0);
+
+            yield return new WaitForSeconds(2f);
+        }
+
+        StopBurning();
+    }
+    public void StopBurning()
+    {
+        if (burningCor != null) StopCoroutine(burningCor);
+        isBurning = false;
+    }
+
+    //UI
+    public void ChangeStats(float val, int i)
+    {
+        //get new stats from 0 to 100 
+        float newStat = curStats[i] + val;
+        //set new stats from 0 to 100. depending on whether val is - or + check if its less or more than 100 or 0 
+        curStats[i] = (val > 0 ? Mathf.Min(newStat, 100) : Mathf.Max(0, newStat));
+        //set stats from 0 to 1
+        statsImages[i].fillAmount = curStats[i] / 100;
+
+        //hp == 0
+        if (curStats[0] == 0)
+        {
+            Debug.Log("die");
+        }
+
+        //start coroutines to restore stats
         if (i == 1)
         {
             if (restoreManaCor != null) StopCoroutine(restoreManaCor);
             restoreManaCor = StartCoroutine(RestoreStatsCor(i, restoreManaCor));
         }
-        else if (canRestoreHp)
+        else if (canRestoreHp && !isBurning)//player cant restore hp while burning
         {
             if (restoreHpCor != null) StopCoroutine(restoreHpCor);
             restoreHpCor = StartCoroutine(RestoreStatsCor(i, restoreHpCor));
         }
-
     }
     IEnumerator RestoreStatsCor(int i, Coroutine thisCor)
     {
@@ -126,18 +174,9 @@ public class Player : SingletonMonobehaviour<Player>
     //trigger
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.CompareTag("Fire"))
-        {
-            Debug.Log("555");
-        }
+        //Debug.Log(collision.gameObject.tag);
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.CompareTag("Fire"))
-        {
-            Debug.Log("555");
-        }
     }
 }

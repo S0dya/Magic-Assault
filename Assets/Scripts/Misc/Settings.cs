@@ -17,26 +17,35 @@ public static class Settings
     public static float[] amountOfTimeForRestoringStats = new float[2] { 0.2f, 0.2f };
     public static float[] amountOfRestoringStats = new float[2] { 5, 5 };
 
-    public static bool canRestoreHp;
+    public static bool canRestoreHp = false;
+
+    public static int durationOfBurning = 10;
 
     //spells
+    public static int[] startingSpells = new int[4];
+    public static float[] startingSpellsManaUsage = new float[4] { 5f, 15f, 3f, 10f };
+
     //dot
-
-    //line
-
-    //circle
-
-    //arrow
-    public static bool additionalEffects = true;
-
-    //fire
-    public static float sizeOfFire = 1;
-
-    //water
-    public static float maxSizeOfWater = 3.5f;
 
     //stone
     public static float size = 1f;
+
+    public static float damageOfStone = 7f;
+
+    //line
+
+    //fire
+    public static float damageOfFire = 5f;
+    public static float manaUsageOfFire = 3f;
+    public static float sizeOfFireMultiplier = 1f;
+    
+    //circle
+
+    //water
+    public static float maxSizeOfWater = 3.5f;
+    
+    //arrow
+    public static bool additionalEffects = true;
 
     //wind
     public static float sizeOfWind = 1;//change to multiplier

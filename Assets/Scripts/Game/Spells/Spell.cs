@@ -8,16 +8,22 @@ public class Spell : MonoBehaviour
     public ParticleSystem ps;
 
     //main
+    //[HideInInspector] 
     public float size;
     public float rotation;
     
     //shape
     public float angle;
 
+    //vars for inheriting scripts
+    public float damageMultiplier;
+
 
     //before play all needed parametrs are set inside other spells scripts
     public void Play()
     {
+        damageMultiplier = size + 0.25f;
+
         ps.Play();
     }
 
