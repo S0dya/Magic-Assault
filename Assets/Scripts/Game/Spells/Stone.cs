@@ -13,12 +13,12 @@ public class Stone : Spell
         damage = -Settings.damageOfStone * damageMultiplier;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnParticleCollision(GameObject collisionObj)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collisionObj.CompareTag("Player"))
         {
-            Player player = collision.gameObject.GetComponent<Player>();
-            player.ChangeStats(damage, 0);
+            Player player = collisionObj.GetComponent<Player>();
+            player.ChangeHP(damage);
         }
 
     }

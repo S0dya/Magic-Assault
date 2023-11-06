@@ -5,10 +5,12 @@ using UnityEngine;
 public class Water : Spell
 {
     [Header("This spell")]
-    [SerializeField] CircleCollider2D collider;
+    [SerializeField] CircleCollider2D col;
 
     void Start()
     {
-        collider.radius = size;
+        col.radius = size/2;
     }
+
+
 }

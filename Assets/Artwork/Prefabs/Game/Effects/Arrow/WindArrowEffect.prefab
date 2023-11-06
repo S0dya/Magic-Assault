@@ -53,7 +53,7 @@ MonoBehaviour:
   rotation: 0
   angle: 0
   damageMultiplier: 0
-  collider: {fileID: 8472967301382161361}
+  col: {fileID: 8472967301382161361}
 --- !u!198 &8472967301382161362
 ParticleSystem:
   m_ObjectHideFlags: 0

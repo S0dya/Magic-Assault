@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8970256659375900881}
   m_Layer: 8
   m_Name: WaterCircleEffect
-  m_TagString: Fire
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,8 +50,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ps: {fileID: 8970256659375900877}
   size: 0
+  rotation: 0
   angle: 0
-  collider: {fileID: 8970256659375900881}
+  damageMultiplier: 0
+  col: {fileID: 8970256659375900881}
 --- !u!198 &8970256659375900877
 ParticleSystem:
   m_ObjectHideFlags: 0

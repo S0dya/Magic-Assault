@@ -6,20 +6,18 @@ using UnityEngine.UI;
 public class Player : SingletonMonobehaviour<Player>
 {
     [Header("Settings")]
-    public float mocementSpeed;
+    public float movementSpeed;
 
     [Header("SerializeFields")]
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] SpriteRenderer sr;
+
     [Header("UI")]
     [SerializeField] FloatingJoystick flJoystick;
     [SerializeField] FixedJoystick fxJoystick;
     Joystick joystick;
 
     [SerializeField] Image[] statsImages; //0 - hp, 1 - mana
-
-    
-    //local 
-    [HideInInspector] public bool joystickInput;
 
     //UI
     float[] maxStats;
@@ -28,17 +26,31 @@ public class Player : SingletonMonobehaviour<Player>
     float[] amountOfTimeBeforeRestoringStats;
     float[] amountOfTimeForRestoringStats;
     float[] amountOfRestoringStats;
+    
+    //local 
+    [HideInInspector] public bool joystickInput;
+
+    float movementMultiplier = 1;
+    float pushMultiplier = 4;
 
     int durationOfBurning;
+    float takingDamageVisualisationTime;
+    float timeForPushEnd;
 
     bool canRestoreHp;
+
     bool isBurning;
+    bool isPushed;
+    bool isWet;
+
+    float burningTime;
 
     //cor
     Coroutine restoreHpCor;
     Coroutine restoreManaCor;
 
     Coroutine burningCor;
+    Coroutine waitForPushEndCor;
 
     protected override void Awake()
     {
@@ -54,15 +66,17 @@ public class Player : SingletonMonobehaviour<Player>
         amountOfRestoringStats = Settings.amountOfRestoringStats;
 
         durationOfBurning = Settings.durationOfBurning;
+        takingDamageVisualisationTime = Settings.takingDamageVisualisationTime;
+        timeForPushEnd = Settings.timeForPushEnd;
 
         canRestoreHp = Settings.canRestoreHp;
     }
 
     void Update()
     {
-        if (joystickInput)
+        if (joystickInput && !isPushed)
         {
-            rb.velocity = joystick.Direction * mocementSpeed;
+            rb.velocity = joystick.Direction * movementSpeed * movementMultiplier;
         }
     }
 
@@ -100,6 +114,8 @@ public class Player : SingletonMonobehaviour<Player>
 
     public void StartBurning(float damage)
     {
+        //set burning time to zero, so player can burn, or will "start burning" again 
+        burningTime = 0;
         //return if already burning
         if (isBurning) return;
 
@@ -110,12 +126,10 @@ public class Player : SingletonMonobehaviour<Player>
     }
     IEnumerator BurningCor(float damage)
     {
-        int time = 0;
-
-        while (time < durationOfBurning)
+        while (burningTime < durationOfBurning)
         {
-            time++;
-            ChangeStats(damage, 0);
+            burningTime++;
+            ChangeHP(damage);
 
             yield return new WaitForSeconds(2f);
         }
@@ -128,46 +142,94 @@ public class Player : SingletonMonobehaviour<Player>
         isBurning = false;
     }
 
-    //UI
-    public void ChangeStats(float val, int i)
+    public void Push(Vector2 posOfPush)
     {
-        //get new stats from 0 to 100 
-        float newStat = curStats[i] + val;
-        //set new stats from 0 to 100. depending on whether val is - or + check if its less or more than 100 or 0 
-        curStats[i] = (val > 0 ? Mathf.Min(newStat, 100) : Mathf.Max(0, newStat));
-        //set stats from 0 to 1
-        statsImages[i].fillAmount = curStats[i] / 100;
+        Vector2 direction = (Vector2)transform.position - posOfPush;
+        rb.AddForce(direction * pushMultiplier * movementMultiplier, ForceMode2D.Impulse);
+        waitForPushEndCor = StartCoroutine(WaitForPushEndCor());
+    }
+    IEnumerator WaitForPushEndCor()
+    {
+        isPushed = true;
+        yield return new WaitForSeconds(timeForPushEnd);
+        isPushed = false;
+    }
 
-        //hp == 0
+    IEnumerator VisualiseDamage()
+    {
+        sr.color = new Color(0, 0, 0);
+        yield return new WaitForSeconds(takingDamageVisualisationTime);
+        sr.color = new Color(255, 255, 255);
+    }
+
+    //UI
+    public void ChangeHP(float val)
+    {
+        ChangeStats(val, 0);
+
         if (curStats[0] == 0)
         {
             Debug.Log("die");
         }
 
         //start coroutines to restore stats
-        if (i == 1)
-        {
-            if (restoreManaCor != null) StopCoroutine(restoreManaCor);
-            restoreManaCor = StartCoroutine(RestoreStatsCor(i, restoreManaCor));
-        }
-        else if (canRestoreHp && !isBurning)//player cant restore hp while burning
+        if (canRestoreHp && !isBurning)//player cant restore hp while burning
         {
             if (restoreHpCor != null) StopCoroutine(restoreHpCor);
-            restoreHpCor = StartCoroutine(RestoreStatsCor(i, restoreHpCor));
+            restoreHpCor = StartCoroutine(RestoreHpCor());
         }
     }
-    IEnumerator RestoreStatsCor(int i, Coroutine thisCor)
+    public void ChangeMana(float val)
     {
-        yield return new WaitForSeconds(amountOfTimeBeforeRestoringStats[i]);
+        ChangeStats(val, 1);
 
-        while (curStats[i] < 100)
+        if (restoreManaCor != null) StopCoroutine(restoreManaCor);
+        restoreManaCor = StartCoroutine(RestoreManaCor());
+    }
+    void ChangeStats(float val, int i)
+    {
+        //get new stats from 0 to 100 
+        float newStat = curStats[i] + val;
+        //set new stats from 0 to 100. depending on whether val is - or + check if its less or more than 100 or 0 
+        if (val > 0) curStats[i] = Mathf.Min(newStat, 100);
+        else
         {
-            yield return new WaitForSeconds(amountOfTimeForRestoringStats[i]);
+            //visualise hp damage
+            if (i == 0) StartCoroutine(VisualiseDamage());
+            //visualise mana usage
+            //else if (i == 1) play spell animation;
 
-            ChangeStats(amountOfRestoringStats[i], i);
+            curStats[i] = Mathf.Max(0, newStat);
+        }
+        //set stats from 0 to 1
+        statsImages[i].fillAmount = curStats[i] / 100;
+    }
+
+    IEnumerator RestoreHpCor()
+    {
+        yield return new WaitForSeconds(amountOfTimeBeforeRestoringStats[0]);
+
+        while (curStats[0] < 100)
+        {
+            yield return new WaitForSeconds(amountOfTimeForRestoringStats[0]);
+
+            ChangeHP(amountOfRestoringStats[0]);
         }
 
-        thisCor = null;
+        restoreHpCor = null;
+    }
+    IEnumerator RestoreManaCor()
+    {
+        yield return new WaitForSeconds(amountOfTimeBeforeRestoringStats[1]);
+
+        while (curStats[1] < 100)
+        {
+            yield return new WaitForSeconds(amountOfTimeForRestoringStats[1]);
+
+            ChangeMana(amountOfRestoringStats[1]);
+        }
+
+        restoreManaCor = null;
     }
 
 

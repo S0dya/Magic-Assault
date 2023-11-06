@@ -136,6 +136,6 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         return player.curStats[1] <= curEffectManaUsage[i];
     }
     //subtract mana
-    void UseMana(int i, int amount) => player.ChangeStats(-curEffectManaUsage[i] * size * amount, 1);
+    void UseMana(int i, int amount) => player.ChangeMana(-curEffectManaUsage[i] * size * amount);
 
 }

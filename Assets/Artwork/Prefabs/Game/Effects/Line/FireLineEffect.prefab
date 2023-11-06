@@ -50,8 +50,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ps: {fileID: 3328960950643150083}
   size: 0
+  rotation: 0
   angle: 0
-  collider: {fileID: 962521261}
+  damageMultiplier: 0
+  col: {fileID: 962521261}
 --- !u!198 &3328960950643150083
 ParticleSystem:
   m_ObjectHideFlags: 0
