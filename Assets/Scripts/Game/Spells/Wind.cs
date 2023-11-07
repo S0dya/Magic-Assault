@@ -9,11 +9,16 @@ public class Wind : Spell
 
     float damage;
 
+    Vector2 posOfPush;
+
     void Start()
     {
         col.size = new Vector2(size, size);
-        damage = -Settings.damageOfFire * damageMultiplier;
+        damage = -Settings.damageOfWind * damageMultiplier;
 
+        // Calculate the direction vector using trigonometry
+        float radians = (rotation * Mathf.Deg2Rad) + 1.5f;
+        posOfPush = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians));
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -22,15 +27,13 @@ public class Wind : Spell
         {
             case "Player":
                 Player player = collision.gameObject.GetComponent<Player>();
-                player.Push(transform.position);
+                player.Push(posOfPush, size);
                 player.ChangeHP(damage);
                 break;
             case "Enemy":
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+                enemy.Push(posOfPush, size);
                 enemy.ChangeHP(damage);
-                break;
-            case "Water":
-                Destroy(gameObject);
                 break;
             default: break;
         }

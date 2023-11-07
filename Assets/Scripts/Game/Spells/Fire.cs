@@ -8,11 +8,13 @@ public class Fire : Spell
     [SerializeField] BoxCollider2D col;
 
     float damage;
+    float damageOfBurning;
 
     void Start()
     {
         col.size = new Vector2(size, size);
         damage = -Settings.damageOfFire * damageMultiplier;
+        damageOfBurning = -Settings.damageOfBurning;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -21,10 +23,12 @@ public class Fire : Spell
         {
             case "Player":
                 Player player = collision.gameObject.GetComponent<Player>();
-                player.StartBurning(damage);
+                player.ChangeHP(damage);
+                player.StartBurning(damageOfBurning);
                 break;
             case "Enemy":
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+                enemy.ChangeHP(damage);
                 enemy.StartBurning(damage);
                 break;
             case "Water":

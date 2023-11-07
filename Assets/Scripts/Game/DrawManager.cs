@@ -17,7 +17,7 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
     [SerializeField] SpellsManager spellsManager;
     [SerializeField] Camera cam;
     [SerializeField] LineRenderer lineRenderer;
-
+    Player player;
 
     //local
     [HideInInspector] public bool inputChecked;
@@ -36,6 +36,7 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
     {
         base.Awake();
 
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     void Update()
@@ -74,7 +75,7 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
         yield return null;
 
         inputChecked = true;
-        if (!Player.I.joystickInput && touchesCount == 1)
+        if (!player.joystickInput && touchesCount == 1)
         {
             isInput = true;
             changeSizeOfLineCor = StartCoroutine(ChangeSizeOfLineCor());

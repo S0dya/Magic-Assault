@@ -85,7 +85,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         float numObjects = Mathf.CeilToInt(distance / distanceForFire);
 
         //check if players mana allows to spawn as many objects as needed
-        float manaNeeded = Mathf.Min(player.curStats[1], numObjects * curEffectManaUsage[2]);
+        float manaNeeded = Mathf.Min(player.curMana, numObjects * curEffectManaUsage[2]);
         float totalN = manaNeeded / curEffectManaUsage[2];
 
         //instantiate effect from first draw position to last 
@@ -106,15 +106,14 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         Vector2 direction = (middleElementPos - arrowStartPos).normalized;
         float rotation = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
 
-        InstantiateEffect(curEffect[3], middleElementPos, size, 0, rotation);
+        Vector2[] posOfSpells = new Vector2[] { drawPoints[0], middleElementPos, drawPoints[^1] };
 
-        if (Settings.additionalEffects)
+        for (int i = 0; i < (Settings.additionalEffects ? 3 : 1); i++)
         {
-            InstantiateEffect(curEffect[3], drawPoints[0], size, 0, rotation);
-            InstantiateEffect(curEffect[3], drawPoints[^1], size, 0, rotation);
+            InstantiateEffect(curEffect[3], posOfSpells[i], size, 0, rotation);
+            UseMana(3, 1);
+            if (PlayerHasEnoughMana(3)) break;
         }
-
-        UseMana(3, 1);
     }
     void InstantiateEffect(GameObject prefab, Vector2 pos, float size, float angle, float rotation)
     {
@@ -133,7 +132,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     //check if player has enough mana to do spells
     bool PlayerHasEnoughMana(int i)
     {
-        return player.curStats[1] <= curEffectManaUsage[i];
+        return player.curMana <= curEffectManaUsage[i];
     }
     //subtract mana
     void UseMana(int i, int amount) => player.ChangeMana(-curEffectManaUsage[i] * size * amount);

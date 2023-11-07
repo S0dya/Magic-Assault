@@ -7,6 +7,7 @@ TagManager:
   - Fire
   - Enemy
   - Water
+  - Effect
   layers:
   - Default
   - TransparentFX
@@ -43,4 +44,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 1772809157
+    locked: 0
+  - name: DownEffects
+    uniqueID: 801097515
+    locked: 0
+  - name: SmallEnemy
+    uniqueID: 2040444395
+    locked: 0
+  - name: Player
+    uniqueID: 522007411
+    locked: 0
+  - name: UpEffects
+    uniqueID: 202178703
     locked: 0

@@ -8,35 +8,36 @@ public class EnemyPlayerDamagaTrigger : MonoBehaviour
     public float timeBetweenDamage;
 
     [Header("SerializeFields")]
-    [SerializeField] Player player;
+    [SerializeField] Enemy enemy;
+    Player player;
 
     //local
-    bool canTakeDamage = true;
+    bool canDamage = true;
 
     //cors
-    Coroutine takingDamageCor;
+    Coroutine givingDamageCor;
+
+    void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+    }
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("as");
-        if (canTakeDamage && collision.gameObject.CompareTag("Enemy"))
-        {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            TakeDamage(enemy.damage);
-        }
+        if (canDamage) TakeDamage(enemy.damage);
     }
 
     void TakeDamage(float damage)
     {
-        takingDamageCor = StartCoroutine(TakingDamageCor());
+        givingDamageCor = StartCoroutine(GivingDamageCor());
         player.ChangeHP(-damage);
     }
-    IEnumerator TakingDamageCor()
+    IEnumerator GivingDamageCor()
     {
-        canTakeDamage = false;
+        canDamage = false;
         yield return new WaitForSeconds(timeBetweenDamage);
-        canTakeDamage = true;
+        canDamage = true;
 
-        takingDamageCor = null;
+        givingDamageCor = null;
     }
 }
