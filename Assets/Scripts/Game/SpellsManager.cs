@@ -7,7 +7,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     [Header("Settings")]
     public float distanceForFire;
 
-    [Header("SerializeFields")]
+    [Header("Other")]
     [SerializeField] Player player;
     Transform playerTransform;
     [SerializeField] DrawManager drawManager;
@@ -60,9 +60,9 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
         //get angle from player to draw position
         Vector2 direction = (drawPoints[^1] - (Vector2)playerTransform.position).normalized;
-        float angle = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
-        
-        InstantiateEffect(curEffect[0], playerTransform.position, size, angle, 0);
+        float rotation = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
+
+        InstantiateEffect(curEffect[0], (Vector2)playerTransform.position + direction * size, size, direction, rotation);
         UseMana(0, 1);
     }
 
@@ -72,7 +72,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
         //get radius of circle
         Vector2 pos = Vector2.Lerp(drawPoints[0], drawPoints[drawPoints.Count / 2], 0.5f);
-        InstantiateEffect(curEffect[1], pos, size * distance, 0, 0);
+        InstantiateEffect(curEffect[1], pos, size * distance);
         UseMana(1, 1);
     }
 
@@ -91,7 +91,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         //instantiate effect from first draw position to last 
         for (int i = 0; i < totalN; i++)
         {
-            InstantiateEffect(curEffect[2], Vector2.Lerp(drawPoints[0], drawPoints[^1], i / numObjects), size, 0, 0);
+            InstantiateEffect(curEffect[2], Vector2.Lerp(drawPoints[0], drawPoints[^1], i / numObjects), size);
         }
 
         UseMana(2, (int)manaNeeded);
@@ -110,12 +110,12 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
         for (int i = 0; i < (Settings.additionalEffects ? 3 : 1); i++)
         {
-            InstantiateEffect(curEffect[3], posOfSpells[i], size, 0, rotation);
+            InstantiateEffect(curEffect[3], posOfSpells[i], size, rotation);
             UseMana(3, 1);
             if (PlayerHasEnoughMana(3)) break;
         }
     }
-    void InstantiateEffect(GameObject prefab, Vector2 pos, float size, float angle, float rotation)
+    Spell InstantiateEffect(GameObject prefab, Vector2 pos, float size)
     {
         //instantiate object and get spells script
         GameObject obj = Instantiate(prefab, pos, Quaternion.identity, effectsParent);
@@ -123,10 +123,24 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
         //set all needed variables of isntantiated object
         spell.SetSize(size);
-        if (angle != 0) spell.SetAngle(angle);
-        if (rotation != 0) spell.SetRotation(rotation);
 
         spell.Play();
+
+        return spell;
+    }
+    //additional logics for instantiating
+    //instantiate with settings direction of force for rigidbody
+    public void InstantiateEffect(GameObject prefab, Vector2 pos, float size, Vector2 direction, float rotation)
+    {
+        Spell spell = InstantiateEffect(prefab, pos, size);
+        spell.ApplyForce(direction);
+        spell.SetRotation(rotation);
+    }
+    //instantiate with setting rotation 
+    void InstantiateEffect(GameObject prefab, Vector2 pos, float size, float rotation)
+    {
+        Spell spell = InstantiateEffect(prefab, pos, size);
+        spell.SetRotation(rotation);
     }
 
     //check if player has enough mana to do spells

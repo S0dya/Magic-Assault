@@ -7,8 +7,8 @@ public class Enemy : Creature
     Transform playerTransform;
     
     [Header("Enemy settings")]
-    public float damage;
-
+    public float speedOnTriggerWithPlayer;
+    public float damageOnTriggerWithPlayer;
 
     //local
     //bool canMove = true;
@@ -29,13 +29,13 @@ public class Enemy : Creature
         base.Update();
     }
 
-    /*
-    public void ToggleMovement(bool val)
+    public void ToggleMovement(bool val) => CanMove = val;
+
+    public void ToggleMovementSpeedOnPlayerTrigger(bool val)
     {
-        canMove = val;
-        if (!canMove) rb.velocity = Vector2.zero;
+        if (val) CurMovementSpeed = speedOnTriggerWithPlayer;
+        else CurMovementSpeed = movementSpeed;
     }
-    */
 
     //health
     public override void ChangeHP(float val)

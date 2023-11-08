@@ -351,5 +351,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a57c459c57b6a40b4010c845d18915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bikeMaterials: []
-  skyBoxes: []

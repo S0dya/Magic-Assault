@@ -12,29 +12,18 @@ public static class Settings
     //shop
 
     //game
-    public static float takingDamageVisualisationTime = 0.15f;
-
-    //player 
-    public static float[] amountOfTimeBeforeRestoringStats = new float[2] { 1, 1 };
-    public static float[] amountOfTimeForRestoringStats = new float[2] { 0.2f, 0.2f };
-    public static float[] amountOfRestoringStats = new float[2] { 5, 5 };
-
-    public static bool canRestoreHp = false;
-
-    public static int durationOfBurning = 10;
-
-    public static float timeForPushEnd = 0.5f;
 
     //spells
     public static int[] startingSpells = new int[4];
-    public static float[] startingSpellsManaUsage = new float[4] { 5f, 15f, 3f, 10f };
+    public static float[] startingSpellsManaUsage = new float[4] { 15f, 15f, 3f, 10f };
 
     //dot
 
-    //stone
-    public static float size = 1f;
+    //fire 
+    public static float damageOfFireball = 5f;
 
-    public static float damageOfStone = 7f;
+    //stone
+    public static float damageOfStone = 10f;
 
     //line
 

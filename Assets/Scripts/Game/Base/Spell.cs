@@ -6,17 +6,21 @@ public class Spell : MonoBehaviour
 {
     [Header("Settings")]
     public ParticleSystem ps;
+    public Rigidbody2D rb;
+
+    public bool worksForPlayer;
+    public bool worksForEnemy;
 
     //main
-    //[HideInInspector] 
-    public float size;
-    public float rotation;
-    
-    //shape
-    public float angle;
+    [HideInInspector] public float size;
+    [HideInInspector] public float rotation;
+
+    //rb
+    [HideInInspector] public Vector2 directionOfPush;
+    public float speed;
 
     //vars for inheriting scripts
-    public float damageMultiplier;
+    [HideInInspector] public float damageMultiplier;
 
 
     //before play all needed parametrs are set inside other spells scripts
@@ -48,16 +52,10 @@ public class Spell : MonoBehaviour
         return ps.main;
     }
 
-    //shape 
-    public void SetAngle(float a)
+    //rigidbody
+    public void ApplyForce(Vector2 direction)
     {
-        angle = a;
-        var shape = GetShape();
-        shape.rotation = new Vector3(0f, 0f, angle);
-    }
-
-    ParticleSystem.ShapeModule GetShape()
-    {
-        return ps.shape;
+        directionOfPush = direction;
+        rb.AddForce(direction * speed, ForceMode2D.Impulse);
     }
 }

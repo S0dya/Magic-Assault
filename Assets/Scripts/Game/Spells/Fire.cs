@@ -24,12 +24,12 @@ public class Fire : Spell
             case "Player":
                 Player player = collision.gameObject.GetComponent<Player>();
                 player.ChangeHP(damage);
-                player.StartBurning(damageOfBurning);
+                player.Burn(damageOfBurning);
                 break;
             case "Enemy":
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
                 enemy.ChangeHP(damage);
-                enemy.StartBurning(damage);
+                enemy.Burn(damage);
                 break;
             case "Water":
                 Destroy(gameObject);

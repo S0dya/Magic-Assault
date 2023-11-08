@@ -12,6 +12,13 @@ public class Water : Spell
         col.radius = size/2;
     }
 
+    //disable for proper trigger detection
+    void OnDisable()
+    {
+        col.enabled = false;
+    }
+
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)

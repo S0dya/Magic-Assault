@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Water
   - Effect
+  - EffectsParent
   layers:
   - Default
   - TransparentFX
@@ -15,17 +16,17 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - PlayerEnemyDistanceAttack
   - PlayerEnemyDamage
+  - EnemyPlayerDistanceAttack
   - Effects
   - 
+  - 
   - Player
+  - 
+  - 
   - Volume
-  - 
   - Enemy
-  - 
-  - 
-  - 
   - 
   - 
   - 

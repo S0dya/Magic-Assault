@@ -6,9 +6,6 @@ using UnityEngine.UI;
 [DefaultExecutionOrder(-1)]
 public class GameManager : SingletonMonobehaviour<GameManager>
 {
-    public Material[] bikeMaterials;
-    [SerializeField] Material[] skyBoxes;
-
     protected override void Awake()
     {
         base.Awake();
