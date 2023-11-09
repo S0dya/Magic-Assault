@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8970256659375900876}
   - component: {fileID: 5930704968394290257}
   - component: {fileID: 8970256659375900881}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: WaterCircleEffect
   m_TagString: Water
   m_Icon: {fileID: 0}
@@ -49,9 +49,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 8970256659375900877}
+  rb: {fileID: 0}
+  typeOfDamage: 1
+  worksForPlayer: 0
+  worksForEnemy: 0
   size: 0
   rotation: 0
-  angle: 0
+  directionOfPush: {x: 0, y: 0}
+  speed: 0
   damageMultiplier: 0
   col: {fileID: 8970256659375900881}
 --- !u!198 &8970256659375900877

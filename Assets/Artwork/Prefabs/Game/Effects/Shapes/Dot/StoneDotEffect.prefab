@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2343054465367942813}
   - component: {fileID: 1060294006170311168}
   - component: {fileID: 1222481655471813308}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: StoneDotEffect
   m_TagString: Fire
   m_Icon: {fileID: 0}
@@ -50,12 +50,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ps: {fileID: 2343054465367942812}
   rb: {fileID: 1060294006170311168}
+  typeOfDamage: 3
+  worksForPlayer: 0
+  worksForEnemy: 1
   size: 0
   rotation: 0
   directionOfPush: {x: 0, y: 0}
   speed: 4
   damageMultiplier: 0
   col: {fileID: 1222481655471813308}
+  durationOfStun: 0.7
 --- !u!198 &2343054465367942812
 ParticleSystem:
   m_ObjectHideFlags: 0

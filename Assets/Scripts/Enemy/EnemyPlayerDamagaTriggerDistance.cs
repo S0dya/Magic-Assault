@@ -48,12 +48,12 @@ public class EnemyPlayerDamagaTriggerDistance : MonoBehaviour
     //other methods
     void Attack()
     {
-        if (canAttack && onTrigger)
+        if (onTrigger && !enemy.isPushed)
         {
             Vector2 posOfEnemy = transform.position;
             Vector2 direction = ((Vector2)playerTransform.position - posOfEnemy).normalized;
             float rotation = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
-            SpellsManager.I.InstantiateEffect(spell, posOfEnemy + direction * size, size, direction, rotation);
+            SpellsManager.I.InstantiateEffect(spell, posOfEnemy + direction, size, direction, rotation);
         }
     }
     IEnumerator AttackingCor()

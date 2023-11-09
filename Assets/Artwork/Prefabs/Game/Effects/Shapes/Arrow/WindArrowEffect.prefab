@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8472967301382161363}
   - component: {fileID: 6603647624270954318}
   - component: {fileID: 8472967301382161361}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: WindArrowEffect
   m_TagString: Fire
   m_Icon: {fileID: 0}
@@ -49,9 +49,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 8472967301382161362}
+  rb: {fileID: 0}
+  typeOfDamage: 3
+  worksForPlayer: 0
+  worksForEnemy: 0
   size: 0
   rotation: 0
-  angle: 0
+  directionOfPush: {x: 0, y: 0}
+  speed: 0
   damageMultiplier: 0
   col: {fileID: 8472967301382161361}
 --- !u!198 &8472967301382161362

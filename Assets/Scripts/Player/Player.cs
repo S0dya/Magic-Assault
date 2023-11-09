@@ -28,8 +28,10 @@ public class Player : Creature
     Coroutine restoreManaCor;
 
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         SetJoystick();
     }
 
@@ -80,9 +82,9 @@ public class Player : Creature
     }
 
     //UI
-    public override void ChangeHP(float val)
+    public override void ChangeHP(float val, int typeOfDamage)
     {
-        base.ChangeHP(val);
+        base.ChangeHP(val, typeOfDamage);
 
         if (curHp == 0)
         {

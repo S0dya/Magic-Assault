@@ -8,6 +8,7 @@ public class Stone : Spell
     [SerializeField] CircleCollider2D col;
 
     float damage;
+    public float durationOfStun;
 
     void Start()
     {
@@ -21,16 +22,16 @@ public class Stone : Spell
         if (worksForPlayer && collision.gameObject.CompareTag("Player"))
         {
             Player player = collision.gameObject.GetComponentInParent<Player>();
-            player.Push(directionOfPush, size);
-            player.ChangeHP(damage);
+            player.Stun(durationOfStun);
+            player.ChangeHP(damage, typeOfDamage);
             Destroy(gameObject);
         }
         
         if (worksForEnemy && collision.gameObject.CompareTag("Enemy"))
         {
             Enemy enemy = collision.gameObject.GetComponentInParent<Enemy>();
-            enemy.Push(directionOfPush, size);
-            enemy.ChangeHP(damage);
+            enemy.Stun(durationOfStun);
+            enemy.ChangeHP(damage, typeOfDamage);
             Destroy(gameObject);
         }
     }

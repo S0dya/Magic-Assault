@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7446051607462513132}
   - component: {fileID: 5289310794702419313}
   - component: {fileID: 6279886455627423181}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: EnemyFireballEffect
   m_TagString: Fire
   m_Icon: {fileID: 0}

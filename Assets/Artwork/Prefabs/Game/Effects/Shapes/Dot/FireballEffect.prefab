@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7446051607462513132}
   - component: {fileID: 5289310794702419313}
   - component: {fileID: 6279886455627423181}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: FireballEffect
   m_TagString: Fire
   m_Icon: {fileID: 0}
@@ -50,12 +50,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ps: {fileID: 7446051607462513133}
   rb: {fileID: 5289310794702419313}
+  typeOfDamage: 0
   worksForPlayer: 0
   worksForEnemy: 1
   size: 0
   rotation: 0
   directionOfPush: {x: 0, y: 0}
-  speed: 5
+  speed: 4
   damageMultiplier: 0
   col: {fileID: 6279886455627423181}
 --- !u!198 &7446051607462513133

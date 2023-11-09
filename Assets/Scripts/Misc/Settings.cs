@@ -31,7 +31,8 @@ public static class Settings
     public static float damageOfFire = 5f;
     public static float damageOfBurning = 2f;
     public static float sizeOfFireMultiplier = 1f;
-    
+    public static int timeOfBurning = 7;
+
     //circle
 
     //water

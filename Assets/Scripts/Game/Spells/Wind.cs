@@ -28,12 +28,12 @@ public class Wind : Spell
             case "Player":
                 Player player = collision.gameObject.GetComponent<Player>();
                 player.Push(posOfPush, size);
-                player.ChangeHP(damage);
+                player.ChangeHP(damage, typeOfDamage);
                 break;
             case "Enemy":
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
                 enemy.Push(posOfPush, size);
-                enemy.ChangeHP(damage);
+                enemy.ChangeHP(damage, typeOfDamage);
                 break;
             default: break;
         }

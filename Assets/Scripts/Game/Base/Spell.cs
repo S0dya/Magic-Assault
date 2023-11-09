@@ -8,6 +8,8 @@ public class Spell : MonoBehaviour
     public ParticleSystem ps;
     public Rigidbody2D rb;
 
+    public int typeOfDamage;
+
     public bool worksForPlayer;
     public bool worksForEnemy;
 

@@ -9,6 +9,7 @@ public class Fireball : Spell
 
     float damage;
     float damageOfBurning;
+    int timeOfBurning;
 
     void Start()
     {
@@ -22,16 +23,16 @@ public class Fireball : Spell
         if (worksForPlayer && collision.gameObject.CompareTag("Player"))
         {
             Player player = collision.gameObject.GetComponentInParent<Player>();
-            player.ChangeHP(damage);
-            player.Burn(damageOfBurning);
+            player.ChangeHP(damage, typeOfDamage);
+            player.Burn(damageOfBurning, timeOfBurning);
             Destroy(gameObject);
         }
 
         if (worksForEnemy && collision.gameObject.CompareTag("Enemy"))
         {
             Enemy enemy = collision.gameObject.GetComponentInParent<Enemy>();
-            enemy.ChangeHP(damage);
-            enemy.Burn(damageOfBurning);
+            enemy.ChangeHP(damage, typeOfDamage);
+            enemy.Burn(damageOfBurning, timeOfBurning);
             Destroy(gameObject);
         }
     }

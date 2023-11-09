@@ -9,12 +9,14 @@ public class Fire : Spell
 
     float damage;
     float damageOfBurning;
+    int timeOfBurning;
 
     void Start()
     {
         col.size = new Vector2(size, size);
         damage = -Settings.damageOfFire * damageMultiplier;
         damageOfBurning = -Settings.damageOfBurning;
+        timeOfBurning = Settings.timeOfBurning;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -23,13 +25,13 @@ public class Fire : Spell
         {
             case "Player":
                 Player player = collision.gameObject.GetComponent<Player>();
-                player.ChangeHP(damage);
-                player.Burn(damageOfBurning);
+                player.ChangeHP(damage, typeOfDamage);
+                player.Burn(damageOfBurning, timeOfBurning);
                 break;
             case "Enemy":
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-                enemy.ChangeHP(damage);
-                enemy.Burn(damage);
+                enemy.ChangeHP(damage, typeOfDamage);
+                enemy.Burn(damageOfBurning, timeOfBurning);
                 break;
             case "Water":
                 Destroy(gameObject);

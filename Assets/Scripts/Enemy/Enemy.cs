@@ -9,6 +9,7 @@ public class Enemy : Creature
     [Header("Enemy settings")]
     public float speedOnTriggerWithPlayer;
     public float damageOnTriggerWithPlayer;
+    public int typeOfDamageOnTriggerWithPlayer;
 
     //local
     //bool canMove = true;
@@ -17,8 +18,10 @@ public class Enemy : Creature
     Coroutine burningCor;
     Coroutine waitForPushEndCor;
 
-    void Awake()
+    protected override void Start()
     {
+        base.Start();
+
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
@@ -38,9 +41,9 @@ public class Enemy : Creature
     }
 
     //health
-    public override void ChangeHP(float val)
+    public override void ChangeHP(float val, int typeOfDamage)
     {
-        base.ChangeHP(val);
+        base.ChangeHP(val, typeOfDamage);
 
         if (curHp == 0)
         {
