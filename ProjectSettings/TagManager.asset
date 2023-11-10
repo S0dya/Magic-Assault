@@ -29,8 +29,8 @@ TagManager:
   - Enemy
   - 
   - 
-  - 
-  - 
+  - PlayerExpTrigger
+  - Exp
   - 
   - 
   - 
@@ -48,6 +48,9 @@ TagManager:
     locked: 0
   - name: Floor
     uniqueID: 1772809157
+    locked: 0
+  - name: OnFloor
+    uniqueID: 2304197347
     locked: 0
   - name: DownEffects
     uniqueID: 801097515

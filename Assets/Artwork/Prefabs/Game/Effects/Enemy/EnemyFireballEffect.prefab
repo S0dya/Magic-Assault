@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ps: {fileID: 7446051607462513133}
   rb: {fileID: 5289310794702419313}
+  typeOfDamage: 0
   worksForPlayer: 1
   worksForEnemy: 0
   size: 0
@@ -58,6 +59,8 @@ MonoBehaviour:
   speed: 5
   damageMultiplier: 0
   col: {fileID: 6279886455627423181}
+  damageOfBurning: 3
+  timeOfBurning: 3
 --- !u!198 &7446051607462513133
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4808,7 +4811,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 202178703
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

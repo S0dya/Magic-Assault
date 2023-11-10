@@ -7,14 +7,13 @@ public class Fire : Spell
     [Header("This spell")]
     [SerializeField] BoxCollider2D col;
 
-    float damage;
     float damageOfBurning;
     int timeOfBurning;
 
     void Start()
     {
         col.size = new Vector2(size, size);
-        damage = -Settings.damageOfFire * damageMultiplier;
+        damage *= damageMultiplier;
         damageOfBurning = -Settings.damageOfBurning;
         timeOfBurning = Settings.timeOfBurning;
     }

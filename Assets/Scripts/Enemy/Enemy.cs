@@ -11,6 +11,7 @@ public class Enemy : Creature
     public float damageOnTriggerWithPlayer;
     public int typeOfDamageOnTriggerWithPlayer;
 
+
     //local
     //bool canMove = true;
 
@@ -43,10 +44,11 @@ public class Enemy : Creature
     //health
     public override void ChangeHP(float val, int typeOfDamage)
     {
-        base.ChangeHP(val, typeOfDamage);
+        base.ChangeHP(val * Settings.damageMultipliers[typeOfDamage], typeOfDamage);
 
         if (curHp == 0)
         {
+            InstantiateExp();
             Destroy(gameObject);
         }
     }

@@ -7,14 +7,12 @@ public class Wind : Spell
     [Header("This spell")]
     [SerializeField] BoxCollider2D col;
 
-    float damage;
-
     Vector2 posOfPush;
 
     void Start()
     {
         col.size = new Vector2(size, size);
-        damage = -Settings.damageOfWind * damageMultiplier;
+        damage *= damageMultiplier;
 
         // Calculate the direction vector using trigonometry
         float radians = (rotation * Mathf.Deg2Rad) + 1.5f;

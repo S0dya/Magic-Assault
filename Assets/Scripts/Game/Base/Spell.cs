@@ -22,11 +22,12 @@ public class Spell : MonoBehaviour
     public float speed;
 
     //vars for inheriting scripts
+    public float damage;
     [HideInInspector] public float damageMultiplier;
 
 
-    //before play all needed parametrs are set inside other spells scripts
-    public void Play()
+    
+    public void Play() //before play all needed parametrs are set inside other spells scripts
     {
         damageMultiplier = size + 0.25f;
 

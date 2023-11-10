@@ -7,12 +7,11 @@ public class Stone : Spell
     [Header("This spell")]
     [SerializeField] CircleCollider2D col;
 
-    float damage;
     public float durationOfStun;
 
     void Start()
     {
-        damage = -Settings.damageOfStone * damageMultiplier;
+        damage *= damageMultiplier;
 
         col.radius = size / 2;
     }

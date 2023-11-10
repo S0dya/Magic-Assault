@@ -39,6 +39,9 @@ public class Creature : MonoBehaviour
     [SerializeField] Color normalColor;
     [SerializeField] Color damageColor;
 
+    [SerializeField] GameObject expPrefab;
+    [SerializeField] Transform expParent;
+
     //inheriting scripts
     float curMovementSpeed;
     Vector2 directionOfMovement;
@@ -303,5 +306,10 @@ public class Creature : MonoBehaviour
         }
 
         restoreHpCor = null;
+    }
+
+    public void InstantiateExp()
+    {
+        Instantiate(expPrefab, transform.position, Quaternion.identity, expParent);
     }
 }
