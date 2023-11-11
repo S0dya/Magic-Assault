@@ -64,10 +64,10 @@ public static class Settings
 
     public static float[] damageMultipliers = new float[4] { 1, 1, 1, 1 };
 
+    public static bool allWaterIsPoisened;
 
     public static void Clear()
     {
 
     }
-
 }

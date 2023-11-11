@@ -39,8 +39,6 @@ public class Creature : MonoBehaviour
     [SerializeField] Color normalColor;
     [SerializeField] Color damageColor;
 
-    [SerializeField] GameObject expPrefab;
-    [SerializeField] Transform expParent;
 
     //inheriting scripts
     float curMovementSpeed;
@@ -69,7 +67,7 @@ public class Creature : MonoBehaviour
     [HideInInspector] public bool isStunned;
 
     //fire
-    float curBurningTime;
+    int curTimeOfBuring;
 
     //water
     int amountOfTriggeredWater;
@@ -89,7 +87,8 @@ public class Creature : MonoBehaviour
 
     protected virtual void Awake()
     {
-        handleWaterEncounter = (waterDealsDamage ? OnWaterDealsDamage : OnWater);
+        if (waterDealsDamage || Settings.allWaterIsPoisened) handleWaterEncounter = OnWaterDealsDamage;
+        else handleWaterEncounter = OnWater;
     }
 
     protected virtual void Start()
@@ -118,8 +117,8 @@ public class Creature : MonoBehaviour
             StopBeingWet();
             return;
         }
+        curTimeOfBuring += timeOfBurning;
         //set burning time to zero, so creature can burn, or will "start burning" again 
-        curBurningTime = 0;
         //return if already burning
         if (isBurning) return;
 
@@ -129,14 +128,15 @@ public class Creature : MonoBehaviour
         //stop restoring hp and start burning
         isBurning = true;
         if (restoreHpCor != null) StopCoroutine(restoreHpCor);
-        burningCor = StartCoroutine(BurningCor(damage * elementalDamageMultipliers[0], timeOfBurning));
+        burningCor = StartCoroutine(BurningCor(damage * elementalDamageMultipliers[0]));
     }
-    IEnumerator BurningCor(float damage, int timeOfBurning)
+    IEnumerator BurningCor(float damage)
     {
+        int curTime = 0;
         //burn untill cur burning time is less than duration of burning. change hp while burning
-        while (curBurningTime < timeOfBurning)
+        while (curTime < curTimeOfBuring)
         {
-            curBurningTime++;
+            curTime++;
             ChangeHP(damage, 0);
 
             yield return new WaitForSeconds(2f);
@@ -148,6 +148,7 @@ public class Creature : MonoBehaviour
     {
         //stop visualising burning
         burningEffect.Stop();
+        curTimeOfBuring = 0;
 
         if (burningCor != null) StopCoroutine(burningCor);
         isBurning = false;
@@ -201,8 +202,9 @@ public class Creature : MonoBehaviour
         amountOfTriggeredWater++;
 
         //start handling logic of water encounter
-        if (amountOfTriggeredWater == 1) handleWaterEncounter.Invoke();
+        if (amountOfTriggeredWater == 1) HandleWater();
     }
+    public void HandleWater() => handleWaterEncounter.Invoke();
     void OnWater()
     {
         //creature is wet if its in water
@@ -219,7 +221,7 @@ public class Creature : MonoBehaviour
         wetEffect.Play();
         isWet = true;
     }
-    void OnWaterDealsDamage() //since some creatures might get damage from water
+    void OnWaterDealsDamage() //since some creatures might get damage from water, or if water is poisened
     {
         //call base logic
         OnWater();
@@ -306,10 +308,5 @@ public class Creature : MonoBehaviour
         }
 
         restoreHpCor = null;
-    }
-
-    public void InstantiateExp()
-    {
-        Instantiate(expPrefab, transform.position, Quaternion.identity, expParent);
     }
 }

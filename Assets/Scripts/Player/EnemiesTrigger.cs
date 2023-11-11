@@ -31,9 +31,6 @@ public class EnemiesTrigger : MonoBehaviour
 
     public Vector2 GetNearestEnemyPosition()
     {
-        //there are no enemies near player, return random position
-        if (enemiesTransforms.Count == 0) return GetRandomPosition();
-
         //set private values
         float nearestDistance = float.MaxValue;
         Vector2 curNearest = new Vector2();
@@ -42,7 +39,7 @@ public class EnemiesTrigger : MonoBehaviour
         foreach (Transform t in enemiesTransforms)
         {
             float curDistance = Vector2.Distance(t.position, transform.position);
-            if (nearestDistance < curDistance)
+            if (nearestDistance > curDistance)
             {
                 nearestDistance = curDistance;
                 curNearest = t.position;
@@ -54,14 +51,19 @@ public class EnemiesTrigger : MonoBehaviour
 
     public Vector2 GetRandomEnemyPosition()
     {
-        //get random enemy near player, if there are none get random position
-        return enemiesTransforms.Count == 0 ? GetRandomPosition() : enemiesTransforms[Random.Range(0, enemiesTransforms.Count)].position;
+        //get random enemy near player
+        return enemiesTransforms[Random.Range(0, enemiesTransforms.Count)].position;
     }
 
-    Vector2 GetRandomPosition()
+    public Vector2 GetRandomPosition()
     {
         //get random position based on current position
         Vector2 pos = transform.position;
         return new Vector2(Random.Range(pos.x - 1,pos.x + 1), Random.Range(pos.y - 1,pos.y + 1));
+    }
+
+    public bool HasEnemiesNearPlayer()
+    {
+        return enemiesTransforms.Count > 0;
     }
 }

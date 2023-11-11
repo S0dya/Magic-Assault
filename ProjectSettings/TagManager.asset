@@ -9,6 +9,7 @@ TagManager:
   - Water
   - Effect
   - EffectsParent
+  - ExpParent
   layers:
   - Default
   - TransparentFX

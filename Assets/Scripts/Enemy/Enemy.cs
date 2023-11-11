@@ -11,13 +11,21 @@ public class Enemy : Creature
     public float damageOnTriggerWithPlayer;
     public int typeOfDamageOnTriggerWithPlayer;
 
+    [SerializeField] GameObject expPrefab;
 
     //local
-    //bool canMove = true;
-
+    Transform expParent;
+    
     //cors
     Coroutine burningCor;
     Coroutine waitForPushEndCor;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        expParent = GameObject.FindGameObjectWithTag("ExpParent").GetComponent<Transform>();
+    }
 
     protected override void Start()
     {
@@ -51,5 +59,10 @@ public class Enemy : Creature
             InstantiateExp();
             Destroy(gameObject);
         }
+    }
+
+    public void InstantiateExp()
+    {
+        Instantiate(expPrefab, transform.position, Quaternion.identity, expParent);
     }
 }

@@ -7,6 +7,10 @@ public class Water : Spell
     [Header("This spell")]
     [SerializeField] CircleCollider2D col;
 
+    //local
+    Player player;
+    bool isPlayerFound;
+
     void Start()
     {
         col.radius = size/2;
@@ -18,13 +22,12 @@ public class Water : Spell
         col.enabled = false;
     }
 
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)
         {
             case "Player":
-                Player player = collision.gameObject.GetComponent<Player>();
+                if (!isPlayerFound) FindPlayer();
                 player.EnterWater();
                 break;
             case "Enemy":
@@ -39,7 +42,7 @@ public class Water : Spell
         switch (collision.gameObject.tag)
         {
             case "Player":
-                Player player = collision.gameObject.GetComponent<Player>();
+                if (!isPlayerFound) FindPlayer(); 
                 player.ExitWater();
                 break;
             case "Enemy":
@@ -48,5 +51,11 @@ public class Water : Spell
                 break;
             default: break;
         }
+    }
+
+    void FindPlayer()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        isPlayerFound = true;
     }
 }

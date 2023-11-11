@@ -50,7 +50,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         curEffect[2] = lineEffect[Settings.startingSpells[2]];
         curEffect[3] = arrowEffect[Settings.startingSpells[3]];
 
-        curSpellsDamage = Settings.startingSpellsDamage; // * passiveUpgradesDamageMultipliers[] LATER
+        curSpellsDamage = Settings.startingSpellsDamage;
         Debug.Log(curSpellsDamage[0]);
         curEffectManaUsage = Settings.startingSpellsManaUsage;
     }

@@ -14,10 +14,10 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
 
     //local
     float[] damageOfSpells = new float[4] { Settings.damageOfFireball, 0, Settings.damageOfStone, 0 };
-    //shoot nearest
-    int typeOfShootNearestEnemySpell = 0;
-    float sizeOfSpellShootingNearestEnemy = 0.5f;
-    float timeBetweenShootingNearestEnemy = 3;
+
+    int[] indexOfSpellOfShoot = new int[3] { 3, 1, 2 }; // 0 - nearest. 1 - random enemy. 2 - random position
+    float[] sizeOfSpellsOnShoot = new float[3] { 0.5f, 0.5f, 0.5f };
+    float[] timeBetweenShoot = new float[3] { 3, 4, 2 };
 
     protected override void Awake()
     {
@@ -28,27 +28,60 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
 
     void Start() //test
     {
-        StartCoroutine(ShootNearestEnemy());
+        EnableShootingNearestEnemy();
+        EnableShootingRandomEnemy();
+        EnableShootingRandomPosition();
     }
 
+    //enabling active upgrades
+    public void EnableShootingNearestEnemy()
+    {
+        StartCoroutine(ShootNearestEnemy());
+    }
+    public void EnableShootingRandomEnemy()
+    {
+        StartCoroutine(ShootInRandomEnemyCor());
+    }
+    public void EnableShootingRandomPosition()
+    {
+        StartCoroutine(ShootInRandomPositionCor());
+    }
+
+    // main coroutines
     IEnumerator ShootNearestEnemy()
     {
         while (true)
         {
-            InstantiateSpell(spellsOfShoot[0], enemiesTrigger.GetRandomEnemyPosition(), sizeOfSpellShootingNearestEnemy);
+            if (enemiesTrigger.HasEnemiesNearPlayer()) InstantiateSpell(indexOfSpellOfShoot[0], enemiesTrigger.GetNearestEnemyPosition(), sizeOfSpellsOnShoot[0]);
 
-            yield return new WaitForSeconds(timeBetweenShootingNearestEnemy);
+            yield return new WaitForSeconds(timeBetweenShoot[0]);
+        }
+    }
+    IEnumerator ShootInRandomEnemyCor()
+    {
+        while (true)
+        {
+            if (enemiesTrigger.HasEnemiesNearPlayer()) InstantiateSpell(indexOfSpellOfShoot[1], enemiesTrigger.GetRandomEnemyPosition(), sizeOfSpellsOnShoot[1]);
+
+            yield return new WaitForSeconds(timeBetweenShoot[1]);
+        }
+    }
+    IEnumerator ShootInRandomPositionCor()
+    {
+        while (true)
+        {
+            InstantiateSpell(indexOfSpellOfShoot[2], enemiesTrigger.GetRandomPosition(), sizeOfSpellsOnShoot[2]);
+
+            yield return new WaitForSeconds(timeBetweenShoot[2]);
         }
     }
 
-    void InstantiateSpell(GameObject spell, Vector2 pos, float size)
+    void InstantiateSpell(int indexOfSpell, Vector2 pos, float size)
     {
-        if (pos == null) return;
-        
         Vector2 startPos = transform.position;
         Vector2 direction = (pos - startPos).normalized;
         float rotation = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
 
-        SpellsManager.I.InstantiateEffect(spell, startPos + direction, size, damageOfSpells[typeOfShootNearestEnemySpell], direction, rotation);
+        SpellsManager.I.InstantiateEffect(spellsOfShoot[indexOfSpell], startPos + direction, size, damageOfSpells[indexOfSpell], direction, rotation);
     }
 }

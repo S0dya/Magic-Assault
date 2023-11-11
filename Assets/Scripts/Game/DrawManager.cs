@@ -12,6 +12,8 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
     public float circleTresholdDistance;
     public float arrowTresholdDistance;
 
+    public float manaUsageOfSpellDrawnWrong;
+
 
     [Header("SerializeFields")]
     [SerializeField] SpellsManager spellsManager;
@@ -167,6 +169,10 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
             && Vector2.Distance(drawPoints[0], drawPoints[^1]) > arrowTresholdDistance)//avoid player drawing beggining and last dots too close to each other
         {
             spellsManager.useArrow(maxAnglePosition);
+        }
+        else
+        {
+            player.ChangeMana(manaUsageOfSpellDrawnWrong);
         }
     }
 
