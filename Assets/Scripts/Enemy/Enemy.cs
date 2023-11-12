@@ -41,7 +41,11 @@ public class Enemy : Creature
         base.Update();
     }
 
-    public void ToggleMovement(bool val) => CanMove = val;
+    public void ToggleMovement(bool val)
+    {
+        CanMove = val;
+        if (!val) Rb.velocity = Vector2.zero;
+    }
 
     public void ToggleMovementSpeedOnPlayerTrigger(bool val)
     {

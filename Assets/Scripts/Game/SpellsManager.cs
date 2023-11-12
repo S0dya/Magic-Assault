@@ -51,7 +51,6 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         curEffect[3] = arrowEffect[Settings.startingSpells[3]];
 
         curSpellsDamage = Settings.startingSpellsDamage;
-        Debug.Log(curSpellsDamage[0]);
         curEffectManaUsage = Settings.startingSpellsManaUsage;
     }
 
@@ -65,7 +64,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         Vector2 direction = (drawPoints[^1] - (Vector2)playerTransform.position).normalized;
         float rotation = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
 
-        InstantiateEffect(curEffect[0], (Vector2)playerTransform.position + direction * size, size, curSpellsDamage[0], direction, rotation);
+        InstantiateEffect(curEffect[0], (Vector2)playerTransform.position + direction, size, curSpellsDamage[0], direction, rotation);
         UseMana(0, 1);
     }
 
@@ -136,7 +135,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     public void InstantiateEffect(GameObject prefab, Vector2 pos, float size, float damage, Vector2 direction, float rotation)
     {
         Spell spell = InstantiateEffect(prefab, pos, size, damage);
-        spell.ApplyForce(direction);
+        spell.ApplyForce(direction/2);
         spell.SetRotation(rotation);
     }
     //instantiate with setting rotation 

@@ -8,7 +8,6 @@ public class Fireball : Spell
     [SerializeField] CircleCollider2D col;
 
     public float damageOfBurning;
-    public int timeOfBurning;
 
     void Start()
     {
@@ -21,7 +20,7 @@ public class Fireball : Spell
         {
             Player player = collision.gameObject.GetComponentInParent<Player>();
             player.ChangeHP(damage, typeOfDamage);
-            player.Burn(-damageOfBurning, timeOfBurning);
+            player.Burn(damageOfBurning);
             Destroy(gameObject);
         }
 
@@ -29,7 +28,7 @@ public class Fireball : Spell
         {
             Enemy enemy = collision.gameObject.GetComponentInParent<Enemy>();
             enemy.ChangeHP(damage, typeOfDamage);
-            enemy.Burn(-damageOfBurning, timeOfBurning);
+            enemy.Burn(damageOfBurning);
             Destroy(gameObject);
         }
     }

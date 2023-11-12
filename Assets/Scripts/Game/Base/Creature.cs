@@ -10,6 +10,7 @@ public class Creature : MonoBehaviour
     public float inWaterSpeed;
 
     public float pushMultiplier;
+    public int averageTimeOfBurning;
 
     [Header("Coroutines time values")]
     public int durationOfBurning;
@@ -67,6 +68,7 @@ public class Creature : MonoBehaviour
     [HideInInspector] public bool isStunned;
 
     //fire
+    int amountOfTriggeredLava;
     int curTimeOfBuring;
 
     //water
@@ -77,6 +79,7 @@ public class Creature : MonoBehaviour
 
     //fire
     Coroutine burningCor;
+    Coroutine burningInLavaCor;
     //water
     Coroutine dryCor;
     Coroutine damageOnWaterCor;
@@ -107,7 +110,7 @@ public class Creature : MonoBehaviour
 
 
     //burning
-    public virtual void Burn(float damage, int timeOfBurning)
+    public virtual void Burn(float damage)
     {
         //if creature is in water they cant burn
         if (!burningDealsDamage || amountOfTriggeredWater > 0) return;
@@ -117,7 +120,7 @@ public class Creature : MonoBehaviour
             StopBeingWet();
             return;
         }
-        curTimeOfBuring += timeOfBurning;
+        curTimeOfBuring += averageTimeOfBurning;
         //set burning time to zero, so creature can burn, or will "start burning" again 
         //return if already burning
         if (isBurning) return;
@@ -152,6 +155,32 @@ public class Creature : MonoBehaviour
 
         if (burningCor != null) StopCoroutine(burningCor);
         isBurning = false;
+    }
+
+    //lava
+    public void EnterLava()
+    {
+        amountOfTriggeredLava++;
+
+        if (amountOfTriggeredLava == 1 && burningInLavaCor != null) burningInLavaCor = StartCoroutine(BurningInLavaCor());
+    }
+    IEnumerator BurningInLavaCor()
+    {
+        float curTimeOfGettingDamageFromLava = 4;
+
+        while (true)
+        {
+            Burn(3);
+
+            yield return new WaitForSeconds(curTimeOfGettingDamageFromLava);
+            curTimeOfGettingDamageFromLava = Mathf.Max(curTimeOfGettingDamageFromLava - 0.5f, 1.5f);
+        }
+    }
+    public void ExitLava()
+    {
+        amountOfTriggeredLava--;
+
+        if (amountOfTriggeredLava == 0 && burningInLavaCor != null) StopCoroutine(burningInLavaCor);
     }
 
     //push
@@ -202,9 +231,15 @@ public class Creature : MonoBehaviour
         amountOfTriggeredWater++;
 
         //start handling logic of water encounter
-        if (amountOfTriggeredWater == 1) HandleWater();
+        if (amountOfTriggeredWater == 1)
+        {
+            handleWaterEncounter.Invoke();
+            
+            //creature moves slower in water or faster
+            movementMultiplier = inWaterSpeed;
+        }
+
     }
-    public void HandleWater() => handleWaterEncounter.Invoke();
     void OnWater()
     {
         //creature is wet if its in water
@@ -213,8 +248,6 @@ public class Creature : MonoBehaviour
 
         //water makes creature stop burning
         if (isBurning) StopBurning();
-        //creature moves slower in water or faster
-        movementMultiplier = inWaterSpeed;
     }
     void StartBeingWet()
     {
@@ -226,7 +259,7 @@ public class Creature : MonoBehaviour
         //call base logic
         OnWater();
         //start dealing damage while creature is wet
-        StartCoroutine(DamageOnWaterCor());
+        if (damageOnWaterCor == null) damageOnWaterCor = StartCoroutine(DamageOnWaterCor());
     }
     IEnumerator DamageOnWaterCor()
     {
@@ -263,6 +296,19 @@ public class Creature : MonoBehaviour
         isWet = false;
     }
 
+    public void HandleWater()//method is called without creature being in water already, so we creature dryes
+    {
+        handleWaterEncounter.Invoke();
+
+        if (amountOfTriggeredWater == 0)
+        {
+            if (dryCor != null) StopCoroutine(dryCor);
+            dryCor = StartCoroutine(DryCor());
+        }
+
+    }
+
+    //damage
     IEnumerator VisualiseDamage()
     {
         sr.color = damageColor;

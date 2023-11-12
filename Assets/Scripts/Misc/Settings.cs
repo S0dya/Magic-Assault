@@ -9,8 +9,6 @@ public static class Settings
     //menu
     public static int money;
 
-    //shop
-
     //game
     
 
@@ -31,7 +29,6 @@ public static class Settings
     public static float damageOfFire = -5f;
     public static float damageOfBurning = -2f;
     public static float sizeOfFireMultiplier = 1f;
-    public static int timeOfBurning = 7;
 
     //circle
 
@@ -41,11 +38,8 @@ public static class Settings
     //arrow
     public static bool additionalEffects = true;
 
-    //air
-    public static float damageOfWind = -5f;
-
     //wind
-    public static float sizeOfWind = 1;//change to multiplier
+    public static float damageOfWind = -5f;
 
 
 

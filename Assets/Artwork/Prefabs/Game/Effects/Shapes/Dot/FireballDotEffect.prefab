@@ -57,6 +57,7 @@ MonoBehaviour:
   rotation: 0
   directionOfPush: {x: 0, y: 0}
   speed: 4
+  damage: 5
   damageMultiplier: 0
   col: {fileID: 6279886455627423181}
   damageOfBurning: 3

@@ -26,11 +26,9 @@ public class EnemyPlayerDamagaTriggerMelee : MonoBehaviour
     //triggers
     void OnTriggerEnter2D(Collider2D Collision)
     {
-        GiveDamage();
-
-        if (givingDamageCor == null) givingDamageCor = StartCoroutine(GivingDamageCor());
-
         ToggleOnTrigger(true);
+        
+        if (givingDamageCor == null) givingDamageCor = StartCoroutine(GivingDamageCor());
     }
     void OnTriggerExit2D(Collider2D Collision)
     {
@@ -40,7 +38,12 @@ public class EnemyPlayerDamagaTriggerMelee : MonoBehaviour
     //other methods
     void GiveDamage()
     {
-        if (canDamage) player.ChangeHP(-enemy.damageOnTriggerWithPlayer, enemy.typeOfDamageOnTriggerWithPlayer);
+        if (canDamage)
+        {
+            player.ChangeHP(-enemy.damageOnTriggerWithPlayer, enemy.typeOfDamageOnTriggerWithPlayer);
+
+        }
+
     }
     IEnumerator GivingDamageCor()
     {
