@@ -28,9 +28,9 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
 
     void Start() //test
     {
-        EnableShootingNearestEnemy();
-        EnableShootingRandomEnemy();
-        EnableShootingRandomPosition();
+        //EnableShootingNearestEnemy();
+        //EnableShootingRandomEnemy();
+        //EnableShootingRandomPosition();
     }
 
     //enabling active upgrades

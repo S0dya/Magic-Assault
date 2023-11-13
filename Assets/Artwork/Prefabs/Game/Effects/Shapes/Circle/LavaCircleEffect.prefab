@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6929152276597107606}
   m_Layer: 9
   m_Name: LavaCircleEffect
-  m_TagString: Water
+  m_TagString: CircleEffect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

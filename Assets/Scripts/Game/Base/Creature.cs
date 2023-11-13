@@ -8,6 +8,7 @@ public class Creature : MonoBehaviour
     public float maxHp;
     public float movementSpeed;
     public float inWaterSpeed;
+    public float inLavaSpeed;
 
     public float pushMultiplier;
     public int averageTimeOfBurning;
@@ -74,6 +75,10 @@ public class Creature : MonoBehaviour
     //water
     int amountOfTriggeredWater;
 
+    //wind
+    int amountOfTriggeredTornado;
+    Vector2 curPosOfCenterOfTornado;
+
     //cor
     Coroutine restoreHpCor;
 
@@ -85,6 +90,7 @@ public class Creature : MonoBehaviour
     Coroutine damageOnWaterCor;
     //push
     Coroutine pushCor;
+    Coroutine pushToCenterOfTornadoCor;
     //stun
     Coroutine stunCor;
 
@@ -114,6 +120,7 @@ public class Creature : MonoBehaviour
     {
         //if creature is in water they cant burn
         if (!burningDealsDamage || amountOfTriggeredWater > 0) return;
+
         //dont burn if creature is wet
         if (isWet)
         {
@@ -137,6 +144,7 @@ public class Creature : MonoBehaviour
     {
         int curTime = 0;
         //burn untill cur burning time is less than duration of burning. change hp while burning
+
         while (curTime < curTimeOfBuring)
         {
             curTime++;
@@ -162,25 +170,35 @@ public class Creature : MonoBehaviour
     {
         amountOfTriggeredLava++;
 
-        if (amountOfTriggeredLava == 1 && burningInLavaCor != null) burningInLavaCor = StartCoroutine(BurningInLavaCor());
+        if (amountOfTriggeredLava == 1)
+        {
+            burningInLavaCor = StartCoroutine(BurningInLavaCor());
+            
+            //creature moves slower in lava or faster
+            movementMultiplier = inLavaSpeed;
+        }
     }
     IEnumerator BurningInLavaCor()
     {
-        float curTimeOfGettingDamageFromLava = 4;
+        float curTimeOfGettingDamageFromLava = 1.5f;
 
         while (true)
         {
-            Burn(3);
+            Burn(-3);
 
             yield return new WaitForSeconds(curTimeOfGettingDamageFromLava);
-            curTimeOfGettingDamageFromLava = Mathf.Max(curTimeOfGettingDamageFromLava - 0.5f, 1.5f);
+            curTimeOfGettingDamageFromLava = Mathf.Max(curTimeOfGettingDamageFromLava - 0.25f, 0.25f);
         }
     }
     public void ExitLava()
     {
         amountOfTriggeredLava--;
 
-        if (amountOfTriggeredLava == 0 && burningInLavaCor != null) StopCoroutine(burningInLavaCor);
+        if (amountOfTriggeredLava == 0)
+        {
+            if (burningInLavaCor != null) StopCoroutine(burningInLavaCor);
+            movementMultiplier = 1f;
+        }
     }
 
     //push
@@ -202,7 +220,38 @@ public class Creature : MonoBehaviour
         pushCor = null;
     }
 
-    //stan
+    //tornado
+    public void EnterTornado(Vector2 centerPosOfTornado)
+    {
+        amountOfTriggeredTornado++;
+        curPosOfCenterOfTornado = centerPosOfTornado;
+
+        if (amountOfTriggeredTornado == 1)
+        {
+            pushToCenterOfTornadoCor = StartCoroutine(PushToCenterOfTornadoCor());
+        }
+    }
+    IEnumerator PushToCenterOfTornadoCor()
+    {
+        while (true)
+        {
+            Vector2 direction = (curPosOfCenterOfTornado - (Vector2)transform.position).normalized;
+            Push(direction, 0.5f);
+
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+    public void ExitTornado()
+    {
+        amountOfTriggeredTornado--;
+
+        if (amountOfTriggeredTornado == 0)
+        {
+            if (pushToCenterOfTornadoCor != null) StopCoroutine(pushToCenterOfTornadoCor);
+        }
+    }
+
+    //stun
     public virtual void Stun(float timeOfStun)
     {
         //stop creature at one place and play stunned effect for visualisation

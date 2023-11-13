@@ -30,7 +30,7 @@ public class Fire : Spell
                 enemy.ChangeHP(damage, typeOfDamage);
                 enemy.Burn(damageOfBurning);
                 break;
-            case "Water":
+            case "CircleEffect":
                 Destroy(gameObject);
                 break;
             default: break;

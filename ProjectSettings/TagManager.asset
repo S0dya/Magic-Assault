@@ -6,11 +6,10 @@ TagManager:
   tags:
   - Fire
   - Enemy
-  - Water
   - Effect
   - EffectsParent
   - ExpParent
-  - CircleSpell
+  - CircleEffect
   layers:
   - Default
   - TransparentFX
