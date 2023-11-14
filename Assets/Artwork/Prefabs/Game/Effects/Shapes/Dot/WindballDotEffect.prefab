@@ -1509,10 +1509,10 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 2145007745, guid: 474b762d7a843514a9668f445277f28d, type: 3}
-    - sprite: {fileID: -1484858200, guid: 474b762d7a843514a9668f445277f28d, type: 3}
-    - sprite: {fileID: -1768814337, guid: 474b762d7a843514a9668f445277f28d, type: 3}
-    - sprite: {fileID: 881399980, guid: 474b762d7a843514a9668f445277f28d, type: 3}
+    - sprite: {fileID: 1415288642, guid: 474b762d7a843514a9668f445277f28d, type: 3}
+    - sprite: {fileID: -903406629, guid: 474b762d7a843514a9668f445277f28d, type: 3}
+    - sprite: {fileID: -393151658, guid: 474b762d7a843514a9668f445277f28d, type: 3}
+    - sprite: {fileID: 179964239, guid: 474b762d7a843514a9668f445277f28d, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4810,7 +4810,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 202178703
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

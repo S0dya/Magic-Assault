@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 474b762d7a843514a9668f445277f28d
+guid: 13007da627d41274ab766bd08e39314b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,85 +129,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Windball_0
+      name: WaterLine_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 32
-        height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.75}
+        y: 21
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21370fafb78a0fe40a4d5cccb983b33c
-      internalID: 1415288642
+      spriteID: 889fcc2ac78a6ea4583355a1304357c3
+      internalID: 100869262
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Windball_1
+      name: WaterLine_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 64
-      alignment: 9
-      pivot: {x: 0.55, y: 0.75}
+        x: 22
+        y: 22
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccaf0a93529fa6d41b51b6e9fdd6844b
-      internalID: -903406629
+      spriteID: 36935087e5bad87498b7fce2eb81ab27
+      internalID: -2078032862
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Windball_2
+      name: WaterLine_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.75}
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52a863c0954466e40b67a939e1fa3e87
-      internalID: -393151658
+      spriteID: f4973c1e2ad09fa438261e1c785ca4df
+      internalID: -2088516271
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Windball_3
+      name: WaterLine_3
       rect:
         serializedVersion: 2
-        x: 32
+        x: 22
         y: 0
-        width: 32
-        height: 64
-      alignment: 9
-      pivot: {x: 0.45, y: 0.75}
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 341e2b426212a004d9b7a5acfd472324
-      internalID: 179964239
+      spriteID: d9461bea8263560498b98461bcea9b62
+      internalID: -1940610353
       vertices: []
       indices: 
       edges: []
@@ -223,10 +223,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Windball_0: 1415288642
-      Windball_1: -903406629
-      Windball_2: -393151658
-      Windball_3: 179964239
+      WaterLine_0: 100869262
+      WaterLine_1: -2078032862
+      WaterLine_2: -2088516271
+      WaterLine_3: -1940610353
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

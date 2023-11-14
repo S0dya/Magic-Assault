@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 474b762d7a843514a9668f445277f28d
+guid: d30cb8015ef6fca45a22c6be4609d016
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -129,85 +129,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Windball_0
+      name: RollingStone_0
       rect:
         serializedVersion: 2
         x: 0
         y: 64
-        width: 32
+        width: 64
         height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.75}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21370fafb78a0fe40a4d5cccb983b33c
-      internalID: 1415288642
+      spriteID: 221edd61e06cb49419c2275762dfbfb1
+      internalID: 1486193559
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Windball_1
+      name: RollingStone_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 64
-        width: 32
+        width: 64
         height: 64
-      alignment: 9
-      pivot: {x: 0.55, y: 0.75}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccaf0a93529fa6d41b51b6e9fdd6844b
-      internalID: -903406629
+      spriteID: 2fe142e8f7633004eb7b91c9e9bc21ac
+      internalID: -827215779
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Windball_2
+      name: RollingStone_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 64
         height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.75}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52a863c0954466e40b67a939e1fa3e87
-      internalID: -393151658
+      spriteID: 265a521bccf603940bd2e15fce428303
+      internalID: -944412582
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Windball_3
+      name: RollingStone_3
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 0
-        width: 32
+        width: 64
         height: 64
-      alignment: 9
-      pivot: {x: 0.45, y: 0.75}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 341e2b426212a004d9b7a5acfd472324
-      internalID: 179964239
+      spriteID: e14c5ddc0d248b8438cc68bea2ba2cd7
+      internalID: 965853331
       vertices: []
       indices: 
       edges: []
@@ -223,10 +223,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Windball_0: 1415288642
-      Windball_1: -903406629
-      Windball_2: -393151658
-      Windball_3: 179964239
+      RollingStone_0: 1486193559
+      RollingStone_1: -827215779
+      RollingStone_2: -944412582
+      RollingStone_3: 965853331
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

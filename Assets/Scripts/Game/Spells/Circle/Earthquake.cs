@@ -21,12 +21,6 @@ public class Earthquake : Spell
         StartCoroutine(QuakeCor());
     }
 
-    //disable for proper trigger detection
-    void OnDisable()
-    {
-        col.enabled = false;
-    }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)

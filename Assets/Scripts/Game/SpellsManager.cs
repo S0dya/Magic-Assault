@@ -26,20 +26,26 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     //arrow
     [SerializeField] GameObject[] arrowEffect;
 
-    
+
     //local
+    System.Action handleArrow;
+
     [HideInInspector] public float size;
     [HideInInspector] public List<Vector2> drawPoints;
+
 
     GameObject[] curEffect = new GameObject[4];// 1 - dot. 2 - circle. 3 - line. 4 - arrow
     float[] curEffectManaUsage = new float[4];
     float[] curSpellsDamage = new float[4];
+
 
     protected override void Awake()
     {
         base.Awake();
 
         playerTransform = player.transform;
+
+        //handleArrow = RollingStoneEffect;
     }
 
     void Start()
@@ -103,6 +109,25 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     {
         if (PlayerHasEnoughMana(3)) return;
 
+        Vector2 arrowStartPos = Vector2.Lerp(drawPoints[0], drawPoints[^1], 0.5f);
+        Vector2 direction = (middleElementPos - arrowStartPos).normalized;
+        float rotation = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
+
+        Vector2[] posOfSpells = new Vector2[] { drawPoints[0], middleElementPos, drawPoints[^1] };
+
+        for (int i = 0; i < (Settings.additionalEffects ? 3 : 1); i++)
+        {
+            InstantiateEffect(curEffect[3], posOfSpells[i], size, curSpellsDamage[3], direction, rotation);
+            UseMana(3, 1);
+            if (PlayerHasEnoughMana(3)) break;
+        }
+    }
+
+    /*
+    void WindEffect()
+    {
+        if (PlayerHasEnoughMana(3)) return;
+
         //get angle from first and last dots to dot with highest angle
         Vector2 arrowStartPos = Vector2.Lerp(drawPoints[0], drawPoints[^1], 0.5f);
         Vector2 direction = (middleElementPos - arrowStartPos).normalized;
@@ -117,6 +142,26 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
             if (PlayerHasEnoughMana(3)) break;
         }
     }
+
+    void RollingStoneEffect()
+    {
+        if (PlayerHasEnoughMana(3)) return;
+
+        Vector2 arrowStartPos = Vector2.Lerp(drawPoints[0], drawPoints[^1], 0.5f);
+        Vector2 direction = (middleElementPos - arrowStartPos).normalized;
+        float rotation = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
+
+        Vector2[] posOfSpells = new Vector2[] { drawPoints[0], middleElementPos, drawPoints[^1] };
+
+        for (int i = 0; i < (Settings.additionalEffects ? 3 : 1); i++)
+        {
+            InstantiateEffect(curEffect[3], posOfSpells[i], size, curSpellsDamage[3], direction, rotation);
+            UseMana(3, 1);
+            if (PlayerHasEnoughMana(3)) break;
+        }
+    }
+    */
+
     Spell InstantiateEffect(GameObject prefab, Vector2 pos, float size, float damage)
     {
         //instantiate object and get spells script

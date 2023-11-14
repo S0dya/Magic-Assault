@@ -432,8 +432,12 @@ MonoBehaviour:
   - {fileID: 6929152276597107592, guid: 543e117d1969ae44dba30bb1aec152ad, type: 3}
   - {fileID: 8970256659375900879, guid: b5d49af0fd3268848a2355d4bac2fcd5, type: 3}
   lineEffect:
+  - {fileID: 1150876778735590874, guid: ff7bddfd44bdffe4892b87ac7ef59846, type: 3}
+  - {fileID: 8118451972308086777, guid: b7aa95d7fa352b447a640f6a029755ea, type: 3}
+  - {fileID: 2981299850714058667, guid: 72beeb894adfcf84395cbff339761ab5, type: 3}
   - {fileID: 3328960950643150081, guid: 7d1a4518fd51c884fb978e725e1b8471, type: 3}
   arrowEffect:
+  - {fileID: 8003008054671404004, guid: 4d6c838e3a330d64d84bbafeb5985fe0, type: 3}
   - {fileID: 8472967301382161360, guid: 0190d08a885880448ba2471a04c90d61, type: 3}
   size: 0
   drawPoints: []

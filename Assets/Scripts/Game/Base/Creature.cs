@@ -236,9 +236,9 @@ public class Creature : MonoBehaviour
         while (true)
         {
             Vector2 direction = (curPosOfCenterOfTornado - (Vector2)transform.position).normalized;
-            Push(direction, 0.5f);
+            Push(direction, Vector2.Distance(curPosOfCenterOfTornado, (Vector2)transform.position)/2f);
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(Random.Range(0.2f, 0.5f));
         }
     }
     public void ExitTornado()

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 474b762d7a843514a9668f445277f28d
+guid: 3794362918896c24caeaa7ee0c281940
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -129,85 +129,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Windball_0
+      name: Thorns_0
       rect:
         serializedVersion: 2
         x: 0
         y: 64
-        width: 32
+        width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.75}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21370fafb78a0fe40a4d5cccb983b33c
-      internalID: 1415288642
+      spriteID: 36c33ad30e6b3e44a8d8bfe7b6a26bc3
+      internalID: -1141079914
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Windball_1
+      name: Thorns_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 64
-        width: 32
+        width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.55, y: 0.75}
+      pivot: {x: 0.5000001, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccaf0a93529fa6d41b51b6e9fdd6844b
-      internalID: -903406629
+      spriteID: 5984c4b6d218fee458517cf0a9d82fda
+      internalID: -777080849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Windball_2
+      name: Thorns_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5, y: 0.75}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52a863c0954466e40b67a939e1fa3e87
-      internalID: -393151658
+      spriteID: d141c5131aa37904c8c2ecf29096f419
+      internalID: -364314259
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Windball_3
+      name: Thorns_3
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 0
-        width: 32
+        width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.45, y: 0.75}
+      pivot: {x: 0.5, y: 0.125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 341e2b426212a004d9b7a5acfd472324
-      internalID: 179964239
+      spriteID: 624d6003e73dc244ca5adc2c204a98cc
+      internalID: -1525740594
       vertices: []
       indices: 
       edges: []
@@ -223,10 +223,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Windball_0: 1415288642
-      Windball_1: -903406629
-      Windball_2: -393151658
-      Windball_3: 179964239
+      Thorns_0: -1141079914
+      Thorns_1: -777080849
+      Thorns_2: -364314259
+      Thorns_3: -1525740594
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

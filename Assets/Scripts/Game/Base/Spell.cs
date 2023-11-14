@@ -58,6 +58,7 @@ public class Spell : MonoBehaviour
     //rigidbody
     public void ApplyForce(Vector2 direction)
     {
+        Debug.Log(direction + " " + direction * speed);
         directionOfPush = direction;
         rb.AddForce(direction * speed, ForceMode2D.Impulse);
     }
