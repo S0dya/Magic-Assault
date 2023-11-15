@@ -2,34 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fireball : Spell
+public class Fireball : CircleSpell
 {
-    [Header("This spell")]
-    [SerializeField] CircleCollider2D col;
-
-    public float damageOfBurning;
-
-    void Start()
-    {
-        col.radius = size / 2;
-    }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (worksForPlayer && collision.gameObject.CompareTag("Player"))
+        switch (collision.gameObject.tag)
         {
-            Player player = collision.gameObject.GetComponentInParent<Player>();
-            player.ChangeHP(damage, typeOfDamage);
-            player.Burn(damageOfBurning);
-            Destroy(gameObject);
-        }
+            case "Player":
+                if (!worksForPlayer) return;
 
-        if (worksForEnemy && collision.gameObject.CompareTag("Enemy"))
-        {
-            Enemy enemy = collision.gameObject.GetComponentInParent<Enemy>();
-            enemy.ChangeHP(damage, typeOfDamage);
-            enemy.Burn(damageOfBurning);
-            Destroy(gameObject);
+                Player player = collision.gameObject.GetComponent<Player>();
+                player.ChangeHP(damage, typeOfDamage);
+                player.Burn();
+                Destroy(gameObject);
+                break;
+            case "Enemy":
+                if (!worksForEnemy) return;
+
+                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+                enemy.ChangeHP(damage, typeOfDamage);
+                enemy.Burn();
+                Destroy(gameObject);
+                break;
+            case "CircleEffect":
+            case "WaterEffect":
+            case "EarthEffect":
+                Destroy(gameObject);
+                break;
+            default: break;
         }
     }
 }

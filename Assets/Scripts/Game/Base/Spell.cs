@@ -26,39 +26,52 @@ public class Spell : MonoBehaviour
     [HideInInspector] public float damageMultiplier;
 
 
-    
+
     public void Play() //before play all needed parametrs are set inside other spells scripts
     {
         damageMultiplier = size + 0.25f;
+        damage *= damageMultiplier;
 
         ps.Play();
+    }
+
+    //instantiate additional effects when spell is destroyed
+    protected virtual void OnDisable()
+    {
+        ParticleSystem fadePs = SpellsManager.I.InstantiateFadeEffect(transform.position, typeOfDamage);
+
+        SetStartSize(fadePs, size);
     }
 
     //main module
     public void SetSize(float s)
     {
         size = s;
-        var main = GetMainModule();
+
+        SetStartSize(ps, size);
+    }
+    void SetStartSize(ParticleSystem thisPs, float size)
+    {
+        var main = GetMainModule(thisPs);
         main.startSize = size;
     }
 
     public void SetRotation(float r)
     {
         rotation = r;
-        var main = GetMainModule();
+        var main = GetMainModule(ps);
         main.startRotation = -rotation * Mathf.Deg2Rad;
     }
 
     //since its only can be used as instance
-    ParticleSystem.MainModule GetMainModule()
+    ParticleSystem.MainModule GetMainModule(ParticleSystem thisPs)
     {
-        return ps.main;
+        return thisPs.main;
     }
 
     //rigidbody
     public void ApplyForce(Vector2 direction)
     {
-        Debug.Log(direction + " " + direction * speed);
         directionOfPush = direction;
         rb.AddForce(direction * speed, ForceMode2D.Impulse);
     }

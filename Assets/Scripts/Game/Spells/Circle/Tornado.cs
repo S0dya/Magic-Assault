@@ -2,25 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tornado : Spell
+public class Tornado : CircleSpell
 {
-    [Header("This spell")]
-    [SerializeField] CircleCollider2D col;
-
     //local
     Player player;
     bool isPlayerFound;
-
-    void Start()
-    {
-        col.radius = size / 2;
-    }
-
-    //disable for proper trigger detection
-    void OnDisable()
-    {
-        col.enabled = false;
-    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {

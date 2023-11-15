@@ -14,6 +14,7 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
 
     public float manaUsageOfSpellDrawnWrong;
 
+    public float reloadingSpeed;
 
     [Header("SerializeFields")]
     [SerializeField] SpellsManager spellsManager;
@@ -30,9 +31,12 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
     List<Vector2> drawPoints = new List<Vector2>();
     int positionCount = 0;
 
+    bool canCreateSpell;
+
     //cors
     Coroutine checkJoystickInputCor;
     Coroutine changeSizeOfLineCor;
+    Coroutine reloadingCor;
 
     protected override void Awake()
     {
@@ -68,6 +72,9 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
                 inputChecked = false;
                 RecogniseShape();
                 ClearLine();
+
+                if (reloadingCor != null) StopCoroutine(reloadingCor);
+                reloadingCor = StartCoroutine(ReloadingCor());
             }
         }
     }
@@ -85,6 +92,13 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
         }
 
         checkJoystickInputCor = null;
+    }
+
+    IEnumerator ReloadingCor()
+    {
+        canCreateSpell = false;
+        yield return new WaitForSeconds(reloadingSpeed);
+        canCreateSpell = true;
     }
 
 
@@ -118,6 +132,13 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
 
     void RecogniseShape()
     {
+        //punish player for not waiting for a reload
+        if (!canCreateSpell)
+        {
+            PunishPlayer();
+            return;
+        }
+
         //set points for spell manager
         spellsManager.drawPoints = drawPoints;
         //set size according to length of line (adding 0.5f to make max size = 1)
@@ -172,9 +193,11 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
         }
         else
         {
-            player.ChangeMana(manaUsageOfSpellDrawnWrong);
+            PunishPlayer();
         }
     }
+
+    void PunishPlayer() => player.ChangeMana(manaUsageOfSpellDrawnWrong);
 
     void ClearLine()
     {

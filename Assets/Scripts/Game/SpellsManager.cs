@@ -26,6 +26,9 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     //arrow
     [SerializeField] GameObject[] arrowEffect;
 
+    [Header("Additional effects")]
+    [SerializeField] GameObject[] fadeEffects;
+    [SerializeField] GameObject[] additionalEffects;
 
     //local
     System.Action handleArrow;
@@ -188,6 +191,14 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     {
         Spell spell = InstantiateEffect(prefab, pos, size, damage);
         spell.SetRotation(rotation);
+    }
+
+    //instantiate fade effect to visualise destroying of spell
+    public ParticleSystem InstantiateFadeEffect(Vector2 pos, int i)
+    {
+        GameObject obj = Instantiate(fadeEffects[i], pos, Quaternion.identity, effectsParent);
+
+        return obj.GetComponent<ParticleSystem>();
     }
 
     //check if player has enough mana to do spells

@@ -26,7 +26,8 @@ public class Creature : MonoBehaviour
     public float amountOfRestoringHp;
 
     [Header("0 - fire, 1 - water, 2 - earth, 3 - air")]
-    public float[] elementalDamageMultipliers; 
+    public float[] elementalDamageMultipliers;
+    public float damageOfBurning;
     public bool burningDealsDamage;
     public bool waterDealsDamage;
 
@@ -116,7 +117,7 @@ public class Creature : MonoBehaviour
 
 
     //burning
-    public virtual void Burn(float damage)
+    public virtual void Burn()
     {
         //if creature is in water they cant burn
         if (!burningDealsDamage || amountOfTriggeredWater > 0) return;
@@ -138,7 +139,7 @@ public class Creature : MonoBehaviour
         //stop restoring hp and start burning
         isBurning = true;
         if (restoreHpCor != null) StopCoroutine(restoreHpCor);
-        burningCor = StartCoroutine(BurningCor(damage * elementalDamageMultipliers[0]));
+        burningCor = StartCoroutine(BurningCor(damageOfBurning * elementalDamageMultipliers[0]));
     }
     IEnumerator BurningCor(float damage)
     {
@@ -184,7 +185,7 @@ public class Creature : MonoBehaviour
 
         while (true)
         {
-            Burn(-3);
+            Burn();
 
             yield return new WaitForSeconds(curTimeOfGettingDamageFromLava);
             curTimeOfGettingDamageFromLava = Mathf.Max(curTimeOfGettingDamageFromLava - 0.25f, 0.25f);

@@ -2,19 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RollingStone : Spell
+public class RollingStone : CircleSpell
 {
-    [Header("This spell")]
-    [SerializeField] CircleCollider2D col;
-
-    Vector2 posOfPush;
-
-    void Start()
-    {
-        col.radius = size/2;
-        damage *= damageMultiplier;
-    }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)

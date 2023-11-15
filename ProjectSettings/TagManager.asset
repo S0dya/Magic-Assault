@@ -4,12 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Fire
   - Enemy
   - Effect
   - EffectsParent
   - ExpParent
   - CircleEffect
+  - FireEffect
+  - WaterEffect
+  - EarthEffect
   layers:
   - Default
   - TransparentFX
@@ -52,6 +54,9 @@ TagManager:
     locked: 0
   - name: OnFloor
     uniqueID: 2304197347
+    locked: 0
+  - name: FadeEffect
+    uniqueID: 3083349625
     locked: 0
   - name: DownEffects
     uniqueID: 801097515

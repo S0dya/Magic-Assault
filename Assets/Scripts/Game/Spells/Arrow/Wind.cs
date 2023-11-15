@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wind : Spell
+public class Wind : BoxSpell
 {
-    [Header("This spell")]
-    [SerializeField] BoxCollider2D col;
-
+    //local
     Vector2 posOfPush;
 
-    void Start()
+    protected override void Start()
     {
-        col.size = new Vector2(size, size);
-        damage *= damageMultiplier;
+        base.Start();
 
         // Calculate the direction vector using trigonometry
         float radians = (rotation * Mathf.Deg2Rad) + 1.5f;

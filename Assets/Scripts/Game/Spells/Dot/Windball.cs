@@ -2,33 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Windball : Spell
+public class Windball : CircleSpell
 {
-    [Header("This spell")]
-    [SerializeField] CircleCollider2D col;
-
-
-    void Start()
-    {
-        col.radius = size / 2;
-    }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (worksForPlayer && collision.gameObject.CompareTag("Player"))
+        switch (collision.gameObject.tag)
         {
-            Player player = collision.gameObject.GetComponentInParent<Player>();
-            player.Push(directionOfPush, size);
-            player.ChangeHP(damage, typeOfDamage);
-            Destroy(gameObject);
-        }
+            case "Player":
+                if (!worksForPlayer) return;
 
-        if (worksForEnemy && collision.gameObject.CompareTag("Enemy"))
-        {
-            Enemy enemy = collision.gameObject.GetComponentInParent<Enemy>();
-            enemy.Push(directionOfPush, size);
-            enemy.ChangeHP(damage, typeOfDamage);
-            Destroy(gameObject);
+                Player player = collision.gameObject.GetComponent<Player>();
+                player.ChangeHP(damage, typeOfDamage);
+                player.Push(directionOfPush, size);
+                Destroy(gameObject);
+                break;
+            case "Enemy":
+                if (!worksForEnemy) return;
+
+                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+                enemy.ChangeHP(damage, typeOfDamage);
+                enemy.Push(directionOfPush, size);
+                Destroy(gameObject);
+                break;
+            case "CircleEffect":
+            case "EarthEffect":
+                Destroy(gameObject);
+                break;
+            default: break;
         }
     }
 }

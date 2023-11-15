@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Earthquake : Spell
+public class Earthquake : CircleSpell
 {
-    [Header("This spell")]
-    [SerializeField] CircleCollider2D col;
-
     //local
     Player player;
     bool isPlayerFound;
@@ -14,9 +11,9 @@ public class Earthquake : Spell
 
     List<Enemy> enemies = new List<Enemy>();
 
-    void Start()
+    protected override void Start()
     {
-        col.radius = size / 2;
+        base.Start();
 
         StartCoroutine(QuakeCor());
     }

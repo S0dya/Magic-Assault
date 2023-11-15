@@ -2,17 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterLine : Spell
+public class WaterLine : CircleSpell
 {
-    [Header("This spell")]
-    [SerializeField] BoxCollider2D col;
-
-    void Start()
-    {
-        col.size = new Vector2(size, size);
-        damage *= damageMultiplier;
-    }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)
@@ -30,6 +21,8 @@ public class WaterLine : Spell
                 Destroy(gameObject);
                 break;
             case "CircleEffect":
+            case "FireEffect":
+            case "EarthEffect":
                 Destroy(gameObject);
                 break;
             default: break;
