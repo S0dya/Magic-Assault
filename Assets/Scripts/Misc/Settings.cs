@@ -20,8 +20,10 @@ public static class Settings
     //fire 
     public static float damageOfFireball = -5f;
 
-    //stone
+    //earth
     public static float damageOfStone = -10f;
+
+    public static int amountOfForceEffects = 1;
 
     //line
 

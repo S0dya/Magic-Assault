@@ -18,7 +18,7 @@ public class Spell : MonoBehaviour
     [HideInInspector] public float rotation;
 
     //rb
-    [HideInInspector] public Vector2 directionOfPush;
+    [HideInInspector] public Vector2 direction;
     public float speed;
 
     //vars for inheriting scripts
@@ -70,9 +70,9 @@ public class Spell : MonoBehaviour
     }
 
     //rigidbody
-    public void ApplyForce(Vector2 direction)
+    public void ApplyForce(Vector2 dir)
     {
-        directionOfPush = direction;
+        direction = dir;
         rb.AddForce(direction * speed, ForceMode2D.Impulse);
     }
 }

@@ -73,6 +73,7 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
                 RecogniseShape();
                 ClearLine();
 
+                //reload spells ()
                 if (reloadingCor != null) StopCoroutine(reloadingCor);
                 reloadingCor = StartCoroutine(ReloadingCor());
             }

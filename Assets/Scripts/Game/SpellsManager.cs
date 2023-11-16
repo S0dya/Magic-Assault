@@ -165,7 +165,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     }
     */
 
-    Spell InstantiateEffect(GameObject prefab, Vector2 pos, float size, float damage)
+    public Spell InstantiateEffect(GameObject prefab, Vector2 pos, float size, float damage)
     {
         //instantiate object and get spells script
         GameObject obj = Instantiate(prefab, pos, Quaternion.identity, effectsParent);

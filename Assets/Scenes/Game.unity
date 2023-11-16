@@ -422,6 +422,8 @@ MonoBehaviour:
   drawManager: {fileID: 1975163949}
   effectsParent: {fileID: 1216226232}
   dotEffect:
+  - {fileID: 8402523139529078394, guid: 4fec6226e996b8b409e836d15566d512, type: 3}
+  - {fileID: 8766719808907599634, guid: bd34f0b0e0e1abb4b99adb0f347db7b9, type: 3}
   - {fileID: 7446051607462513135, guid: 91b8a1f10b1853c40bfbdab3d7d84ea3, type: 3}
   - {fileID: 3319565365602608531, guid: 561b34c9b24ff4b4b873a699e8d19bf6, type: 3}
   - {fileID: 3167704520240122553, guid: 7cebad98f63ade145b5fa3a805fda6f6, type: 3}

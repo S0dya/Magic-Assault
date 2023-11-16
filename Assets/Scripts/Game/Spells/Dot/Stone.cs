@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Stone : CircleSpell
 {
+    [Header("Additional logic")]
+    [SerializeField] float skipTriggersAmount;
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)
@@ -19,6 +22,12 @@ public class Stone : CircleSpell
                 break;
             case "Enemy":
                 if (!worksForEnemy) return;
+                //logic for additional spells
+                if (skipTriggersAmount != 0)
+                {
+                    skipTriggersAmount--;
+                    return;
+                }
 
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
                 enemy.ChangeHP(damage, typeOfDamage);
