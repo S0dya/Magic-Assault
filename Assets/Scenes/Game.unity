@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7874836842616660411, guid: e9be1fcdac2e8a7459826bdb04fe4e60, type: 3}
+      propertyPath: inLavaSpeed
+      value: 1.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9be1fcdac2e8a7459826bdb04fe4e60, type: 3}
 --- !u!1 &87350362
@@ -417,36 +421,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d8f546afc0b8f46b9eb918dbb30a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceForFire: 0.5
   player: {fileID: 1918896341}
   drawManager: {fileID: 1975163949}
   effectsParent: {fileID: 1216226232}
-  dotEffect:
-  - {fileID: 8402523139529078394, guid: 4fec6226e996b8b409e836d15566d512, type: 3}
-  - {fileID: 8766719808907599634, guid: bd34f0b0e0e1abb4b99adb0f347db7b9, type: 3}
+  dotEffects:
   - {fileID: 7446051607462513135, guid: 91b8a1f10b1853c40bfbdab3d7d84ea3, type: 3}
   - {fileID: 3319565365602608531, guid: 561b34c9b24ff4b4b873a699e8d19bf6, type: 3}
-  - {fileID: 3167704520240122553, guid: 7cebad98f63ade145b5fa3a805fda6f6, type: 3}
   - {fileID: 2343054465367942814, guid: 5a9af24e0e42b704fbb89fb74e598ce0, type: 3}
-  circleEffect:
-  - {fileID: 8970256659375900879, guid: b5d49af0fd3268848a2355d4bac2fcd5, type: 3}
-  - {fileID: 7643365883497227030, guid: 1b281f4b9e1a7bf4cb4ce753cf2380fd, type: 3}
-  - {fileID: 485007773328823295, guid: df39918e7b9bebe4fa1fbd133aa2a9e4, type: 3}
+  - {fileID: 3167704520240122553, guid: 7cebad98f63ade145b5fa3a805fda6f6, type: 3}
+  circleEffects:
   - {fileID: 6929152276597107592, guid: 543e117d1969ae44dba30bb1aec152ad, type: 3}
-  lineEffect:
-  - {fileID: 8118451972308086777, guid: b7aa95d7fa352b447a640f6a029755ea, type: 3}
+  - {fileID: 8970256659375900879, guid: b5d49af0fd3268848a2355d4bac2fcd5, type: 3}
+  - {fileID: 485007773328823295, guid: df39918e7b9bebe4fa1fbd133aa2a9e4, type: 3}
+  - {fileID: 7643365883497227030, guid: 1b281f4b9e1a7bf4cb4ce753cf2380fd, type: 3}
+  lineEffects:
+  - {fileID: 3328960950643150081, guid: 7d1a4518fd51c884fb978e725e1b8471, type: 3}
   - {fileID: 1150876778735590874, guid: ff7bddfd44bdffe4892b87ac7ef59846, type: 3}
   - {fileID: 2981299850714058667, guid: 72beeb894adfcf84395cbff339761ab5, type: 3}
-  - {fileID: 3328960950643150081, guid: 7d1a4518fd51c884fb978e725e1b8471, type: 3}
-  arrowEffect:
+  - {fileID: 8118451972308086777, guid: b7aa95d7fa352b447a640f6a029755ea, type: 3}
+  arrowEffects:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 8003008054671404004, guid: 4d6c838e3a330d64d84bbafeb5985fe0, type: 3}
   - {fileID: 8472967301382161360, guid: 0190d08a885880448ba2471a04c90d61, type: 3}
+  improvedDotEffects:
+  - {fileID: 8402523139529078394, guid: 4fec6226e996b8b409e836d15566d512, type: 3}
+  - {fileID: 9089976005012192728, guid: 3b931a8fe7cdb5c4182c6e27fd813a8a, type: 3}
+  - {fileID: 8766719808907599634, guid: bd34f0b0e0e1abb4b99adb0f347db7b9, type: 3}
+  improvedCircleEffects:
+  - {fileID: 6393713924164108291, guid: d8c854989b6770744937bd8129f3262c, type: 3}
+  - {fileID: 2609702007265552693, guid: 4e373a9543ffae14dad0243b8dfed4be, type: 3}
+  - {fileID: 5470106051079697511, guid: fcba373cf8df69b478cd75611f0f7c0e, type: 3}
+  improvedLineEffects:
+  - {fileID: 6246699860230325483, guid: ec3b4bef419e8c4419a8a045fc28a0e6, type: 3}
+  - {fileID: 7158198835048880338, guid: 0bdf19bf13025a941a5bdb028d97a3a1, type: 3}
+  - {fileID: 5118258951359764025, guid: e5555a0e419d7d04186f2772d0281c72, type: 3}
+  improvedArrowEffects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 843512910869411806, guid: fe052fdf9712ae94390cc3d25e448ee7, type: 3}
   fadeEffects:
   - {fileID: 7181206973625727211, guid: 0d2d7fb641b358b4f8349023e938eefe, type: 3}
   - {fileID: 7269475651343398540, guid: 9163c43a1a423f5459e537409f04b52f, type: 3}
   - {fileID: 1606318585643417090, guid: 8f16f3cff0661f54a9842ec42661d5d4, type: 3}
   - {fileID: 7086243842536501312, guid: 05323a799bf11fe4b8d03be620166630, type: 3}
-  additionalEffects: []
   size: 0
   drawPoints: []
 --- !u!1 &405647856
@@ -1912,7 +1930,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 522007411
-  m_SortingLayer: 7
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cc02988754269e641b2d0cc522ce8606, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1987,9 +2005,9 @@ MonoBehaviour:
   maxHp: 100
   movementSpeed: 4
   inWaterSpeed: 0.6
-  inLavaSpeed: 0
+  inLavaSpeed: 0.8
   pushMultiplier: 4
-  averageTimeOfBurning: 0
+  averageTimeOfBurning: 3
   durationOfBurning: 10
   durationOfDrying: 4
   takingDamageVisualisationTime: 0.15
@@ -2003,9 +2021,10 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  damageOfBurning: 0
   burningDealsDamage: 1
+  damageOfBurning: -3
   waterDealsDamage: 0
+  damageOnWet: 0
   rb: {fileID: 1918896340}
   sr: {fileID: 1918896338}
   burningEffect: {fileID: 3328960950522428620}
@@ -2720,6 +2739,10 @@ PrefabInstance:
     - target: {fileID: 5797608852117626583, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: inLavaSpeed
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5797608852117626583, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
+      propertyPath: damageOfBurning
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 5797608852117626583, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: averageTimeOfBurning

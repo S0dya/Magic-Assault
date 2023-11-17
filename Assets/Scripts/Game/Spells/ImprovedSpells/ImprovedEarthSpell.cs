@@ -8,6 +8,6 @@ public class ImprovedEarthSpell : ImprovedSpell
 
     protected override void OnDisable()
     {
-        InstantiateWithForce(Settings.amountOfForceEffects, directionRadius);
+        InstantiateWithForce(Settings.amountOfAdditionalForceEffects, directionRadius);
     }
 }

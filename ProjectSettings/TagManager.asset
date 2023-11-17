@@ -12,6 +12,7 @@ TagManager:
   - FireEffect
   - WaterEffect
   - EarthEffect
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -64,9 +65,9 @@ TagManager:
   - name: SmallEnemy
     uniqueID: 2040444395
     locked: 0
-  - name: UpEffects
-    uniqueID: 202178703
-    locked: 0
   - name: Player
     uniqueID: 522007411
+    locked: 0
+  - name: UpEffects
+    uniqueID: 202178703
     locked: 0

@@ -23,9 +23,10 @@ public static class Settings
     //earth
     public static float damageOfStone = -10f;
 
-    public static int amountOfForceEffects = 1;
-
-    //line
+    public static int amountOfAdditionalForceEffects = 1;
+    
+    //wind
+    public static float damageOfWind = -5f;
 
     //fire
     public static float damageOfFire = -5f;
@@ -33,15 +34,12 @@ public static class Settings
     public static float sizeOfFireMultiplier = 1f;
 
     //circle
-
-    //water
-    public static float maxSizeOfWater = 3.5f;
+    public static float maxSizeOfCircleSpell = 3.5f;
 
     //arrow
-    public static bool additionalEffects = true;
+    public static bool additionalEffectsOfArrow = true;
 
-    //wind
-    public static float damageOfWind = -5f;
+    
 
 
 

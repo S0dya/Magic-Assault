@@ -181,7 +181,7 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
         {
             //size of water is min between distance and set value
             float distance = Vector2.Distance(drawPoints[0], drawPoints[positionCount / 2]);
-            spellsManager.useCircle(Mathf.Min(distance, Settings.maxSizeOfWater));
+            spellsManager.useCircle(Mathf.Min(distance, Settings.maxSizeOfCircleSpell));
         }
         else if (totalAngle < angleThreshold)
         {

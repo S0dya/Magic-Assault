@@ -27,9 +27,14 @@ public class Creature : MonoBehaviour
 
     [Header("0 - fire, 1 - water, 2 - earth, 3 - air")]
     public float[] elementalDamageMultipliers;
-    public float damageOfBurning;
+
+    [Header("Fire")]
     public bool burningDealsDamage;
+    public float damageOfBurning;
+
+    [Header("Water")]
     public bool waterDealsDamage;
+    public float damageOnWet;
 
     [Header("Other")]
     [SerializeField] Rigidbody2D rb;
@@ -315,7 +320,7 @@ public class Creature : MonoBehaviour
     {
         while (isWet)
         {
-            ChangeHP(-1, 1);
+            ChangeHP(damageOnWet, 1);
 
             yield return new WaitForSeconds(2f);
         }

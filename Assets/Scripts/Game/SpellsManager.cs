@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 {
-    [Header("Settings")]
-    public float distanceForFire;
-
-    [Header("Other")]
+    [Header("Serialize fields")]
     [SerializeField] Player player;
     Transform playerTransform;
     [SerializeField] DrawManager drawManager;
@@ -15,29 +12,35 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     [SerializeField] Transform effectsParent;
 
     //dot
-    [SerializeField] GameObject[] dotEffect;
+    [SerializeField] GameObject[] dotEffects;
     
     //circle
-    [SerializeField] GameObject[] circleEffect;
-    
+    [SerializeField] GameObject[] circleEffects;
+
     //line
-    [SerializeField] GameObject[] lineEffect;
-    
+    [SerializeField] GameObject[] lineEffects;
+
     //arrow
-    [SerializeField] GameObject[] arrowEffect;
+    [SerializeField] GameObject[] arrowEffects;
+
+    [Header("Improved spells")]
+    [SerializeField] GameObject[] improvedDotEffects;
+    [SerializeField] GameObject[] improvedCircleEffects;
+    [SerializeField] GameObject[] improvedLineEffects;
+    [SerializeField] GameObject[] improvedArrowEffects;
 
     [Header("Additional effects")]
     [SerializeField] GameObject[] fadeEffects;
-    [SerializeField] GameObject[] additionalEffects;
 
     //local
-    System.Action handleArrow;
+    System.Action<Vector2> handleArrow;
 
     [HideInInspector] public float size;
     [HideInInspector] public List<Vector2> drawPoints;
 
 
-    GameObject[] curEffect = new GameObject[4];// 1 - dot. 2 - circle. 3 - line. 4 - arrow
+    GameObject[] curEffects = new GameObject[4];// 1 - dot. 2 - circle. 3 - line. 4 - arrow
+    int[] curTypeOfSpell = new int[4];
     float[] curEffectManaUsage = new float[4];
     float[] curSpellsDamage = new float[4];
 
@@ -54,10 +57,10 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     void Start()
     {
         //set values of current spells and mana usage
-        curEffect[0] = dotEffect[Settings.startingSpells[0]];
-        curEffect[1] = circleEffect[Settings.startingSpells[1]];
-        curEffect[2] = lineEffect[Settings.startingSpells[2]];
-        curEffect[3] = arrowEffect[Settings.startingSpells[3]];
+        for (int i = 0; i < 4; i++)
+        {
+            curTypeOfSpell[i] = Settings.startingSpells[i];
+        }
 
         curSpellsDamage = Settings.startingSpellsDamage;
         curEffectManaUsage = Settings.startingSpellsManaUsage;
@@ -73,7 +76,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         Vector2 direction = (drawPoints[^1] - (Vector2)playerTransform.position).normalized;
         float rotation = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
 
-        InstantiateEffect(curEffect[0], (Vector2)playerTransform.position + direction, size, curSpellsDamage[0], direction, rotation);
+        InstantiateEffect(dotEffects[curTypeOfSpell[0]], (Vector2)playerTransform.position + direction, size, curSpellsDamage[0], direction, rotation);
         UseMana(0, 1);
     }
 
@@ -83,7 +86,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
         //get radius of circle
         Vector2 pos = Vector2.Lerp(drawPoints[0], drawPoints[drawPoints.Count / 2], 0.5f);
-        InstantiateEffect(curEffect[1], pos, size * distance, curSpellsDamage[1]);
+        InstantiateEffect(circleEffects[curTypeOfSpell[1]], pos, size * distance, curSpellsDamage[1]);
         UseMana(1, 1);
     }
 
@@ -93,7 +96,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
         //find total number of objects that we need spawn 
         float distance = Vector2.Distance(drawPoints[0], drawPoints[^1]);
-        float numObjects = Mathf.CeilToInt(distance / distanceForFire);
+        float numObjects = Mathf.CeilToInt(distance / size);
 
         //check if players mana allows to spawn as many objects as needed
         float manaNeeded = Mathf.Min(player.curMana, numObjects * curEffectManaUsage[2]);
@@ -102,7 +105,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         //instantiate effect from first draw position to last 
         for (int i = 0; i < totalN; i++)
         {
-            InstantiateEffect(curEffect[2], Vector2.Lerp(drawPoints[0], drawPoints[^1], i / numObjects), size, curSpellsDamage[2]);
+            InstantiateEffect(lineEffects[curTypeOfSpell[2]], Vector2.Lerp(drawPoints[0], drawPoints[^1], i / numObjects), size, curSpellsDamage[2]);
         }
 
         UseMana(2, (int)manaNeeded);
@@ -118,52 +121,13 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
         Vector2[] posOfSpells = new Vector2[] { drawPoints[0], middleElementPos, drawPoints[^1] };
 
-        for (int i = 0; i < (Settings.additionalEffects ? 3 : 1); i++)
+        for (int i = 0; i < (Settings.additionalEffectsOfArrow ? 3 : 1); i++)
         {
-            InstantiateEffect(curEffect[3], posOfSpells[i], size, curSpellsDamage[3], direction, rotation);
+            InstantiateEffect(arrowEffects[curTypeOfSpell[3]], posOfSpells[i], size, curSpellsDamage[3], direction, rotation);
             UseMana(3, 1);
             if (PlayerHasEnoughMana(3)) break;
         }
     }
-
-    /*
-    void WindEffect()
-    {
-        if (PlayerHasEnoughMana(3)) return;
-
-        //get angle from first and last dots to dot with highest angle
-        Vector2 arrowStartPos = Vector2.Lerp(drawPoints[0], drawPoints[^1], 0.5f);
-        Vector2 direction = (middleElementPos - arrowStartPos).normalized;
-        float rotation = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
-
-        Vector2[] posOfSpells = new Vector2[] { drawPoints[0], middleElementPos, drawPoints[^1] };
-
-        for (int i = 0; i < (Settings.additionalEffects ? 3 : 1); i++)
-        {
-            InstantiateEffect(curEffect[3], posOfSpells[i], size, curSpellsDamage[3], rotation);
-            UseMana(3, 1);
-            if (PlayerHasEnoughMana(3)) break;
-        }
-    }
-
-    void RollingStoneEffect()
-    {
-        if (PlayerHasEnoughMana(3)) return;
-
-        Vector2 arrowStartPos = Vector2.Lerp(drawPoints[0], drawPoints[^1], 0.5f);
-        Vector2 direction = (middleElementPos - arrowStartPos).normalized;
-        float rotation = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
-
-        Vector2[] posOfSpells = new Vector2[] { drawPoints[0], middleElementPos, drawPoints[^1] };
-
-        for (int i = 0; i < (Settings.additionalEffects ? 3 : 1); i++)
-        {
-            InstantiateEffect(curEffect[3], posOfSpells[i], size, curSpellsDamage[3], direction, rotation);
-            UseMana(3, 1);
-            if (PlayerHasEnoughMana(3)) break;
-        }
-    }
-    */
 
     public Spell InstantiateEffect(GameObject prefab, Vector2 pos, float size, float damage)
     {
@@ -208,5 +172,40 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     }
     //subtract mana
     void UseMana(int i, int amount) => player.ChangeMana(-curEffectManaUsage[i] * size * amount);
+
+
+    //set spells
+    public void SetSpell(int typeOfSpell, int i)
+    {
+        switch (typeOfSpell)
+        {
+            case 0:
+                curEffects[i] = dotEffects[i];
+                break;
+            case 1:
+                curEffects[i] = circleEffects[i];
+                break;
+            case 2:
+                curEffects[i] = lineEffects[i];
+                break;
+            case 3:
+                curEffects[i] = arrowEffects[i];
+                break;
+            default: break;
+        }
+    }
+
+    //Improve first 3 spells (air cant be improved by this logic)
+    public void ImproveSpells(int typeOfDamage)
+    {
+        //set general spells 
+        dotEffects[typeOfDamage] = improvedDotEffects[typeOfDamage];
+        circleEffects[typeOfDamage] = improvedCircleEffects[typeOfDamage];
+        lineEffects[typeOfDamage] = improvedLineEffects[typeOfDamage];
+
+        if (typeOfDamage == 2) arrowEffects[typeOfDamage] = improvedArrowEffects[typeOfDamage]; //set arrow for earth
+    }
+
+
 
 }
