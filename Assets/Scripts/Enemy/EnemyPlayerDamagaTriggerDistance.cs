@@ -9,7 +9,6 @@ public class EnemyPlayerDamagaTriggerDistance : MonoBehaviour
     public float timeForAttack;
     public float timeAfterAttack;
 
-    public float damageOfSpell;
     public float size;
 
     [Header("SerializeFields")]
@@ -54,7 +53,7 @@ public class EnemyPlayerDamagaTriggerDistance : MonoBehaviour
             Vector2 posOfEnemy = transform.position;
             Vector2 direction = ((Vector2)playerTransform.position - posOfEnemy).normalized;
             float rotation = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
-            SpellsManager.I.InstantiateEffect(spell, posOfEnemy + (direction/2), size, damageOfSpell, direction, rotation);
+            SpellsManager.I.InstantiateEffect(spell, posOfEnemy + (direction/2), size, direction, rotation);
         }
     }
     IEnumerator AttackingCor()

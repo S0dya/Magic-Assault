@@ -52,13 +52,15 @@ MonoBehaviour:
   ps: {fileID: 5118258951359764027}
   rb: {fileID: 7581085663666432679}
   typeOfDamage: 2
+  setsLifeTime: 1
   worksForPlayer: 1
   worksForEnemy: 1
   size: 0
   rotation: 0
+  lifeTime: 2.5
   direction: {x: 0, y: 0}
   speed: 0
-  damage: 0
+  damage: -3
   damageMultiplier: 0
   boxCol: {fileID: 7581085664681571221}
 --- !u!114 &5118258951359764170

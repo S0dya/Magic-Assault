@@ -7,17 +7,12 @@ public class Creature : MonoBehaviour
     [Header("Settings")]
     public float maxHp;
     public float movementSpeed;
-    public float inWaterSpeed;
-    public float inLavaSpeed;
 
     public float pushMultiplier;
     public int averageTimeOfBurning;
 
     [Header("Coroutines time values")]
-    public int durationOfBurning;
-    public float durationOfDrying;
     public float takingDamageVisualisationTime;
-    public float timeForPush;
 
     [Header("Health restoring")]
     public bool canRestoreHp;
@@ -29,12 +24,18 @@ public class Creature : MonoBehaviour
     public float[] elementalDamageMultipliers;
 
     [Header("Fire")]
+    public float inLavaSpeed;
     public bool burningDealsDamage;
     public float damageOfBurning;
 
     [Header("Water")]
+    public float inWaterSpeed;
     public bool waterDealsDamage;
+    public float durationOfDrying;
     public float damageOnWet;
+
+    [Header("Air")]
+    public float timeForPush;
 
     [Header("Other")]
     [SerializeField] Rigidbody2D rb;
@@ -324,6 +325,8 @@ public class Creature : MonoBehaviour
 
             yield return new WaitForSeconds(2f);
         }
+
+        damageOnWaterCor = null;
     }
     public virtual void ExitWater()
     {
@@ -377,6 +380,7 @@ public class Creature : MonoBehaviour
     public virtual void ChangeHP(float val, int type)
     {
         if (type != -1) val *= elementalDamageMultipliers[type];
+        
         curHp = ChangeStat(val, curHp, maxHp);
         
         //visualise hp damage

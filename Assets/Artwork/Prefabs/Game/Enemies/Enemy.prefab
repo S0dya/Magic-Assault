@@ -115,14 +115,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2ca439927c49674f984fa9bf71a16a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
+  maxHp: 20
   movementSpeed: 1.5
-  inWaterSpeed: 0.6
   pushMultiplier: 4
-  durationOfBurning: 10
-  durationOfDrying: 3
+  averageTimeOfBurning: 5
   takingDamageVisualisationTime: 0.15
-  timeForPush: 0.5
   canRestoreHp: 0
   amountOfTimeBeforeRestoringHp: 0
   amountOfTimeForRestoringHp: 0
@@ -132,8 +129,14 @@ MonoBehaviour:
   - 1
   - 1
   - 1.25
+  inLavaSpeed: 0.7
   burningDealsDamage: 1
+  damageOfBurning: -5
+  inWaterSpeed: 0.6
   waterDealsDamage: 0
+  durationOfDrying: 3
+  damageOnWet: 0
+  timeForPush: 0.5
   rb: {fileID: 5797608852117626587}
   sr: {fileID: 5797608852117626584}
   burningEffect: {fileID: 3805918547158849674}
@@ -187,7 +190,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2040444395
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cc02988754269e641b2d0cc522ce8606, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

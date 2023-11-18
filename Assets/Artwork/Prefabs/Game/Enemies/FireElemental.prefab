@@ -115,7 +115,6 @@ MonoBehaviour:
   timeBetweenAttacks: 3
   timeForAttack: 1
   timeAfterAttack: 1
-  damageOfSpell: -4
   size: 0.5
   spell: {fileID: 7446051607462513135, guid: 2ab78ec4693fda340897b27a03dcd520, type: 3}
   enemy: {fileID: 7874836842616660411}
@@ -269,12 +268,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 100
   movementSpeed: 1
-  inWaterSpeed: 0.2
   pushMultiplier: 4
-  durationOfBurning: 10
-  durationOfDrying: 3
+  averageTimeOfBurning: 0
   takingDamageVisualisationTime: 0.15
-  timeForPush: 0.5
   canRestoreHp: 0
   amountOfTimeBeforeRestoringHp: 0
   amountOfTimeForRestoringHp: 0
@@ -284,8 +280,14 @@ MonoBehaviour:
   - 2
   - 0.75
   - 1.25
+  inLavaSpeed: 1.2
   burningDealsDamage: 0
+  damageOfBurning: 0
+  inWaterSpeed: 0.2
   waterDealsDamage: 1
+  durationOfDrying: 3
+  damageOnWet: -3
+  timeForPush: 0.5
   rb: {fileID: 7874836842616660358}
   sr: {fileID: 7874836842616660356}
   burningEffect: {fileID: 715335852927209348}
@@ -293,14 +295,13 @@ MonoBehaviour:
   stunnedEffect: {fileID: 7741187563418099464}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 0, g: 0, b: 0, a: 1}
-  expPrefab: {fileID: 4333668395104728432, guid: a14eff1e33bdc7644b8b63d86635ca0e, type: 3}
-  expParent: {fileID: 0}
   curHp: 0
   isPushed: 0
   isStunned: 0
   speedOnTriggerWithPlayer: 0.5
   damageOnTriggerWithPlayer: 5
   typeOfDamageOnTriggerWithPlayer: 0
+  expPrefab: {fileID: 4333668395104728432, guid: a14eff1e33bdc7644b8b63d86635ca0e, type: 3}
 --- !u!212 &7874836842616660356
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -340,7 +341,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2040444395
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2063692474, guid: 20f4e0e8f7caad24da52f53e95c51dc8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -13,8 +13,6 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
 
 
     //local
-    float[] damageOfSpells = new float[4] { Settings.damageOfFireball, 0, Settings.damageOfStone, 0 };
-
     int[] indexOfSpellOfShoot = new int[3] { 3, 1, 2 }; // 0 - nearest. 1 - random enemy. 2 - random position
     float[] sizeOfSpellsOnShoot = new float[3] { 0.5f, 0.5f, 0.5f };
     float[] timeBetweenShoot = new float[3] { 3, 4, 2 };
@@ -82,6 +80,6 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
         Vector2 direction = (pos - startPos).normalized;
         float rotation = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
 
-        SpellsManager.I.InstantiateEffect(spellsOfShoot[indexOfSpell], startPos + direction, size, damageOfSpells[indexOfSpell], direction, rotation);
+        SpellsManager.I.InstantiateEffect(spellsOfShoot[indexOfSpell], startPos + direction, size, direction, rotation);
     }
 }

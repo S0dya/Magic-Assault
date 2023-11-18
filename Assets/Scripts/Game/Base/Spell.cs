@@ -10,12 +10,14 @@ public class Spell : MonoBehaviour
 
     public int typeOfDamage;
 
+    public bool setsLifeTime;
     public bool worksForPlayer;
     public bool worksForEnemy;
 
     //main
     [HideInInspector] public float size;
     [HideInInspector] public float rotation;
+    public float lifeTime;
 
     //rb
     [HideInInspector] public Vector2 direction;
@@ -53,6 +55,7 @@ public class Spell : MonoBehaviour
     void SetStartSize(ParticleSystem thisPs, float size)
     {
         var main = GetMainModule(thisPs);
+        if (setsLifeTime) main.startLifetime = lifeTime * Settings.lifeTimeMultipliers[typeOfDamage];
         main.startSize = size;
     }
 

@@ -13,7 +13,7 @@ public class ImprovedSpell : MonoBehaviour
     //this method is called for circle effects of water and lava, also for dot effect of fire
     public void Instantiate()
     {
-        SpellsManager.I.InstantiateEffect(afterSpell, transform.position, spell.size, spell.damage / 2);
+        SpellsManager.I.InstantiateEffect(afterSpell, transform.position, spell.size);
     }
 
     //method is called for earth effects
@@ -27,7 +27,7 @@ public class ImprovedSpell : MonoBehaviour
             Vector2 curDirection = new Vector2(Random.Range(spellDirectionX + directionRadius, spellDirectionX - directionRadius), 
                 Random.Range(spellDirectionY + directionRadius, spellDirectionY - directionRadius));
 
-            SpellsManager.I.InstantiateEffect(afterSpell, transform.position, spell.size, spell.damage / 2, curDirection, spell.rotation);
+            SpellsManager.I.InstantiateEffect(afterSpell, transform.position, spell.size, curDirection, spell.rotation);
         }
     }
 }

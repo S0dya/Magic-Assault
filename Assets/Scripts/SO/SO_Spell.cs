@@ -6,7 +6,7 @@ using UnityEngine;
 public class SO_Spell : SO_Item
 {
     [Header("Settings")]
-    public GameObject spellObj;
+    public int spellI;
     public int typeOfDamage;
 
 }

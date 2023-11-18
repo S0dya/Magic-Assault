@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Fireball
   m_EditorClassIdentifier: 
   <ItemCode>k__BackingField: 0
-  <Name>k__BackingField: 
+  <Name>k__BackingField: Fireball
   <Description>k__BackingField: 
-  <ItemImage>k__BackingField: {fileID: 0}
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: 29efb0afab8df0c488daa499d68ce5fc, type: 3}
   spellObj: {fileID: 7446051607462513135, guid: 91b8a1f10b1853c40bfbdab3d7d84ea3, type: 3}
   typeOfDamage: 0

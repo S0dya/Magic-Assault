@@ -39,11 +39,8 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     [HideInInspector] public List<Vector2> drawPoints;
 
 
-    GameObject[] curEffects = new GameObject[4];// 1 - dot. 2 - circle. 3 - line. 4 - arrow
-    int[] curTypeOfSpell = new int[4];
+    int[] curTypeOfSpell = new int[4];// 1 - dot2 - circle3 - line4 - arrow
     float[] curEffectManaUsage = new float[4];
-    float[] curSpellsDamage = new float[4];
-
 
     protected override void Awake()
     {
@@ -62,10 +59,13 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
             curTypeOfSpell[i] = Settings.startingSpells[i];
         }
 
-        curSpellsDamage = Settings.startingSpellsDamage;
         curEffectManaUsage = Settings.startingSpellsManaUsage;
-    }
 
+        SetSpell(0, 2);
+        SetSpell(1, 2);
+        SetSpell(2, 3);
+        SetSpell(3, 3);
+    }
 
     //Spells
     public void useDot()
@@ -76,7 +76,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         Vector2 direction = (drawPoints[^1] - (Vector2)playerTransform.position).normalized;
         float rotation = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
 
-        InstantiateEffect(dotEffects[curTypeOfSpell[0]], (Vector2)playerTransform.position + direction, size, curSpellsDamage[0], direction, rotation);
+        InstantiateEffect(dotEffects[curTypeOfSpell[0]], (Vector2)playerTransform.position + direction, size, direction, rotation);
         UseMana(0, 1);
     }
 
@@ -86,7 +86,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
         //get radius of circle
         Vector2 pos = Vector2.Lerp(drawPoints[0], drawPoints[drawPoints.Count / 2], 0.5f);
-        InstantiateEffect(circleEffects[curTypeOfSpell[1]], pos, size * distance, curSpellsDamage[1]);
+        InstantiateEffect(circleEffects[curTypeOfSpell[1]], pos, size * distance);
         UseMana(1, 1);
     }
 
@@ -105,7 +105,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         //instantiate effect from first draw position to last 
         for (int i = 0; i < totalN; i++)
         {
-            InstantiateEffect(lineEffects[curTypeOfSpell[2]], Vector2.Lerp(drawPoints[0], drawPoints[^1], i / numObjects), size, curSpellsDamage[2]);
+            InstantiateEffect(lineEffects[curTypeOfSpell[2]], Vector2.Lerp(drawPoints[0], drawPoints[^1], i / numObjects), size);
         }
 
         UseMana(2, (int)manaNeeded);
@@ -123,13 +123,13 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
         for (int i = 0; i < (Settings.additionalEffectsOfArrow ? 3 : 1); i++)
         {
-            InstantiateEffect(arrowEffects[curTypeOfSpell[3]], posOfSpells[i], size, curSpellsDamage[3], direction, rotation);
+            InstantiateEffect(arrowEffects[curTypeOfSpell[3]], posOfSpells[i], size, direction, rotation);
             UseMana(3, 1);
             if (PlayerHasEnoughMana(3)) break;
         }
     }
 
-    public Spell InstantiateEffect(GameObject prefab, Vector2 pos, float size, float damage)
+    public Spell InstantiateEffect(GameObject prefab, Vector2 pos, float size)
     {
         //instantiate object and get spells script
         GameObject obj = Instantiate(prefab, pos, Quaternion.identity, effectsParent);
@@ -137,23 +137,22 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
         //set all needed variables of isntantiated object
         spell.SetSize(size);
-        spell.damage = damage;
         spell.Play();
 
         return spell;
     }
     //additional logics for instantiating
     //instantiate with settings direction of force for rigidbody
-    public void InstantiateEffect(GameObject prefab, Vector2 pos, float size, float damage, Vector2 direction, float rotation)
+    public void InstantiateEffect(GameObject prefab, Vector2 pos, float size, Vector2 direction, float rotation)
     {
-        Spell spell = InstantiateEffect(prefab, pos, size, damage);
+        Spell spell = InstantiateEffect(prefab, pos, size);
         spell.ApplyForce(direction/2);
         spell.SetRotation(rotation);
     }
     //instantiate with setting rotation 
-    void InstantiateEffect(GameObject prefab, Vector2 pos, float size, float damage, float rotation)
+    void InstantiateEffect(GameObject prefab, Vector2 pos, float size, float rotation)
     {
-        Spell spell = InstantiateEffect(prefab, pos, size, damage);
+        Spell spell = InstantiateEffect(prefab, pos, size);
         spell.SetRotation(rotation);
     }
 
@@ -177,10 +176,12 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     //set spells
     public void SetSpell(int typeOfSpell, int i)
     {
+        curTypeOfSpell[typeOfSpell] = i;
+        /*
         switch (typeOfSpell)
         {
             case 0:
-                curEffects[i] = dotEffects[i];
+                dotEffects[i] = dotEffects[i];
                 break;
             case 1:
                 curEffects[i] = circleEffects[i];
@@ -193,6 +194,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
                 break;
             default: break;
         }
+        */
     }
 
     //Improve first 3 spells (air cant be improved by this logic)
@@ -203,7 +205,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         circleEffects[typeOfDamage] = improvedCircleEffects[typeOfDamage];
         lineEffects[typeOfDamage] = improvedLineEffects[typeOfDamage];
 
-        if (typeOfDamage == 2) arrowEffects[typeOfDamage] = improvedArrowEffects[typeOfDamage]; //set arrow for earth
+        if (typeOfDamage == 2) arrowEffects[typeOfDamage]= improvedArrowEffects[typeOfDamage]; //set arrow for earth
     }
 
 

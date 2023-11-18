@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Windball : CircleSpell
 {
+    int amountOfPassTroughTriggers;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        amountOfPassTroughTriggers = Settings.amountOfPassTroughTriggers;
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)
@@ -14,7 +23,7 @@ public class Windball : CircleSpell
                 Player player = collision.gameObject.GetComponent<Player>();
                 player.ChangeHP(damage, typeOfDamage);
                 player.Push(direction, size);
-                Destroy(gameObject);
+                DestroyObj();
                 break;
             case "Enemy":
                 if (!worksForEnemy) return;
@@ -22,13 +31,19 @@ public class Windball : CircleSpell
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
                 enemy.ChangeHP(damage, typeOfDamage);
                 enemy.Push(direction, size);
-                Destroy(gameObject);
+                DestroyObj();
                 break;
             case "CircleEffect":
             case "EarthEffect":
-                Destroy(gameObject);
+                DestroyObj();
                 break;
             default: break;
         }
+    }
+
+    void DestroyObj()
+    {
+        if (amountOfPassTroughTriggers == 0) Destroy(gameObject);
+        amountOfPassTroughTriggers--;
     }
 }

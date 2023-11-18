@@ -52,13 +52,15 @@ MonoBehaviour:
   ps: {fileID: 8402523139529078392}
   rb: {fileID: 6532781451807984356}
   typeOfDamage: 0
+  setsLifeTime: 1
   worksForPlayer: 0
   worksForEnemy: 1
   size: 0
   rotation: 0
+  lifeTime: 4
   direction: {x: 0, y: 0}
   speed: 4
-  damage: 5
+  damage: -4
   damageMultiplier: 0
   circleCol: {fileID: 4965448726942540376}
 --- !u!114 &4965448726942540383
@@ -4825,7 +4827,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 202178703
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

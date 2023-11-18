@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class WindLine : CircleSpell
 {
+    int amountOfPassTroughTriggers;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        amountOfPassTroughTriggers = Settings.amountOfPassTroughTriggers;
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)
@@ -13,20 +22,26 @@ public class WindLine : CircleSpell
                 player.ChangeHP(damage, typeOfDamage);
                 player.Push(((Vector2)player.transform.position - (Vector2)transform.position).normalized, 0.2f);
 
-                Destroy(gameObject);
+                DestroyObj();
                 break;
             case "Enemy":
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
                 enemy.ChangeHP(damage, typeOfDamage);
                 enemy.Push(((Vector2)enemy.transform.position - (Vector2)transform.position).normalized, 0.2f);
 
-                Destroy(gameObject);
+                DestroyObj();
                 break;
             case "CircleEffect":
             case "EarthEffect":
-                Destroy(gameObject);
+                DestroyObj();
                 break;
             default: break;
         }
+    }
+
+    void DestroyObj()
+    {
+        if (amountOfPassTroughTriggers == 0) Destroy(gameObject);
+        amountOfPassTroughTriggers--;
     }
 }
