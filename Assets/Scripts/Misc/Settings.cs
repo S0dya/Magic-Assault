@@ -9,8 +9,10 @@ public static class Settings
     //menu
     public static int money;
 
+    public static float height = Screen.height;
+
     //game
-    
+
 
     //dont clear 
     //spells

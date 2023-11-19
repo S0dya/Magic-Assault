@@ -5,9 +5,11 @@ using static LeanTween;
 
 public class FollowingObject : MonoBehaviour
 {
-    [SerializeField] Rigidbody2D rb;
+    public float expOnCollect;
 
+    [SerializeField] Rigidbody2D rb;
     Transform playerTransform;
+
 
     void Awake()
     {
@@ -36,6 +38,7 @@ public class FollowingObject : MonoBehaviour
             yield return null;
         }
 
+        UIInGame.I.ChangeExp(expOnCollect);
         Destroy(gameObject);
     }
 }

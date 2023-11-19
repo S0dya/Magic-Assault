@@ -23,6 +23,8 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
     Player player;
 
     //local
+    [HideInInspector] public bool isOnUI;
+
     [HideInInspector] public bool inputChecked;
     bool isInput;
 
@@ -47,6 +49,8 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
 
     void Update()
     {
+        if (isOnUI) return;
+
         touchesCount = Input.touchCount;
         
         //check if we there is no input and if input is not related to joystick

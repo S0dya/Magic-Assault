@@ -44,6 +44,12 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         Destroy(gO);
     }
 
+    public void MoveTransform(RectTransform transform, float x, float y, float duration)
+    {
+        LTDescr tween = LeanTween.move(transform, new Vector2(x, y), duration).setEaseOutQuad();
+        tween.setUseEstimatedTime(true);
+    }
+
     //save/load
     void OnApplicationPause(bool pauseStatus)
     {
