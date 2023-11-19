@@ -33,7 +33,7 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
     List<Vector2> drawPoints = new List<Vector2>();
     int positionCount = 0;
 
-    bool canCreateSpell;
+    bool canCreateSpell = true;
 
     //cors
     Coroutine checkJoystickInputCor;
@@ -72,10 +72,9 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
             }
             else if (touchesCount == 0 || touchesCount > 1)
             {
-                isInput = false;
-                inputChecked = false;
                 RecogniseShape();
-                ClearLine();
+
+                StopCreatingSpell();
 
                 //reload spells ()
                 if (reloadingCor != null) StopCoroutine(reloadingCor);
@@ -106,6 +105,12 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
         canCreateSpell = true;
     }
 
+    public void StopCreatingSpell()// we also need this method for UI scripts 
+    {
+        isInput = false;
+        inputChecked = false;
+        ClearLine();
+    }
 
     //line methods
     void DrawLine(Vector2 pos)
