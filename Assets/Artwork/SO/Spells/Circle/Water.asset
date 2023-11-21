@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5da7bbbb2c8ec9542a47ae45abed6a95, type: 3}
+  m_Script: {fileID: 11500000, guid: b09f7f4200708b543a8c55197c762a63, type: 3}
   m_Name: Water
   m_EditorClassIdentifier: 
   <ItemCode>k__BackingField: 0
   <Name>k__BackingField: Water
   <Description>k__BackingField: 
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 31cb363370b2c6e45820e9ed1ae4a415, type: 3}
-  spellI: 1
+  type: 0
   typeOfDamage: 1
+  spellI: 1

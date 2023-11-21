@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5da7bbbb2c8ec9542a47ae45abed6a95, type: 3}
-  m_Name: Earthball
+  m_Script: {fileID: 11500000, guid: b09f7f4200708b543a8c55197c762a63, type: 3}
+  m_Name: Stone
   m_EditorClassIdentifier: 
   <ItemCode>k__BackingField: 0
   <Name>k__BackingField: Stone
   <Description>k__BackingField: 
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 199c93c410f23fe40ae0bd52b5c3d656, type: 3}
-  spellObj: {fileID: 2343054465367942814, guid: 5a9af24e0e42b704fbb89fb74e598ce0, type: 3}
+  type: 0
   typeOfDamage: 2
+  spellI: 0

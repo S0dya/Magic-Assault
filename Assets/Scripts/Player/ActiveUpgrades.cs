@@ -32,16 +32,19 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
     }
 
     //enabling active upgrades
-    public void EnableShootingNearestEnemy()
+    public void EnableShootingNearestEnemy(int indexOfSpell)
     {
+        indexOfSpellOfShoot[0] = indexOfSpell;
         StartCoroutine(ShootNearestEnemy());
     }
-    public void EnableShootingRandomEnemy()
+    public void EnableShootingRandomEnemy(int indexOfSpell)
     {
+        indexOfSpellOfShoot[1] = indexOfSpell;
         StartCoroutine(ShootInRandomEnemyCor());
     }
-    public void EnableShootingRandomPosition()
+    public void EnableShootingRandomPosition(int indexOfSpell)
     {
+        indexOfSpellOfShoot[2] = indexOfSpell;
         StartCoroutine(ShootInRandomPositionCor());
     }
 

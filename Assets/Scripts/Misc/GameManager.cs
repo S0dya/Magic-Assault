@@ -50,6 +50,12 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         tween.setUseEstimatedTime(true);
     }
 
+    public void ChangeScale(GameObject obj, float scale, float duration)
+    {
+        LTDescr tween = LeanTween.scale(obj, new Vector2(scale, scale), duration).setEase(LeanTweenType.easeOutBack);
+        tween.setUseEstimatedTime(true);
+    }
+
     //save/load
     void OnApplicationPause(bool pauseStatus)
     {

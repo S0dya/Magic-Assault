@@ -39,7 +39,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     [HideInInspector] public List<Vector2> drawPoints;
 
 
-    int[] curTypeOfSpell = new int[4];// 1 - dot2 - circle3 - line4 - arrow
+    int[] curTypeOfSpell = new int[4];// 0 - dot 1 - circle 2 - line 3 - arrow
     float[] curEffectManaUsage = new float[4];
 
     protected override void Awake()
@@ -174,7 +174,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
 
     //set spells
-    public void SetSpell(int typeOfSpell, int i)
+    public void SetSpell(int typeOfSpell, int i)// typeOfSpell: 0 - dot 1 - circle 2 - line 3 - arrow
     {
         curTypeOfSpell[typeOfSpell] = i;
         /*
