@@ -24,7 +24,6 @@ public class Fireball : CircleSpell
                 enemy.Burn();
                 Destroy(gameObject);
                 break;
-            case "CircleEffect":
             case "WaterEffect":
             case "EarthEffect":
                 Destroy(gameObject);

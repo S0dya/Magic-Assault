@@ -35,9 +35,6 @@ public class Stone : CircleSpell
 
                 Destroy(gameObject);
                 break;
-            case "CircleEffect":
-                Destroy(gameObject);
-                break;
             default: break;
         }
     }

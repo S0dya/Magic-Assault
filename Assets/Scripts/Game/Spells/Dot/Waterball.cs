@@ -26,7 +26,6 @@ public class Waterball : CircleSpell
 
                 Destroy(gameObject);
                 break;
-            case "CircleEffect":
             case "FireEffect":
             case "EarthEffect":
                 Destroy(gameObject);

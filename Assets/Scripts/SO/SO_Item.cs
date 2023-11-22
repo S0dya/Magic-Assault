@@ -16,7 +16,8 @@ public class SO_Item : ScriptableObject
     [Header("Settings")]
     //spells and active upgrades
     public int typeOfDamage;
-    
+    public SO_Item[] itemsOnUpgrade;
+
     //spells
     public int spellI;
 }

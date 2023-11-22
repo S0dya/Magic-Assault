@@ -20,6 +20,11 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     [Header("Time")]
     [SerializeField] TextMeshProUGUI timerText;
 
+    [Header("Money and killed enemies")]
+    [SerializeField] TextMeshProUGUI moneyText;
+    [SerializeField] TextMeshProUGUI killedText;
+
+
     //local
     //exp
     int curLvl = 0;
@@ -31,6 +36,10 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     int curTime;
     int curSecs;
     int curMins;
+
+    //killed and money
+    [HideInInspector] public int killedAmount;
+    [HideInInspector] public int moneyAmount;
 
     //cor
     Coroutine timerCor;
@@ -51,10 +60,10 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     {
         curExp += val;
 
+        SetExpLine();
+
         //if alr upgrading we skip reaching new level 
         if (!isUpgrading) CheckIfNextLevelIsReached();
-        
-        SetExpLine();
     }
 
     void CheckIfNextLevelIsReached()
@@ -133,5 +142,18 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
         time.Append(curSecs.ToString());
         
         timerText.text = time.ToString();
+    }
+
+    //money and killed enemies visualisation
+    public void AddKill()
+    {
+        killedAmount++;
+        killedText.text = killedAmount.ToString();
+    }
+    
+    public void ChangeMoney(int val)
+    {
+        moneyAmount += val;
+        moneyText.text = moneyAmount.ToString();
     }
 }

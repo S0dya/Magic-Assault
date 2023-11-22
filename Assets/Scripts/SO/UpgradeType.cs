@@ -1,8 +1,13 @@
 public enum UpgradeType 
 {
+    //spell 
     Spell,
+
+    //active
     ActiveShootingNearestEnemy,
     ActiveShootingRandomEnemy,
     ActiveShootingRandomPosition,
-    Passive,
+
+    //passive
+    PassiveIncreasePlayerSpeed,
 }

@@ -60,6 +60,7 @@ public class Enemy : Creature
 
         if (curHp == 0)
         {
+            UIInGame.I.AddKill();
             InstantiateExp();
             Destroy(gameObject);
         }

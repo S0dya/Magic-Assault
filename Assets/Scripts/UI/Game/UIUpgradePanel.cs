@@ -7,6 +7,8 @@ public class UIUpgradePanel : SingletonMonobehaviour<UIUpgradePanel>
     [Header("Settings")]
     [SerializeField] UIGameMenu uiGameMenu;
     [SerializeField] UIInGame uiInGame;
+    [SerializeField] ActiveUpgrades activeUpgrades;
+    [SerializeField] PassiveUpgrades passiveUpgrades;
 
     [Header("Upgrade tab")]
     [SerializeField] GameObject upgradeTab;
@@ -41,8 +43,8 @@ public class UIUpgradePanel : SingletonMonobehaviour<UIUpgradePanel>
         GameManager.I.Open(upgradeTabCG, 0.75f);
 
         SetUpgrades();
-        DrawManager.I.StopCreatingSpell();
         uiGameMenu.ToggleTimeScale(false);
+        DrawManager.I.StopCreatingSpell();
     }
 
     public void CloseUpgradeTab()
@@ -56,6 +58,7 @@ public class UIUpgradePanel : SingletonMonobehaviour<UIUpgradePanel>
     //other methods
     void SetUpgrades()
     {
+        //get random upgrade, then remove this upgrade to get 2 more random upgrades
         for (int i = 0; i < 3; i++)
         {
             int randomI = Random.Range(0, allItems.Count);
@@ -68,6 +71,7 @@ public class UIUpgradePanel : SingletonMonobehaviour<UIUpgradePanel>
 
     public void VisualiseChooseOfAnItem(int index)
     {
+        //open currently interacted item and hide last interacted item if there is one
         for (int i = 0; i < 3; i++)
         {
             if (index == i) uiUpgrades[i].Open();
@@ -78,10 +82,7 @@ public class UIUpgradePanel : SingletonMonobehaviour<UIUpgradePanel>
     public void ChooseUpgrade(int index)
     {
         SetUpgrade(index);
-        for (int i = 0; i < 3; i++)
-        {
-            if (i != index) allItems.Add(curItems[i]);
-        }
+        for (int i = 0; i < 3; i++) if (i != index) allItems.Add(curItems[i]);
 
         CloseUpgradeTab();
     }
@@ -91,16 +92,31 @@ public class UIUpgradePanel : SingletonMonobehaviour<UIUpgradePanel>
         SO_Item item = curItems[index];
         switch (item.type)
         {
-            /*
-            case UpgradeType.Spell:
-                SpellManager.I.SetSpell(spell.spellI, spell.typeOfDamage);
-                break;
-            */
+            //active upgrades
             case UpgradeType.ActiveShootingNearestEnemy:
-                ActiveUpgrades.I.EnableShootingNearestEnemy(item.typeOfDamage);
+                activeUpgrades.EnableShootingNearestEnemy(item.typeOfDamage);
+                AddNewUpgrades(item);
+                break;
+            case UpgradeType.ActiveShootingRandomEnemy:
+                activeUpgrades.EnableShootingNearestEnemy(item.typeOfDamage);
+                AddNewUpgrades(item);
+                break;
+            case UpgradeType.ActiveShootingRandomPosition:
+                activeUpgrades.EnableShootingNearestEnemy(item.typeOfDamage);
+                AddNewUpgrades(item);
                 break;
 
+            //passive upgrades
+            case UpgradeType.PassiveIncreasePlayerSpeed:
+                if (passiveUpgrades.CanIncreasePlayerSpeed()) allItems.Add(item);//add this passive upgrade back only if can use it more times
+                break;
             default: break;
         }
     }
+
+    void AddNewUpgrades(SO_Item item) //since some active upgrades can additional passive or active upgrades - add them to all upgrades
+    {
+        foreach (SO_Item newItem in item.itemsOnUpgrade) allItems.Add(newItem);
+    }
+
 }

@@ -36,8 +36,8 @@ public class UIGameMenu : SingletonMonobehaviour<UIGameMenu>
         GameManager.I.MoveTransform(gameMenuTransform, 0, 0, 0.75f);
         GameManager.I.Open(gameMenuCG, 0.75f);
 
-        DrawManager.I.StopCreatingSpell();
         ToggleTimeScale(false);
+        DrawManager.I.StopCreatingSpell();
     }
 
     public void CloseGameMenu()
@@ -51,7 +51,16 @@ public class UIGameMenu : SingletonMonobehaviour<UIGameMenu>
     //other methods
     public void ToggleTimeScale(bool val)
     {
-        DrawManager.I.isOnUI = !val;
+        StartCoroutine(ToggleOnUICor(!val));
         Time.timeScale = val ? 1 : 0;
+    }
+
+    //coroutine will make sure ui interaction is not considered in-game interaction
+    IEnumerator ToggleOnUICor(bool val)
+    {
+        yield return null;
+
+        DrawManager.I.isOnUI = val;
+        if (!val) DrawManager.I.StopCreatingSpell();
     }
 }

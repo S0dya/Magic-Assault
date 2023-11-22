@@ -41,7 +41,7 @@ public static class Settings
 
 
     //settings
-    public static bool isFloatingJoystick = false;
+    public static bool isFloatingJoystick = true;
     public static bool firstTime;
     public static bool isMusicOn;
 

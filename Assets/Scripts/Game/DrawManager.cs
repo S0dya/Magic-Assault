@@ -52,8 +52,8 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
         if (isOnUI) return;
 
         touchesCount = Input.touchCount;
-        
-        //check if we there is no input and if input is not related to joystick
+
+        //check if there is no input and if input is not related to joystick
         if (!inputChecked && touchesCount == 1 && checkJoystickInputCor == null)
         {
             checkJoystickInputCor = StartCoroutine(CheckJoystickInputCor());
@@ -212,6 +212,7 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
     void ClearLine()
     {
         if (changeSizeOfLineCor != null) StopCoroutine(changeSizeOfLineCor);
+
         drawPoints.Clear();
         lineRenderer.positionCount = positionCount = 0;
     }

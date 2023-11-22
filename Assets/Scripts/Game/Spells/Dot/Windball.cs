@@ -33,7 +33,6 @@ public class Windball : CircleSpell
                 enemy.Push(direction, size);
                 DestroyObj();
                 break;
-            case "CircleEffect":
             case "EarthEffect":
                 DestroyObj();
                 break;

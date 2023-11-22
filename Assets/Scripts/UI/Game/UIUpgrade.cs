@@ -46,6 +46,7 @@ public class UIUpgrade : MonoBehaviour
         uiUpgradePanel.VisualiseChooseOfAnItem(index);
     }
 
+    //visualisation
     public void Open()
     {
         GameManager.I.ChangeScale(imageObj, 1.5f, 0.4f);
@@ -59,5 +60,4 @@ public class UIUpgrade : MonoBehaviour
         GameManager.I.ChangeScale(imageObj, 1, 0.2f);
         GameManager.I.Close(textCG, 0.2f);
     }
-
 }

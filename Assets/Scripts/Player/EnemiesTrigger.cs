@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemiesTrigger : MonoBehaviour
 {
-    
     //local
     List<Transform> enemiesTransforms = new List<Transform>();
     float timeForCheckTransforms;
@@ -29,6 +28,7 @@ public class EnemiesTrigger : MonoBehaviour
         enemiesTransforms.Remove(collision.transform);
     }
 
+    //main methods for active upgrades 
     public Vector2 GetNearestEnemyPosition()
     {
         //set private values
@@ -36,13 +36,13 @@ public class EnemiesTrigger : MonoBehaviour
         Vector2 curNearest = new Vector2();
 
         //check nearest transform based on distance
-        foreach (Transform t in enemiesTransforms)
+        foreach (Transform transf in enemiesTransforms)
         {
-            float curDistance = Vector2.Distance(t.position, transform.position);
+            float curDistance = Vector2.Distance(transf.position, transform.position);
             if (nearestDistance > curDistance)
             {
                 nearestDistance = curDistance;
-                curNearest = t.position;
+                curNearest = transf.position;
             }
         }
 

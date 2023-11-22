@@ -54,17 +54,8 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     void Start()
     {
         //set values of current spells and mana usage
-        for (int i = 0; i < 4; i++)
-        {
-            curTypeOfSpell[i] = Settings.startingSpells[i];
-        }
-
+        curTypeOfSpell = Settings.startingSpells;
         curEffectManaUsage = Settings.startingSpellsManaUsage;
-
-        SetSpell(0, 2);
-        SetSpell(1, 2);
-        SetSpell(2, 3);
-        SetSpell(3, 3);
     }
 
     //Spells
