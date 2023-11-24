@@ -2,18 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIUpgradePanel : SingletonMonobehaviour<UIUpgradePanel>
+public class UIUpgrades : UIPanel
 {
-    [Header("Settings")]
-    [SerializeField] UIGameMenu uiGameMenu;
-    [SerializeField] UIInGame uiInGame;
+    [Header("Other scripts")]
     [SerializeField] ActiveUpgrades activeUpgrades;
     [SerializeField] PassiveUpgrades passiveUpgrades;
-
-    [Header("Upgrade tab")]
-    [SerializeField] GameObject upgradeTab;
-    [SerializeField] RectTransform upgradeTabTransform;
-    [SerializeField] CanvasGroup upgradeTabCG;
 
     [Header("Upgrades")]
     [SerializeField] UIUpgrade[] uiUpgrades;
@@ -25,34 +18,18 @@ public class UIUpgradePanel : SingletonMonobehaviour<UIUpgradePanel>
     //upgrades
     SO_Item[] curItems = new SO_Item[3];
 
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();
-
-    }
-
-    public void Start()
-    {
-        upgradeTabTransform.anchoredPosition = new Vector2(0, -Screen.height);
+        StartEndX = new float[2] { 0, 0 };
+        StartEndY = new float[2] { -Settings.height, 0 };
     }
 
     //panel
-    public void OpenUpgradeTab()
+    public override void OpenTab()
     {
-        GameManager.I.MoveTransform(upgradeTabTransform, 0, 0, 0.75f);
-        GameManager.I.Open(upgradeTabCG, 0.75f);
-
         SetUpgrades();
-        uiGameMenu.ToggleTimeScale(false);
-        DrawManager.I.StopCreatingSpell();
-    }
 
-    public void CloseUpgradeTab()
-    {
-        GameManager.I.MoveTransform(upgradeTabTransform, 0, -Settings.height, 0.25f);
-        GameManager.I.Close(upgradeTabCG, 0.25f);
-
-        uiGameMenu.ToggleTimeScale(true);
+        base.OpenTab();
     }
 
     //other methods
@@ -84,7 +61,7 @@ public class UIUpgradePanel : SingletonMonobehaviour<UIUpgradePanel>
         SetUpgrade(index);
         for (int i = 0; i < 3; i++) if (i != index) allItems.Add(curItems[i]);
 
-        CloseUpgradeTab();
+        CloseTab();
     }
 
     void SetUpgrade(int index)

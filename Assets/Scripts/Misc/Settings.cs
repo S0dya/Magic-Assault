@@ -10,6 +10,7 @@ public static class Settings
     public static int money;
 
     public static float height = Screen.height;
+    public static float width = Screen.width;
 
     //game
 

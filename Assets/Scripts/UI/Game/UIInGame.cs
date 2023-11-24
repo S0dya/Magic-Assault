@@ -7,15 +7,17 @@ using TMPro;
 
 public class UIInGame : SingletonMonobehaviour<UIInGame>
 {
+    [Header("Other scripts")]
+    [SerializeField] UIMultipliers uiMultipliers;
+    [SerializeField] UISpells uiSpells;
+    [SerializeField] UIUpgrades uiUpgrades;
+
     [Header("Exp")]
     [SerializeField] Image expLine;
     [SerializeField] GameObject expTextObj;
     [SerializeField] TextMeshProUGUI expText;
     public float curNeededExp;
     public float nextLevelMultiplier;
-
-    [Header("Upgrade")]
-    [SerializeField] UIUpgradePanel uiUpgradePanel;
 
     [Header("Time")]
     [SerializeField] TextMeshProUGUI timerText;
@@ -24,8 +26,8 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     [SerializeField] TextMeshProUGUI moneyText;
     [SerializeField] TextMeshProUGUI killedText;
 
-
     //local
+
     //exp
     int curLvl = 0;
 
@@ -97,7 +99,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     {
         //we set exp one more time, since if we upgraded several times fillAmount will not be changed for last upgrade
         SetExpLine();
-        uiUpgradePanel.OpenUpgradeTab();
+        uiUpgrades.OpenTab();
 
         expText.text = curLvl.ToString();
         //return text of lvl to normal size and check if we need to call upgrade once more
@@ -156,4 +158,8 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
         moneyAmount += val;
         moneyText.text = moneyAmount.ToString();
     }
+
+    //upgrades methods
+    public void OpenSpellsPanel() => uiSpells.OpenTab();
+    public void OpenMultipliersPanel() => uiMultipliers.OpenTab();
 }

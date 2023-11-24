@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIUpgrade : UIItem
+public class UISpell : UIItem
 {
     //local
-    UIUpgrades uiUpgrades;
+    UISpells uiSpells;
 
-    void Start() => uiUpgrades = GetComponentInParent<UIUpgrades>();
+    void Start() => uiSpells = GetComponentInParent<UISpells>();
 
     //buttons
     public void OnImageButton(int index)
     {
         if (amountOfClicks == 1)
         {
-            uiUpgrades.ChooseUpgrade(index);
+            uiSpells.ChooseUpgrade(index);
             Hide();
             return;
         }
 
         AmountOfClicks++;
-        uiUpgrades.VisualiseChooseOfAnItem(index);
+        uiSpells.VisualiseChooseOfAnItem(index);
     }
 }
