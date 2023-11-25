@@ -6,6 +6,8 @@ using TMPro;
 
 public class UIItem : MonoBehaviour
 {
+    [SerializeField] Image outsideImage;
+
     [SerializeField] GameObject imageObj;
     [SerializeField] Image image;
 
@@ -30,6 +32,7 @@ public class UIItem : MonoBehaviour
     {
         GameManager.I.ChangeScale(imageObj, 1.5f, 0.4f);
         GameManager.I.Open(textCG, 0.4f);
+        outsideImage.enabled = true;
     }
 
     public void Hide()
@@ -38,5 +41,6 @@ public class UIItem : MonoBehaviour
 
         GameManager.I.ChangeScale(imageObj, 1, 0.2f);
         GameManager.I.Close(textCG, 0.2f);
+        outsideImage.enabled = false;
     }
 }

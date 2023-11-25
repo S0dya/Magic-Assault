@@ -12,6 +12,11 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     [SerializeField] UISpells uiSpells;
     [SerializeField] UIUpgrades uiUpgrades;
 
+    [Header("Joystick")]
+    [SerializeField] CanvasGroup joysticksCG;
+    [SerializeField] FloatingJoystick flJoystick;
+    [SerializeField] FixedJoystick fxJoystick;
+
     [Header("Exp")]
     [SerializeField] Image expLine;
     [SerializeField] GameObject expTextObj;
@@ -27,6 +32,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     [SerializeField] TextMeshProUGUI killedText;
 
     //local
+    Player player;
 
     //exp
     int curLvl = 0;
@@ -50,6 +56,8 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     {
         base.Awake();
 
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        SetJoystick();
     }
 
     void Start()
@@ -159,7 +167,24 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
         moneyText.text = moneyAmount.ToString();
     }
 
-    //upgrades methods
+    //other methods
     public void OpenSpellsPanel() => uiSpells.OpenTab();
     public void OpenMultipliersPanel() => uiMultipliers.OpenTab();
+
+    void SetJoystick()
+    {
+        //set joystick's type
+        bool isFJ = Settings.isFloatingJoystick;
+
+        if (isFJ) flJoystick.gameObject.SetActive(true);
+        else fxJoystick.gameObject.SetActive(true);
+
+        //set this joystick
+        player.joystick = isFJ ? flJoystick : fxJoystick;
+    }
+
+    public void ToggleJoystickVisibility(float val)
+    {
+        joysticksCG.alpha = val;
+    }
 }

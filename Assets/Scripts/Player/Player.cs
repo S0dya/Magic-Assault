@@ -10,30 +10,16 @@ public class Player : Creature
     [SerializeField] float amountOfTimeBeforeRestoringMana;
     [SerializeField] float amountOfTimeForRestoringMana;
     [SerializeField] float amountOfRestoringMana;
-    
-    [Header("UI")]
-    [SerializeField] FloatingJoystick flJoystick;
-    [SerializeField] FixedJoystick fxJoystick;
-    Joystick joystick;
 
+    [Header("UI")]
     [SerializeField] Image[] statsImages; //0 - hp, 1 - mana
 
-    //UI
     [HideInInspector] public float curMana;
-
-    //local 
+    [HideInInspector] public Joystick joystick;
     [HideInInspector] public bool joystickInput;
 
     //cors
     Coroutine restoreManaCor;
-
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-        SetJoystick();
-    }
 
     protected override void Start()
     {
@@ -48,7 +34,6 @@ public class Player : Creature
 
         base.Update();
     }
-
 
     //joystick input
     public void ToggleJoystickInput(bool val)
@@ -66,19 +51,6 @@ public class Player : Creature
         yield return null;
 
         DrawManager.I.inputChecked = false;
-    }
-
-    //other methods
-    void SetJoystick()
-    {
-        //set joystick's type
-        bool isFJ = Settings.isFloatingJoystick;
-
-        if (isFJ) flJoystick.gameObject.SetActive(true);
-        else fxJoystick.gameObject.SetActive(true);
-
-        //set this joystick
-        joystick = isFJ ? flJoystick : fxJoystick;
     }
 
     //UI

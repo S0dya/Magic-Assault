@@ -24,7 +24,7 @@ public class UIPanel : MonoBehaviour
     protected float[] StartEndY { get { return startEndY; } set { startEndY = value; } }
 
 
-    public virtual void Start()//hide panel
+    protected virtual void Start()//hide panel
     {
         panelTransform.anchoredPosition = new Vector2(startEndX[0], startEndY[0]);
     }
@@ -50,10 +50,12 @@ public class UIPanel : MonoBehaviour
     //other methods
     void ToggleTimeScale(bool val)
     {
+        float floatVal = val ? 1 : 0;
         StartCoroutine(ToggleOnUICor(!val));
-        Time.timeScale = val ? 1 : 0;
+        Time.timeScale = floatVal;
+        UIInGame.I.ToggleJoystickVisibility(floatVal);
     }
-    
+
     //coroutine will make sure ui interaction is not considered in-game interaction
     IEnumerator ToggleOnUICor(bool val)
     {

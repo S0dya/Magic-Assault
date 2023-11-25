@@ -39,7 +39,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     [HideInInspector] public List<Vector2> drawPoints;
 
 
-    int[] curTypeOfSpell = new int[4];// 0 - dot 1 - circle 2 - line 3 - arrow
+    [HideInInspector] public int[] curTypeOfSpell;// 0 - dot 1 - circle 2 - line 3 - arrow
     float[] curEffectManaUsage = new float[4];
 
     protected override void Awake()
@@ -48,13 +48,12 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
         playerTransform = player.transform;
 
-        //handleArrow = RollingStoneEffect;
+        //set values of current spells and mana usage
+        curTypeOfSpell = Settings.startingSpells;
     }
 
     void Start()
     {
-        //set values of current spells and mana usage
-        curTypeOfSpell = Settings.startingSpells;
         curEffectManaUsage = Settings.startingSpellsManaUsage;
     }
 
@@ -165,9 +164,9 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
 
     //set spells
-    public void SetSpell(int typeOfSpell, int i)// typeOfSpell: 0 - dot 1 - circle 2 - line 3 - arrow
+    public void SetSpell(int typeOfDamage, int spellI)// typeOfSpell: 0 - dot 1 - circle 2 - line 3 - arrow
     {
-        curTypeOfSpell[typeOfSpell] = i;
+        curTypeOfSpell[typeOfDamage] = spellI;
         /*
         switch (typeOfSpell)
         {
