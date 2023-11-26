@@ -84,7 +84,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     {
         if (PlayerHasEnoughMana(2)) return;
 
-        //find total number of objects that we need spawn 
+        //find total number of objects that needs to be spawn 
         float distance = Vector2.Distance(drawPoints[0], drawPoints[^1]);
         float numObjects = Mathf.CeilToInt(distance / size);
 
@@ -162,31 +162,6 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     //subtract mana
     void UseMana(int i, int amount) => player.ChangeMana(-curEffectManaUsage[i] * size * amount);
 
-
-    //set spells
-    public void SetSpell(int typeOfDamage, int spellI)// typeOfSpell: 0 - dot 1 - circle 2 - line 3 - arrow
-    {
-        curTypeOfSpell[typeOfDamage] = spellI;
-        /*
-        switch (typeOfSpell)
-        {
-            case 0:
-                dotEffects[i] = dotEffects[i];
-                break;
-            case 1:
-                curEffects[i] = circleEffects[i];
-                break;
-            case 2:
-                curEffects[i] = lineEffects[i];
-                break;
-            case 3:
-                curEffects[i] = arrowEffects[i];
-                break;
-            default: break;
-        }
-        */
-    }
-
     //Improve first 3 spells (air cant be improved by this logic)
     public void ImproveSpells(int typeOfDamage)
     {
@@ -197,7 +172,4 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
         if (typeOfDamage == 2) arrowEffects[typeOfDamage]= improvedArrowEffects[typeOfDamage]; //set arrow for earth
     }
-
-
-
 }

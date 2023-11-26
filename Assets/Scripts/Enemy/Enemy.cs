@@ -19,6 +19,7 @@ public class Enemy : Creature
     //cors
     Coroutine burningCor;
     Coroutine waitForPushEndCor;
+    Coroutine visualiseDamage;
 
     protected override void Awake()
     {
@@ -58,16 +59,21 @@ public class Enemy : Creature
     {
         base.ChangeHP(val * Settings.damageMultipliers[typeOfDamage], typeOfDamage);
 
-        if (curHp == 0)
+        if (curHp == 0) Die();
+        else VisualiseDamage();
+    }
+
+    public void Die()
+    {
+        ToggleMovement(false);
+        Push((transform.position - playerTransform.position).normalized, 0.5f);
+
+        LeanTween.alpha(gameObject, 0f, 0.75f).setEase(LeanTweenType.easeOutQuad).setOnComplete(() =>
         {
             UIInGame.I.AddKill();
             InstantiateExp();
             Destroy(gameObject);
-        }
+        });
     }
-
-    public void InstantiateExp()
-    {
-        Instantiate(expPrefab, transform.position, Quaternion.identity, expParent);
-    }
+    public void InstantiateExp() => Instantiate(expPrefab, transform.position, Quaternion.identity, expParent);
 }

@@ -18,8 +18,12 @@ public class Player : Creature
     [HideInInspector] public Joystick joystick;
     [HideInInspector] public bool joystickInput;
 
+    //local
+    float xOfMove;
+
     //cors
     Coroutine restoreManaCor;
+    Coroutine visualiseDamage;
 
     protected override void Start()
     {
@@ -31,6 +35,12 @@ public class Player : Creature
     protected override void Update()
     {
         DirectionOfMovement = joystick.Direction;
+        xOfMove = DirectionOfMovement.x;
+
+        if ((xOfMove < 0 && !isLookingOnRight) || (xOfMove > 0 && isLookingOnRight))
+        {
+            ChangeLookingDirection();
+        }
 
         base.Update();
     }
@@ -62,6 +72,7 @@ public class Player : Creature
         {
             Debug.Log("die");
         }
+        else if (val < 0) VisualiseDamage(); //visualise hp damage
 
         //set stats from 0 to 1
         statsImages[0].fillAmount = curHp / maxHp;

@@ -28,7 +28,7 @@ TagManager:
   - 
   - Player
   - EnemiesTrigger
-  - 
+  - RotateEnemiesTrigger
   - 
   - Enemy
   - 
@@ -37,7 +37,7 @@ TagManager:
   - Exp
   - PickUps
   - 
-  - 
+  - LevelTrigger
   - 
   - 
   - 

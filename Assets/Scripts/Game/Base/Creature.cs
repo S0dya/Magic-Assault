@@ -68,6 +68,7 @@ public class Creature : MonoBehaviour
     //movement
     bool canMove = true;
     float movementMultiplier = 1;
+    [HideInInspector] public bool isLookingOnRight;
 
     //elemenatal bools
     bool isBurning;
@@ -88,6 +89,7 @@ public class Creature : MonoBehaviour
 
     //cor
     Coroutine restoreHpCor;
+    Coroutine visualiseDamageCor;
 
     //fire
     Coroutine burningCor;
@@ -113,12 +115,19 @@ public class Creature : MonoBehaviour
         curMovementSpeed = movementSpeed;
     }
 
+    //movement
     protected virtual void Update()
     {
         if (canMove && !isStunned && !isPushed)
         {
             rb.velocity = directionOfMovement * curMovementSpeed * movementMultiplier;
         }
+    }
+
+    public void ChangeLookingDirection()
+    {
+        sr.flipX = isLookingOnRight;
+        isLookingOnRight = !isLookingOnRight;
     }
 
 
@@ -209,10 +218,10 @@ public class Creature : MonoBehaviour
     }
 
     //push
-    public virtual void Push(Vector2 posOfPush, float powerOfPush)
+    public virtual void Push(Vector2 directionOfPush, float powerOfPush)
     {
         //push creature in a specified direction with all needed multipliers
-        rb.AddForce(posOfPush * pushMultiplier * movementMultiplier * powerOfPush * elementalDamageMultipliers[3], ForceMode2D.Impulse);
+        rb.AddForce(directionOfPush * pushMultiplier * movementMultiplier * powerOfPush * elementalDamageMultipliers[3], ForceMode2D.Impulse);
 
         if (pushCor != null) StopCoroutine(pushCor);
         pushCor = StartCoroutine(PushCor());
@@ -367,24 +376,25 @@ public class Creature : MonoBehaviour
     }
 
     //damage
-    IEnumerator VisualiseDamage()
+    public void VisualiseDamage()//script is called from inheriting scripts
+    {
+        if (visualiseDamageCor == null) visualiseDamageCor = StartCoroutine(VisualiseDamageCor());
+    }
+    IEnumerator VisualiseDamageCor()
     {
         sr.color = damageColor;
 
         yield return new WaitForSeconds(takingDamageVisualisationTime);
 
         sr.color = normalColor;
+        visualiseDamageCor = null;
     }
 
     //health 
     public virtual void ChangeHP(float val, int type)
     {
         if (type != -1) val *= elementalDamageMultipliers[type];
-        
         curHp = ChangeStat(val, curHp, maxHp);
-        
-        //visualise hp damage
-        if (val < 0) StartCoroutine(VisualiseDamage());
 
         //start coroutines to restore stats
         if (canRestoreHp && !isBurning)//creature cant restore hp while burning
