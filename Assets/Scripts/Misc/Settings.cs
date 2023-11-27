@@ -9,8 +9,8 @@ public static class Settings
     //menu
     public static int money;
 
-    public static float height = Screen.height;
     public static float width = Screen.width;
+    public static float height = Screen.height;
 
     //game
 

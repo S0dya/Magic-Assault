@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateEnemiesTrigger : MonoBehaviour
+public class DestroyEnemiesTrigger : MonoBehaviour
 {
     void OnTriggerExit2D(Collider2D collision)
     {
         Enemy enemy = collision.GetComponent<Enemy>();
-        enemy.CheckLookingDirection();
+        enemy.Die();
     }
 }

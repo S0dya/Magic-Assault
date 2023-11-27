@@ -37,10 +37,8 @@ public class Player : Creature
         DirectionOfMovement = joystick.Direction;
         xOfMove = DirectionOfMovement.x;
 
-        if ((xOfMove < 0 && !isLookingOnRight) || (xOfMove > 0 && isLookingOnRight))
-        {
-            ChangeLookingDirection();
-        }
+        if ((xOfMove < 0 && !isLookingOnRight) || (xOfMove > 0 && isLookingOnRight)) 
+            ChangeLookingDirection();//rotate player if they go in another direction
 
         base.Update();
     }

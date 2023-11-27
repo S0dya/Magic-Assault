@@ -11,9 +11,6 @@ public class Creature : MonoBehaviour
     public float pushMultiplier;
     public int averageTimeOfBurning;
 
-    [Header("Coroutines time values")]
-    public float takingDamageVisualisationTime;
-
     [Header("Health restoring")]
     public bool canRestoreHp;
     public float amountOfTimeBeforeRestoringHp;
@@ -50,7 +47,7 @@ public class Creature : MonoBehaviour
 
 
     //inheriting scripts
-    float curMovementSpeed;
+    [HideInInspector] public float curMovementSpeed;
     Vector2 directionOfMovement;
 
     protected Rigidbody2D Rb { get { return rb; } set { rb = value; } }
@@ -126,7 +123,7 @@ public class Creature : MonoBehaviour
 
     public void ChangeLookingDirection()
     {
-        sr.flipX = isLookingOnRight;
+        sr.flipX = !sr.flipX;
         isLookingOnRight = !isLookingOnRight;
     }
 
@@ -384,7 +381,7 @@ public class Creature : MonoBehaviour
     {
         sr.color = damageColor;
 
-        yield return new WaitForSeconds(takingDamageVisualisationTime);
+        yield return new WaitForSeconds(0.15f);
 
         sr.color = normalColor;
         visualiseDamageCor = null;
