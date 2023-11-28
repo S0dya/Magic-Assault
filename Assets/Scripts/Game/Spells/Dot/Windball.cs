@@ -34,6 +34,7 @@ public class Windball : CircleSpell
                 DestroyObj();
                 break;
             case "EarthEffect":
+            case "ObjectCollider":
                 DestroyObj();
                 break;
             default: break;

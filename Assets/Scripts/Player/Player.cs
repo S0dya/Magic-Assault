@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Player : Creature
 {
     [Header("Player's settings")]
+    public float speedOnDamage;
     [SerializeField] float maxMana;
     [SerializeField] float amountOfTimeBeforeRestoringMana;
     [SerializeField] float amountOfTimeForRestoringMana;
@@ -20,6 +21,8 @@ public class Player : Creature
 
     //local
     float xOfMove;
+
+    int curAmountOfEnemies;
 
     //cors
     Coroutine restoreManaCor;
@@ -99,4 +102,20 @@ public class Player : Creature
 
         restoreManaCor = null;
     }
+
+    //on enemies trigger
+    public void EnemyTriggerEnter()
+    {
+        curAmountOfEnemies++;
+
+        if (curAmountOfEnemies == 1) DamageMultiplierOnDamage = speedOnDamage;
+    }
+
+    public void EnemyTriggerExit()
+    {
+        curAmountOfEnemies--;
+
+        if (curAmountOfEnemies == 0) DamageMultiplierOnDamage = 1;
+    }
+
 }

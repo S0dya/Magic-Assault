@@ -33,6 +33,7 @@ public class WindLine : CircleSpell
                 break;
             case "CircleEffect":
             case "EarthEffect":
+            case "ObjectCollider":
                 DestroyObj();
                 break;
             default: break;

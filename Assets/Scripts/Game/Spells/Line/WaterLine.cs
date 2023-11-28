@@ -23,6 +23,7 @@ public class WaterLine : CircleSpell
             case "CircleEffect":
             case "FireEffect":
             case "EarthEffect":
+            case "ObjectCollider":
                 Destroy(gameObject);
                 break;
             default: break;

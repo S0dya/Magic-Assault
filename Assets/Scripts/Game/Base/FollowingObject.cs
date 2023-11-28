@@ -5,29 +5,22 @@ using static LeanTween;
 
 public class FollowingObject : MonoBehaviour
 {
-    public float expOnCollect;
-
     [SerializeField] Rigidbody2D rb;
     Transform playerTransform;
 
 
-    void Awake()
+    protected virtual void Awake()
     {
-        transform.localScale = Vector2.zero;
+        //transform.localScale = Vector2.zero;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    void Start()
+    protected virtual void Start()
     {
         LeanTween.scale(gameObject, new Vector2(1, 1), 1).setEase(LeanTweenType.easeOutBack);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        StartCoroutine(FollowPlayerCor());
-    }
-
-    IEnumerator FollowPlayerCor()
+    protected virtual IEnumerator FollowPlayerCor()
     {
         while (true)
         {
@@ -38,7 +31,6 @@ public class FollowingObject : MonoBehaviour
             yield return null;
         }
 
-        UIInGame.I.ChangeExp(expOnCollect);
         Destroy(gameObject);
     }
 }

@@ -52,6 +52,7 @@ public class Creature : MonoBehaviour
 
     protected Rigidbody2D Rb { get { return rb; } set { rb = value; } }
     protected float CurMovementSpeed { get { return curMovementSpeed; } set { curMovementSpeed = value; } }
+    protected float DamageMultiplierOnDamage { get { return damageMultiplierOnDamage; } set { damageMultiplierOnDamage = value; } }
     protected Vector2 DirectionOfMovement { get { return directionOfMovement; } set { directionOfMovement = value; } }
     protected bool CanMove { get { return canMove; } set { canMove = value; } }
 
@@ -65,6 +66,7 @@ public class Creature : MonoBehaviour
     //movement
     bool canMove = true;
     float movementMultiplier = 1;
+    float damageMultiplierOnDamage = 1;
     [HideInInspector] public bool isLookingOnRight;
 
     //elemenatal bools
@@ -117,7 +119,7 @@ public class Creature : MonoBehaviour
     {
         if (canMove && !isStunned && !isPushed)
         {
-            rb.velocity = directionOfMovement * curMovementSpeed * movementMultiplier;
+            rb.velocity = directionOfMovement * curMovementSpeed * movementMultiplier * damageMultiplierOnDamage; 
         }
     }
 

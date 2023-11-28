@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class EnemyPlayer : Enemy
 {
+    protected override void Start()
+    {
+        base.Start();
+
+        CheckLookingDirection();
+    }
+
     //movement
     protected override void Update()
     {

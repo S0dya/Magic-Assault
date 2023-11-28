@@ -8,16 +8,19 @@ public class Enemy : Creature
     public float speedOnTriggerWithPlayer;
     public float damageOnTriggerWithPlayer;
     public int typeOfDamageOnTriggerWithPlayer;
+    public float coinSpawnChance;
 
     [Header("Animation")]
     public float[] rotation;
 
     [Header("Other")]
     [SerializeField] GameObject expPrefab;
+    [SerializeField] GameObject coinPrefab;
 
     //local
     [HideInInspector] public Transform playerTransform;
     Transform expParent;
+    Transform coinParent;
 
     //looking direction
     float xOfMove;
@@ -28,13 +31,13 @@ public class Enemy : Creature
     //cors
     Coroutine burningCor;
     Coroutine waitForPushEndCor;
-    Coroutine visualiseDamage;
 
     protected override void Awake()
     {
         base.Awake();
 
         expParent = GameObject.FindGameObjectWithTag("ExpParent").GetComponent<Transform>();
+        coinParent = GameObject.FindGameObjectWithTag("CoinParent").GetComponent<Transform>();
     }
 
     protected override void Start()
@@ -43,12 +46,12 @@ public class Enemy : Creature
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         if (rotation.Length > 0) RotateBackwards();
-        CheckLookingDirection();
     }
 
-    public void CheckLookingDirection()
+    public void CheckLookingDirection() => CheckLookingDirection(playerTransform.position.x);
+    public void CheckLookingDirection(float targetPosX)
     {
-        xOfMove = playerTransform.position.x - transform.position.x;
+        xOfMove = targetPosX - transform.position.x;
         if ((xOfMove < 0 && !isLookingOnRight) || (xOfMove > 0 && isLookingOnRight)) ChangeLookingDirection();
     }
 
@@ -74,7 +77,7 @@ public class Enemy : Creature
     }
 
     //killed
-    public void Kill()
+    public void Kill() //visualise death, instantiate items on death and destroy object 
     {
         ToggleMovement(false);
         Push((transform.position - playerTransform.position).normalized, 0.5f);
@@ -83,18 +86,15 @@ public class Enemy : Creature
         {
             Die();
             UIInGame.I.AddKill();
-            InstantiateExp();
+
+            InstantiateAfterDeath(expPrefab, expParent);
+            if (Random.Range(0, 15) <= coinSpawnChance) InstantiateAfterDeath(coinPrefab, coinParent);
         });
     }
-    public void InstantiateExp() => Instantiate(expPrefab, transform.position, Quaternion.identity, expParent);
-
-    public void Die()
-    {
-        LevelManager.I.SpawnEnemy(gameObject);
-        Destroy(gameObject);
-        Debug.Log("asd");
-    }
-
+    public void InstantiateAfterDeath(GameObject prefab, Transform parent) => Instantiate(prefab, transform.position, Quaternion.identity, parent);
+    
+    public void Die() => Destroy(gameObject);
+    
     //animation
     void RotateBackwards() => rotationTween = LeanTween.rotateZ(gameObject, rotation[0], curMovementSpeed).setEase(LeanTweenType.easeInOutSine).setOnComplete(RotateForwards);
     void RotateForwards() => rotationTween = LeanTween.rotateZ(gameObject, rotation[1], curMovementSpeed).setEase(LeanTweenType.easeInOutSine).setOnComplete(RotateBackwards);

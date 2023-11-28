@@ -26,6 +26,7 @@ public class Fireball : CircleSpell
                 break;
             case "WaterEffect":
             case "EarthEffect":
+            case "ObjectCollider":
                 Destroy(gameObject);
                 break;
             default: break;

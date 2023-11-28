@@ -38,6 +38,7 @@ public class UIItem : MonoBehaviour
     public void Hide()
     {
         amountOfClicks = 0;
+        Debug.Log("123");
 
         GameManager.I.ChangeScale(imageObj, 1, 0.2f);
         GameManager.I.Close(textCG, 0.2f);

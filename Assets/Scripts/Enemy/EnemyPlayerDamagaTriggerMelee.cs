@@ -27,12 +27,15 @@ public class EnemyPlayerDamagaTriggerMelee : MonoBehaviour
     void OnTriggerEnter2D(Collider2D Collision)
     {
         ToggleOnTrigger(true);
-        
+
+        player.EnemyTriggerEnter();
         if (givingDamageCor == null) givingDamageCor = StartCoroutine(GivingDamageCor());
     }
     void OnTriggerExit2D(Collider2D Collision)
     {
         ToggleOnTrigger(false);
+
+        player.EnemyTriggerExit();
     }
 
     //other methods

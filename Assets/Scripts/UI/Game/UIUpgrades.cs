@@ -59,7 +59,7 @@ public class UIUpgrades : UIPanel
     public void ChooseUpgrade(int index)
     {
         SetUpgrade(index);
-
+        uiUpgrades[index].Hide();
         for (int i = 0; i < 3; i++) if (i != index) allItems.Add(curItems[i]);
 
         CloseTab();

@@ -10,6 +10,10 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
 
     public float offestForSpawn;
 
+    public float distanceBetweenCrowdEnemies;
+    
+    public float radiusForCircleEnemy;
+
     [Header("Level generation")]
     [SerializeField] Transform levelParent;
     [SerializeField] GameObject levelPrefab;
@@ -30,18 +34,21 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     float worldWidth;
     float worldHeight;
 
+
     protected override void Awake()
     {
         base.Awake();
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
-        worldHeight = Camera.main.orthographicSize * 4.5f;
+        //get height and width in world space
+        worldHeight = Camera.main.orthographicSize * 4f;
         worldWidth = Settings.width / Settings.height * worldHeight;
     }
 
     void Start()
     {
+        //sign Ns for future using 
         platformsLength = platforms.Length;
 
         GenerateLevel(Vector2.zero);
@@ -72,25 +79,58 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
         }
     }
 
-    //enemy
+    //spawn enemy
     public void SpawnEnemy(GameObject enemyPrefab)
     {
-        Instantiate(enemyPrefab, GetRandomPos(), Quaternion.identity, enemyParent);
+        InstantiateEnemy(enemyPrefab, GetRandomPos());// spawn enemy around player
     }
 
-    public void SpawnCrowdOfEnemies(GameObject enemyPrefab, int amountOfEnemies)
+    public void SpawnCrowdOfEnemies(GameObject enemyPrefab, int amountOfEnemies)// create many enemies in one place with one direction
     {
         Vector2 pos = GetRandomPos();
         Vector2 directionToPlayer = ((Vector2)playerTransform.position - pos).normalized;
 
         for (int i = 0; i < amountOfEnemies; i++)
         {
-            EnemyCrowd enemyCrowd = Instantiate(enemyPrefab, pos, Quaternion.identity, enemyParent).GetComponent<EnemyCrowd>();
-            enemyCrowd.directionOfMove = directionToPlayer;
+            pos += new Vector2(Random.Range(-distanceBetweenCrowdEnemies, distanceBetweenCrowdEnemies), 
+                Random.Range(-distanceBetweenCrowdEnemies, distanceBetweenCrowdEnemies));// different pos at one place for crowd
+            InstantiateCrowdEnemy(enemyPrefab, pos, directionToPlayer, 7);
         }
     }
 
-    Vector2 GetRandomPos()
+    public void SpawnCircleCrowdEnemies(GameObject enemyPrefab, float amountOfEnemies)// create enemies around player
+    {
+        float deltaTheta = (2f * Mathf.PI) / amountOfEnemies;// perform some smart trigonometry things 
+        float theta = 0f;
+
+        for (int i = 0; i < amountOfEnemies; i++)
+        {
+            float x = radiusForCircleEnemy * Mathf.Cos(theta);
+            float y = radiusForCircleEnemy * Mathf.Sin(theta);
+            Vector2 pos = new Vector2(x, y);// position around player
+
+            playerTransform.TransformPoint(pos);
+            Vector2 direction = ((Vector2)playerTransform.position - pos).normalized;
+            InstantiateCrowdEnemy(enemyPrefab, pos, direction, 30);
+
+            theta += deltaTheta;
+        }
+    }
+
+
+    GameObject InstantiateEnemy(GameObject enemy, Vector2 pos)
+    {
+        return Instantiate(enemy, pos, Quaternion.identity, enemyParent);
+    }
+
+    void InstantiateCrowdEnemy(GameObject enemy, Vector2 pos, Vector2 direction, float lifeTime)
+    {
+        EnemyCrowd enemyCrowd = InstantiateEnemy(enemy, pos).GetComponent<EnemyCrowd>();
+        enemyCrowd.directionOfMove = direction;
+        enemyCrowd.Invoke("Die", lifeTime);// enemy dies after life time
+    }
+
+    Vector2 GetRandomPos()// get random position further than player's screen
     {
         Vector2 result = new Vector2();
 
@@ -111,6 +151,6 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
             default: break;
         }
 
-        return playerTransform.TransformPoint(result);
+        return playerTransform.TransformPoint(result);//return pos to point of player position
     }
 }

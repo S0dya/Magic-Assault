@@ -35,6 +35,9 @@ public class Stone : CircleSpell
 
                 Destroy(gameObject);
                 break;
+            case "ObjectCollider":
+                Destroy(gameObject);
+                break;
             default: break;
         }
     }

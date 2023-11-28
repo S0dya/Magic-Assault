@@ -13,6 +13,8 @@ TagManager:
   - WaterEffect
   - EarthEffect
   - Fire
+  - ObjectCollider
+  - CoinParent
   layers:
   - Default
   - TransparentFX
@@ -31,7 +33,7 @@ TagManager:
   - RotateEnemiesTrigger
   - DestroyEnemiesTrigger
   - Enemy
-  - 
+  - EnemyCrowd
   - 
   - PlayerExpTrigger
   - Exp
@@ -40,7 +42,7 @@ TagManager:
   - LevelTrigger
   - 
   - 
-  - 
+  - FadeSpriteOnEnter
   - 
   - 
   - 
@@ -62,6 +64,9 @@ TagManager:
   - name: DownEffects
     uniqueID: 801097515
     locked: 0
+  - name: DownObjects
+    uniqueID: 3318416229
+    locked: 0
   - name: SmallEnemy
     uniqueID: 2040444395
     locked: 0
@@ -70,6 +75,9 @@ TagManager:
     locked: 0
   - name: UpEffects
     uniqueID: 202178703
+    locked: 0
+  - name: AboveObjects
+    uniqueID: 210614809
     locked: 0
   - name: UIText
     uniqueID: 592250489

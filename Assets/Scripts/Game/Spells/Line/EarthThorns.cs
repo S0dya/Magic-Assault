@@ -23,6 +23,7 @@ public class EarthThorns : BoxSpell
                 Destroy(gameObject);
                 break;
             case "CircleEffect":
+            case "ObjectCollider":
                 Destroy(gameObject);
                 break;
             default: break;

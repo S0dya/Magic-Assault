@@ -47,7 +47,7 @@ public static class Settings
     public static bool isMusicOn;
 
     //game
-    public static int[] startingSpells = new int[4] { 0, 1, 2, 3 };
+    public static int[] startingSpells = new int[4] { 0, 1, 0, 3 };
     public static float[] startingSpellsManaUsage = new float[4] { 15f, 15f, 3f, 10f };
 
     public static float timeForCheckTransforms = 4;

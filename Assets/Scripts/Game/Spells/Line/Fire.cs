@@ -25,6 +25,7 @@ public class Fire : BoxSpell
             case "CircleEffect":
             case "WaterEffect":
             case "EarthEffect":
+            case "ObjectCollider":
                 Destroy(gameObject);
                 break;
             default: break;

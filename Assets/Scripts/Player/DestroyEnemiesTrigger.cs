@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class DestroyEnemiesTrigger : MonoBehaviour
 {
-    void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        Enemy enemy = collision.GetComponent<Enemy>();
-        enemy.Die();
+        GameObject enemyObj = collision.gameObject;
+        LevelManager.I.SpawnEnemy(enemyObj);
+        Destroy(enemyObj);
     }
 }
