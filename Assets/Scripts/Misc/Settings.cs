@@ -12,6 +12,10 @@ public static class Settings
     public static float width = Screen.width;
     public static float height = Screen.height;
 
+        //get height and width in world space
+    public static float worldHeight = Camera.main.orthographicSize * 4f;
+    public static float worldWidth = width / height* worldHeight;
+
     //game
 
 

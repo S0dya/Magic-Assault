@@ -15,7 +15,7 @@ public class UIUpgrade : UIItem
         if (amountOfClicks == 1)
         {
             uiUpgrades.ChooseUpgrade(index);
-            Hide();
+            Invoke("Hide", 0.1f);
             return;
         }
 

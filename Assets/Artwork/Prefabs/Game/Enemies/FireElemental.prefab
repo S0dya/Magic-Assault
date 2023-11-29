@@ -306,6 +306,8 @@ MonoBehaviour:
   rotation: []
   expPrefab: {fileID: 4333668395104728432, guid: a14eff1e33bdc7644b8b63d86635ca0e, type: 3}
   coinPrefab: {fileID: 4333668395104728432, guid: 233a4667b41d7ae48bf2681037e0c550, type: 3}
+  damageTriggerMelee: {fileID: 7874836842393255959}
+  damageTriggerDistance: {fileID: 7874836842170283659}
   playerTransform: {fileID: 0}
 --- !u!212 &7874836842616660356
 SpriteRenderer:

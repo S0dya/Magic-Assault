@@ -17,6 +17,9 @@ public class Enemy : Creature
     [SerializeField] GameObject expPrefab;
     [SerializeField] GameObject coinPrefab;
 
+    [SerializeField] BoxCollider2D damageTriggerMelee;
+    [SerializeField] BoxCollider2D damageTriggerDistance;
+
     //local
     [HideInInspector] public Transform playerTransform;
     Transform expParent;
@@ -79,6 +82,9 @@ public class Enemy : Creature
     //killed
     public void Kill() //visualise death, instantiate items on death and destroy object 
     {
+        damageTriggerMelee.enabled = false;
+        if (damageTriggerDistance != null) damageTriggerDistance.enabled = false;
+
         ToggleMovement(false);
         Push((transform.position - playerTransform.position).normalized, 0.5f);
 

@@ -201,10 +201,10 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  inLavaSpeed: 4
+  inLavaSpeed: 0.6
   burningDealsDamage: 1
   damageOfBurning: 5
-  inWaterSpeed: 3
+  inWaterSpeed: 0.4
   waterDealsDamage: 0
   durationOfDrying: 5
   damageOnWet: 3
@@ -217,6 +217,7 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 0, g: 0, b: 0, a: 1}
   curMovementSpeed: 0
+  directionOfMovement: {x: 0, y: 0}
   curHp: 0
   isLookingOnRight: 0
   isPushed: 0
@@ -228,6 +229,8 @@ MonoBehaviour:
   rotation: []
   expPrefab: {fileID: 4333668395104728432, guid: a14eff1e33bdc7644b8b63d86635ca0e, type: 3}
   coinPrefab: {fileID: 4333668395104728432, guid: 233a4667b41d7ae48bf2681037e0c550, type: 3}
+  damageTriggerMelee: {fileID: 2127530776864332068}
+  damageTriggerDistance: {fileID: 0}
   playerTransform: {fileID: 0}
   directionOfMove: {x: 0, y: 0}
 --- !u!212 &2127530778173064309

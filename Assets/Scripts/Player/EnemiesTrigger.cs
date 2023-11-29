@@ -55,11 +55,11 @@ public class EnemiesTrigger : MonoBehaviour
         return enemiesTransforms[Random.Range(0, enemiesTransforms.Count)].position;
     }
 
-    public Vector2 GetRandomPosition()
+    public Vector2 GetRandomPosition(float distance)
     {
         //get random position based on current position
         Vector2 pos = transform.position;
-        return new Vector2(Random.Range(pos.x - 1,pos.x + 1), Random.Range(pos.y - 1,pos.y + 1));
+        return new Vector2(Random.Range(pos.x - distance, pos.x + distance), Random.Range(pos.y - distance, pos.y + distance));
     }
 
     public bool HasEnemiesNearPlayer()

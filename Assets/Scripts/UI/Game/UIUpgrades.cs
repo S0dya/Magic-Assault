@@ -59,7 +59,7 @@ public class UIUpgrades : UIPanel
     public void ChooseUpgrade(int index)
     {
         SetUpgrade(index);
-        uiUpgrades[index].Hide();
+
         for (int i = 0; i < 3; i++) if (i != index) allItems.Add(curItems[i]);
 
         CloseTab();
@@ -72,15 +72,15 @@ public class UIUpgrades : UIPanel
         {
             //active upgrades
             case UpgradeType.ActiveShootingNearestEnemy:
-                activeUpgrades.EnableShootingNearestEnemy(item.typeOfDamage);
+                activeUpgrades.EnableDotInNearestEnemy(item.typeOfDamage);
                 AddNewUpgrades(item);
                 break;
             case UpgradeType.ActiveShootingRandomEnemy:
-                activeUpgrades.EnableShootingNearestEnemy(item.typeOfDamage);
+                activeUpgrades.EnableDotInNearestEnemy(item.typeOfDamage);
                 AddNewUpgrades(item);
                 break;
             case UpgradeType.ActiveShootingRandomPosition:
-                activeUpgrades.EnableShootingNearestEnemy(item.typeOfDamage);
+                activeUpgrades.EnableDotInNearestEnemy(item.typeOfDamage);
                 AddNewUpgrades(item);
                 break;
 

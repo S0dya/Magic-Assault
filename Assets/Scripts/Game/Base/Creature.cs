@@ -48,7 +48,7 @@ public class Creature : MonoBehaviour
 
     //inheriting scripts
     [HideInInspector] public float curMovementSpeed;
-    Vector2 directionOfMovement;
+    [HideInInspector] public Vector2 directionOfMovement;
 
     protected Rigidbody2D Rb { get { return rb; } set { rb = value; } }
     protected float CurMovementSpeed { get { return curMovementSpeed; } set { curMovementSpeed = value; } }

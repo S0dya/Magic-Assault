@@ -12,6 +12,9 @@ public class Player : Creature
     [SerializeField] float amountOfTimeForRestoringMana;
     [SerializeField] float amountOfRestoringMana;
 
+    [Header("Animation")]
+    [SerializeField] Animator animator;
+
     [Header("UI")]
     [SerializeField] Image[] statsImages; //0 - hp, 1 - mana
 
@@ -20,6 +23,8 @@ public class Player : Creature
     [HideInInspector] public bool joystickInput;
 
     //local
+    [HideInInspector] public Vector2 lastJoystickDirection;
+
     float xOfMove;
 
     int curAmountOfEnemies;
@@ -38,8 +43,9 @@ public class Player : Creature
     protected override void Update()
     {
         DirectionOfMovement = joystick.Direction;
-        xOfMove = DirectionOfMovement.x;
-
+        animator.speed = directionOfMovement.magnitude;//set animator for walking visualisation
+        
+        xOfMove = directionOfMovement.x;
         if ((xOfMove < 0 && !isLookingOnRight) || (xOfMove > 0 && isLookingOnRight)) 
             ChangeLookingDirection();//rotate player if they go in another direction
 
@@ -52,9 +58,11 @@ public class Player : Creature
         joystickInput = val;
         if (!val)
         {
+            if (IsJoystickDirectionNotZero()) lastJoystickDirection = directionOfMovement;
+
             Rb.velocity = Vector2.zero;
-            //skip this frame for proper value set
-            StartCoroutine(UnSetCheckCor());
+
+            StartCoroutine(UnSetCheckCor());//skip this frame for proper value set
         }
     }
     IEnumerator UnSetCheckCor()
@@ -62,6 +70,11 @@ public class Player : Creature
         yield return null;
 
         DrawManager.I.inputChecked = false;
+    }
+
+    public bool IsJoystickDirectionNotZero()
+    {
+        return directionOfMovement != Vector2.zero;
     }
 
     //UI

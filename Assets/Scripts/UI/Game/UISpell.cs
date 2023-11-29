@@ -15,7 +15,7 @@ public class UISpell : UIItem
         if (amountOfClicks == 1)
         {
             uiSpells.ChooseUpgrade(index);
-            Hide();
+            Invoke("Hide", 0.1f);
             return;
         }
 

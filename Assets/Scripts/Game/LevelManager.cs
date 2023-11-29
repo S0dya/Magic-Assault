@@ -41,9 +41,8 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
-        //get height and width in world space
-        worldHeight = Camera.main.orthographicSize * 4f;
-        worldWidth = Settings.width / Settings.height * worldHeight;
+        worldHeight = Settings.worldHeight;
+        worldWidth = Settings.worldWidth;
     }
 
     void Start()

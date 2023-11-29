@@ -136,7 +136,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     public void InstantiateEffect(GameObject prefab, Vector2 pos, float size, Vector2 direction, float rotation)
     {
         Spell spell = InstantiateEffect(prefab, pos, size);
-        spell.ApplyForce(direction/2);
+        spell.ApplyForce(direction.normalized);
         spell.SetRotation(rotation);
     }
     //instantiate with setting rotation 
