@@ -230,6 +230,7 @@ GameObject:
   - component: {fileID: 7874836842616660356}
   - component: {fileID: -3255939646476373196}
   - component: {fileID: 7874836842616660358}
+  - component: {fileID: 7882806676183235298}
   m_Layer: 16
   m_Name: FireElemental
   m_TagString: Enemy
@@ -295,6 +296,7 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   damageColor: {r: 0, g: 0, b: 0, a: 1}
   curMovementSpeed: 0
+  directionOfMovement: {x: 0, y: 0}
   curHp: 0
   isLookingOnRight: 0
   isPushed: 0
@@ -398,6 +400,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!61 &7882806676183235298
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874836842616660359}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.73333335, y: 0.8}
+    newSize: {x: 0.5, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.73333335, y: 0.8}
+  m_EdgeRadius: 0
 --- !u!1001 &7874836842080732860
 PrefabInstance:
   m_ObjectHideFlags: 0

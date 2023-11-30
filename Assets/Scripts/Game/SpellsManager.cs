@@ -11,17 +11,10 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
     [SerializeField] Transform effectsParent;
 
-    //dot
-    [SerializeField] GameObject[] dotEffects;
-    
-    //circle
-    [SerializeField] GameObject[] circleEffects;
-
-    //line
-    [SerializeField] GameObject[] lineEffects;
-
-    //arrow
-    [SerializeField] GameObject[] arrowEffects;
+    public GameObject[] dotEffects;//dot
+    public GameObject[] circleEffects;//circle
+    public GameObject[] lineEffects;//line
+    public GameObject[] arrowEffects;//arrow
 
     [Header("Improved spells")]
     [SerializeField] GameObject[] improvedDotEffects;

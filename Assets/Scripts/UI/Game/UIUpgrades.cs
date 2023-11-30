@@ -16,7 +16,7 @@ public class UIUpgrades : UIPanel
     //local
 
     //upgrades
-    SO_Item[] curItems = new SO_Item[3];
+    SO_Item[] curUpgrades = new SO_Item[3];
 
     void Awake()
     {
@@ -39,10 +39,10 @@ public class UIUpgrades : UIPanel
         for (int i = 0; i < 3; i++)
         {
             int randomI = Random.Range(0, allItems.Count);
-            curItems[i] = allItems[randomI];
+            curUpgrades[i] = allItems[randomI];
             allItems.RemoveAt(randomI);
 
-            uiUpgrades[i].SetInfo(curItems[i]);
+            uiUpgrades[i].SetInfo(curUpgrades[i]);
         }
     }
 
@@ -60,27 +60,32 @@ public class UIUpgrades : UIPanel
     {
         SetUpgrade(index);
 
-        for (int i = 0; i < 3; i++) if (i != index) allItems.Add(curItems[i]);
+        for (int i = 0; i < 3; i++) if (i != index) allItems.Add(curUpgrades[i]);
 
         CloseTab();
     }
 
     void SetUpgrade(int index)
     {
-        SO_Item item = curItems[index];
+        SO_Item item = curUpgrades[index];
+
         switch (item.type)
         {
             //active upgrades
-            case UpgradeType.ActiveShootingNearestEnemy:
+            case UpgradeType.ActiveDotInNearestEnemy:
                 activeUpgrades.EnableDotInNearestEnemy(item.typeOfDamage);
                 AddNewUpgrades(item);
                 break;
-            case UpgradeType.ActiveShootingRandomEnemy:
+            case UpgradeType.ActiveDotInRandomEnemy:
                 activeUpgrades.EnableDotInNearestEnemy(item.typeOfDamage);
                 AddNewUpgrades(item);
                 break;
-            case UpgradeType.ActiveShootingRandomPosition:
+            case UpgradeType.ActiveDotInRandomPosition:
                 activeUpgrades.EnableDotInNearestEnemy(item.typeOfDamage);
+                AddNewUpgrades(item);
+                break;
+            case UpgradeType.ActiveDotInMovementDirection:
+                activeUpgrades.EnableDotInMovementDirection(item.typeOfDamage);
                 AddNewUpgrades(item);
                 break;
 

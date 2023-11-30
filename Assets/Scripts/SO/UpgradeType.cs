@@ -4,9 +4,10 @@ public enum UpgradeType
     Spell,
 
     //active
-    ActiveShootingNearestEnemy,
-    ActiveShootingRandomEnemy,
-    ActiveShootingRandomPosition,
+    ActiveDotInNearestEnemy,
+    ActiveDotInRandomEnemy,
+    ActiveDotInRandomPosition,
+    ActiveDotInMovementDirection,
 
     //passive
     PassiveIncreasePlayerSpeed,

@@ -15,6 +15,7 @@ TagManager:
   - Fire
   - ObjectCollider
   - CoinParent
+  - SpellsManager
   layers:
   - Default
   - TransparentFX

@@ -20,7 +20,7 @@ public class UIItem : MonoBehaviour
     protected int AmountOfClicks { get { return amountOfClicks; } set { amountOfClicks = value; } }
 
     //set
-    public void SetInfo(SO_Item item)
+    public virtual void SetInfo(SO_Item item)
     {
         image.sprite = item.ItemImage;
         nameOfUpgrade.text = item.Name;
@@ -28,17 +28,16 @@ public class UIItem : MonoBehaviour
     }
 
     //visualisation
-    public void Open()
+    public virtual void Open()
     {
         GameManager.I.ChangeScale(imageObj, 1.5f, 0.4f);
         GameManager.I.Open(textCG, 0.4f);
         outsideImage.enabled = true;
     }
 
-    public void Hide()
+    public virtual void Hide()
     {
         amountOfClicks = 0;
-        Debug.Log("123");
 
         GameManager.I.ChangeScale(imageObj, 1, 0.2f);
         GameManager.I.Close(textCG, 0.2f);
