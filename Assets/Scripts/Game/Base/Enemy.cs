@@ -17,6 +17,9 @@ public class Enemy : Creature
     [SerializeField] GameObject expPrefab;
     [SerializeField] GameObject coinPrefab;
 
+    [Header("Colliders")]
+    [SerializeField] BoxCollider2D enemyBoxCollider;
+    [SerializeField] CircleCollider2D enemyCircleCollider;
     [SerializeField] BoxCollider2D damageTriggerMelee;
     [SerializeField] BoxCollider2D damageTriggerDistance;
 
@@ -73,17 +76,19 @@ public class Enemy : Creature
     //health
     public override void ChangeHP(float val, int typeOfDamage)
     {
-        base.ChangeHP(val * Settings.damageMultipliers[typeOfDamage], typeOfDamage);
+        val *= Settings.damageMultipliers[typeOfDamage];
+        base.ChangeHP(val, typeOfDamage);
+
+        VisualiseDamage();
+        UIInGame.I.InstantiateTextOnDamage(transform.position, -val, typeOfDamage);
 
         if (curHp == 0) Kill();
-        else VisualiseDamage();
     }
 
     //killed
     public void Kill() //visualise death, instantiate items on death and destroy object 
     {
-        damageTriggerMelee.enabled = false;
-        if (damageTriggerDistance != null) damageTriggerDistance.enabled = false;
+        DisableColldiers();//for better visualisation
 
         ToggleMovement(false);
         Push((transform.position - playerTransform.position).normalized, 0.5f);
@@ -104,4 +109,13 @@ public class Enemy : Creature
     //animation
     void RotateBackwards() => rotationTween = LeanTween.rotateZ(gameObject, rotation[0], curMovementSpeed).setEase(LeanTweenType.easeInOutSine).setOnComplete(RotateForwards);
     void RotateForwards() => rotationTween = LeanTween.rotateZ(gameObject, rotation[1], curMovementSpeed).setEase(LeanTweenType.easeInOutSine).setOnComplete(RotateBackwards);
+
+    void DisableColldiers()
+    {
+        enemyBoxCollider.enabled = false;
+        enemyCircleCollider.enabled = false;
+
+        damageTriggerMelee.enabled = false;
+        if (damageTriggerDistance != null) damageTriggerDistance.enabled = false;
+    }
 }

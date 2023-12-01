@@ -80,6 +80,9 @@ TagManager:
   - name: AboveObjects
     uniqueID: 210614809
     locked: 0
+  - name: DamageText
+    uniqueID: 49200489
+    locked: 0
   - name: UIText
     uniqueID: 592250489
     locked: 0

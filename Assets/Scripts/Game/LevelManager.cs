@@ -17,13 +17,14 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     [Header("Level generation")]
     [SerializeField] Transform levelParent;
     [SerializeField] GameObject levelPrefab;
-    [SerializeField] GameObject[] platforms;
 
     [Header("Other")]
     [SerializeField] Transform enemyParent;
 
     //local
     Transform playerTransform;
+
+    [HideInInspector] public GameObject[] platforms;
 
     //level generation
     int platformsLength;
@@ -81,18 +82,18 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     //spawn enemy
     public void SpawnEnemy(GameObject enemyPrefab)
     {
-        InstantiateEnemy(enemyPrefab, GetRandomPos());// spawn enemy around player
+        InstantiateEnemy(enemyPrefab, GetRandomOffsetPos());// spawn enemy around player
     }
 
     public void SpawnCrowdOfEnemies(GameObject enemyPrefab, int amountOfEnemies)// create many enemies in one place with one direction
     {
-        Vector2 pos = GetRandomPos();
+        Vector2 pos = GetRandomOffsetPos();
         Vector2 directionToPlayer = ((Vector2)playerTransform.position - pos).normalized;
 
         for (int i = 0; i < amountOfEnemies; i++)
         {
-            pos += new Vector2(Random.Range(-distanceBetweenCrowdEnemies, distanceBetweenCrowdEnemies), 
-                Random.Range(-distanceBetweenCrowdEnemies, distanceBetweenCrowdEnemies));// different pos at one place for crowd
+            pos += GetRandomPos(distanceBetweenCrowdEnemies, distanceBetweenCrowdEnemies);// different pos at one place for crowd
+
             InstantiateCrowdEnemy(enemyPrefab, pos, directionToPlayer, 7);
         }
     }
@@ -129,23 +130,34 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
         enemyCrowd.Invoke("Die", lifeTime);// enemy dies after life time
     }
 
-    Vector2 GetRandomPos()// get random position further than player's screen
+    Vector2 GetRandomOffsetPos()// get random position further than player's screen
+    {
+        return GetRandomOffsetPos(worldWidth, worldHeight, offestForSpawn);
+    }
+
+    //in game
+    public Vector2 GetRandomPos(float x, float y)
+    {
+        return new Vector2(Random.Range(-x, x), Random.Range(-y, y));
+    }
+
+    public Vector2 GetRandomOffsetPos(float x, float y, float offset)
     {
         Vector2 result = new Vector2();
 
         switch (Random.Range(0, 4))
         {
             case 0:
-                result = new Vector2(Random.Range(-worldWidth, worldWidth), Random.Range(worldHeight, worldHeight + offestForSpawn));
+                result = new Vector2(Random.Range(-x, x), Random.Range(y, y + offset));
                 break;
             case 1:
-                result = new Vector2(Random.Range(worldWidth, worldWidth + offestForSpawn), Random.Range(-worldHeight, worldHeight));
+                result = new Vector2(Random.Range(x, x + offset), Random.Range(-y, y));
                 break;
             case 2:
-                result = new Vector2(Random.Range(-worldWidth, worldWidth), Random.Range(-worldHeight - offestForSpawn, -worldHeight));
+                result = new Vector2(Random.Range(-x, x), Random.Range(-y - offset, -y));
                 break;
             case 3:
-                result = new Vector2(Random.Range(-worldWidth - offestForSpawn, -worldWidth), Random.Range(-worldHeight, worldHeight));
+                result = new Vector2(Random.Range(-x - offset, -x), Random.Range(-y, y));
                 break;
             default: break;
         }

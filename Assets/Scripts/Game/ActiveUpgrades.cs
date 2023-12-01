@@ -11,16 +11,20 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
     SpellsManager spellsManager;
 
     //shoot dot spell
-    int[] dotSpellsIndex = new int[4] { 3, 1, 2, 0 }; // 0 - nearest. 1 - random enemy. 2 - random position. 3 - direction of movement
-    float[] dotSpellsSize = new float[4] { 0.5f, 0.5f, 0.5f, 0.25f};
-    float[] dotSpellsTime = new float[4] { 3, 4, 2, 1f };
+    [HideInInspector] public int[] dotSpellsIndex = new int[4] { 3, 1, 2, 0 }; // 0 - nearest. 1 - random enemy. 2 - random position. 3 - direction of movement
+    [HideInInspector] public float[] dotSpellsSize = new float[4] { 0.5f, 0.5f, 0.5f, 0.25f};
+    [HideInInspector] public float[] dotSpellsTime = new float[4] { 3, 4, 2, 1f };
+    [HideInInspector] public float[] dotSpellsAmountOnShoot = new float[4] { 10, 10, 10, 10 };
+    [HideInInspector] public float[] dotReloadTime = new float[4] { 0.1f, 0.08f, 0.01f, 0.01f };
 
     //instantiate circle spell
     int[] circleSpellsIndex = new int[1] { 0 };
-    float[] circleSpellsSize = new float[1] { 2 };
-    float[] circleSpellsTime = new float[1] { 1 };
+    [HideInInspector] public float[] circleSpellsSize = new float[1] { 2 };
+    [HideInInspector] public float[] circleSpellsTime = new float[1] { 1 };
+    [HideInInspector] public float[] circleSpellsAmountOnShoot = new float[1] { 10 };
+    [HideInInspector] public float[] circleReloadTime = new float[1] { 0.1f };
 
-    float distanceBetweenSpells = 12;
+    public float distanceBetweenSpells = 12;
 
     protected override void Awake()
     {
@@ -31,11 +35,11 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
 
     void Start() //test
     {
-        //EnableDotInNearestEnemy(0);
-        //EnableDotInRandomEnemy();
-        //EnableDotInRandomPosition();
-        //EnableDotInMovementDirection(0);
-        EnableCircleInRandomPosition(1);
+        EnableDotInNearestEnemy(0);
+        EnableDotInRandomEnemy(1);
+        EnableDotInRandomPosition(2);
+        EnableDotInMovementDirection(3);
+        EnableCircleInRandomPosition(0);
     }
 
     //enabling active upgrades
@@ -74,7 +78,13 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
     {
         while (true)
         {
-            if (enemiesTrigger.HasEnemiesNearPlayer()) InstantiateSpellToPosition(spellsManager.dotEffects[dotSpellsIndex[0]], enemiesTrigger.GetNearestEnemyPosition(), dotSpellsSize[0]);
+            for (int i = 0; i < dotSpellsAmountOnShoot[0]; i++)
+            {
+                if (enemiesTrigger.HasEnemiesNearPlayer()) InstantiateSpellToPosition(spellsManager.dotEffects[dotSpellsIndex[0]], enemiesTrigger.GetNearestEnemyPosition(), dotSpellsSize[0]);
+                else break;
+
+                yield return new WaitForSeconds(dotReloadTime[0]);
+            }
 
             yield return new WaitForSeconds(dotSpellsTime[0]);
         }
@@ -84,7 +94,13 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
     {
         while (true)
         {
-            if (enemiesTrigger.HasEnemiesNearPlayer()) InstantiateSpellToPosition(spellsManager.dotEffects[dotSpellsIndex[1]], enemiesTrigger.GetRandomEnemyPosition(), dotSpellsSize[1]);
+            for (int i = 0; i < dotSpellsAmountOnShoot[1]; i++)
+            {
+                if (enemiesTrigger.HasEnemiesNearPlayer()) InstantiateSpellToPosition(spellsManager.dotEffects[dotSpellsIndex[1]], enemiesTrigger.GetRandomEnemyPosition(), dotSpellsSize[1]);
+                else break;
+
+                yield return new WaitForSeconds(dotReloadTime[1]);
+            }
 
             yield return new WaitForSeconds(dotSpellsTime[1]);
         }
@@ -95,7 +111,12 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
     {
         while (true)
         {
-            InstantiateSpellToPosition(spellsManager.dotEffects[dotSpellsIndex[2]], enemiesTrigger.GetRandomPosition(1), dotSpellsSize[2]);
+            for (int i = 0; i < dotSpellsAmountOnShoot[2]; i++)
+            {
+                InstantiateSpellToPosition(spellsManager.dotEffects[dotSpellsIndex[2]], enemiesTrigger.GetRandomOffsetPos(1), dotSpellsSize[2]);
+
+                yield return new WaitForSeconds(dotReloadTime[2]);
+            }
 
             yield return new WaitForSeconds(dotSpellsTime[2]);
         }
@@ -105,21 +126,33 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
     {
         while (true)
         {
-            //if player isn't moving get last direction of movement. if player is moving but direction of movement is zero shoot last movement direction
-            Vector2 direction = (player.joystickInput && player.IsJoystickDirectionNotZero() ? player.directionOfMovement : player.lastJoystickDirection);
+            for (int i = 0; i < dotSpellsAmountOnShoot[3]; i++)
+            {
+                //if player isn't moving get last direction of movement. if player is moving but direction of movement is zero shoot last movement direction
+                Vector2 direction = (player.joystickInput && player.IsJoystickDirectionNotZero() ? player.directionOfMovement : player.lastJoystickDirection);
+                float distance = (float)i / 50f;
+                direction += LevelManager.I.GetRandomPos(distance, distance);
 
-            InstantiateSpellToDirection(spellsManager.dotEffects[dotSpellsIndex[3]], direction, dotSpellsSize[3]);
+                InstantiateSpellToDirection(spellsManager.dotEffects[dotSpellsIndex[3]], direction, dotSpellsSize[3]);
 
+                yield return new WaitForSeconds(dotReloadTime[3]);
+            }
+            
             yield return new WaitForSeconds(dotSpellsTime[3]);
         }
     }
-
+    
     //circle
     IEnumerator CircleInRandomPositionCor()
     {
         while (true)
         {
-            InstantiateSpellAtPosition(spellsManager.circleEffects[circleSpellsIndex[0]], enemiesTrigger.GetRandomPosition(distanceBetweenSpells), circleSpellsSize[0]);
+            for (int i = 0; i < circleSpellsAmountOnShoot[0]; i++)
+            {
+                InstantiateSpellAtPosition(spellsManager.circleEffects[circleSpellsIndex[0]], enemiesTrigger.GetRandomOffsetPos(distanceBetweenSpells), circleSpellsSize[0]);
+
+                yield return new WaitForSeconds(circleReloadTime[0]);
+            }
 
             yield return new WaitForSeconds(dotSpellsTime[2]);
         }

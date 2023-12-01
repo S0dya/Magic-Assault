@@ -159,6 +159,8 @@ MonoBehaviour:
   - 2
   expPrefab: {fileID: 4333668395104728432, guid: a14eff1e33bdc7644b8b63d86635ca0e, type: 3}
   coinPrefab: {fileID: 4333668395104728432, guid: 233a4667b41d7ae48bf2681037e0c550, type: 3}
+  enemyBoxCollider: {fileID: 7316692591779294779}
+  enemyCircleCollider: {fileID: 4339101911170248573}
   damageTriggerMelee: {fileID: 5797608852956595081}
   damageTriggerDistance: {fileID: 0}
   playerTransform: {fileID: 0}

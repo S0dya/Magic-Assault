@@ -204,11 +204,11 @@ MonoBehaviour:
   - 1
   inLavaSpeed: 0.9
   burningDealsDamage: 1
-  damageOfBurning: 5
+  damageOfBurning: -5
   inWaterSpeed: 1
   waterDealsDamage: 0
   durationOfDrying: 5
-  damageOnWet: 3
+  damageOnWet: 0
   timeForPush: 1
   rb: {fileID: 2127530778173064310}
   sr: {fileID: 2127530778173064309}
@@ -230,6 +230,8 @@ MonoBehaviour:
   rotation: []
   expPrefab: {fileID: 4333668395104728432, guid: a14eff1e33bdc7644b8b63d86635ca0e, type: 3}
   coinPrefab: {fileID: 4333668395104728432, guid: 233a4667b41d7ae48bf2681037e0c550, type: 3}
+  enemyBoxCollider: {fileID: 1946029554722414512}
+  enemyCircleCollider: {fileID: 8197722585485784528}
   damageTriggerMelee: {fileID: 2127530776864332068}
   damageTriggerDistance: {fileID: 0}
   playerTransform: {fileID: 0}

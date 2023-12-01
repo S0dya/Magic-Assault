@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemiesTrigger : MonoBehaviour
+public class EnemiesTrigger : SingletonMonobehaviour<EnemiesTrigger>
 {
     //local
-    List<Transform> enemiesTransforms = new List<Transform>();
+    [HideInInspector] public List<Transform> enemiesTransforms = new List<Transform>();
     float timeForCheckTransforms;
 
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         timeForCheckTransforms = Settings.timeForCheckTransforms;
     }
 
@@ -38,6 +40,7 @@ public class EnemiesTrigger : MonoBehaviour
         //check nearest transform based on distance
         foreach (Transform transf in enemiesTransforms)
         {
+            if (transf == null) continue;
             float curDistance = Vector2.Distance(transf.position, transform.position);
             if (nearestDistance > curDistance)
             {
@@ -52,14 +55,16 @@ public class EnemiesTrigger : MonoBehaviour
     public Vector2 GetRandomEnemyPosition()
     {
         //get random enemy near player
-        return enemiesTransforms[Random.Range(0, enemiesTransforms.Count)].position;
+        Transform trans = enemiesTransforms[Random.Range(0, enemiesTransforms.Count)];
+        return trans != null ? trans.position : LevelManager.I.GetRandomPos(1, 1);
+
     }
 
-    public Vector2 GetRandomPosition(float distance)
+    public Vector2 GetRandomOffsetPos(float offset)
     {
         //get random position based on current position
         Vector2 pos = transform.position;
-        return new Vector2(Random.Range(pos.x - distance, pos.x + distance), Random.Range(pos.y - distance, pos.y + distance));
+        return LevelManager.I.GetRandomOffsetPos(pos.x + offset, pos.y + offset, offset);
     }
 
     public bool HasEnemiesNearPlayer()

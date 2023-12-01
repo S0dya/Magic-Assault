@@ -1016,6 +1016,33 @@ MonoBehaviour:
   timerText: {fileID: 378598674}
   moneyText: {fileID: 647168619}
   killedText: {fileID: 726336664}
+  textPrefab: {fileID: 6384041013109238367, guid: e336f9a3e67ab5248be93a05ba99a68c, type: 3}
+  damageTextParent: {fileID: 954616027}
+  nonElementDamageColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  fireDamageColors:
+  - {r: 1, g: 0.53207546, b: 0.53207546, a: 1}
+  - {r: 1, g: 0.37169808, b: 0.37169808, a: 1}
+  - {r: 1, g: 0.19245279, b: 0.19245279, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  waterDamageColors:
+  - {r: 0.57487226, g: 0.56981134, b: 1, a: 1}
+  - {r: 0.39631525, g: 0.390566, b: 1, a: 1}
+  - {r: 0.17953014, g: 0.17358488, b: 1, a: 1}
+  - {r: 0.00578022, g: 0, b: 1, a: 1}
+  earthDamageColors:
+  - {r: 1, g: 0.7125583, b: 0.5226415, a: 1}
+  - {r: 1, g: 0.592484, b: 0.32452828, a: 1}
+  - {r: 1, g: 0.4849782, b: 0.14528298, a: 1}
+  - {r: 1, g: 0.39560443, b: 0, a: 1}
+  airDamageColors:
+  - {r: 0.7018868, g: 1, b: 0.9843098, a: 1}
+  - {r: 0.5886792, g: 1, b: 0.97835153, a: 1}
+  - {r: 0.4943396, g: 1, b: 0.9690412, a: 1}
+  - {r: 0.2867924, g: 1, b: 0.9606506, a: 1}
   killedAmount: 0
   moneyAmount: 0
 --- !u!1 &263914331
@@ -3669,10 +3696,10 @@ MonoBehaviour:
   radiusForCircleEnemy: 15
   levelParent: {fileID: 87350363}
   levelPrefab: {fileID: 4296974656074180037, guid: abcd23ef13705d3448a43d1352cf70e2, type: 3}
+  enemyParent: {fileID: 2114224553}
   platforms:
   - {fileID: 6073449549808841046, guid: 05961de77e78ef6418617a684121b4c3, type: 3}
   - {fileID: 2370511612520183500, guid: 78c942a28a4d7074b99227200d412fb0, type: 3}
-  enemyParent: {fileID: 2114224553}
 --- !u!1001 &734996943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4397,8 +4424,40 @@ Transform:
   - {fileID: 1216226232}
   - {fileID: 2114224553}
   - {fileID: 1340783141}
+  - {fileID: 954616027}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &954616026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 954616027}
+  m_Layer: 0
+  m_Name: TextOnDamage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &954616027
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954616026}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 915191322}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &957447952
 PrefabInstance:
@@ -8317,6 +8376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f8f0072ac6809469f771ca0106c417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reloadTime: 0.01
   enemiesTrigger: {fileID: 1304921069}
   player: {fileID: 1918896341}
 --- !u!95 &1918896344
@@ -8661,7 +8721,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1433792133
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 0
   m_Positions: []
   m_Parameters:
@@ -8763,6 +8823,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f44402343c81c644b605739f4c9819a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platforms:
+  - {fileID: 6073449549808841046, guid: 05961de77e78ef6418617a684121b4c3, type: 3}
+  - {fileID: 2370511612520183500, guid: 78c942a28a4d7074b99227200d412fb0, type: 3}
   firstWaveEnemies:
   - {fileID: 5797608852117626588, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
   - {fileID: 5797608852117626588, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}

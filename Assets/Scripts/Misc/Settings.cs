@@ -56,7 +56,7 @@ public static class Settings
 
     public static float timeForCheckTransforms = 4;
 
-    public static float[] damageMultipliers = new float[4] { 1, 3, 1, 1 };
+    public static float[] damageMultipliers = new float[4] { 1, 1, 1, 1 };
     public static float[] lifeTimeMultipliers = new float[4] { 1, 10, 1, 1 };
 
     public static bool allWaterIsPoisened;

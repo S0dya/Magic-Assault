@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GreenFieldMap : MonoBehaviour
 {
+    [Header("platforms")]
+    [SerializeField] GameObject[] platforms;
+
     [Header("Enemies")]
     [SerializeField] GameObject[] firstWaveEnemies;
 
@@ -32,6 +35,7 @@ public class GreenFieldMap : MonoBehaviour
     {
         //sign Ns for future using 
         firstWaveEnemiesN = firstWaveEnemies.Length;
+        levelManager.platforms = platforms;
     }
 
     void Start()
@@ -46,6 +50,13 @@ public class GreenFieldMap : MonoBehaviour
         //StartCoroutine(SpawnEnemiesCor(shortWave, 60, firstWaveEnemies, firstWaveEnemiesN));
 
         //yield return new WaitForSeconds(shortWave);
+
+        while (true)
+        {
+            StartCoroutine(SpawnEnemiesCor(shortWave, 60, firstWaveEnemies, firstWaveEnemiesN));
+            yield return new WaitForSeconds(shortWave);
+
+        }
 
         while (true)
         {

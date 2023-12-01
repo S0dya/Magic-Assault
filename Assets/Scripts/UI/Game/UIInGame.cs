@@ -31,6 +31,17 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     [SerializeField] TextMeshProUGUI moneyText;
     [SerializeField] TextMeshProUGUI killedText;
 
+    [Header("Damage text")]
+    [SerializeField] GameObject textPrefab;
+    [SerializeField] Transform damageTextParent;
+
+    //colors
+    [SerializeField] Color[] nonElementDamageColors;
+    [SerializeField] Color[] fireDamageColors;
+    [SerializeField] Color[] waterDamageColors;
+    [SerializeField] Color[] earthDamageColors;
+    [SerializeField] Color[] airDamageColors;
+
     //local
     Player player;
 
@@ -187,4 +198,50 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     {
         joysticksCG.alpha = val;
     }
+
+    //damage texts
+    public void InstantiateTextOnDamage(Vector2 pos, float amountOfDamage, int typeOfDamage)//instantiate text above enemy
+    {
+        Color color = new Color();
+        int textType = Mathf.Min((int)amountOfDamage / 30, 3);//get type of text
+
+        switch (typeOfDamage)//get color
+        {
+            case -1:
+                color = nonElementDamageColors[textType];
+                break;
+            case 0:
+                color = fireDamageColors[textType];
+                break;
+            case 1:
+                color = waterDamageColors[textType];
+                break;
+            case 2:
+                color = earthDamageColors[textType];
+                break;
+            case 3:
+                color = airDamageColors[textType];
+                break;
+            default: break;
+        }
+        
+
+        //instantiate text obj
+        GameObject textObj = Instantiate(textPrefab, pos, Quaternion.identity, damageTextParent);
+
+        var startScaleValue = 1 + (float)textType * 0.25f; //get scale size
+        textObj.transform.localScale = new Vector2(startScaleValue, startScaleValue);//set scale 
+
+        //set amount of damage and color of text
+        TextMeshPro textTmp = textObj.GetComponent<TextMeshPro>();
+        textTmp.text = amountOfDamage.ToString("F1");//leave only one digit after float
+        textTmp.color = color;
+
+        //move text up and destroy on complete
+        LeanTween.moveLocalY(textObj, textObj.transform.localPosition.y + 1.5f, 1f).setEase(LeanTweenType.easeOutQuad).setOnComplete(() =>
+        {
+            Destroy(textObj);
+        });
+    }
+
 }
