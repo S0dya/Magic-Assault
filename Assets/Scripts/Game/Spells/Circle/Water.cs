@@ -8,7 +8,6 @@ public class Water : CircleSpell
     Player player;
     bool isPlayerFound;
 
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)

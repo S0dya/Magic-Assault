@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemiesTrigger : SingletonMonobehaviour<EnemiesTrigger>
 {
     //local
+    LevelManager levelManager;
+
     [HideInInspector] public List<Transform> enemiesTransforms = new List<Transform>();
     float timeForCheckTransforms;
 
@@ -14,6 +16,7 @@ public class EnemiesTrigger : SingletonMonobehaviour<EnemiesTrigger>
         base.Awake();
 
         timeForCheckTransforms = Settings.timeForCheckTransforms;
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
     }
 
     void Start()
@@ -56,15 +59,8 @@ public class EnemiesTrigger : SingletonMonobehaviour<EnemiesTrigger>
     {
         //get random enemy near player
         Transform trans = enemiesTransforms[Random.Range(0, enemiesTransforms.Count)];
-        return trans != null ? trans.position : LevelManager.I.GetRandomPos(1, 1);
+        return trans != null ? trans.position : levelManager.GetRandomPos(1, 1);
 
-    }
-
-    public Vector2 GetRandomOffsetPos(float offset)
-    {
-        //get random position based on current position
-        Vector2 pos = transform.position;
-        return LevelManager.I.GetRandomOffsetPos(pos.x + offset, pos.y + offset, offset);
     }
 
     public bool HasEnemiesNearPlayer()

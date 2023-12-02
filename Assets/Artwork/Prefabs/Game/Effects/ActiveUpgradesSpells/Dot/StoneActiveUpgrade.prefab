@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7446051607462513135
+--- !u!1 &2343054465367942814
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,26 +8,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7446051607462513122}
-  - component: {fileID: 7446051607462513136}
-  - component: {fileID: 7446051607462513133}
-  - component: {fileID: 7446051607462513132}
-  - component: {fileID: 5289310794702419313}
-  - component: {fileID: 6279886455627423181}
-  m_Layer: 9
-  m_Name: FireballDotEffect
-  m_TagString: FireEffect
+  - component: {fileID: 2343054465367942803}
+  - component: {fileID: 8335635867475702099}
+  - component: {fileID: 2343054465367942812}
+  - component: {fileID: 2343054465367942813}
+  - component: {fileID: 1060294006170311168}
+  - component: {fileID: 1222481655471813308}
+  m_Layer: 10
+  m_Name: StoneActiveUpgrade
+  m_TagString: EarthEffect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7446051607462513122
+--- !u!4 &2343054465367942803
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7446051607462513135}
+  m_GameObject: {fileID: 2343054465367942814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -36,39 +36,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7446051607462513136
+--- !u!114 &8335635867475702099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7446051607462513135}
+  m_GameObject: {fileID: 2343054465367942814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f1cac1c3108f96429c7919c0292857e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c414a47c87cc7e4c84bacb65d092b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ps: {fileID: 7446051607462513133}
-  rb: {fileID: 5289310794702419313}
-  typeOfDamage: 0
+  ps: {fileID: 2343054465367942812}
+  rb: {fileID: 1060294006170311168}
+  typeOfDamage: 2
   setsLifeTime: 1
   worksForPlayer: 0
   worksForEnemy: 1
   size: 0
   rotation: 0
-  lifeTime: 4
+  lifeTime: 3
   direction: {x: 0, y: 0}
-  speed: 5.5
-  damage: -4
+  speed: 5
+  damage: -6
   damageMultiplier: 0
-  circleCol: {fileID: 6279886455627423181}
---- !u!198 &7446051607462513133
+  circleCol: {fileID: 1222481655471813308}
+--- !u!198 &2343054465367942812
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7446051607462513135}
+  m_GameObject: {fileID: 2343054465367942814}
   serializedVersion: 8
   lengthInSec: 4
   simulationSpeed: 1
@@ -314,7 +314,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 0.5
       maxCurve:
         serializedVersion: 2
@@ -1012,8 +1012,8 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0.51639175
-          value: 0.99811363
+          time: 0.55737686
+          value: 1
           inSlope: -0.24551505
           outSlope: -0.24551505
           tangentMode: 0
@@ -1511,10 +1511,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 1532267106, guid: 50487c22d356a1a4e95db6138aeba8cd, type: 3}
-    - sprite: {fileID: 1640793743, guid: 50487c22d356a1a4e95db6138aeba8cd, type: 3}
-    - sprite: {fileID: 1247135155, guid: 50487c22d356a1a4e95db6138aeba8cd, type: 3}
-    - sprite: {fileID: 1127002175, guid: 50487c22d356a1a4e95db6138aeba8cd, type: 3}
+    - sprite: {fileID: 21300000, guid: 3a800288126d54c4d97db8da6b114366, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4772,14 +4769,14 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &7446051607462513132
+--- !u!199 &2343054465367942813
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7446051607462513135}
+  m_GameObject: {fileID: 2343054465367942814}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -4844,14 +4841,14 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!50 &5289310794702419313
+--- !u!50 &1060294006170311168
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7446051607462513135}
+  m_GameObject: {fileID: 2343054465367942814}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -4865,13 +4862,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &6279886455627423181
+--- !u!58 &1222481655471813308
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7446051607462513135}
+  m_GameObject: {fileID: 2343054465367942814}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}

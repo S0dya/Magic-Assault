@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7446051607462513122}
-  - component: {fileID: 7446051607462513136}
+  - component: {fileID: 7923970368196788930}
   - component: {fileID: 7446051607462513133}
   - component: {fileID: 7446051607462513132}
   - component: {fileID: 5289310794702419313}
   - component: {fileID: 6279886455627423181}
-  m_Layer: 9
-  m_Name: FireballDotEffect
+  m_Layer: 10
+  m_Name: FireballActiveUpgrade
   m_TagString: FireEffect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7446051607462513136
+--- !u!114 &7923970368196788930
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7446051607462513135}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f1cac1c3108f96429c7919c0292857e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8152013dcbef58c4f9032759e75c8b94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 7446051607462513133}
@@ -56,10 +56,10 @@ MonoBehaviour:
   worksForEnemy: 1
   size: 0
   rotation: 0
-  lifeTime: 4
+  lifeTime: 2
   direction: {x: 0, y: 0}
-  speed: 5.5
-  damage: -4
+  speed: 5
+  damage: -3
   damageMultiplier: 0
   circleCol: {fileID: 6279886455627423181}
 --- !u!198 &7446051607462513133

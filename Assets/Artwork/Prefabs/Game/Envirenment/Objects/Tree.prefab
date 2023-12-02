@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 2135171513747604434}
   - component: {fileID: 5134485917751389292}
   - component: {fileID: 2622694960456480931}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: Tree
   m_TagString: ObjectCollider
   m_Icon: {fileID: 0}

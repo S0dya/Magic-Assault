@@ -3657,7 +3657,7 @@ GameObject:
   - component: {fileID: 731267892}
   m_Layer: 0
   m_Name: LevelManager
-  m_TagString: Untagged
+  m_TagString: LevelManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6617,6 +6617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 040cddd8ba07484449067b589d55b9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesTransforms: []
 --- !u!1 &1327833292
 GameObject:
   m_ObjectHideFlags: 3
@@ -8263,7 +8264,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1}
+  m_Size: {x: 0.35, y: 0.75}
   m_EdgeRadius: 0
 --- !u!50 &1918896340
 Rigidbody2D:
@@ -8376,9 +8377,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f8f0072ac6809469f771ca0106c417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reloadTime: 0.01
   enemiesTrigger: {fileID: 1304921069}
   player: {fileID: 1918896341}
+  dotEffects:
+  - {fileID: 7446051607462513135, guid: e9e7f272d4437944f9430dd3c3d1e7e1, type: 3}
+  - {fileID: 3319565365602608531, guid: 4380c7bd453e0ad46821cf0eb3e8c8b1, type: 3}
+  - {fileID: 2343054465367942814, guid: 2bc9169df5e885849b8c85ab4a27e700, type: 3}
+  - {fileID: 3167704520240122553, guid: 751ad18c1a7a8dd44ac800900c0549ba, type: 3}
+  circleEffects:
+  - {fileID: 6929152276597107592, guid: 9fa220d192cfea4408d28cd1ba4f54b0, type: 3}
+  - {fileID: 8970256659375900879, guid: badfbee910ac8a94c9f1f7ab0a02b0ca, type: 3}
+  - {fileID: 485007773328823295, guid: cf5d2bd2b3ea796438953fdbdbbc7db7, type: 3}
+  - {fileID: 7643365883497227030, guid: fe42960a71001a6498f476ece66b917c, type: 3}
+  dotSpellsSize:
+  - 0.5
+  - 0.5
+  - 0.5
+  - 0.25
+  dotSpellsTime:
+  - 3
+  - 4
+  - 2
+  - 1
+  dotSpellsAmountOnShoot:
+  - 10
+  - 10
+  - 10
+  - 10
+  dotReloadTime:
+  - 0.1
+  - 0.08
+  - 0.01
+  - 0.01
+  circleSpellsSize:
+  - 2
+  circleSpellsTime:
+  - 1
+  circleSpellsAmountOnShoot:
+  - 10
+  circleReloadTime:
+  - 0.1
+  distanceBetweenSpells: 6
 --- !u!95 &1918896344
 Animator:
   serializedVersion: 5

@@ -80,7 +80,7 @@ public class Enemy : Creature
         base.ChangeHP(val, typeOfDamage);
 
         VisualiseDamage();
-        UIInGame.I.InstantiateTextOnDamage(transform.position, -val, typeOfDamage);
+        UIInGame.I.InstantiateTextOnDamage(transform.position, (int)-val, typeOfDamage);
 
         if (curHp == 0) Kill();
     }

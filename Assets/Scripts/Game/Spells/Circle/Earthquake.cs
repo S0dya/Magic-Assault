@@ -56,8 +56,10 @@ public class Earthquake : CircleSpell
         //each specified time, earthquake deals damage
         while (true)
         {
-            foreach (Enemy enemy in enemies)
+            foreach (Enemy enemy in new List<Enemy>(enemies))
             {
+                if (enemy == null) continue;
+
                 enemy.Stun(0.2f);
                 enemy.ChangeHP(-3, 2);
             }

@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ps: {fileID: 3167704520240122555}
   rb: {fileID: 416347820244088359}
-  typeOfDamage: 2
+  typeOfDamage: 3
   setsLifeTime: 1
   worksForPlayer: 0
   worksForEnemy: 1
@@ -4812,7 +4812,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 202178703
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

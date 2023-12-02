@@ -200,10 +200,10 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     }
 
     //damage texts
-    public void InstantiateTextOnDamage(Vector2 pos, float amountOfDamage, int typeOfDamage)//instantiate text above enemy
+    public void InstantiateTextOnDamage(Vector2 pos, int amountOfDamage, int typeOfDamage)//instantiate text above enemy
     {
         Color color = new Color();
-        int textType = Mathf.Min((int)amountOfDamage / 30, 3);//get type of text
+        int textType = Mathf.Min(amountOfDamage / 30, 3);//get type of text
 
         switch (typeOfDamage)//get color
         {
@@ -234,11 +234,11 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
 
         //set amount of damage and color of text
         TextMeshPro textTmp = textObj.GetComponent<TextMeshPro>();
-        textTmp.text = amountOfDamage.ToString("F1");//leave only one digit after float
+        textTmp.text = amountOfDamage.ToString();
         textTmp.color = color;
 
         //move text up and destroy on complete
-        LeanTween.moveLocalY(textObj, textObj.transform.localPosition.y + 1.5f, 1f).setEase(LeanTweenType.easeOutQuad).setOnComplete(() =>
+        LeanTween.moveLocalY(textObj, textObj.transform.localPosition.y + 1.5f, 0.6f).setEase(LeanTweenType.easeOutQuad).setOnComplete(() =>
         {
             Destroy(textObj);
         });
