@@ -43,8 +43,8 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
     {
         //EnableDotInNearestEnemy(0);
         //EnableDotInRandomEnemy(1);
-        //EnableDotInRandomPosition(2);
-        //EnableDotInMovementDirection(3);
+        EnableDotInRandomPosition(2);
+        EnableDotInMovementDirection(3);
         EnableCircleInRandomPosition(3);
     }
 
@@ -137,7 +137,7 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
                 //if player isn't moving get last direction of movement. if player is moving but direction of movement is zero shoot last movement direction
                 Vector2 direction = (player.joystickInput && player.IsJoystickDirectionNotZero() ? player.directionOfMovement : player.lastJoystickDirection);
                 float distance = (float)i / 50f;
-                direction += GetRandomDistancePos(distance);
+                direction += levelManager.GetRandomPos(distance, distance);
 
                 InstantiateSpellToDirection(dotEffects[dotSpellsIndex[3]], direction, dotSpellsSize[3]);
 

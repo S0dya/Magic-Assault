@@ -17,10 +17,16 @@ public class UIMultipliers : UIPanel
     [Header("Multipliers")]
     [SerializeField] UIMultiplier[] multipliers;
 
+    [Header("Arrows")]
+    [SerializeField] GameObject[] arrowsObjs;
+
     //local
     [HideInInspector] public int[] curMultipliers ;
     int curBonus;
     bool isInteractable;
+
+    //arrows
+    LTDescr[] arrowTweens;
 
     void Awake()
     {
@@ -28,6 +34,12 @@ public class UIMultipliers : UIPanel
         StartEndY = new float[2] { 0, 0 };
 
         curMultipliers = new int[4];
+    }
+
+    void Start()
+    {
+        StartIncreaseArrowAnimation();
+        StartDecreaseArrowAnimation();
     }
 
     //panel 
@@ -103,5 +115,25 @@ public class UIMultipliers : UIPanel
     {
         quitButtonCG.interactable = val;
         isInteractable = val;
+    }
+
+    //arrows
+    public void StartIncreaseArrowAnimation()
+    {
+        // Move the object up and down in a pingpong pattern
+        arrowTweens[0] = LeanTween.moveY(arrowsObjs[0], arrowsObjs[1].rectTransform.position.y + 2, 1).setEase(LeanTweenType.easeInOutQuad).setLoopPingPong();
+    }
+    public void StartDecreaseArrowAnimation()
+    {
+        // Move the object up and down in a pingpong pattern
+        arrowTweens[1] = LeanTween.moveY(arrowsObjs[1], arrowsObjs[1].rectTransform.position.y - 2, 1).setEase(LeanTweenType.easeInOutQuad).setLoopPingPong();
+    }
+
+    public void StopArrowAnimation(int i)
+    {
+        if (arrowTweens[i] != null)
+        {
+            LeanTween.cancel(arrowTweens[i].id);
+        }
     }
 }

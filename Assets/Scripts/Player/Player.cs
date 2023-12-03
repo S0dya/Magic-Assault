@@ -15,6 +15,9 @@ public class Player : Creature
     [Header("Animation")]
     [SerializeField] Animator animator;
 
+    [Header("Damage Visualisation")]
+    [SerializeField] GameObject BloodEffectObj;
+
     [Header("UI")]
     [SerializeField] Image[] statsImages; //0 - hp, 1 - mana
 
@@ -86,7 +89,12 @@ public class Player : Creature
         {
             Debug.Log("die");
         }
-        else if (val < 0) VisualiseDamage(); //visualise hp damage
+        else if (val < 0)
+        {
+            Instantiate(BloodEffectObj, transform);
+            VisualiseDamage(); //visualise hp damage
+        }
+
 
         //set stats from 0 to 1
         statsImages[0].fillAmount = curHp / maxHp;

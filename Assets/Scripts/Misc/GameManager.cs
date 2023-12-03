@@ -19,13 +19,13 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     {
         LTDescr tween = LeanTween.alphaCanvas(CG, 1, duration).setEase(LeanTweenType.easeInOutQuad);
         CG.blocksRaycasts = true;
-        tween.setUseEstimatedTime(true);
+        SetUseEstimatedTime(tween);
     } 
     
     public void Close(CanvasGroup CG, float duration)
     {
         LTDescr tween = LeanTween.alphaCanvas(CG, 0, duration).setEase(LeanTweenType.easeInOutQuad).setOnComplete(() => CloseComletely(CG));
-        tween.setUseEstimatedTime(true);
+        SetUseEstimatedTime(tween);
     }
     void CloseComletely(CanvasGroup CG) => CG.blocksRaycasts = false;
 
@@ -47,14 +47,16 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     public void MoveTransform(RectTransform transform, float x, float y, float duration)
     {
         LTDescr tween = LeanTween.move(transform, new Vector2(x, y), duration).setEaseOutQuad();
-        tween.setUseEstimatedTime(true);
+        SetUseEstimatedTime(tween);
     }
 
     public void ChangeScale(GameObject obj, float scale, float duration)
     {
         LTDescr tween = LeanTween.scale(obj, new Vector2(scale, scale), duration).setEase(LeanTweenType.easeOutBack);
-        tween.setUseEstimatedTime(true);
+        SetUseEstimatedTime(tween);
     }
+
+    public void SetUseEstimatedTime(LTDescr tween) => tween.setUseEstimatedTime(true);
 
     //save/load
     void OnApplicationPause(bool pauseStatus)

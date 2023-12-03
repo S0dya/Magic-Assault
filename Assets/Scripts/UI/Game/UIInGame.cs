@@ -238,10 +238,9 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
         textTmp.color = color;
 
         //move text up and destroy on complete
-        LeanTween.moveLocalY(textObj, textObj.transform.localPosition.y + 1.5f, 0.6f).setEase(LeanTweenType.easeOutQuad).setOnComplete(() =>
+        LeanTween.moveLocalY(textObj, textObj.transform.localPosition.y + 1.5f, 0.3f).setEase(LeanTweenType.easeOutQuad).setOnComplete(() =>
         {
             Destroy(textObj);
         });
     }
-
 }
