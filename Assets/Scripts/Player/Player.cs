@@ -12,6 +12,12 @@ public class Player : Creature
     [SerializeField] float amountOfTimeForRestoringMana;
     [SerializeField] float amountOfRestoringMana;
 
+    [Header("Health restoring")]
+    public bool canRestoreHp;
+    public float amountOfTimeBeforeRestoringHp;
+    public float amountOfTimeForRestoringHp;
+    public float amountOfRestoringHp;
+
     [Header("Animation")]
     [SerializeField] Animator animator;
 
@@ -33,6 +39,7 @@ public class Player : Creature
     int curAmountOfEnemies;
 
     //cors
+    Coroutine restoreHpCor;
     Coroutine restoreManaCor;
     Coroutine visualiseDamage;
 
@@ -80,6 +87,14 @@ public class Player : Creature
         return directionOfMovement != Vector2.zero;
     }
 
+    //elemtals
+    public override void Burn()
+    {
+        base.Burn();
+
+        if (restoreHpCor != null) StopCoroutine(restoreHpCor);
+    }
+
     //UI
     public override void ChangeHP(float val, int typeOfDamage)
     {
@@ -94,11 +109,31 @@ public class Player : Creature
             Instantiate(BloodEffectObj, transform);
             VisualiseDamage(); //visualise hp damage
         }
-
-
+        
         //set stats from 0 to 1
         statsImages[0].fillAmount = curHp / maxHp;
+
+        //start coroutines to restore stats
+        if (canRestoreHp && !isBurning)//creature cant restore hp while burning
+        {
+            if (restoreHpCor != null) StopCoroutine(restoreHpCor);
+            restoreHpCor = StartCoroutine(RestoreHpCor());
+        }
     }
+    IEnumerator RestoreHpCor()
+    {
+        yield return new WaitForSeconds(amountOfTimeBeforeRestoringHp);
+
+        while (curHp < maxHp)
+        {
+            yield return new WaitForSeconds(amountOfTimeForRestoringHp);
+
+            ChangeHP(amountOfRestoringHp, -1);
+        }
+
+        restoreHpCor = null;
+    }
+
     public void ChangeMana(float val)
     {
         curMana = ChangeStat(val, curMana, maxMana);

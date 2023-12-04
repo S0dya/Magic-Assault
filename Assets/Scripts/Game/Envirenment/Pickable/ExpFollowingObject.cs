@@ -9,6 +9,11 @@ public class ExpFollowingObject : FollowingObject
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        StartFollowingPlayer();
+    }
+
+    public void StartFollowingPlayer()
+    {
         StartCoroutine(FollowPlayerCor());
     }
 

@@ -20,6 +20,7 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
 
     [Header("Other")]
     [SerializeField] Transform enemyParent;
+    [SerializeField] Transform expParent;
 
     //local
     Transform playerTransform;
@@ -163,5 +164,15 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
         }
 
         return playerTransform.TransformPoint(result);//return pos to point of player position
+    }
+
+    //other
+    public void MagnitExp()
+    {
+        foreach (Transform transform in expParent)
+        {
+            ExpFollowingObject expFollowingObject = transform.gameObject.GetComponent<ExpFollowingObject>();
+            expFollowingObject.StartFollowingPlayer();
+        }
     }
 }

@@ -11,11 +11,6 @@ public class Creature : MonoBehaviour
     public float pushMultiplier;
     public int averageTimeOfBurning;
 
-    [Header("Health restoring")]
-    public bool canRestoreHp;
-    public float amountOfTimeBeforeRestoringHp;
-    public float amountOfTimeForRestoringHp;
-    public float amountOfRestoringHp;
 
     [Header("0 - fire, 1 - water, 2 - earth, 3 - air")]
     public float[] elementalDamageMultipliers;
@@ -70,7 +65,7 @@ public class Creature : MonoBehaviour
     [HideInInspector] public bool isLookingOnRight;
 
     //elemenatal bools
-    bool isBurning;
+    [HideInInspector] public bool isBurning;
     [HideInInspector] public bool isPushed;
     bool isWet;
     [HideInInspector] public bool isStunned;
@@ -87,7 +82,6 @@ public class Creature : MonoBehaviour
     Vector2 curPosOfCenterOfTornado;
 
     //cor
-    Coroutine restoreHpCor;
     Coroutine visualiseDamageCor;
 
     //fire
@@ -152,7 +146,6 @@ public class Creature : MonoBehaviour
 
         //stop restoring hp and start burning
         isBurning = true;
-        if (restoreHpCor != null) StopCoroutine(restoreHpCor);
         burningCor = StartCoroutine(BurningCor(damageOfBurning * elementalDamageMultipliers[0]));
     }
     IEnumerator BurningCor(float damage)
@@ -394,13 +387,6 @@ public class Creature : MonoBehaviour
     {
         if (type != -1) val *= elementalDamageMultipliers[type];
         curHp = ChangeStat(val, curHp, maxHp);
-
-        //start coroutines to restore stats
-        if (canRestoreHp && !isBurning)//creature cant restore hp while burning
-        {
-            if (restoreHpCor != null) StopCoroutine(restoreHpCor);
-            restoreHpCor = StartCoroutine(RestoreHpCor());
-        }
     }
     public float ChangeStat(float val, float curStat, float maxStat)
     {
@@ -408,19 +394,5 @@ public class Creature : MonoBehaviour
         float newStat = curStat + val;
         //set new stats from 0 to 100. depending on whether val is - or + check if its less or more than 100 or 0 
         return newStat = (val > 0 ? Mathf.Min(newStat, maxStat) : Mathf.Max(0, newStat));
-    }
-
-    IEnumerator RestoreHpCor()
-    {
-        yield return new WaitForSeconds(amountOfTimeBeforeRestoringHp);
-
-        while (curHp < maxHp)
-        {
-            yield return new WaitForSeconds(amountOfTimeForRestoringHp);
-
-            ChangeHP(amountOfRestoringHp, -1);
-        }
-
-        restoreHpCor = null;
     }
 }

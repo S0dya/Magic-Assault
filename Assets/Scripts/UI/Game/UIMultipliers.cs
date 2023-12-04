@@ -10,23 +10,29 @@ public class UIMultipliers : UIPanel
 
     [Header("Bonus")]
     [SerializeField] TextMeshProUGUI bonusText;
-    [SerializeField] Color positiveBonusColor;
-    [SerializeField] Color zeroBonusColor;
-    [SerializeField] Color negativeBonusColor;
+    [SerializeField] Color[] bonusColors;
 
     [Header("Multipliers")]
     [SerializeField] UIMultiplier[] multipliers;
 
     [Header("Arrows")]
-    [SerializeField] GameObject[] arrowsObjs;
+    [SerializeField] GameObject[] arrowsObj;
 
     //local
     [HideInInspector] public int[] curMultipliers ;
     int curBonus;
     bool isInteractable;
 
+    bool isPositive;
+
     //arrows
-    LTDescr[] arrowTweens;
+    LTDescr[] arrowTweens = new LTDescr[2];
+    Image[] arrowImages = new Image[2];
+    RectTransform[] arrowsTransform = new RectTransform[2];
+
+    Vector2[] arrowsAnimationStartPos = new Vector2[2];
+    float arrowStartAnimationY;
+    float[] arrowEndAnimationY = new float[2];
 
     void Awake()
     {
@@ -34,12 +40,17 @@ public class UIMultipliers : UIPanel
         StartEndY = new float[2] { 0, 0 };
 
         curMultipliers = new int[4];
-    }
 
-    void Start()
-    {
-        StartIncreaseArrowAnimation();
-        StartDecreaseArrowAnimation();
+        
+        for (int i = 0; i < 2; i++)//get transform and starting position
+        {
+            arrowsTransform[i] = arrowsObj[i].GetComponent<RectTransform>();
+            arrowImages[i] = arrowsObj[i].GetComponent<Image>();
+            arrowsAnimationStartPos[i] = arrowsTransform[i].position;
+        }
+        arrowStartAnimationY = arrowsAnimationStartPos[0].y;//set animation points based on position
+        arrowEndAnimationY[0] = arrowStartAnimationY + 30f;
+        arrowEndAnimationY[1] = arrowEndAnimationY[0] - 60f;
     }
 
     //panel 
@@ -64,38 +75,52 @@ public class UIMultipliers : UIPanel
     void SetMultipliers()
     {
         curBonus = 4;
+        SetPositive();
+        SetBonusText();
 
         for (int i = 0; i < 4; i++)
         {
             curMultipliers[i] = (int)(Settings.damageMultipliers[i] * 10);
             multipliers[i].SetMultiplierText(curMultipliers[i]);
         }
-
-        SetBonusText();
     }
 
-    void SetBonusText()
+    void CheckBonus()
     {
-        Color newColor = new Color();
-
-        if (curBonus > 0) 
+        if (curBonus == 1) 
         {
-            if (isInteractable) ToggleQuitButton(false);
-            newColor = positiveBonusColor;
+            SetPositive();
         }
         else if (curBonus == 0)
         {
-            if (!isInteractable) ToggleQuitButton(true);
-            newColor = zeroBonusColor;
+            //stop animation of arrows
+            StopArrowAnimation(0);
+            StopArrowAnimation(1);
+
+            ToggleQuitButton(true);
+            bonusText.color = bonusColors[1];
         }
-        else
+        else if (curBonus == -1)
         {
-            if (isInteractable) ToggleQuitButton(false);
-            newColor = negativeBonusColor;
+            StopArrowAnimation(1);
+            StartArrowAnimation(0);
+
+            ToggleQuitButton(false);
+            bonusText.color = bonusColors[2];
         }
-        bonusText.color = newColor;
-        bonusText.text = curBonus.ToString();
     }
+
+    void SetPositive()
+    {
+        //toggle animation of arrow
+        StopArrowAnimation(0);
+        StartArrowAnimation(1);
+
+        ToggleQuitButton(false);
+        bonusText.color = bonusColors[0];
+    }
+
+    void SetBonusText() => bonusText.text = curBonus.ToString();
 
     //outside methods 
     public void Increase(int index) => ChangeBonus(-1, index);
@@ -106,6 +131,7 @@ public class UIMultipliers : UIPanel
     {
         curBonus += val;
 
+        CheckBonus();
         SetBonusText();
         curMultipliers[index] -= val;
         multipliers[index].SetMultiplierText(curMultipliers[index]);
@@ -118,22 +144,31 @@ public class UIMultipliers : UIPanel
     }
 
     //arrows
-    public void StartIncreaseArrowAnimation()
+    void StartArrowAnimation(int i)
     {
-        // Move the object up and down in a pingpong pattern
-        arrowTweens[0] = LeanTween.moveY(arrowsObjs[0], arrowsObjs[1].rectTransform.position.y + 2, 1).setEase(LeanTweenType.easeInOutQuad).setLoopPingPong();
-    }
-    public void StartDecreaseArrowAnimation()
-    {
-        // Move the object up and down in a pingpong pattern
-        arrowTweens[1] = LeanTween.moveY(arrowsObjs[1], arrowsObjs[1].rectTransform.position.y - 2, 1).setEase(LeanTweenType.easeInOutQuad).setLoopPingPong();
-    }
-
-    public void StopArrowAnimation(int i)
-    {
-        if (arrowTweens[i] != null)
+        if (arrowTweens[i] == null)//only play if arrow animation is not playing
         {
-            LeanTween.cancel(arrowTweens[i].id);
+            //set pos to start
+            arrowsTransform[i].anchoredPosition = Vector2.zero;
+            //move to end position in loop
+            arrowTweens[i] = LeanTween.moveY(arrowsObj[i], arrowEndAnimationY[i], 0.5f).setEase(LeanTweenType.easeInOutQuad).setLoopPingPong();
+            //make animation work despite scaled time being 0
+            GameManager.I.SetUseEstimatedTime(arrowTweens[i]);
+
+            ToggleArrowImage(i, true);
         }
     }
+    
+    void StopArrowAnimation(int i)
+    {
+        if (arrowTweens[i] != null)//only stop if arrow animation is playing
+        {
+            ToggleArrowImage(i, false);
+
+            LeanTween.cancel(arrowTweens[i].id);
+            arrowTweens[i] = null; 
+        }
+    }
+    void ToggleArrowImage(int i, bool val) => arrowImages[i].enabled = val;
+
 }
