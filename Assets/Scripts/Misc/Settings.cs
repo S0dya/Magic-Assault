@@ -42,9 +42,6 @@ public static class Settings
     public static bool additionalEffectsOfArrow = true;
 
     
-
-
-
     //settings
     public static bool isFloatingJoystick = true;
     public static bool firstTime;
@@ -57,6 +54,7 @@ public static class Settings
     public static float timeForCheckTransforms = 4;
 
     public static float[] damageMultipliers = new float[4] { 1, 1, 1, 1 };
+    public static float[] damageMultipliersMins = new float[4] { 0.6f, 0.6f, 0.6f, 0.6f };
     public static float[] lifeTimeMultipliers = new float[4] { 1, 10, 1, 1 };
 
     public static bool allWaterIsPoisened;

@@ -19,7 +19,8 @@ public class UIMultipliers : UIPanel
     [SerializeField] GameObject[] arrowsObj;
 
     //local
-    [HideInInspector] public int[] curMultipliers ;
+    [HideInInspector] public int[] curMultipliers;
+    int[] damageMultipliersMins = new int[4];
     int curBonus;
     bool isInteractable;
 
@@ -39,6 +40,7 @@ public class UIMultipliers : UIPanel
         StartEndX = new float[2] { Settings.width, 0 };
         StartEndY = new float[2] { 0, 0 };
 
+        for (int i = 0; i < 4; i++) damageMultipliersMins[i] = (int)(Settings.damageMultipliersMins[i] * 10);
         curMultipliers = new int[4];
 
         
@@ -85,28 +87,34 @@ public class UIMultipliers : UIPanel
         }
     }
 
+    bool CanDecrease(int index)
+    {
+        return curMultipliers[index] - 1 >= damageMultipliersMins[index];
+    }
+
     void CheckBonus()
     {
-        if (curBonus == 1) 
+        switch (curBonus)
         {
-            SetPositive();
-        }
-        else if (curBonus == 0)
-        {
-            //stop animation of arrows
-            StopArrowAnimation(0);
-            StopArrowAnimation(1);
+            case 1:
+                SetPositive();
+                break;
+            case 0:
+                //stop animation of arrows
+                StopArrowAnimation(0);
+                StopArrowAnimation(1);
 
-            ToggleQuitButton(true);
-            bonusText.color = bonusColors[1];
-        }
-        else if (curBonus == -1)
-        {
-            StopArrowAnimation(1);
-            StartArrowAnimation(0);
+                ToggleQuitButton(true);
+                bonusText.color = bonusColors[1];
+                break;
+            case -1:
+                StopArrowAnimation(1);
+                StartArrowAnimation(0);
 
-            ToggleQuitButton(false);
-            bonusText.color = bonusColors[2];
+                ToggleQuitButton(false);
+                bonusText.color = bonusColors[2];
+                break;
+            default: break;
         }
     }
 
@@ -123,8 +131,15 @@ public class UIMultipliers : UIPanel
     void SetBonusText() => bonusText.text = curBonus.ToString();
 
     //outside methods 
-    public void Increase(int index) => ChangeBonus(-1, index);
-    public void Decrease(int index) => ChangeBonus(1, index);
+    public void Increase(int index)
+    {
+        if (curBonus != -50) ChangeBonus(-1, index);
+    }
+    public void Decrease(int index)
+    {
+        if (CanDecrease(index) && curBonus != 50) ChangeBonus(1, index);
+    }
+
 
     //other methods
     void ChangeBonus(int val, int index)
