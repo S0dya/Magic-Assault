@@ -25,11 +25,11 @@ public class UIUpgrades : UIPanel
     }
 
     //panel
-    public override void OpenTab()
+    public override void OpenTabInGame()
     {
         SetUpgrades();
 
-        base.OpenTab();
+        base.OpenTabInGame();
     }
 
     //other methods
@@ -62,7 +62,7 @@ public class UIUpgrades : UIPanel
 
         for (int i = 0; i < 3; i++) if (i != index) allItems.Add(curUpgrades[i]);
 
-        CloseTab();
+        CloseTabInGame();
     }
 
     void SetUpgrade(int index)

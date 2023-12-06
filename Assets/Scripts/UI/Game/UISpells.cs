@@ -35,14 +35,12 @@ public class UISpells : UIPanel
     }
 
     //panel
-    public override void OpenTab()
+    public override void OpenTabInGame()
     {
         SetSpells();
 
-        base.OpenTab();
+        base.OpenTabInGame();
     }
-
-    //public virtual void CloseTab()
 
     //main methods
     void SetSpells()
@@ -71,15 +69,9 @@ public class UISpells : UIPanel
     {
         SetSpell(index);
 
-        for (int i = 0; i < 3; i++)
-        {
-            if (i != index)
-            {
-                allSpells.Add(curCheckedSpells[i]);
-            }
-        }
+        for (int i = 0; i < 3; i++) if (i != index) allSpells.Add(curCheckedSpells[i]);
 
-        CloseTab();
+        CloseTabInGame();
     }
     
     void SetSpell(int index)
@@ -98,6 +90,6 @@ public class UISpells : UIPanel
     {
         foreach (SO_Item spell in curCheckedSpells) allSpells.Add(spell);
 
-        CloseTab();
+        CloseTabInGame();
     }
 }

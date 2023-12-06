@@ -32,22 +32,52 @@ public class UIPanel : MonoBehaviour
     //panel
     public virtual void OpenTab()
     {
-        GameManager.I.MoveTransform(panelTransform, startEndX[1], startEndY[1], 0.75f);
+        MoveTab(startEndX[1], startEndY[1], 0.5f);
         GameManager.I.Open(panelCG, 0.75f);
-
-        ToggleTimeScale(false);
-        drawManager.StopCreatingSpell();
     }
 
     public virtual void CloseTab()
     {
-        GameManager.I.MoveTransform(panelTransform, startEndX[0], startEndY[0], 0.25f);
+        MoveTab(startEndX[0], startEndY[0], 0.2f);
         GameManager.I.Close(panelCG, 0.25f);
+    }
 
+    //panel in menu
+    public virtual void OpenTabInMenu()
+    {
+        MoveTab(startEndX[1], startEndY[1], 0.35f);
+        ToggleCGRaycast(true);
+    }
+
+    public virtual void CloseTabInMenu()
+    {
+        MoveTab(startEndX[1], startEndY[1], 0.1f);
+        ToggleCGRaycast(false);
+    }
+
+    //panel in game
+    public virtual void OpenTabInGame()
+    {
+        OpenTab();
+     
+        ToggleTimeScale(false);
+        drawManager.StopCreatingSpell();
+    }
+
+    public virtual void CloseTabInGame()
+    {
+        CloseTab();
+        
         ToggleTimeScale(true);
     }
 
     //other methods
+    void MoveTab(float x, float y, float speed)
+    {
+        GameManager.I.MoveTransform(panelTransform, x, y, speed);
+    }
+    void ToggleCGRaycast(bool val) => panelCG.blocksRaycasts = val;
+
     void ToggleTimeScale(bool val)
     {
         float floatVal = val ? 1 : 0;

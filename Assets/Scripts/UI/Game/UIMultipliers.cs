@@ -56,22 +56,22 @@ public class UIMultipliers : UIPanel
     }
 
     //panel 
-    public override void OpenTab()
+    public override void OpenTabInGame()
     {
         SetMultipliers();
 
-        base.OpenTab();
+        base.OpenTabInGame();
     }
 
-    public override void CloseTab()
+    public override void CloseTabInGame()
     {
-        base.CloseTab();
+        base.CloseTabInGame();
      
         for (int i = 0; i < 4; i++) Settings.damageMultipliers[i] = (float)curMultipliers[i] * 0.1f;
     }
 
     //buttons 
-    public void CloseTabButton() => CloseTab();
+    public void CloseTabButton() => CloseTabInGame();
 
     //main methods
     void SetMultipliers()

@@ -4,7 +4,13 @@ using UnityEngine;
 
 public static class Settings 
 {
+    //settings
+    public static bool isFloatingJoystick = true;
+    public static bool firstTime;
+    public static bool isMusicOn;
+    public static bool showDamageAmount = true;
 
+    public static float[] musicStats = new float[2] { 0.5f, 0.5f };
 
     //menu
     public static int money;
@@ -42,12 +48,7 @@ public static class Settings
     public static bool additionalEffectsOfArrow = true;
 
     
-    //settings
-    public static bool isFloatingJoystick = true;
-    public static bool firstTime;
-    public static bool isMusicOn;
-
-    //game
+    //in game changing settings
     public static int[] startingSpells = new int[4] { 0, 1, 0, 3 };
     public static float[] startingSpellsManaUsage = new float[4] { 15f, 15f, 3f, 10f };
 

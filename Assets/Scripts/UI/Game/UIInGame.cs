@@ -118,7 +118,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     {
         //we set exp one more time, since if we upgraded several times fillAmount will not be changed for last upgrade
         SetExpLine();
-        uiUpgrades.OpenTab();
+        uiUpgrades.OpenTabInGame();
 
         expText.text = curLvl.ToString();
         //return text of lvl to normal size and check if we need to call upgrade once more
@@ -179,8 +179,8 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     }
 
     //other methods
-    public void OpenSpellsPanel() => uiSpells.OpenTab();
-    public void OpenMultipliersPanel() => uiMultipliers.OpenTab();
+    public void OpenSpellsPanel() => uiSpells.OpenTabInGame();
+    public void OpenMultipliersPanel() => uiMultipliers.OpenTabInGame();
 
     void SetJoystick()
     {
@@ -224,7 +224,6 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
                 break;
             default: break;
         }
-        
 
         //instantiate text obj
         GameObject textObj = Instantiate(textPrefab, pos, Quaternion.identity, damageTextParent);
