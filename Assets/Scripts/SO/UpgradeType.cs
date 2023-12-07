@@ -1,8 +1,5 @@
 public enum UpgradeType 
 {
-    //spell 
-    Spell,
-
     //active
     ActiveDotInNearestEnemy,
     ActiveDotInRandomEnemy,

@@ -51,7 +51,7 @@ public class UIPanel : MonoBehaviour
 
     public virtual void CloseTabInMenu()
     {
-        MoveTab(startEndX[1], startEndY[1], 0.1f);
+        MoveTab(startEndX[0], startEndY[0], 0.1f);
         ToggleCGRaycast(false);
     }
 
@@ -94,5 +94,4 @@ public class UIPanel : MonoBehaviour
         drawManager.isOnUI = val;
         if (!val) drawManager.StopCreatingSpell();
     }
-
 }

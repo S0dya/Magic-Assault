@@ -8,7 +8,8 @@ public static class Settings
     public static bool isFloatingJoystick = true;
     public static bool firstTime;
     public static bool isMusicOn;
-    public static bool showDamageAmount = true;
+    public static bool showDamageNumbers = true;
+    public static bool showBlood = true;
 
     public static float[] musicStats = new float[2] { 0.5f, 0.5f };
 

@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class UIGameMenu : UIPanel
 {
     [Header("Other scripts")]
-    [SerializeField] UISettings uiSettings;
+    [SerializeField] UIInGameSettings uiSettings;
+    [SerializeField] UIInGameStats uiInGameStats;
 
     //local
     bool isSettingsOpen;
@@ -26,17 +27,41 @@ public class UIGameMenu : UIPanel
     }
     public void OnResumeButton()
     {
+        CloseCurOpenedTab();
         CloseTabInGame();
+    }
+
+    public void OnQuitButton()
+    {
+
     }
 
     public void OnSettingsButton()
     {
         if (isSettingsOpen)
-            uiSettings.CloseTabInMenu();
+        {
+            CloseSettings();
+        }
         else
         {
             CloseCurOpenedTab();
+            isSettingsOpen = true;
             uiSettings.OpenTabInMenu();
+        }
+
+    }
+
+    public void OnStatsButton()
+    {
+        if (isStatsOpen)
+        {
+            CloseStats();
+        }
+        else
+        {
+            CloseCurOpenedTab();
+            isStatsOpen = true;
+            uiInGameStats.OpenTabInMenu();
         }
     }
 
@@ -45,8 +70,24 @@ public class UIGameMenu : UIPanel
     {
         if (isSettingsOpen)
         {
-            uiSettings.CloseTabInMenu();
+            CloseSettings();
+        }
+        else if (isStatsOpen)
+        {
+            CloseStats();
         }
     }
+    
 
+    void CloseSettings()
+    {
+        uiSettings.CloseTabInMenu();
+        isSettingsOpen = false;
+    }
+
+    void CloseStats()
+    {
+        uiInGameStats.CloseTabInMenu();
+        isStatsOpen= false;
+    }
 }

@@ -106,7 +106,7 @@ public class Player : Creature
         }
         else if (val < 0)
         {
-            Instantiate(BloodEffectObj, transform);
+            if (Settings.showBlood) Instantiate(BloodEffectObj, transform);
             VisualiseDamage(); //visualise hp damage
         }
         

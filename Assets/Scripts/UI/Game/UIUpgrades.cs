@@ -7,6 +7,7 @@ public class UIUpgrades : UIPanel
     [Header("Other scripts")]
     [SerializeField] ActiveUpgrades activeUpgrades;
     [SerializeField] PassiveUpgrades passiveUpgrades;
+    [SerializeField] UIInGameStats uiInGameStats;
 
     [Header("Upgrades")]
     [SerializeField] UIUpgrade[] uiUpgrades;
@@ -95,6 +96,8 @@ public class UIUpgrades : UIPanel
                 break;
             default: break;
         }
+
+        uiInGameStats.AddItem(item);
     }
 
     void AddNewUpgrades(SO_Item item) //since some active upgrades can additional passive or active upgrades - add them to all upgrades

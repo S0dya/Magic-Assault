@@ -106,6 +106,6 @@ public class AudioManager : SingletonMonobehaviour<AudioManager>
     public void SetVolume(int index, float volume)
     {
         RuntimeManager.GetBus((index == 0? "bus:/SFX" : "bus:/MUSIC")).setVolume(volume);
-        Settings.musicStats[0] = volume;
+        Settings.musicStats[index] = volume;
     }
 }

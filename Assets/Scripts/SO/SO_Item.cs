@@ -10,6 +10,7 @@ public class SO_Item : ScriptableObject
     [field: SerializeField][field: TextArea] public string Description { get; set; }
     [field: SerializeField] public Sprite ItemImage { get; set; }
 
+    public UpgradeTypeParent parentType;
     public UpgradeType type;
 
     [Header("Settings")]

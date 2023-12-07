@@ -182,16 +182,16 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     public void OpenSpellsPanel() => uiSpells.OpenTabInGame();
     public void OpenMultipliersPanel() => uiMultipliers.OpenTabInGame();
 
-    void SetJoystick()
+    public void SetJoystick()
     {
         //set joystick's type
-        bool isFJ = Settings.isFloatingJoystick;
+        bool isFlJ = Settings.isFloatingJoystick;
 
-        if (isFJ) flJoystick.gameObject.SetActive(true);
-        else fxJoystick.gameObject.SetActive(true);
+        flJoystick.gameObject.SetActive(isFlJ);
+        fxJoystick.gameObject.SetActive(!isFlJ);
 
         //set this joystick
-        player.joystick = isFJ ? flJoystick : fxJoystick;
+        player.joystick = isFlJ ? flJoystick : fxJoystick;
     }
 
     public void ToggleJoystickVisibility(float val)
@@ -202,6 +202,8 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     //damage texts
     public void InstantiateTextOnDamage(Vector2 pos, int amountOfDamage, int typeOfDamage)//instantiate text above enemy
     {
+        if (!Settings.showDamageNumbers) return;
+
         Color color = new Color();
         int textType = Mathf.Min(amountOfDamage / 30, 3);//get type of text
 
