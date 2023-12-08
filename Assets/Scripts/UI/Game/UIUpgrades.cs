@@ -69,6 +69,7 @@ public class UIUpgrades : UIPanel
     void SetUpgrade(int index)
     {
         SO_Item item = curUpgrades[index];
+        uiInGameStats.AddItem(item);
 
         switch (item.type)
         {
@@ -96,8 +97,6 @@ public class UIUpgrades : UIPanel
                 break;
             default: break;
         }
-
-        uiInGameStats.AddItem(item);
     }
 
     void AddNewUpgrades(SO_Item item) //since some active upgrades can additional passive or active upgrades - add them to all upgrades

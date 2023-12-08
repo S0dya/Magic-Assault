@@ -48,7 +48,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     //exp
     int curLvl = 0;
 
-    float curExp = 0;
+    [HideInInspector] public float curExp = 0;
     bool isUpgrading;
 
     //time
@@ -152,7 +152,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
             if (curMins == 60 && timerCor != null) StopCoroutine(timerCor);
         }
 
-        var time = new StringBuilder();
+        StringBuilder time = new StringBuilder();
 
         if (curMins < 10) time.Append('0');
         time.Append(curMins.ToString());

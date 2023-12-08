@@ -6,6 +6,10 @@ using TMPro;
 
 public class UIMultipliers : UIPanel
 {
+    [Header("Other scripts")]
+    [SerializeField] UIGameMenu uiGameMenu;
+
+    [Header("Canvas group of a button")]
     [SerializeField] CanvasGroup quitButtonCG;
 
     [Header("Bonus")]
@@ -66,8 +70,14 @@ public class UIMultipliers : UIPanel
     public override void CloseTabInGame()
     {
         base.CloseTabInGame();
-     
-        for (int i = 0; i < 4; i++) Settings.damageMultipliers[i] = (float)curMultipliers[i] * 0.1f;
+
+        for (int i = 0; i < 4; i++)
+        {
+            int curVal = curMultipliers[i];
+            uiGameMenu.SetMultipliersTexts(i, curVal);
+            Settings.damageMultipliers[i] = (float)curVal * 0.1f;
+        }
+
     }
 
     //buttons 
@@ -85,11 +95,6 @@ public class UIMultipliers : UIPanel
             curMultipliers[i] = (int)(Settings.damageMultipliers[i] * 10);
             multipliers[i].SetMultiplierText(curMultipliers[i]);
         }
-    }
-
-    bool CanDecrease(int index)
-    {
-        return curMultipliers[index] - 1 >= damageMultipliersMins[index];
     }
 
     void CheckBonus()
@@ -138,6 +143,10 @@ public class UIMultipliers : UIPanel
     public void Decrease(int index)
     {
         if (CanDecrease(index) && curBonus != 50) ChangeBonus(1, index);
+    }
+    bool CanDecrease(int index)
+    {
+        return curMultipliers[index] - 1 >= damageMultipliersMins[index];
     }
 
 

@@ -15,7 +15,8 @@ MonoBehaviour:
   <Name>k__BackingField: 'Increase speed '
   <Description>k__BackingField: gugu gaga
   <ItemImage>k__BackingField: {fileID: 21300000, guid: be242f55685e9304687069311b354cf0, type: 3}
-  type: 5
+  parentType: 2
+  type: 4
   typeOfDamage: 0
   itemsOnUpgrade: []
   spellI: 0

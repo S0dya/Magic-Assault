@@ -7,7 +7,7 @@ public class Player : Creature
 {
     [Header("Player's settings")]
     public float speedOnDamage;
-    [SerializeField] float maxMana;
+    public float maxMana;
     [SerializeField] float amountOfTimeBeforeRestoringMana;
     [SerializeField] float amountOfTimeForRestoringMana;
     [SerializeField] float amountOfRestoringMana;

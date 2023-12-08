@@ -6,11 +6,12 @@ public class UISpells : UIPanel
 {
     [Header("Other scripts")]
     [SerializeField] SpellsManager spellsManager;
+    [SerializeField] UIInGameStats uiInGameStats;
 
     [Header("Upgrades")]
     [SerializeField] UISpell[] uiSpells;
 
-    [SerializeField] List<SO_Item> allSpells;
+    public List<SO_Item> allSpells;
 
     //local
     SO_Item[] curUsedSpells = new SO_Item[4];
@@ -26,10 +27,13 @@ public class UISpells : UIPanel
     {
         base.Start();
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++) //set cur spells player uses
         {
             int curIndex = spellsManager.curTypeOfSpell[i] + (i * 4 - i);
             curUsedSpells[i] = allSpells[curIndex];
+
+            uiInGameStats.SetSpellItem(i, allSpells[curIndex]);//set spell in statistics
+
             allSpells.RemoveAt(curIndex);
         }
     }
