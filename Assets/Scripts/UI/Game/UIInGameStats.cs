@@ -26,7 +26,7 @@ public class UIInGameStats : UIPanel
     [SerializeField] TextMeshProUGUI itemDescription;
 
     //local
-    Dictionary<SO_Item, UIInGameStatsUpgrade>[] upgradeItemsDics = new Dictionary<SO_Item, UIInGameStatsUpgrade>[2];
+    Dictionary<SO_GameItem, UIInGameStatsUpgrade>[] upgradeItemsDics = new Dictionary<SO_GameItem, UIInGameStatsUpgrade>[2];
 
     int[] curLinesN = new int[2];
     Transform[] curLinesTransforms = new Transform[2];
@@ -39,11 +39,11 @@ public class UIInGameStats : UIPanel
         StartEndX = new float[2] { Settings.width, 0 };
         StartEndY = new float[2] { 0, 0 };
 
-        for (int i = 0; i < upgradeItemsDics.Length; i++) upgradeItemsDics[i] = new Dictionary<SO_Item, UIInGameStatsUpgrade>();
+        for (int i = 0; i < upgradeItemsDics.Length; i++) upgradeItemsDics[i] = new Dictionary<SO_GameItem, UIInGameStatsUpgrade>();
     }
 
     //main methods
-    public void AddItem(SO_Item item)
+    public void AddItem(SO_GameItem item)
     {
         //get type index
         int type = (item.parentType == UpgradeTypeParent.ActiveUpgrade ? 0 : 1);
@@ -74,27 +74,26 @@ public class UIInGameStats : UIPanel
     }
     Transform CreateNewLine(int type)//instantiate new line and set it as current
     {
-        Debug.Log("asd");
         Transform lineTransform = Instantiate(lineObject, upgradesParents[type]).GetComponent<Transform>();
         curLinesTransforms[type] = lineTransform;
         return lineTransform;
     }
     
-    void SetItem(UIInGameStatsUpgrade uiItemUpgrade, SO_Item item)//set info 
+    void SetItem(UIInGameStatsUpgrade uiItemUpgrade, SO_GameItem item)//set info 
     {
         uiItemUpgrade.SetInfo(item);
         uiItemUpgrade.uiInGameStats = this;
     }
 
     //spells (header)
-    public void SetSpellItem(int i, SO_Item item)
+    public void SetSpellItem(int i, SO_GameItem item)
     {
         uiSpellsitems[i].SetInfo(item);
         uiSpellsitems[i].uiInGameStats = this;
     }
 
     //description (bottom)
-    public void SetDescriptionInfo(UIInGameStatsItem uiInGameStatsItem, SO_Item item) //outside method for showcasing upgrade
+    public void SetDescriptionInfo(UIInGameStatsItem uiInGameStatsItem, SO_GameItem item) //outside method for showcasing upgrade
     {
         //set highlight
         if (curHighlighted) curUiInGameStatsItem.ToggleHighlight(false);

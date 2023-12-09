@@ -12,12 +12,12 @@ public class UIUpgrades : UIPanel
     [Header("Upgrades")]
     [SerializeField] UIUpgrade[] uiUpgrades;
 
-    [SerializeField] List<SO_Item> allItems = new List<SO_Item>();
+    [SerializeField] List<SO_GameItem> allItems = new List<SO_GameItem>();
 
     //local
 
     //upgrades
-    SO_Item[] curUpgrades = new SO_Item[3];
+    SO_GameItem[] curUpgrades = new SO_GameItem[3];
 
     void Awake()
     {
@@ -68,7 +68,7 @@ public class UIUpgrades : UIPanel
 
     void SetUpgrade(int index)
     {
-        SO_Item item = curUpgrades[index];
+        SO_GameItem item = curUpgrades[index];
         uiInGameStats.AddItem(item);
 
         switch (item.type)
@@ -99,9 +99,9 @@ public class UIUpgrades : UIPanel
         }
     }
 
-    void AddNewUpgrades(SO_Item item) //since some active upgrades can additional passive or active upgrades - add them to all upgrades
+    void AddNewUpgrades(SO_GameItem item) //since some active upgrades can additional passive or active upgrades - add them to all upgrades
     {
-        foreach (SO_Item newItem in item.itemsOnUpgrade) allItems.Add(newItem);
+        foreach (SO_GameItem newItem in item.itemsOnUpgrade) allItems.Add(newItem);
     }
 
 }

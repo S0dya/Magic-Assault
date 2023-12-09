@@ -12,7 +12,7 @@ public class UIUpgrade : UIItem
     UIUpgrades uiUpgrades;
 
     //active upgrade check
-    SO_Item curItem;
+    SO_GameItem curItem;
     bool isActiveSpell;
 
     //highlight 
@@ -22,7 +22,7 @@ public class UIUpgrade : UIItem
     void Start() => uiUpgrades = GetComponentInParent<UIUpgrades>();
 
     //main methods overrided for active upgrade check
-    public override void SetInfo(SO_Item item)
+    public override void SetInfo(SO_GameItem item)
     {
         base.SetInfo(item);
 

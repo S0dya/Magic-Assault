@@ -9118,12 +9118,12 @@ MonoBehaviour:
   - {fileID: 957447954}
   - {fileID: 392425181}
   allItems:
-  - {fileID: 11400000, guid: 92431fb7f93688f47b0755ffd810cf69, type: 2}
-  - {fileID: 11400000, guid: 92431fb7f93688f47b0755ffd810cf69, type: 2}
-  - {fileID: 11400000, guid: 92431fb7f93688f47b0755ffd810cf69, type: 2}
-  - {fileID: 11400000, guid: 9fad7aa1ddfb5d845ba26a045743c402, type: 2}
-  - {fileID: 11400000, guid: 9fad7aa1ddfb5d845ba26a045743c402, type: 2}
-  - {fileID: 11400000, guid: 9fad7aa1ddfb5d845ba26a045743c402, type: 2}
+  - {fileID: 11400000, guid: 499f5ab8fd7ad3c4a9a70f4610e0d5a2, type: 2}
+  - {fileID: 11400000, guid: 499f5ab8fd7ad3c4a9a70f4610e0d5a2, type: 2}
+  - {fileID: 11400000, guid: 499f5ab8fd7ad3c4a9a70f4610e0d5a2, type: 2}
+  - {fileID: 11400000, guid: d4f845753cd53d5438a9aa362a588c79, type: 2}
+  - {fileID: 11400000, guid: d4f845753cd53d5438a9aa362a588c79, type: 2}
+  - {fileID: 11400000, guid: d4f845753cd53d5438a9aa362a588c79, type: 2}
 --- !u!225 &1275266308
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9820,21 +9820,21 @@ MonoBehaviour:
   - {fileID: 758300555}
   allSpells:
   - {fileID: 11400000, guid: be332cef0670a634cac526a0071363d1, type: 2}
-  - {fileID: 11400000, guid: 54985b34fb07fea44b46841cc333fdf9, type: 2}
+  - {fileID: 11400000, guid: acbea104e66053243ad90780a23839c5, type: 2}
   - {fileID: 11400000, guid: f113c568f45130948970923f5fc87922, type: 2}
   - {fileID: 11400000, guid: 29aa5097b43c7264a821cf7ab2ca9758, type: 2}
   - {fileID: 11400000, guid: 6f5ad60313b674a418fda36528344551, type: 2}
   - {fileID: 11400000, guid: 919bd0ff8276afd49988fad67850a917, type: 2}
-  - {fileID: 11400000, guid: 74e3f7ff041b6e44b8d8d5676a06d62a, type: 2}
+  - {fileID: 11400000, guid: a8a4dacb5596d5349b7df74d83c2ebcc, type: 2}
   - {fileID: 11400000, guid: 606dcd3007f36d24789bff1ee12a7916, type: 2}
   - {fileID: 11400000, guid: 727cd3dcf98304149bb317e30707a886, type: 2}
   - {fileID: 11400000, guid: 3f74488b6cf20804182488b0603797d4, type: 2}
   - {fileID: 11400000, guid: 4a04009ee46903c4cbb6a147f8831fd9, type: 2}
   - {fileID: 11400000, guid: 7567d73d5db83274f8ee343aa02051b5, type: 2}
-  - {fileID: 11400000, guid: 322c44ea11b058643b458f8ae319c483, type: 2}
-  - {fileID: 11400000, guid: 322c44ea11b058643b458f8ae319c483, type: 2}
-  - {fileID: 11400000, guid: ee38df7609c838a4780747c23e3c16e8, type: 2}
-  - {fileID: 11400000, guid: 322c44ea11b058643b458f8ae319c483, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 9563e64a20a90504b877c094f607f95a, type: 2}
+  - {fileID: 11400000, guid: a11b22c9552875a44bcb905e33402b29, type: 2}
 --- !u!1 &1429833668
 GameObject:
   m_ObjectHideFlags: 0
@@ -12207,6 +12207,7 @@ GameObject:
   - component: {fileID: 1883270001}
   - component: {fileID: 1883270003}
   - component: {fileID: 1883270002}
+  - component: {fileID: 1883270004}
   m_Layer: 0
   m_Name: Bg
   m_TagString: Untagged
@@ -12272,6 +12273,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1883270000}
   m_CullTransparentMesh: 1
+--- !u!114 &1883270004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883270000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1883270002}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1574018753}
+        m_TargetAssemblyTypeName: UIGameMenu, Assembly-CSharp
+        m_MethodName: OnResumeButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1918896337
 GameObject:
   m_ObjectHideFlags: 0

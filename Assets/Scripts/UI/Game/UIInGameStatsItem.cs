@@ -10,10 +10,10 @@ public class UIInGameStatsItem : MonoBehaviour
 
     //local
     [HideInInspector] public UIInGameStats uiInGameStats;
-    [HideInInspector] public SO_Item thisItem;
+    [HideInInspector] public SO_GameItem thisItem;
 
     //main methods
-    public virtual void SetInfo(SO_Item item)
+    public virtual void SetInfo(SO_GameItem item)
     {
         thisItem = item;
         insideImage.sprite = item.ItemImage;

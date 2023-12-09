@@ -20,7 +20,7 @@ public class UIItem : MonoBehaviour
     protected int AmountOfClicks { get { return amountOfClicks; } set { amountOfClicks = value; } }
 
     //set
-    public virtual void SetInfo(SO_Item item)
+    public virtual void SetInfo(SO_GameItem item)
     {
         image.sprite = item.ItemImage;
         nameOfUpgrade.text = item.Name;

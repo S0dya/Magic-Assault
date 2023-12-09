@@ -11,11 +11,11 @@ public class UISpells : UIPanel
     [Header("Upgrades")]
     [SerializeField] UISpell[] uiSpells;
 
-    public List<SO_Item> allSpells;
+    public List<SO_GameItem> allSpells;
 
     //local
-    SO_Item[] curUsedSpells = new SO_Item[4];
-    SO_Item[] curCheckedSpells = new SO_Item[3];
+    SO_GameItem[] curUsedSpells = new SO_GameItem[4];
+    SO_GameItem[] curCheckedSpells = new SO_GameItem[3];
 
     void Awake()
     {
@@ -80,7 +80,7 @@ public class UISpells : UIPanel
     
     void SetSpell(int index)
     {
-        SO_Item newSpell = curCheckedSpells[index];
+        SO_GameItem newSpell = curCheckedSpells[index];
         int spellI = newSpell.spellI;
 
         allSpells.Add(curUsedSpells[spellI]);
@@ -92,7 +92,7 @@ public class UISpells : UIPanel
     //Button
     public void SkipButton()
     {
-        foreach (SO_Item spell in curCheckedSpells) allSpells.Add(spell);
+        foreach (SO_GameItem spell in curCheckedSpells) allSpells.Add(spell);
 
         CloseTabInGame();
     }

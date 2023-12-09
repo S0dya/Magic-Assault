@@ -11,7 +11,7 @@ public class UIInGameStatsUpgrade : UIInGameStatsItem
     //local 
     int curUpgradeAmount = 1;
 
-    public override void SetInfo(SO_Item upgradeItem)
+    public override void SetInfo(SO_GameItem upgradeItem)
     {
         base.SetInfo(upgradeItem);
 
