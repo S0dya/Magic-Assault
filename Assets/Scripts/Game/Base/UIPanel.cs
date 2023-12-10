@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 /// <summary>
-/// base script for UI interaction of Upgrades, Multipliers, Spells
+/// base script for UI interaction of Upgrades, Multipliers, Spells and etc.
 /// </summary>
 
 public class UIPanel : MonoBehaviour 
@@ -72,17 +73,16 @@ public class UIPanel : MonoBehaviour
     }
 
     //other methods
-    void MoveTab(float x, float y, float speed)
-    {
-        GameManager.I.MoveTransform(panelTransform, x, y, speed);
-    }
+    void MoveTab(float x, float y, float speed) => GameManager.I.MoveTransform(panelTransform, x, y, speed);
     void ToggleCGRaycast(bool val) => panelCG.blocksRaycasts = val;
 
     void ToggleTimeScale(bool val)
     {
         float floatVal = val ? 1 : 0;
+
         StartCoroutine(ToggleOnUICor(!val));
         Time.timeScale = floatVal;
+        
         UIInGame.I.ToggleJoystickVisibility(floatVal);
     }
 
@@ -94,4 +94,6 @@ public class UIPanel : MonoBehaviour
         drawManager.isOnUI = val;
         if (!val) drawManager.StopCreatingSpell();
     }
+
+    public void SetString(int val, TextMeshProUGUI text) => text.text = val.ToString();
 }

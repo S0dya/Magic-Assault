@@ -13,21 +13,11 @@ public class UIMultiplier : MonoBehaviour
     //local
     UIMultipliers uiMultipliers;
 
-    void Start()
-    {
-        uiMultipliers = GetComponentInParent<UIMultipliers>();
-    }
+    void Start() => uiMultipliers = GetComponentInParent<UIMultipliers>();
 
     //buttons 
-    public void IncreaseMultiplierButton(int index)
-    {
-        uiMultipliers.Increase(index);
-    }
-
-    public void DecreaseMultiplierButton(int index) 
-    {
-        uiMultipliers.Decrease(index);
-    }
+    public void IncreaseMultiplierButton(int index) => uiMultipliers.Increase(index);
+    public void DecreaseMultiplierButton(int index) => uiMultipliers.Decrease(index);
 
     public void SetMultiplierText(float val) => multiplierText.text = val.ToString();
 }

@@ -7,7 +7,8 @@ using TMPro;
 public class UIMainMenu : MonoBehaviour
 {
     [Header("Other scripts")]
-    [SerializeField] UIMainMenuPlay uiMainMenuPlay;
+    [SerializeField] UIMainMenuCharacterDescription characterDescription;
+    [SerializeField] UIMainMenuMapDescription mapDescription;
 
     [Header("Canvas groups")]
     [SerializeField] CanvasGroup pressToStartCG;
@@ -16,12 +17,16 @@ public class UIMainMenu : MonoBehaviour
     [Header("Money")]
     [SerializeField] TextMeshProUGUI moneyAmountText;
 
+    //local
+    bool mapDescriptionOpen;
+
     void Start()
     {
         SetMoneyText();
     }
 
     //buttons
+    //main menu
     public void OnPressToStart()
     {
         GameManager.I.Close(pressToStartCG, 0.25f);
@@ -30,7 +35,7 @@ public class UIMainMenu : MonoBehaviour
 
     public void OnPlayButton()
     {
-        uiMainMenuPlay.OpenTabInMenu();
+        characterDescription.OpenTabInMenu();
     }
 
     public void OnQuitButton()
@@ -48,8 +53,33 @@ public class UIMainMenu : MonoBehaviour
 
     }
 
+    //characters panel
+    public void OnConfirmCharacter()
+    {
+        mapDescription.OpenTabInMenu();
+        mapDescriptionOpen = true;
+    }
+
+    //maps panel
+    public void OnConfirmMap()
+    {
+        
+    }
+
+    public void OnBack()
+    {
+        if (mapDescriptionOpen)
+        {
+            mapDescription.CloseTabInMenu();
+            mapDescriptionOpen = false;
+        }
+        else
+        {
+            characterDescription.CloseTabInMenu();
+        }
+    }
+
     //main methods
-
-
+    
     public void SetMoneyText() => moneyAmountText.text = Settings.money.ToString();
 }

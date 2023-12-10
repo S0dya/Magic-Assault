@@ -88,7 +88,7 @@ public class UIMultipliers : UIPanel
     {
         curBonus = 4;
         SetPositive();
-        SetBonusText();
+        SetString(curBonus, bonusText);
 
         for (int i = 0; i < 4; i++)
         {
@@ -133,8 +133,6 @@ public class UIMultipliers : UIPanel
         bonusText.color = bonusColors[0];
     }
 
-    void SetBonusText() => bonusText.text = curBonus.ToString();
-
     //outside methods 
     public void Increase(int index)
     {
@@ -156,7 +154,7 @@ public class UIMultipliers : UIPanel
         curBonus += val;
 
         CheckBonus();
-        SetBonusText();
+        SetString(curBonus, bonusText);
         curMultipliers[index] -= val;
         multipliers[index].SetMultiplierText(curMultipliers[index]);
     }

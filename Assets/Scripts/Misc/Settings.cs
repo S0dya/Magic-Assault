@@ -5,13 +5,17 @@ using UnityEngine;
 public static class Settings 
 {
     //settings
-    public static bool isFloatingJoystick = true;
     public static bool firstTime;
-    public static bool isMusicOn;
+    public static bool firstTimeInGame;
+    //gameSettings
     public static bool showDamageNumbers = true;
     public static bool showBlood = true;
-
+    public static bool isFloatingJoystick = true;
     public static float[] musicStats = new float[2] { 0.5f, 0.5f };
+    //menuSettings
+    public static bool additionalParticles = true;
+    public static bool bordersTransparent = true;
+
 
     //menu
     public static int money;

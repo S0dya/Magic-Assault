@@ -16,12 +16,6 @@ public class UISettings : UIPanel
     [SerializeField] UISettingToggle uiSettingToggleFloatingJoystick;
     [SerializeField] UISettingToggle uiSettingToggleFixedJoystick;
 
-    void Awake()
-    {
-        StartEndX = new float[2] { Settings.width, 0 };
-        StartEndY = new float[2] { 0, 0 };
-    }
-
     //initializing
     protected override void Start()
     {
@@ -81,7 +75,7 @@ public class UISettings : UIPanel
         Settings.isFloatingJoystick = false;
     }
 
-    void ToggleSettingTwoOptions(UISettingToggle uiSettingToggleFirst, UISettingToggle uiSettingToggleSecond, bool toggle)
+    public void ToggleSettingTwoOptions(UISettingToggle uiSettingToggleFirst, UISettingToggle uiSettingToggleSecond, bool toggle)
     {
         uiSettingToggleFirst.Toggle(toggle);
         uiSettingToggleSecond.Toggle(!toggle);

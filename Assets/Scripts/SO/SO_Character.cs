@@ -8,6 +8,7 @@ public class SO_Character : SO_Item
     //main data
     [field: SerializeField] public int hp { get; set; }
     [field: SerializeField] public int mana { get; set; }
+    [field: SerializeField] public int shields { get; set; }
 
     [field: SerializeField] public int speed { get; set; }
 
@@ -19,12 +20,9 @@ public class SO_Character : SO_Item
 
     //fire 
     [field: SerializeField] public bool burningDealsDamage { get; set; }
-    [field: SerializeField] public float inLavaSpeed { get; set; }
 
     //water
     [field: SerializeField] public bool waterDealsDamage { get; set; }
-    [field: SerializeField] public float inWaterSpeed { get; set; }
 
-    //additional info 
-    [field: SerializeField] public bool canRestoreHp { get; set; }
+    [field: SerializeField] public int luck { get; set; }
 }
