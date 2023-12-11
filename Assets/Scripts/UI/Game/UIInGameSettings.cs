@@ -14,6 +14,14 @@ public class UIInGameSettings : UISettings
         StartEndY = new float[2] { 0, 0 };
     }
 
+    //initializing
+    protected override void Start()
+    {
+        base.Start();
+
+        SetSettings();
+    }
+
     //buttons
     //toggle with two options
     public override void OnChangeJoystickToFloating()

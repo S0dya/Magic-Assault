@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIUpgrades : UIPanel
+public class UIUpgrades : UIPanelGame
 {
     [Header("Other scripts")]
     [SerializeField] ActiveUpgrades activeUpgrades;
@@ -26,11 +26,11 @@ public class UIUpgrades : UIPanel
     }
 
     //panel
-    public override void OpenTabInGame()
+    public override void OpenTab()
     {
         SetUpgrades();
 
-        base.OpenTabInGame();
+        base.OpenTab();
     }
 
     //other methods
@@ -63,7 +63,7 @@ public class UIUpgrades : UIPanel
 
         for (int i = 0; i < 3; i++) if (i != index) allItems.Add(curUpgrades[i]);
 
-        CloseTabInGame();
+        CloseTab();
     }
 
     void SetUpgrade(int index)

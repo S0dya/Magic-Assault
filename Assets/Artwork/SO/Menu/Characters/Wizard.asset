@@ -17,16 +17,15 @@ MonoBehaviour:
   <ItemImage>k__BackingField: {fileID: 21300000, guid: aaa296775bce3ca4aa4b2396d720140e, type: 3}
   <hp>k__BackingField: 14
   <mana>k__BackingField: 51
+  <shields>k__BackingField: 0
   <speed>k__BackingField: 4
   <startingSpells>k__BackingField:
-  - {fileID: 11400000, guid: a8a4dacb5596d5349b7df74d83c2ebcc, type: 2}
-  - {fileID: 11400000, guid: 6f5ad60313b674a418fda36528344551, type: 2}
-  - {fileID: 11400000, guid: 606dcd3007f36d24789bff1ee12a7916, type: 2}
+  - {fileID: 11400000, guid: f113c568f45130948970923f5fc87922, type: 2}
   - {fileID: 11400000, guid: 919bd0ff8276afd49988fad67850a917, type: 2}
+  - {fileID: 11400000, guid: 727cd3dcf98304149bb317e30707a886, type: 2}
+  - {fileID: 11400000, guid: 606dcd3007f36d24789bff1ee12a7916, type: 2}
   <multipliers>k__BackingField: 01000000010000000100000001000000
   <damageMultipliers>k__BackingField: 01000000010000000100000001000000
   <burningDealsDamage>k__BackingField: 1
-  <inLavaSpeed>k__BackingField: 0.8
   <waterDealsDamage>k__BackingField: 0
-  <inWaterSpeed>k__BackingField: 0.6
-  <canRestoreHp>k__BackingField: 0
+  <luck>k__BackingField: 0

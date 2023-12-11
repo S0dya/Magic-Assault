@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.Text;
 using TMPro;
 
-public class UIGameMenu : UIPanel
+public class UIGameMenu : UIPanelGame
 {
     [Header("Other scripts")]
     [SerializeField] UIInGameSettings uiSettings;
@@ -50,13 +50,13 @@ public class UIGameMenu : UIPanel
     {
         SetPlayerStats();
 
-        OpenTabInGame();
+        OpenTab();
     }
     public void OnResumeButton()
     {
         CloseCurOpenedTab();
         
-        CloseTabInGame();
+        CloseTab();
 
         uiInGameStats.StopHighlight();// close highlight stats highlight if its on
     }
@@ -76,7 +76,7 @@ public class UIGameMenu : UIPanel
         {
             CloseCurOpenedTab();
             isSettingsOpen = true;
-            uiSettings.OpenTabInMenu();
+            uiSettings.OpenTab();
         }
 
     }
@@ -91,7 +91,7 @@ public class UIGameMenu : UIPanel
         {
             CloseCurOpenedTab();
             isStatsOpen = true;
-            uiInGameStats.OpenTabInMenu();
+            uiInGameStats.OpenTab();
         }
     }
 
@@ -139,13 +139,13 @@ public class UIGameMenu : UIPanel
     //other methods
     void CloseSettings()
     {
-        uiSettings.CloseTabInMenu();
+        uiSettings.CloseTab();
         isSettingsOpen = false;
     }
 
     void CloseStats()
     {
-        uiInGameStats.CloseTabInMenu();
+        uiInGameStats.CloseTab();
         isStatsOpen= false;
     }
 }

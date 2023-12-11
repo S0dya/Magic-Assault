@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UISettings : UIPanel
+public class UISettings : UIPanelMenu
 {
     [Header("Music")]
-    [SerializeField] Slider[] soundSliders;
+    public Slider[] soundSliders;
 
     [Header("Toggles")]
     [SerializeField] UISettingToggle uiSettingToggleDamageNumbers;
@@ -16,21 +16,16 @@ public class UISettings : UIPanel
     [SerializeField] UISettingToggle uiSettingToggleFloatingJoystick;
     [SerializeField] UISettingToggle uiSettingToggleFixedJoystick;
 
-    //initializing
-    protected override void Start()
-    {
-        base.Start();
-
-        SetSettings();
-    }
-
     protected virtual void SetSettings()//set all current settings 
     {
-        //for (int i = 0; i < soundSliders.Length; i++) soundSliders[i].value = Settings.musicStats[i];
+        //sliders
+        for (int i = 0; i < soundSliders.Length; i++) soundSliders[i].value = Settings.musicStats[i];
 
+        //toggles
         ToggleSetting(uiSettingToggleDamageNumbers, Settings.showDamageNumbers);
         ToggleSetting(uiSettingToggleShowBlood, Settings.showBlood);
 
+        //two options
         ToggleSettingTwoOptions(uiSettingToggleFloatingJoystick, uiSettingToggleFixedJoystick, Settings.isFloatingJoystick);
     }
 
@@ -42,27 +37,27 @@ public class UISettings : UIPanel
     }
 
     //toggles
-    public void OnToggleDamageNumbers()
+    public virtual void OnToggleDamageNumbers()
     {
         bool toggle = Settings.showDamageNumbers = !Settings.showDamageNumbers;
         ToggleSetting(uiSettingToggleDamageNumbers, toggle);
     }
 
-    public void OnToggleShowBlood()
+    public virtual void OnToggleShowBlood()
     {
         bool toggle = Settings.showBlood = !Settings.showBlood;
         ToggleSetting(uiSettingToggleShowBlood, toggle);
     }
 
     //other methods
-    void ToggleSetting(UISettingToggle uiSettingToggle, bool toggle) => uiSettingToggle.Toggle(toggle);
+    public void ToggleSetting(UISettingToggle uiSettingToggle, bool toggle) => uiSettingToggle.Toggle(toggle);
 
     //2 buttons option
     public virtual void OnChangeJoystickToFloating() 
     {
         if (Settings.isFloatingJoystick) return;
 
-        ToggleSettingTwoOptions(uiSettingToggleFloatingJoystick, uiSettingToggleFixedJoystick, true);
+        ToggleSettingTwoOptions(uiSettingToggleFloatingJoystick, uiSettingToggleFixedJoystick);
 
         Settings.isFloatingJoystick = true;
     }
@@ -70,11 +65,17 @@ public class UISettings : UIPanel
     {
         if (!Settings.isFloatingJoystick) return;
 
-        ToggleSettingTwoOptions(uiSettingToggleFixedJoystick, uiSettingToggleFloatingJoystick, true);
+        ToggleSettingTwoOptions(uiSettingToggleFixedJoystick, uiSettingToggleFloatingJoystick);
 
         Settings.isFloatingJoystick = false;
     }
 
+    //other methods
+    public void ToggleSettingTwoOptions(UISettingToggle uiSettingToggleFirst, UISettingToggle uiSettingToggleSecond)
+    {
+        uiSettingToggleFirst.Toggle(true);
+        uiSettingToggleSecond.Toggle(false);
+    }
     public void ToggleSettingTwoOptions(UISettingToggle uiSettingToggleFirst, UISettingToggle uiSettingToggleSecond, bool toggle)
     {
         uiSettingToggleFirst.Toggle(toggle);

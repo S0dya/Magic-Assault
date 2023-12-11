@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIMainMenuCharacterDescription : UIPanel
+public class UIMainMenuCharacterDescription : UIPanelMenu
 {
     [Header("Characters")]
     [SerializeField] SO_Character[] characters;

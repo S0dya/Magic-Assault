@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3183732645720623460}
   - component: {fileID: 3183732645720623462}
   - component: {fileID: 3183732645720623461}
+  - component: {fileID: 1076467913768366681}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -76,6 +77,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1076467913768366681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3183732645720623459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 32
+  m_PreferredHeight: 32
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &3183732645959352800
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +190,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -263,8 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f25d1fc72871c4e97a1324ac81a231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 3183732645720623461}
-  name: {fileID: 3183732645959352802}
+  spellImage: {fileID: 3183732645720623461}
+  spellName: {fileID: 3183732645959352802}
 --- !u!114 &3183732646779826464
 MonoBehaviour:
   m_ObjectHideFlags: 0

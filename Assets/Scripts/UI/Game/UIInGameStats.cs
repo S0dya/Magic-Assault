@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIInGameStats : UIPanel
+public class UIInGameStats : UIPanelMenu
 {
     [Header("Prefabs")]
     [SerializeField] GameObject lineObject;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIMainMenuMapDescription : UIPanel
+public class UIMainMenuMapDescription : UIPanelMenu
 {
     [Header("Maps")]
     [SerializeField] SO_Map[] maps;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIMultipliers : UIPanel
+public class UIMultipliers : UIPanelGame
 {
     [Header("Other scripts")]
     [SerializeField] UIGameMenu uiGameMenu;
@@ -60,16 +60,16 @@ public class UIMultipliers : UIPanel
     }
 
     //panel 
-    public override void OpenTabInGame()
+    public override void OpenTab()
     {
         SetMultipliers();
 
-        base.OpenTabInGame();
+        base.OpenTab();
     }
 
-    public override void CloseTabInGame()
+    public override void CloseTab()
     {
-        base.CloseTabInGame();
+        base.CloseTab();
 
         for (int i = 0; i < 4; i++)
         {
@@ -81,7 +81,7 @@ public class UIMultipliers : UIPanel
     }
 
     //buttons 
-    public void CloseTabButton() => CloseTabInGame();
+    public void CloseTabButton() => CloseTab();
 
     //main methods
     void SetMultipliers()

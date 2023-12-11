@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UISpells : UIPanel
+public class UISpells : UIPanelGame
 {
     [Header("Other scripts")]
     [SerializeField] SpellsManager spellsManager;
@@ -39,11 +39,11 @@ public class UISpells : UIPanel
     }
 
     //panel
-    public override void OpenTabInGame()
+    public override void OpenTab()
     {
         SetSpells();
 
-        base.OpenTabInGame();
+        base.OpenTab();
     }
 
     //main methods
@@ -75,7 +75,7 @@ public class UISpells : UIPanel
 
         for (int i = 0; i < 3; i++) if (i != index) allSpells.Add(curCheckedSpells[i]);
 
-        CloseTabInGame();
+        CloseTab();
     }
     
     void SetSpell(int index)
@@ -94,6 +94,6 @@ public class UISpells : UIPanel
     {
         foreach (SO_GameItem spell in curCheckedSpells) allSpells.Add(spell);
 
-        CloseTabInGame();
+        CloseTab();
     }
 }

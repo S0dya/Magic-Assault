@@ -10,12 +10,19 @@ public class UIMainMenu : MonoBehaviour
     [SerializeField] UIMainMenuCharacterDescription characterDescription;
     [SerializeField] UIMainMenuMapDescription mapDescription;
 
+    [SerializeField] UIMainMenuSettings uiMainMenuSettings;
+
     [Header("Canvas groups")]
     [SerializeField] CanvasGroup pressToStartCG;
     [SerializeField] CanvasGroup mainMenuCG;
 
+    [Header("Buttons objects")]
+    [SerializeField] GameObject mainButtonsObj;
+    [SerializeField] GameObject backButtonObj;
+
     [Header("Money")]
     [SerializeField] TextMeshProUGUI moneyAmountText;
+
 
     //local
     bool mapDescriptionOpen;
@@ -35,7 +42,8 @@ public class UIMainMenu : MonoBehaviour
 
     public void OnPlayButton()
     {
-        characterDescription.OpenTabInMenu();
+        characterDescription.OpenTab();
+        ToggleMainMenuHeaderButtons(false);
     }
 
     public void OnQuitButton()
@@ -45,7 +53,7 @@ public class UIMainMenu : MonoBehaviour
 
     public void OnOptionsButton()
     {
-
+        uiMainMenuSettings.OpenTab();
     }
 
     public void OnStatisticsButton()
@@ -56,7 +64,7 @@ public class UIMainMenu : MonoBehaviour
     //characters panel
     public void OnConfirmCharacter()
     {
-        mapDescription.OpenTabInMenu();
+        mapDescription.OpenTab();
         mapDescriptionOpen = true;
     }
 
@@ -70,16 +78,24 @@ public class UIMainMenu : MonoBehaviour
     {
         if (mapDescriptionOpen)
         {
-            mapDescription.CloseTabInMenu();
+            mapDescription.CloseTab();
             mapDescriptionOpen = false;
         }
         else
         {
-            characterDescription.CloseTabInMenu();
+            characterDescription.CloseTab();
+            ToggleMainMenuHeaderButtons(true);
         }
     }
 
     //main methods
     
     public void SetMoneyText() => moneyAmountText.text = Settings.money.ToString();
+
+    //other methods
+    void ToggleMainMenuHeaderButtons(bool val)
+    {
+        mainButtonsObj.SetActive(val);
+        backButtonObj.SetActive(!val);
+    }
 }

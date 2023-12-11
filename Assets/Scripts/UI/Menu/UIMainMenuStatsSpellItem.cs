@@ -6,12 +6,12 @@ using TMPro;
 
 public class UIMainMenuStatsSpellItem : MonoBehaviour
 {
-    [SerializeField] Image image;
-    [SerializeField] TextMeshProUGUI name;
+    [SerializeField] Image spellImage;
+    [SerializeField] TextMeshProUGUI spellName;
 
     public void SetInfo(SO_GameItem item)
     {
-        image.sprite = item.ItemImage;
-        name.text = item.Name;
+        spellImage.sprite = item.ItemImage;
+        spellName.text = item.Name;
     }
 }
