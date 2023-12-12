@@ -2,24 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class Settings 
+public static class Settings
 {
     //settings
     public static bool firstTime;
     public static bool firstTimeInGame;
-    //gameSettings
+
+    public static bool[] unlockedCharacters = new bool[5] { true, false, true, false, false};
+    public static int[] charactersPrices = new int[5] { 0, 200, 300, 400, 500, };
+
+    public static bool[] unlockedMaps = new bool[5] { true, false, false, false, false };
+
+    //gameOptions
     public static bool showDamageNumbers = true;
     public static bool showBlood = true;
     public static bool isFloatingJoystick = true;
     public static float[] musicStats = new float[2] { 0.5f, 0.5f };
-    //menuSettings
+    //menuOptions
     public static bool additionalParticles = true;
     public static bool bordersTransparent = true;
     public static bool isQualityMedium = true;
 
-
     //menu
-    public static int money;
+    public static int money = 5000;
 
     public static float width = Screen.width;
     public static float height = Screen.height;

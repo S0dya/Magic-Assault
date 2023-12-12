@@ -22,6 +22,10 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     [SerializeField] Transform enemyParent;
     [SerializeField] Transform expParent;
 
+    [Header("Player characters")]
+    [SerializeField] GameObject[] playerCharacters;
+    [SerializeField] Transform playerParent;
+
     //local
     Transform playerTransform;
 
@@ -41,7 +45,7 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     {
         base.Awake();
 
-        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        playerTransform = Instantiate(playerCharacters[GameManager.I.characterI], playerParent).GetComponent<Transform>(); 
 
         worldHeight = Settings.worldHeight;
         worldWidth = Settings.worldWidth;

@@ -6,8 +6,16 @@ using TMPro;
 
 public class UIMainMenuCharacterDescription : UIPanelMenu
 {
+    [Header("Other scripts")]
+    [SerializeField] UIMainMenu uiMainMenu;
+
     [Header("Characters")]
     [SerializeField] SO_Character[] characters;
+
+    [SerializeField] Image[] charactersImages;
+
+    public Sprite[] unlockedCharacters;
+    [SerializeField] Sprite[] lockedCharacters;
 
     [Header("Stats panel")]
     //first line
@@ -28,9 +36,14 @@ public class UIMainMenuCharacterDescription : UIPanelMenu
     [SerializeField] TextMeshProUGUI luckText;
 
     [Header("character description")]
-    [SerializeField] Image characterInGameImage;
+    [SerializeField] Image[] characterInGameImages;
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] TextMeshProUGUI descriptionText;
+
+    [Header("Additional part")]
+    [SerializeField] GameObject buyCharacterPanel;
+    [SerializeField] CanvasGroup confirmButtonCG;
+    [SerializeField] TextMeshProUGUI priceText;
 
     //local
     [HideInInspector] public int curCharacterI;
@@ -45,19 +58,46 @@ public class UIMainMenuCharacterDescription : UIPanelMenu
     {
         base.Start();
 
+        for (int i = 0; i < 5; i++)
+        {
+            charactersImages[i].sprite = (Settings.unlockedCharacters[i] ? unlockedCharacters[i] : lockedCharacters[i]);
+        }
+
         OnCharacterClicked(0);
     }
 
     //buttons
     public void OnCharacterClicked(int i)
     {
-        curCharacterI = i;
+        //switch images of characters since images of different size are used
+        characterInGameImages[curCharacterI].enabled = false;
 
-        SetInfo(characters[i]);
+        curCharacterI = i;
+        characterInGameImages[curCharacterI].enabled = true;
+
+        SetInfo(characters[curCharacterI]);
+
+        ToggleBuyCharacterPanel(!Settings.unlockedCharacters[curCharacterI]);
+        SetString(Settings.charactersPrices[curCharacterI], priceText);
+    }
+
+    public void OnUnlock()//buy character
+    {
+        int curPrice = Settings.charactersPrices[curCharacterI];
+        if (Settings.money >= curPrice)// turn off buying tab, decrease money amount, set character as unlocked in settings and switch their image
+        {
+            Settings.money -= curPrice;
+            uiMainMenu.SetMoneyText();
+
+            Settings.unlockedCharacters[curCharacterI] = true;
+            charactersImages[curCharacterI].sprite = unlockedCharacters[curCharacterI];
+
+            ToggleBuyCharacterPanel(false);
+        }
     }
 
     //main methods
-    void SetInfo(SO_Character item)
+    void SetInfo(SO_Character item)//set all characters statistics 
     {
         SetString(item.hp, hpText);
         SetString(item.mana, manaText);
@@ -76,8 +116,15 @@ public class UIMainMenuCharacterDescription : UIPanelMenu
         waterDealsDamageCheck.enabled = item.waterDealsDamage;
         SetString(item.luck, luckText);
 
-        characterInGameImage.sprite = item.ItemImage;
         nameText.text = item.Name;
         descriptionText.text = item.Description;
+    }
+
+    //other methods
+    void ToggleBuyCharacterPanel(bool toggle)
+    {
+        buyCharacterPanel.SetActive(toggle);
+
+        confirmButtonCG.interactable = !toggle;
     }
 }

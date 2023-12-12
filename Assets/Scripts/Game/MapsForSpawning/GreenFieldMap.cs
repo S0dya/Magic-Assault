@@ -75,7 +75,7 @@ public class GreenFieldMap : MonoBehaviour
         while (totalTime > 0)// iterate while there is time
         {
             levelManager.SpawnEnemy(enemies[Random.Range(0, n)]);
-            
+
             totalTime -= time;
 
             yield return new WaitForSeconds(time);

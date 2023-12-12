@@ -29,7 +29,8 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
     [HideInInspector] public float[] circleSpellsAmountOnShoot = new float[1] { 10 };
     [HideInInspector] public float[] circleReloadTime = new float[1] { 0.01f };
 
-    public float distanceBetweenSpells;
+    //other
+    float distanceBetweenSpells = 10;
 
     protected override void Awake()
     {
@@ -43,9 +44,9 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
     {
         //EnableDotInNearestEnemy(0);
         //EnableDotInRandomEnemy(1);
-        EnableDotInRandomPosition(2);
-        EnableDotInMovementDirection(3);
-        EnableCircleInRandomPosition(3);
+        //EnableDotInRandomPosition(2);
+        //EnableDotInMovementDirection(3);
+        //EnableCircleInRandomPosition(3);
     }
 
     //enabling active upgrades

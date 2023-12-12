@@ -5,7 +5,6 @@ using UnityEngine;
 public class UIUpgrades : UIPanelGame
 {
     [Header("Other scripts")]
-    [SerializeField] ActiveUpgrades activeUpgrades;
     [SerializeField] PassiveUpgrades passiveUpgrades;
     [SerializeField] UIInGameStats uiInGameStats;
 
@@ -15,6 +14,7 @@ public class UIUpgrades : UIPanelGame
     [SerializeField] List<SO_GameItem> allItems = new List<SO_GameItem>();
 
     //local
+    ActiveUpgrades activeUpgrades;
 
     //upgrades
     SO_GameItem[] curUpgrades = new SO_GameItem[3];
@@ -23,6 +23,13 @@ public class UIUpgrades : UIPanelGame
     {
         StartEndX = new float[2] { 0, 0 };
         StartEndY = new float[2] { -Settings.height, 0 };
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+
+        activeUpgrades = GameObject.FindGameObjectWithTag("Player").GetComponent<ActiveUpgrades>();
     }
 
     //panel

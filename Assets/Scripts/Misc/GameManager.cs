@@ -7,6 +7,10 @@ using TMPro;
 [DefaultExecutionOrder(-1)]
 public class GameManager : SingletonMonobehaviour<GameManager>
 {
+    //local
+    [HideInInspector] public Sprite characterSprite;
+    [HideInInspector] public int characterI;
+
     protected override void Awake()
     {
         base.Awake();
@@ -58,6 +62,13 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     }
 
     public void SetUseEstimatedTime(LTDescr tween) => tween.setUseEstimatedTime(true);
+
+    //other methods
+    public void SetCharacterVars(Sprite sprite, int i)
+    {
+        characterSprite = sprite;
+        characterI = i;
+    }
 
     //save/load
     void OnApplicationPause(bool pauseStatus)

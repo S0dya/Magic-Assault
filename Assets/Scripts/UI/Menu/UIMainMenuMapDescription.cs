@@ -23,6 +23,10 @@ public class UIMainMenuMapDescription : UIPanelMenu
     [SerializeField] TextMeshProUGUI luckBonusText;
     [SerializeField] TextMeshProUGUI expBonusText;
 
+    [Header("Locked logic")]
+    [SerializeField] CanvasGroup startGameButtonCG;
+    [SerializeField] Sprite lockedSprite;
+
     //local
     [HideInInspector] public int curMapI;
 
@@ -36,7 +40,7 @@ public class UIMainMenuMapDescription : UIPanelMenu
     {
         base.Start();
 
-        OnMapClicked(0);
+        OnMapClicked(0); //open wizard's statistics
     }
 
     //buttons
@@ -44,7 +48,10 @@ public class UIMainMenuMapDescription : UIPanelMenu
     {
         curMapI = i;
 
-        SetInfo(maps[i]);
+        bool isUnlocked = startGameButtonCG.interactable = Settings.unlockedMaps[curMapI];
+
+        if (isUnlocked) SetInfo(maps[curMapI]);
+        else SetEmpty();
     }
 
     //main methods
@@ -61,5 +68,12 @@ public class UIMainMenuMapDescription : UIPanelMenu
         SetString(item.goldBonus, goldBonusText);
         SetString(item.luckBonus, luckBonusText);
         SetString(item.expBonus, expBonusText);
+    }
+
+    void SetEmpty()
+    {
+        mapImage.sprite = lockedSprite;
+        nameText.text = descriptionText.text = timeLimitText.text = clockSpeedText.text = 
+            moveSpeedText.text = goldBonusText.text = luckBonusText.text = expBonusText.text = "--";
     }
 }

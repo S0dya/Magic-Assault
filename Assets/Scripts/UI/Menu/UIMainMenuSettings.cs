@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+    /// <summary>
+    /// script sets several settings at once, some settings are already described in UISettings script
+    /// </summary>
+
 public class UIMainMenuSettings : UISettings
 {
     [Header("Tabs")]
@@ -43,10 +47,10 @@ public class UIMainMenuSettings : UISettings
         base.Start();
 
         SetSettings();
-        tabs[0].OpenTab();
+        tabs[0].OpenTab();//open favourites tab 
     }
 
-    protected override void SetSettings()
+    protected override void SetSettings()//set settings at start of the game
     {
         base.SetSettings();
 
@@ -65,7 +69,7 @@ public class UIMainMenuSettings : UISettings
     }
 
     //buttons
-    public void OnTabIcon(int i)
+    public void OnTabIcon(int i)//close last tab and open new one if pressed tab isnt alr opened
     {
         if (curTabOpened == i) return;
 
@@ -83,7 +87,7 @@ public class UIMainMenuSettings : UISettings
     }
 
     //sliders
-    public void OnSoundChangeFirst(int index)//a bit of spaghetti if youre hungry
+    public void OnSoundChangeFirst(int index)//(a bit of spaghetti if youre hungry)
     {
         OnSoundChange(index);
 

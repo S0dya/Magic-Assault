@@ -34,13 +34,13 @@ public class UIMainMenu : MonoBehaviour
 
     //buttons
     //main menu
-    public void OnPressToStart()
+    public void OnPressToStart()//switch to main menu panel
     {
         GameManager.I.Close(pressToStartCG, 0.25f);
         GameManager.I.Open(mainMenuCG, 0.75f);
     }
 
-    public void OnPlayButton()
+    public void OnPlayButton()//open chossing character and map
     {
         characterDescription.OpenTab();
         ToggleMainMenuHeaderButtons(false);
@@ -71,7 +71,10 @@ public class UIMainMenu : MonoBehaviour
     //maps panel
     public void OnConfirmMap()
     {
-        
+        int i = characterDescription.curCharacterI;
+        GameManager.I.SetCharacterVars(characterDescription.unlockedCharacters[i], i);//set value that will be used in LevelManager script in another scene
+
+        LoadingScene.I.OpenScene(mapDescription.curMapI + 2);//add 2, since first 2 scenes are persistant and menu
     }
 
     public void OnBack()
@@ -89,7 +92,6 @@ public class UIMainMenu : MonoBehaviour
     }
 
     //main methods
-    
     public void SetMoneyText() => moneyAmountText.text = Settings.money.ToString();
 
     //other methods

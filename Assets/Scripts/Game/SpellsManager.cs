@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 {
-    [Header("Serialize fields")]
-    [SerializeField] Player player;
-    Transform playerTransform;
+    [Header("Other scripts")]
     [SerializeField] DrawManager drawManager;
 
     [SerializeField] Transform effectsParent;
@@ -26,6 +24,9 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     [SerializeField] GameObject[] fadeEffects;
 
     //local
+    Player player;
+    Transform playerTransform;
+
     System.Action<Vector2> handleArrow;
 
     [HideInInspector] public float size;
@@ -35,18 +36,14 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     [HideInInspector] public int[] curTypeOfSpell;// 0 - dot 1 - circle 2 - line 3 - arrow
     float[] curEffectManaUsage = new float[4];
 
-    protected override void Awake()
+    void Start()
     {
-        base.Awake();
-
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         playerTransform = player.transform;
 
         //set values of current spells and mana usage
         curTypeOfSpell = Settings.startingSpells;
-    }
-
-    void Start()
-    {
+        
         curEffectManaUsage = Settings.startingSpellsManaUsage;
     }
 

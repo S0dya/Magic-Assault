@@ -271,10 +271,6 @@ MonoBehaviour:
   movementSpeed: 1
   pushMultiplier: 4
   averageTimeOfBurning: 0
-  canRestoreHp: 0
-  amountOfTimeBeforeRestoringHp: 0
-  amountOfTimeForRestoringHp: 0
-  amountOfRestoringHp: 0
   elementalDamageMultipliers:
   - 0.5
   - 2
@@ -299,6 +295,7 @@ MonoBehaviour:
   directionOfMovement: {x: 0, y: 0}
   curHp: 0
   isLookingOnRight: 0
+  isBurning: 0
   isPushed: 0
   isStunned: 0
   speedOnTriggerWithPlayer: 0.5
@@ -354,12 +351,12 @@ SpriteRenderer:
   m_SortingLayerID: 2040444395
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2063692474, guid: 20f4e0e8f7caad24da52f53e95c51dc8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2b57b52e4f640fb48bba3e5ab95bf661, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.5, y: 1}
+  m_Size: {x: 0.4, y: 0.51}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -419,8 +416,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.73333335, y: 0.8}
-    newSize: {x: 0.5, y: 1}
+    oldSize: {x: 0.4, y: 0.51}
+    newSize: {x: 0.4, y: 0.51}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

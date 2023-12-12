@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: asd
   <Description>k__BackingField: 
-  <ItemImage>k__BackingField: {fileID: 21300000, guid: aaa296775bce3ca4aa4b2396d720140e, type: 3}
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: d34d45797eab440489b5607a7d281c31, type: 3}
   <hp>k__BackingField: 14
   <mana>k__BackingField: 51
   <shields>k__BackingField: 0

@@ -9,84 +9,64 @@ using System.Linq;
 
 public class LoadingScene : SingletonMonobehaviour<LoadingScene>
 {
-    [SerializeField] GameObject LoadingScreen;
-    [SerializeField] Image LoadingBarFill;
+    [SerializeField] GameObject loadingScreen;
+    [SerializeField] Image loadingBarFill;
 
     protected override void Awake()
     {
         base.Awake();
 
-        StartCoroutine(LoadGame());
+        //StartCoroutine(LoadMenu());
     }
 
-    public IEnumerator LoadGame()
+    //outside methods
+    public void OpenMenu(int sceneToClose)
+    {
+        SceneManager.UnloadSceneAsync(sceneToClose);
+        StartCoroutine(LoadMenu());
+    }
+
+    public void OpenScene(int sceneToOpen)
+    {
+        StartCoroutine(LoadGame(sceneToOpen));
+    }
+
+    //main cors
+    IEnumerator LoadMenu()
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
 
-        LoadingScreen.SetActive(true);
+        ToggleLoadingScreen(true);
 
         while (!operation.isDone)
         {
-            float progression = Mathf.Clamp01(operation.progress / 0.9f);
-
-            LoadingBarFill.fillAmount = progression;
+            SetFillAmount(operation.progress);
 
             yield return null;
         }
 
-        LoadingScreen.SetActive(false);
+        ToggleLoadingScreen(false);
     }
 
-    public IEnumerator LoadMenuAsync(int sceneToClose)
+    IEnumerator LoadGame(int sceneToOpen)
     {
-        AsyncOperation unloadOperation = SceneManager.UnloadSceneAsync(sceneToClose);
-        AsyncOperation operation = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(1);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneToOpen, LoadSceneMode.Additive);
 
-        LoadingScreen.SetActive(true);
-
-        /*
-        else if (sceneToClose > 1)
-        {
-            AudioManager.Instance.ToggleMusicRain(false);
-        }
-        */
+        ToggleLoadingScreen(true);
 
         while (!operation.isDone)
         {
-            float progression = Mathf.Clamp01(operation.progress / 0.9f);
-
-            LoadingBarFill.fillAmount = progression;
+            SetFillAmount(operation.progress);
 
             yield return null;
         }
 
-        LoadingScreen.SetActive(false);
+        ToggleLoadingScreen(false);
     }
 
-    public IEnumerator LoadSceneAsync(int sceneId, int sceneToClose)
-    {
-        AsyncOperation unloadOperation = SceneManager.UnloadSceneAsync(sceneToClose);
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId, LoadSceneMode.Additive);
-
-        /*
-        else if (sceneToClose > 1)
-        {
-            AudioManager.Instance.ToggleMusicRain(false);
-        }
-        */
-
-        LoadingScreen.SetActive(true);
-
-        while (!unloadOperation.isDone)
-        {
-            yield return null;
-        }
-
-        while (!operation.isDone)
-        {
-            float progression = Mathf.Clamp01(operation.progress / 0.9f);
-            LoadingBarFill.fillAmount = progression;
-            yield return null;
-        }
-    }
+    //other methods
+    void ToggleLoadingScreen(bool toggle) => loadingScreen.SetActive(toggle);
+    
+    void SetFillAmount(float progress) => loadingBarFill.fillAmount = Mathf.Clamp01(progress / 0.9f);
 }

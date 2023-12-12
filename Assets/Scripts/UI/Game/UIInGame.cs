@@ -63,16 +63,11 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     //cor
     Coroutine timerCor;
 
-    protected override void Awake()
-    {
-        base.Awake();
-
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        SetJoystick();
-    }
-
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        SetJoystick();
+
         StartCoroutine(TImerCor());
     }
 
@@ -239,9 +234,29 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
         textTmp.color = color;
 
         //move text up and destroy on complete
-        LeanTween.moveLocalY(textObj, textObj.transform.localPosition.y + 1.5f, 0.3f).setEase(LeanTweenType.easeOutQuad).setOnComplete(() =>
+        StartCoroutine(MoveTextCor(textObj));
+    }
+
+    IEnumerator MoveTextCor(GameObject textObj)
+    {
+        Transform textTransform = textObj.transform;
+        Vector2 textPos = textTransform.position;
+        float x = textPos.x;
+        float y = textPos.y;
+
+        float endValLimit = textPos.y + 2;
+        float endVal = endValLimit + 2;
+
+        while (textTransform.position.y < endValLimit)
         {
-            Destroy(textObj);
-        });
+            y = Mathf.Lerp(y, endVal, 0.5f * Time.deltaTime);
+            textTransform.position = new Vector2(x, y);
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.2f);
+
+        Destroy(textObj);
     }
 }

@@ -9,7 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/PersistantScene.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
   - enabled: 1
-    path: Assets/Scenes/Game.unity
+    path: Assets/Scenes/Menu.unity
+    guid: 714f6c9a504c1bb458206f2a15e3f381
+  - enabled: 1
+    path: Assets/Scenes/GreenField.unity
     guid: 32ddb8cfaa99453438903865c182c71b
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: 522920f966045434f976ac0054d6e918, type: 2}
