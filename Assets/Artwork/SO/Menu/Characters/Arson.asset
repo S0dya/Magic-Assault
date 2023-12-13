@@ -12,20 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8e9e867e7f8ec4bbc11156c99d4edc, type: 3}
   m_Name: Arson
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Arson
-  <Description>k__BackingField: 
+  <Name>k__BackingField: Ember
+  <Description>k__BackingField: Ember, the arson. A fiery teen driven by love and
+    duty, emerged as the Fire Guardian. Her flames blazed with an intensity unmatched,
+    symbolizing the fiery spirit of Eldoria's defenders. To protect her beloved ones,
+    she wielded the power of fire to turn the tide against the encroaching Void.
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 45711493c5e79814c8aecd8fedb1ebcf, type: 3}
-  <hp>k__BackingField: 14
-  <mana>k__BackingField: 51
+  <hp>k__BackingField: 150
+  <mana>k__BackingField: 125
   <shields>k__BackingField: 0
-  <speed>k__BackingField: 4
+  <speed>k__BackingField: 3.75
   <startingSpells>k__BackingField:
-  - {fileID: 11400000, guid: f113c568f45130948970923f5fc87922, type: 2}
-  - {fileID: 11400000, guid: 919bd0ff8276afd49988fad67850a917, type: 2}
+  - {fileID: 11400000, guid: be332cef0670a634cac526a0071363d1, type: 2}
+  - {fileID: 11400000, guid: 6f5ad60313b674a418fda36528344551, type: 2}
   - {fileID: 11400000, guid: 727cd3dcf98304149bb317e30707a886, type: 2}
-  - {fileID: 11400000, guid: 606dcd3007f36d24789bff1ee12a7916, type: 2}
-  <multipliers>k__BackingField: 01000000010000000100000001000000
-  <damageMultipliers>k__BackingField: 01000000010000000100000001000000
+  - {fileID: 11400000, guid: 9563e64a20a90504b877c094f607f95a, type: 2}
+  <damageMultipliers>k__BackingField: 14000000050000000800000007000000
+  <weaknessMultipliers>k__BackingField:
+  - 0.5
+  - 1.5
+  - 1.25
+  - 1
   <burningDealsDamage>k__BackingField: 1
   <waterDealsDamage>k__BackingField: 0
   <luck>k__BackingField: 0
+  <floatDamageMultipliers>k__BackingField:
+  - 3.1000001
+  - 0.4
+  - 0.4
+  - 0.4
+  <minDamageMultipliers>k__BackingField:
+  - 1.8
+  - 0.4
+  - 0.4
+  - 0.4
+  <startingSpellsIndexes>k__BackingField: 00000000000000000000000002000000

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Text;
 using TMPro;
@@ -33,6 +34,8 @@ public class UIGameMenu : UIPanelGame
 
     void Awake()
     {
+        Time.timeScale = 1;
+
         StartEndX = new float[2] { 0, 0 };
         StartEndY = new float[2] { Settings.height, 0 };
     }
@@ -68,7 +71,7 @@ public class UIGameMenu : UIPanelGame
 
     public void OnQuitButton()
     {
-
+        LoadingScene.I.OpenMenu();
     }
 
     public void OnSettingsButton()

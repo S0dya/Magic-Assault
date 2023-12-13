@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -7098866928731414002}
   m_Layer: 9
   m_Name: WindLineEffect
-  m_TagString: Fire
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   worksForEnemy: 1
   size: 0
   rotation: 0
-  lifeTime: 3.5
+  lifeTime: 2.5
   direction: {x: 0, y: 0}
   speed: 0
   damage: -2.5
@@ -1516,7 +1516,7 @@ ParticleSystem:
     tilesY: 1
     animationType: 0
     rowIndex: 0
-    cycles: 1.5
+    cycles: 4
     uvChannelMask: -1
     rowMode: 1
     sprites:

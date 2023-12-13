@@ -200,7 +200,7 @@ MonoBehaviour:
   - 1
   inLavaSpeed: 0.9
   burningDealsDamage: 1
-  damageOfBurning: -5
+  damageOfBurning: -2
   inWaterSpeed: 1
   waterDealsDamage: 0
   durationOfDrying: 5
@@ -224,9 +224,11 @@ MonoBehaviour:
   damageOnTriggerWithPlayer: 3
   typeOfDamageOnTriggerWithPlayer: -1
   coinSpawnChance: 0
-  rotation: []
+  spawnsUpgradeItem: 0
   expPrefab: {fileID: 4333668395104728432, guid: a14eff1e33bdc7644b8b63d86635ca0e, type: 3}
   coinPrefab: {fileID: 4333668395104728432, guid: 233a4667b41d7ae48bf2681037e0c550, type: 3}
+  littleBagOfGoldPrefab: {fileID: 4333668395104728432, guid: b2fe6c9f9af88d140b39fdcad04b0e17, type: 3}
+  upgradePrefabs: []
   enemyBoxCollider: {fileID: 1946029554722414512}
   enemyCircleCollider: {fileID: 8197722585485784528}
   damageTriggerMelee: {fileID: 2127530776864332068}
@@ -339,7 +341,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.31, y: 0.31}
+    oldSize: {x: 0.484375, y: 0.484375}
     newSize: {x: 0.32, y: 0.43}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

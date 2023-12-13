@@ -36,6 +36,15 @@ public class UISpells : UIPanelGame
 
             allSpells.RemoveAt(curIndex);
         }
+
+        for (int i = 0; i < allSpells.Count; i++)//Remove when no null spells exist
+        {
+            if (allSpells[i] == null)
+            {
+                allSpells.RemoveAt(i); 
+                i--;
+            }
+        }
     }
 
     //panel

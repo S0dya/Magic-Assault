@@ -8,8 +8,12 @@ using TMPro;
 public class GameManager : SingletonMonobehaviour<GameManager>
 {
     //local
-    [HideInInspector] public Sprite characterSprite;
-    [HideInInspector] public int characterI;
+    //[HideInInspector] 
+    public Sprite characterSprite;
+    //[HideInInspector] 
+    public int characterI;
+    //[HideInInspector] 
+    public int curSceneId;
 
     protected override void Awake()
     {

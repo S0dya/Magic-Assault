@@ -10,7 +10,7 @@ public class UIMainMenuCharacterDescription : UIPanelMenu
     [SerializeField] UIMainMenu uiMainMenu;
 
     [Header("Characters")]
-    [SerializeField] SO_Character[] characters;
+    public SO_Character[] characters;
 
     [SerializeField] Image[] charactersImages;
 
@@ -107,9 +107,9 @@ public class UIMainMenuCharacterDescription : UIPanelMenu
         for (int i = 0; i < 4; i++)
         {
             uiMainMenuStatsSpellItems[i].SetInfo(item.startingSpells[i]);
-            SetString(item.multipliers[i], multipliersTexts[i]);
+            SetString(item.damageMultipliers[i], multipliersTexts[i]);
 
-            SetString(item.damageMultipliers[i], damageMultipliersTexts[i]);
+            SetString(item.weaknessMultipliers[i], damageMultipliersTexts[i]);
         }
 
         burningDealsDamageCheck.enabled = item.burningDealsDamage;

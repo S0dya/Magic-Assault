@@ -12,20 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8e9e867e7f8ec4bbc11156c99d4edc, type: 3}
   m_Name: Wizard
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: asd
-  <Description>k__BackingField: 
+  <Name>k__BackingField: Valthor
+  <Description>k__BackingField: Valthor, the ancient sage. Devoid of elemental allegiance,
+    became the lynchpin in the Elemental Convergence. His mastery over Arcane magic
+    allowed him to weave the threads of the elements.
   <ItemImage>k__BackingField: {fileID: 21300000, guid: d34d45797eab440489b5607a7d281c31, type: 3}
-  <hp>k__BackingField: 14
-  <mana>k__BackingField: 51
+  <hp>k__BackingField: 100
+  <mana>k__BackingField: 150
   <shields>k__BackingField: 0
-  <speed>k__BackingField: 4
+  <speed>k__BackingField: 3.5
   <startingSpells>k__BackingField:
   - {fileID: 11400000, guid: f113c568f45130948970923f5fc87922, type: 2}
   - {fileID: 11400000, guid: 919bd0ff8276afd49988fad67850a917, type: 2}
   - {fileID: 11400000, guid: 727cd3dcf98304149bb317e30707a886, type: 2}
-  - {fileID: 11400000, guid: 606dcd3007f36d24789bff1ee12a7916, type: 2}
-  <multipliers>k__BackingField: 01000000010000000100000001000000
-  <damageMultipliers>k__BackingField: 01000000010000000100000001000000
+  - {fileID: 11400000, guid: a11b22c9552875a44bcb905e33402b29, type: 2}
+  <damageMultipliers>k__BackingField: 00000000000000000000000000000000
+  <weaknessMultipliers>k__BackingField:
+  - 1
+  - 1
+  - 1
+  - 1
   <burningDealsDamage>k__BackingField: 1
   <waterDealsDamage>k__BackingField: 0
   <luck>k__BackingField: 0
+  <floatDamageMultipliers>k__BackingField:
+  - 1
+  - 1
+  - 1
+  - 1
+  <minDamageMultipliers>k__BackingField:
+  - 0.8
+  - 0.8
+  - 0.8
+  - 0.8
+  <startingSpellsIndexes>k__BackingField: 02000000010000000000000003000000

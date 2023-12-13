@@ -26,4 +26,5 @@ public class UIPanel : MonoBehaviour
     public void MoveTab(int i, float speed) => GameManager.I.MoveTransform(panelTransform, startEndX[i], startEndY[i], speed);
 
     public void SetString(int val, TextMeshProUGUI text) => text.text = val.ToString();
+    public void SetString(float val, TextMeshProUGUI text) => text.text = val.ToString();
 }

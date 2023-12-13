@@ -116,22 +116,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be1caec30781de9488a20249d85573d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 20
-  movementSpeed: 1.5
+  maxHp: 5
+  movementSpeed: 0.5
   pushMultiplier: 4
   averageTimeOfBurning: 5
   elementalDamageMultipliers:
   - 1.5
   - 1
-  - 1
+  - 1.25
   - 1.25
   inLavaSpeed: 0.7
   burningDealsDamage: 1
-  damageOfBurning: -5
+  damageOfBurning: -2
   inWaterSpeed: 0.6
   waterDealsDamage: 0
   durationOfDrying: 3
-  damageOnWet: 0
+  damageOnWet: -3
   timeForPush: 0.5
   rb: {fileID: 5797608852117626587}
   sr: {fileID: 5797608852117626584}
@@ -151,11 +151,11 @@ MonoBehaviour:
   damageOnTriggerWithPlayer: 5
   typeOfDamageOnTriggerWithPlayer: -1
   coinSpawnChance: 0
-  rotation:
-  - -2
-  - 2
+  spawnsUpgradeItem: 0
   expPrefab: {fileID: 4333668395104728432, guid: a14eff1e33bdc7644b8b63d86635ca0e, type: 3}
   coinPrefab: {fileID: 4333668395104728432, guid: 233a4667b41d7ae48bf2681037e0c550, type: 3}
+  littleBagOfGoldPrefab: {fileID: 4333668395104728432, guid: b2fe6c9f9af88d140b39fdcad04b0e17, type: 3}
+  upgradePrefabs: []
   enemyBoxCollider: {fileID: 7316692591779294779}
   enemyCircleCollider: {fileID: 4339101911170248573}
   damageTriggerMelee: {fileID: 5797608852956595081}
@@ -267,7 +267,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.27, y: 0.45}
+    oldSize: {x: 0.421875, y: 0.703125}
     newSize: {x: 0.27, y: 0.45}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

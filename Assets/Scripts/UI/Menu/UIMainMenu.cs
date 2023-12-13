@@ -74,7 +74,14 @@ public class UIMainMenu : MonoBehaviour
         int i = characterDescription.curCharacterI;
         GameManager.I.SetCharacterVars(characterDescription.unlockedCharacters[i], i);//set value that will be used in LevelManager script in another scene
 
-        LoadingScene.I.OpenScene(mapDescription.curMapI + 2);//add 2, since first 2 scenes are persistant and menu
+        Settings.damageMultipliers = characterDescription.characters[i].floatDamageMultipliers;
+        Settings.damageMultipliersMins = characterDescription.characters[i].minDamageMultipliers;
+        Settings.startingSpells = characterDescription.characters[i].startingSpellsIndexes;
+
+        int sceneId = mapDescription.curMapI + 2;
+
+        LoadingScene.I.OpenScene(sceneId);//add 2, since first 2 scenes are persistant and menu
+        GameManager.I.curSceneId = sceneId;
     }
 
     public void OnBack()

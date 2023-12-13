@@ -12,6 +12,11 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     [SerializeField] UISpells uiSpells;
     [SerializeField] UIUpgrades uiUpgrades;
 
+    [Header("Borders")]
+    [SerializeField] Image[] borderImages;
+    [SerializeField] Color borderTransparentColor;
+    [SerializeField] Color borderSolidColor;
+
     [Header("Joystick")]
     [SerializeField] CanvasGroup joysticksCG;
     [SerializeField] FloatingJoystick flJoystick;
@@ -65,6 +70,8 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
 
     void Start()
     {
+        for (int i = 0; i < borderImages.Length; i++) borderImages[i].color = (Settings.bordersTransparent ? borderTransparentColor : borderSolidColor);
+
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         SetJoystick();
 

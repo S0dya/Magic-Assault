@@ -32,9 +32,10 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     [HideInInspector] public float size;
     [HideInInspector] public List<Vector2> drawPoints;
 
-
     [HideInInspector] public int[] curTypeOfSpell;// 0 - dot 1 - circle 2 - line 3 - arrow
-    float[] curEffectManaUsage = new float[4];
+    public static float[] effectManaUsage = new float[4] { 15f, 25f, 3f, 10f };
+
+    [HideInInspector] public bool additionalEffectsOfArrow;
 
     void Start()
     {
@@ -43,8 +44,6 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
         //set values of current spells and mana usage
         curTypeOfSpell = Settings.startingSpells;
-        
-        curEffectManaUsage = Settings.startingSpellsManaUsage;
     }
 
     //Spells
@@ -79,8 +78,8 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         float numObjects = Mathf.CeilToInt(distance / size);
 
         //check if players mana allows to spawn as many objects as needed
-        float manaNeeded = Mathf.Min(player.curMana, numObjects * curEffectManaUsage[2]);
-        float totalN = manaNeeded / curEffectManaUsage[2];
+        float manaNeeded = Mathf.Min(player.curMana, numObjects * effectManaUsage[2]);
+        float totalN = manaNeeded / effectManaUsage[2];
 
         //instantiate effect from first draw position to last 
         for (int i = 0; i < totalN; i++)
@@ -101,7 +100,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
         Vector2[] posOfSpells = new Vector2[] { drawPoints[0], middleElementPos, drawPoints[^1] };
 
-        for (int i = 0; i < (Settings.additionalEffectsOfArrow ? 3 : 1); i++)
+        for (int i = 0; i < (additionalEffectsOfArrow ? 3 : 1); i++)
         {
             InstantiateEffect(arrowEffects[curTypeOfSpell[3]], posOfSpells[i], size, direction, rotation);
             UseMana(3, 1);
@@ -147,10 +146,10 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     //check if player has enough mana to do spells
     bool PlayerHasEnoughMana(int i)
     {
-        return player.curMana <= curEffectManaUsage[i];
+        return player.curMana <= effectManaUsage[i];
     }
     //subtract mana
-    void UseMana(int i, int amount) => player.ChangeMana(-curEffectManaUsage[i] * size * amount);
+    void UseMana(int i, int amount) => player.ChangeMana(-effectManaUsage[i] * size * amount);
 
     //Improve first 3 spells (air cant be improved by this logic)
     public void ImproveSpells(int typeOfDamage)

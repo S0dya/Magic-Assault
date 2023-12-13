@@ -56,7 +56,7 @@ MonoBehaviour:
   worksForEnemy: 1
   size: 0
   rotation: 0
-  lifeTime: 5
+  lifeTime: 2
   direction: {x: 0, y: 0}
   speed: 5.5
   damage: -3
@@ -1507,7 +1507,7 @@ ParticleSystem:
     tilesY: 1
     animationType: 0
     rowIndex: 0
-    cycles: 3
+    cycles: 4
     uvChannelMask: -1
     rowMode: 1
     sprites:
@@ -4812,7 +4812,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 202178703
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

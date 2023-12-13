@@ -8,6 +8,7 @@ public class Player : Creature
     [Header("Player's settings")]
     public float speedOnDamage;
     public float maxMana;
+    public float shields;
     [SerializeField] float amountOfTimeBeforeRestoringMana;
     [SerializeField] float amountOfTimeForRestoringMana;
     [SerializeField] float amountOfRestoringMana;
@@ -38,6 +39,8 @@ public class Player : Creature
 
     int curAmountOfEnemies;
 
+    float shieldProtection;
+
     //cors
     Coroutine restoreHpCor;
     Coroutine restoreManaCor;
@@ -48,6 +51,7 @@ public class Player : Creature
         base.Start();
 
         curMana = maxMana;
+        shieldProtection = (float)shields * 0.1f;
     }
 
     protected override void Update()
@@ -174,4 +178,9 @@ public class Player : Creature
         if (curAmountOfEnemies == 0) DamageMultiplierOnDamage = 1;
     }
 
+    //other
+    public void AddShield()
+    {
+        shieldProtection -= 0.1f;
+    }
 }

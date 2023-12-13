@@ -35,6 +35,8 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
 
     bool canCreateSpell = true;
 
+    float maxSizeOfCircleSpell = 4.5f;
+
     //cors
     Coroutine checkJoystickInputCor;
     Coroutine changeSizeOfLineCor;
@@ -45,6 +47,11 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
         base.Awake();
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+    }
+
+    void Start()
+    {
+        lineLength = Settings.isQualityMedium ? : ;
     }
 
     void Update()
@@ -131,7 +138,7 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
             lineRenderer.startWidth = lineWidth[0];
             lineRenderer.endWidth = lineWidth[0];
 
-            lineWidth[0] = Mathf.Lerp(lineWidth[0], lineWidth[3], 0.005f);
+            lineWidth[0] = Mathf.Lerp(lineWidth[0], lineWidth[3], 0.8f * Time.deltaTime);
 
             yield return null;
         }
@@ -190,7 +197,7 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
         {
             //size of water is min between distance and set value
             float distance = Vector2.Distance(drawPoints[0], drawPoints[positionCount / 2]);
-            spellsManager.useCircle(Mathf.Min(distance, Settings.maxSizeOfCircleSpell));
+            spellsManager.useCircle(Mathf.Min(distance, maxSizeOfCircleSpell));
         }
         else if (totalAngle < angleThreshold)
         {

@@ -40,6 +40,8 @@ public class Spell : MonoBehaviour
     //instantiate additional effects when spell is destroyed
     protected virtual void OnDisable()
     {
+        if (!Settings.additionalParticles) return;
+
         ParticleSystem fadePs = SpellsManager.I.InstantiateFadeEffect(transform.position, typeOfDamage);
 
         SetStartSize(fadePs, size);
@@ -55,7 +57,7 @@ public class Spell : MonoBehaviour
     void SetStartSize(ParticleSystem thisPs, float size)
     {
         var main = GetMainModule(thisPs);
-        if (setsLifeTime) main.startLifetime = lifeTime * Settings.lifeTimeMultipliers[typeOfDamage];
+        if (setsLifeTime) main.duration = lifeTime * Settings.lifeTimeMultipliers[typeOfDamage];
         main.startSize = size;
     }
 

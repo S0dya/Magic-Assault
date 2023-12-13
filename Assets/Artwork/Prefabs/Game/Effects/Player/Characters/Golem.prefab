@@ -306,10 +306,10 @@ GameObject:
   - component: {fileID: 4066647700768977682}
   - component: {fileID: 4066647700768977680}
   - component: {fileID: 4066647700768977683}
-  - component: {fileID: 4066647700768977684}
   - component: {fileID: 4066647700768977695}
+  - component: {fileID: 6257125906863566247}
   m_Layer: 12
-  m_Name: Player
+  m_Name: Golem
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -346,23 +346,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0429524ebf1c7d4583d11290bda2e7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
-  movementSpeed: 4
-  pushMultiplier: 4
+  maxHp: 200
+  movementSpeed: 3.25
+  pushMultiplier: 2
   averageTimeOfBurning: 3
   elementalDamageMultipliers:
-  - 1
-  - 1
-  - 1
-  - 1
-  inLavaSpeed: 0.8
+  - 0.75
+  - 0.75
+  - 1.5
+  - 0.5
+  inLavaSpeed: 0.6
   burningDealsDamage: 1
-  damageOfBurning: -3
-  inWaterSpeed: 0.6
+  damageOfBurning: -1
+  inWaterSpeed: 0.7
   waterDealsDamage: 0
   durationOfDrying: 4
-  damageOnWet: 0
-  timeForPush: 0.5
+  damageOnWet: -1
+  timeForPush: 0.25
   rb: {fileID: 4066647700768977683}
   sr: {fileID: 4066647701063737299}
   burningEffect: {fileID: 1611579280063940363}
@@ -377,17 +377,18 @@ MonoBehaviour:
   isBurning: 0
   isPushed: 0
   isStunned: 0
-  speedOnDamage: 0.6
-  maxMana: 100
-  amountOfTimeBeforeRestoringMana: 1
+  speedOnDamage: 0.9
+  maxMana: 75
+  shields: 1
+  amountOfTimeBeforeRestoringMana: 2
   amountOfTimeForRestoringMana: 0.25
-  amountOfRestoringMana: 5
+  amountOfRestoringMana: 4
   canRestoreHp: 0
-  amountOfTimeBeforeRestoringHp: 0
-  amountOfTimeForRestoringHp: 0
-  amountOfRestoringHp: 0
+  amountOfTimeBeforeRestoringHp: 0.5
+  amountOfTimeForRestoringHp: 0.2
+  amountOfRestoringHp: 3
   animator: {fileID: 4066647700768977695}
-  BloodEffectObj: {fileID: 4671066131612643815, guid: 0bed531b862ac3742b1ac7a4321e4aeb, type: 3}
+  BloodEffectObj: {fileID: 4671066131612643815, guid: 30e555410c495c8459c64a78627f8865, type: 3}
   statsImages:
   - {fileID: 4066647700185313907}
   - {fileID: 4066647701591637735}
@@ -468,32 +469,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &4066647700768977684
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4066647700768977686}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 1}
-    newSize: {x: 5.12, y: 5.12}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.35, y: 0.75}
-  m_EdgeRadius: 0
 --- !u!95 &4066647700768977695
 Animator:
   serializedVersion: 5
@@ -515,6 +490,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!58 &6257125906863566247
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4066647700768977686}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.3
 --- !u!1 &4066647701063737301
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +579,7 @@ SpriteRenderer:
   m_SortingLayerID: 522007411
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d34d45797eab440489b5607a7d281c31, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 297da23098891684795e856194541fed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -12,20 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8e9e867e7f8ec4bbc11156c99d4edc, type: 3}
   m_Name: Gollem
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: asd
-  <Description>k__BackingField: 
+  <Name>k__BackingField: Thorne
+  <Description>k__BackingField: Thorne, the Earth Guardian. Awakening from the heart
+    of Eldoria's mountains, it stood as a titan against the Voidspawn. Rooted in
+    nature, it channeled the indomitable strength of the earth, crushing the dark
+    forces beneath colossal stones and defending the very essence of Eldoria.
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 297da23098891684795e856194541fed, type: 3}
-  <hp>k__BackingField: 14
-  <mana>k__BackingField: 51
-  <shields>k__BackingField: 0
-  <speed>k__BackingField: 4
+  <hp>k__BackingField: 200
+  <mana>k__BackingField: 75
+  <shields>k__BackingField: 1
+  <speed>k__BackingField: 3.25
   <startingSpells>k__BackingField:
   - {fileID: 11400000, guid: f113c568f45130948970923f5fc87922, type: 2}
-  - {fileID: 11400000, guid: 919bd0ff8276afd49988fad67850a917, type: 2}
-  - {fileID: 11400000, guid: 727cd3dcf98304149bb317e30707a886, type: 2}
-  - {fileID: 11400000, guid: 606dcd3007f36d24789bff1ee12a7916, type: 2}
-  <multipliers>k__BackingField: 01000000010000000100000001000000
-  <damageMultipliers>k__BackingField: 01000000010000000100000001000000
+  - {fileID: 11400000, guid: a8a4dacb5596d5349b7df74d83c2ebcc, type: 2}
+  - {fileID: 11400000, guid: 4a04009ee46903c4cbb6a147f8831fd9, type: 2}
+  - {fileID: 11400000, guid: 9563e64a20a90504b877c094f607f95a, type: 2}
+  <damageMultipliers>k__BackingField: 04000000090000001200000009000000
+  <weaknessMultipliers>k__BackingField:
+  - 0.75
+  - 0.75
+  - 1.5
+  - 0.5
   <burningDealsDamage>k__BackingField: 1
   <waterDealsDamage>k__BackingField: 0
   <luck>k__BackingField: 0
+  <floatDamageMultipliers>k__BackingField:
+  - 0.4
+  - 0.9
+  - 1.8
+  - 0.9
+  <minDamageMultipliers>k__BackingField:
+  - 0.3
+  - 0.7
+  - 1.5
+  - 0.7
+  <startingSpellsIndexes>k__BackingField: 02000000020000000200000002000000

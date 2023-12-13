@@ -8,14 +8,17 @@ public class Enemy : Creature
     public float speedOnTriggerWithPlayer;
     public float damageOnTriggerWithPlayer;
     public int typeOfDamageOnTriggerWithPlayer;
-    public float coinSpawnChance;
 
-    [Header("Animation")]
-    public float[] rotation;
+    //spawn
+    public float coinSpawnChance;
+    public bool spawnsUpgradeItem;
 
     [Header("Other")]
     [SerializeField] GameObject expPrefab;
     [SerializeField] GameObject coinPrefab;
+    [SerializeField] GameObject littleBagOfGoldPrefab;
+
+    [SerializeField] GameObject[] upgradePrefabs;
 
     [Header("Colliders")]
     [SerializeField] BoxCollider2D enemyBoxCollider;
@@ -27,12 +30,10 @@ public class Enemy : Creature
     [HideInInspector] public Transform playerTransform;
     Transform expParent;
     Transform coinParent;
+    Transform upgradesParent;
 
     //looking direction
     float xOfMove;
-
-    //animation
-    LTDescr rotationTween;
 
     //cors
     Coroutine burningCor;
@@ -44,6 +45,7 @@ public class Enemy : Creature
 
         expParent = GameObject.FindGameObjectWithTag("ExpParent").GetComponent<Transform>();
         coinParent = GameObject.FindGameObjectWithTag("CoinParent").GetComponent<Transform>();
+        upgradesParent = GameObject.FindGameObjectWithTag("UpgradesParent").GetComponent<Transform>();
     }
 
     protected override void Start()
@@ -51,7 +53,6 @@ public class Enemy : Creature
         base.Start();
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        if (rotation.Length > 0) RotateBackwards();
     }
 
     public void CheckLookingDirection() => CheckLookingDirection(playerTransform.position.x);
@@ -98,18 +99,16 @@ public class Enemy : Creature
             Die();
             UIInGame.I.AddKill();
 
+            //instantiate items
             InstantiateAfterDeath(expPrefab, expParent);
-            if (Random.Range(0, 15) <= coinSpawnChance) InstantiateAfterDeath(coinPrefab, coinParent);
+            if (Random.Range(0, 15) <= coinSpawnChance) InstantiateAfterDeath((Random.Range(0, 15) < 12 ? coinPrefab : littleBagOfGoldPrefab), coinParent);
+            if (spawnsUpgradeItem) InstantiateAfterDeath(upgradePrefabs[Random.Range(0, upgradePrefabs.Length)], coinParent);
         });
     }
     public void InstantiateAfterDeath(GameObject prefab, Transform parent) => Instantiate(prefab, transform.position, Quaternion.identity, parent);
     
     public void Die() => Destroy(gameObject);
     
-    //animation
-    void RotateBackwards() => rotationTween = LeanTween.rotateZ(gameObject, rotation[0], curMovementSpeed).setEase(LeanTweenType.easeInOutSine).setOnComplete(RotateForwards);
-    void RotateForwards() => rotationTween = LeanTween.rotateZ(gameObject, rotation[1], curMovementSpeed).setEase(LeanTweenType.easeInOutSine).setOnComplete(RotateBackwards);
-
     void DisableColldiers()
     {
         enemyBoxCollider.enabled = false;
