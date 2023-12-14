@@ -1,0 +1,41 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FreezeEnemy : MonoBehaviour
+{
+    [SerializeField] Enemy enemy;
+
+    [Header("sprite visuals")]
+    [SerializeField] Color freezedColor;
+
+    public void Freeze()
+    {
+        enemy.ChangeSrColor(freezedColor);
+
+        ToggleScriptsAndColliders(false);
+
+        StartCoroutine(FreezeCor());
+    }
+
+    IEnumerator FreezeCor()
+    {
+        yield return new WaitForSeconds(Settings.freezeTime);
+
+        Unfreeze();
+    }
+    
+    void Unfreeze()
+    {
+        enemy.SetNormalColor();
+     
+        ToggleScriptsAndColliders(true);
+    }
+
+    //other
+    void ToggleScriptsAndColliders(bool toggle)
+    {
+        enemy.enabled = toggle;
+        enemy.ToggleDamageColliders(toggle);
+    }
+}

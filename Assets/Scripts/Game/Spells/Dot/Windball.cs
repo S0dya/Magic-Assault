@@ -10,7 +10,7 @@ public class Windball : CircleSpell
     {
         base.Start();
 
-        amountOfPassTroughTriggers = Settings.amountOfPassTroughTriggers;
+        amountOfPassTroughTriggers = GameData.I.amountOfPassTroughTriggers;
     }
 
     void OnTriggerEnter2D(Collider2D collision)

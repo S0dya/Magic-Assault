@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Magnet : MonoBehaviour
+public class TimeFreeze : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D collision)
     {
-        LevelManager.I.MagnetExp();
+        LevelManager.I.FreezeEnemies();
         Destroy(gameObject);
     }
 }

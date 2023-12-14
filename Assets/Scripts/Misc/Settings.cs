@@ -44,10 +44,6 @@ public static class Settings
     /// <summary>
     /// in game changing settings
     /// </summary>
-    //earth
-    public static int amountOfAdditionalForceEffects = 1;
-    //wind
-    public static int amountOfPassTroughTriggers = 4;
 
     //other
     public static int[] startingSpells = new int[4] { 0, 1, 0, 3 };
@@ -60,9 +56,24 @@ public static class Settings
 
     public static bool allWaterIsPoisened;
 
-    public static void Clear()
-    {
-        amountOfPassTroughTriggers = 0;
-        amountOfAdditionalForceEffects = 0;
-    }
+    public static float freezeTime = 7;
+
+    /// <summary>
+    /// Game data
+    /// </summary>
+
+    public static int totalTimeInGame;
+    public static int totalKilledEnemies;
+    public static int totalGoldEarned;
+    public static int totalLevelReached;
+    public static int totalDamageDone;
+    public static int[] totalElementalDamageDone = new int[4];
+
+    //other data
+    public static Sprite characterSprite;
+    public static Sprite characterSpriteInGame;
+    public static string characterName;
+    public static int characterI;
+    public static int curSceneId;
+
 }

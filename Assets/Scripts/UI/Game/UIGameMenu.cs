@@ -19,7 +19,7 @@ public class UIGameMenu : UIPanelGame
     [Header("Player stats")]
     [SerializeField] TextMeshProUGUI[] barsTexts;
     [SerializeField] Image[] barsImages;
-    [SerializeField] TextMeshProUGUI[] multipliersTexts;
+    [SerializeField] UIResultStatsItem[] multipliersItems;
 
     //local
     //player stats
@@ -139,10 +139,7 @@ public class UIGameMenu : UIPanelGame
         return sb.ToString();
     }
 
-    public void SetMultipliersTexts(int i, int amount)
-    {
-        multipliersTexts[i].text = amount.ToString();
-    }
+    public void SetMultipliersTexts(int i, int amount) => multipliersItems[i].SetAmountText(amount);
 
     //other methods
     void CloseSettings()

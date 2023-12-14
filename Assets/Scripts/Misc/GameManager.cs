@@ -24,13 +24,14 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     }
 
     //UI
-    public void Open(CanvasGroup CG, float duration)
+    public void Open(CanvasGroup CG, float duration) => Open(CG, duration, 1);
+    public void Open(CanvasGroup CG, float duration, float endVal)
     {
-        LTDescr tween = LeanTween.alphaCanvas(CG, 1, duration).setEase(LeanTweenType.easeInOutQuad);
+        LTDescr tween = LeanTween.alphaCanvas(CG, endVal, duration).setEase(LeanTweenType.easeInOutQuad);
         CG.blocksRaycasts = true;
         SetUseEstimatedTime(tween);
-    } 
-    
+    }
+
     public void Close(CanvasGroup CG, float duration)
     {
         LTDescr tween = LeanTween.alphaCanvas(CG, 0, duration).setEase(LeanTweenType.easeInOutQuad).setOnComplete(() => CloseComletely(CG));

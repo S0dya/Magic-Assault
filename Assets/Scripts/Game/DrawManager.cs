@@ -51,7 +51,7 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
 
     void Start()
     {
-        lineLength = Settings.isQualityMedium ? : ;
+        lineLength = Settings.isQualityMedium ? 0.3f : 0.15f;
     }
 
     void Update()

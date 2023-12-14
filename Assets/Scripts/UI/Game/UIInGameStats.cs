@@ -59,7 +59,6 @@ public class UIInGameStats : UIPanelMenu
         bool createNewLineIsNeeded = curLinesN[type] < 10;
         if (createNewLineIsNeeded) curLinesN[type] = 0;
         else curLinesN[type]++;
-        Debug.Log("I " + curLinesN[type]);
 
         //set line based on need of a new line
         Transform lineTransform = (createNewLineIsNeeded ? CreateNewLine(type) : curLinesTransforms[type]);

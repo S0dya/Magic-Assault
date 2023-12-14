@@ -227,6 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7874836842616660410}
   - component: {fileID: 7217926887710065900}
+  - component: {fileID: 3351092124398260167}
   - component: {fileID: 7874836842616660356}
   - component: {fileID: -3255939646476373196}
   - component: {fileID: 7874836842616660358}
@@ -309,9 +310,22 @@ MonoBehaviour:
   upgradePrefabs: []
   enemyBoxCollider: {fileID: 7882806676183235298}
   enemyCircleCollider: {fileID: -3255939646476373196}
-  damageTriggerMelee: {fileID: 7874836842393255959}
-  damageTriggerDistance: {fileID: 7874836842170283659}
+  damageCollidersObj: {fileID: 7874836841929392855}
   playerTransform: {fileID: 0}
+--- !u!114 &3351092124398260167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874836842616660359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84bec7d4e06ff3945b279358b39cd037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 7217926887710065900}
+  freezedColor: {r: 0.14901961, g: 0.12156863, b: 0.5019608, a: 1}
 --- !u!212 &7874836842616660356
 SpriteRenderer:
   m_ObjectHideFlags: 0

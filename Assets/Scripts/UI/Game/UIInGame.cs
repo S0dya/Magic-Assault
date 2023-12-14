@@ -11,6 +11,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     [SerializeField] UIMultipliers uiMultipliers;
     [SerializeField] UISpells uiSpells;
     [SerializeField] UIUpgrades uiUpgrades;
+    [SerializeField] GameData gameData;
 
     [Header("Borders")]
     [SerializeField] Image[] borderImages;
@@ -57,7 +58,6 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     bool isUpgrading;
 
     //time
-    int curTime;
     int curSecs;
     int curMins;
 
@@ -105,7 +105,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
         isUpgrading = true;
         //set new lvl, set new needed exp
         curNeededExp *= nextLevelMultiplier;
-        curLvl++;
+        gameData.levelReached += curLvl++;
 
         //show player they reached new level and open upgrade panel
         VisualiseReachinNewLevelStart();
@@ -135,7 +135,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
 
             curSecs++;
             SetTime();
@@ -149,7 +149,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
             curSecs = 0;
             curMins++;
 
-            curTime += 60;
+            gameData.timeInGame += 60;
             
             if (curMins == 60 && timerCor != null) StopCoroutine(timerCor);
         }

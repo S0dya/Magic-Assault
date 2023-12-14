@@ -72,16 +72,11 @@ public class UIMainMenu : MonoBehaviour
     public void OnConfirmMap()
     {
         int i = characterDescription.curCharacterI;
-        GameManager.I.SetCharacterVars(characterDescription.unlockedCharacters[i], i);//set value that will be used in LevelManager script in another scene
-
-        Settings.damageMultipliers = characterDescription.characters[i].floatDamageMultipliers;
-        Settings.damageMultipliersMins = characterDescription.characters[i].minDamageMultipliers;
-        Settings.startingSpells = characterDescription.characters[i].startingSpellsIndexes;
-
         int sceneId = mapDescription.curMapI + 2;
 
         LoadingScene.I.OpenScene(sceneId);//add 2, since first 2 scenes are persistant and menu
-        GameManager.I.curSceneId = sceneId;
+
+        SetCharacterSettings(characterDescription.characters[i], i, sceneId);
     }
 
     public void OnBack()
@@ -106,5 +101,19 @@ public class UIMainMenu : MonoBehaviour
     {
         mainButtonsObj.SetActive(val);
         backButtonObj.SetActive(!val);
+    }
+
+    void SetCharacterSettings(SO_Character character, int i, int sceneId)//set all info for settings about character
+    {
+        Settings.characterSprite = characterDescription.unlockedCharacters[i];
+        Settings.characterSpriteInGame = character.ItemImage;
+        Settings.characterName = character.Name;
+
+        Settings.characterI = i;
+        Settings.curSceneId = sceneId;
+
+        Settings.damageMultipliers = character.floatDamageMultipliers;
+        Settings.damageMultipliersMins = character.minDamageMultipliers;
+        Settings.startingSpells = character.startingSpellsIndexes;
     }
 }

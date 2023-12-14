@@ -374,14 +374,16 @@ public class Creature : MonoBehaviour
     }
     IEnumerator VisualiseDamageCor()
     {
-        sr.color = damageColor;
+        ChangeSrColor(damageColor);
 
         yield return new WaitForSeconds(0.15f);
 
-        sr.color = normalColor;
+        ChangeSrColor(normalColor);
         visualiseDamageCor = null;
     }
-
+    public void ChangeSrColor(Color color) => sr.color = color;
+    public void SetNormalColor() => ChangeSrColor(normalColor);//after freeze
+    
     //health 
     public virtual void ChangeHP(float val, int type)
     {

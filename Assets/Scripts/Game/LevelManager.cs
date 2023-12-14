@@ -171,12 +171,25 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     }
 
     //other
-    public void MagnitExp()
+    public void MagnetExp()
     {
         foreach (Transform transform in expParent)
         {
             ExpFollowingObject expFollowingObject = transform.gameObject.GetComponent<ExpFollowingObject>();
             expFollowingObject.StartFollowingPlayer();
         }
+    }
+    public void FreezeEnemies()
+    {
+        foreach (Transform transform in enemyParent)
+        {
+            FreezeEnemy freezeEnemy = transform.gameObject.GetComponent<FreezeEnemy>();
+            freezeEnemy.Freeze();
+        }
+    }
+
+    public void MoveEnemy(Transform  enemyTransform)//move enemy closer to player when player gets far from enemy
+    {
+        enemyTransform.position = GetRandomOffsetPos();
     }
 }

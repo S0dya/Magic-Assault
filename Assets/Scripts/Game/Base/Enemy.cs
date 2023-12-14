@@ -23,8 +23,8 @@ public class Enemy : Creature
     [Header("Colliders")]
     [SerializeField] BoxCollider2D enemyBoxCollider;
     [SerializeField] CircleCollider2D enemyCircleCollider;
-    [SerializeField] BoxCollider2D damageTriggerMelee;
-    [SerializeField] BoxCollider2D damageTriggerDistance;
+
+    [SerializeField] GameObject damageCollidersObj;
 
     //local
     [HideInInspector] public Transform playerTransform;
@@ -80,9 +80,13 @@ public class Enemy : Creature
         val *= Settings.damageMultipliers[typeOfDamage];
         base.ChangeHP(val, typeOfDamage);
 
-        VisualiseDamage();
-        UIInGame.I.InstantiateTextOnDamage(transform.position, (int)-val, typeOfDamage);
+        int valForVisual = (int)-val;
+        GameData.I.damageDone += valForVisual;//add damage amount to settings' data 
+        if (typeOfDamage != -1) GameData.I.elementalDamageDone[typeOfDamage] += valForVisual;
 
+        UIInGame.I.InstantiateTextOnDamage(transform.position, valForVisual, typeOfDamage);
+
+        VisualiseDamage();
         if (curHp == 0) Kill();
     }
 
@@ -98,6 +102,7 @@ public class Enemy : Creature
         {
             Die();
             UIInGame.I.AddKill();
+            GameData.I.killedEnemies++;
 
             //instantiate items
             InstantiateAfterDeath(expPrefab, expParent);
@@ -114,7 +119,8 @@ public class Enemy : Creature
         enemyBoxCollider.enabled = false;
         enemyCircleCollider.enabled = false;
 
-        damageTriggerMelee.enabled = false;
-        if (damageTriggerDistance != null) damageTriggerDistance.enabled = false;
+        ToggleDamageColliders(false);
     }
+
+    public void ToggleDamageColliders(bool toggle) => damageCollidersObj.SetActive(toggle);
 }

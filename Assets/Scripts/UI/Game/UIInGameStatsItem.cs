@@ -2,21 +2,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIInGameStatsItem : MonoBehaviour
+public class UIInGameStatsItem : UIStatsItem
 {
-    [Header("UI settings")]
     [SerializeField] Image outsideImage;
-    [SerializeField] Image insideImage;
-
+    
     //local
     [HideInInspector] public UIInGameStats uiInGameStats;
     [HideInInspector] public SO_GameItem thisItem;
 
-    //main methods
-    public virtual void SetInfo(SO_GameItem item)
+
+    public override void SetInfo(SO_GameItem item)
     {
+        base.SetInfo(item);
+
         thisItem = item;
-        insideImage.sprite = item.ItemImage;
     }
 
     //buttons
