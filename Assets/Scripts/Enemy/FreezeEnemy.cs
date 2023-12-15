@@ -9,13 +9,17 @@ public class FreezeEnemy : MonoBehaviour
     [Header("sprite visuals")]
     [SerializeField] Color freezedColor;
 
+    //cor
+    Coroutine freezeCor;
+
     public void Freeze()
     {
         enemy.ChangeSrColor(freezedColor);
 
         ToggleScriptsAndColliders(false);
 
-        StartCoroutine(FreezeCor());
+        if (freezeCor != null) StopCoroutine(freezeCor); 
+        freezeCor = StartCoroutine(FreezeCor());
     }
 
     IEnumerator FreezeCor()
@@ -23,6 +27,7 @@ public class FreezeEnemy : MonoBehaviour
         yield return new WaitForSeconds(Settings.freezeTime);
 
         Unfreeze();
+        freezeCor = null;
     }
     
     void Unfreeze()

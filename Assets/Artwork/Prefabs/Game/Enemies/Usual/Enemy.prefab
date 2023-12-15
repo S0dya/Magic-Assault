@@ -161,6 +161,7 @@ MonoBehaviour:
   enemyCircleCollider: {fileID: 4339101911170248573}
   damageCollidersObj: {fileID: 5797608851844853557}
   playerTransform: {fileID: 0}
+  canDealDamage: 1
 --- !u!114 &1091649806910359453
 MonoBehaviour:
   m_ObjectHideFlags: 0

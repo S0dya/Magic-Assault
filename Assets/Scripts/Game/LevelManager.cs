@@ -45,7 +45,7 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     {
         base.Awake();
 
-        playerTransform = Instantiate(playerCharacters[GameManager.I.characterI], playerParent).GetComponent<Transform>(); 
+        playerTransform = Instantiate(playerCharacters[Settings.characterI], playerParent).GetComponent<Transform>(); 
 
         worldHeight = Settings.worldHeight;
         worldWidth = Settings.worldWidth;
@@ -175,8 +175,8 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     {
         foreach (Transform transform in expParent)
         {
-            ExpFollowingObject expFollowingObject = transform.gameObject.GetComponent<ExpFollowingObject>();
-            expFollowingObject.StartFollowingPlayer();
+            FollowingObjectExp followingObjectexp = transform.gameObject.GetComponent<FollowingObjectExp>();
+            followingObjectexp.StartFollowingPlayer();
         }
     }
     public void FreezeEnemies()

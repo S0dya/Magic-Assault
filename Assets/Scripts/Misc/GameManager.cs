@@ -1,20 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
 using UnityEngine.UI;
 using TMPro;
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : SingletonMonobehaviour<GameManager>
 {
-    //local
-    //[HideInInspector] 
-    public Sprite characterSprite;
-    //[HideInInspector] 
-    public int characterI;
-    //[HideInInspector] 
-    public int curSceneId;
-
     protected override void Awake()
     {
         base.Awake();
@@ -68,11 +61,20 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     public void SetUseEstimatedTime(LTDescr tween) => tween.setUseEstimatedTime(true);
 
-    //other methods
-    public void SetCharacterVars(Sprite sprite, int i)
+    //other outside methods
+    public string GetTime(int secs, int mins)
     {
-        characterSprite = sprite;
-        characterI = i;
+        StringBuilder time = new StringBuilder();
+
+        if (mins < 10) time.Append('0');
+        time.Append(mins.ToString());
+
+        time.Append(':');
+
+        if (secs < 10) time.Append('0');
+        time.Append(secs.ToString());
+
+        return time.ToString();
     }
 
     //save/load

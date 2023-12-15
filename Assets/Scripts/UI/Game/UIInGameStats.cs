@@ -13,7 +13,7 @@ public class UIInGameStats : UIPanelMenu
     [SerializeField] GameObject itemUpgradePrefab;
 
     [Header("Spells")]
-    public UIInGameStatsItem[] uiSpellsitems;
+    [SerializeField] UIInGameStatsItem[] uiSpellsitems;
 
     [Header("Parents")]
     [SerializeField] Transform[] upgradesParents;
@@ -26,10 +26,10 @@ public class UIInGameStats : UIPanelMenu
     [SerializeField] TextMeshProUGUI itemDescription;
 
     //local
-    Dictionary<SO_GameItem, UIInGameStatsUpgrade>[] upgradeItemsDics = new Dictionary<SO_GameItem, UIInGameStatsUpgrade>[2];
+    Dictionary<SO_Item, UIInGameStatsUpgrade>[] upgradeItemsDics = new Dictionary<SO_Item, UIInGameStatsUpgrade>[2];
 
     int[] curLinesN = new int[2];
-    Transform[] curLinesTransforms = new Transform[2];
+    [SerializeField] Transform[] curLinesTransforms = new Transform[2];
 
     UIInGameStatsItem curUiInGameStatsItem;
     bool curHighlighted;
@@ -39,7 +39,7 @@ public class UIInGameStats : UIPanelMenu
         StartEndX = new float[2] { Settings.width, 0 };
         StartEndY = new float[2] { 0, 0 };
 
-        for (int i = 0; i < upgradeItemsDics.Length; i++) upgradeItemsDics[i] = new Dictionary<SO_GameItem, UIInGameStatsUpgrade>();
+        for (int i = 0; i < upgradeItemsDics.Length; i++) upgradeItemsDics[i] = new Dictionary<SO_Item, UIInGameStatsUpgrade>();
     }
 
     //main methods
@@ -56,43 +56,41 @@ public class UIInGameStats : UIPanelMenu
         }
 
         //check if new line is needed and change amount of created items in cur line
-        bool createNewLineIsNeeded = curLinesN[type] < 10;
-        if (createNewLineIsNeeded) curLinesN[type] = 0;
+        if (curLinesN[type] == 10)
+        {
+            curLinesN[type] = 0;
+            //set new line 
+            curLinesTransforms[type] = CreateNewLine(lineObject, upgradesParents[type]);
+        }
         else curLinesN[type]++;
 
-        //set line based on need of a new line
-        Transform lineTransform = (createNewLineIsNeeded ? CreateNewLine(type) : curLinesTransforms[type]);
-
-        //instantiate item object and set its info 
-        GameObject itemObj = Instantiate(itemUpgradePrefab, lineTransform);
+        GameObject itemObj = Instantiate(itemUpgradePrefab, curLinesTransforms[type]);
         UIInGameStatsUpgrade uiItemUpgrade = itemObj.GetComponent<UIInGameStatsUpgrade>();
         SetItem(uiItemUpgrade, item);//set ui item
 
         //add new item to dict for future
         upgradeItemsDics[type].Add(item, uiItemUpgrade);
     }
-    Transform CreateNewLine(int type)//instantiate new line and set it as current
+    Transform CreateNewLine(GameObject linePrefab, Transform parent)//instantiate new line and set it as current
     {
-        Transform lineTransform = Instantiate(lineObject, upgradesParents[type]).GetComponent<Transform>();
-        curLinesTransforms[type] = lineTransform;
-        return lineTransform;
+        return Instantiate(linePrefab, parent).GetComponent<Transform>();
     }
     
-    void SetItem(UIInGameStatsUpgrade uiItemUpgrade, SO_GameItem item)//set info 
+    void SetItem(UIInGameStatsUpgrade uiItemUpgrade, SO_Item item)//set info 
     {
         uiItemUpgrade.SetInfo(item);
         uiItemUpgrade.uiInGameStats = this;
     }
 
     //spells (header)
-    public void SetSpellItem(int i, SO_GameItem item)
+    public void SetSpellItem(int i, SO_Item item)
     {
         uiSpellsitems[i].SetInfo(item);
         uiSpellsitems[i].uiInGameStats = this;
     }
 
     //description (bottom)
-    public void SetDescriptionInfo(UIInGameStatsItem uiInGameStatsItem, SO_GameItem item) //outside method for showcasing upgrade
+    public void SetDescriptionInfo(UIInGameStatsItem uiInGameStatsItem, SO_Item item) //outside method for showcasing upgrade
     {
         //set highlight
         if (curHighlighted) curUiInGameStatsItem.ToggleHighlight(false);
@@ -120,5 +118,23 @@ public class UIInGameStats : UIPanelMenu
         curHighlighted = false;
         curUiInGameStatsItem.ToggleHighlight(false);
         GameManager.I.Close(DescriptionCG, 0.1f);
+    }
+
+    //outside method for results
+    public Dictionary<SO_Item, int> GetUpgradesDict(int i)
+    {
+        var dict = new Dictionary<SO_Item, int>();
+
+        foreach (var kvp in upgradeItemsDics[i])
+        {
+            dict.Add(kvp.Key, kvp.Value.curUpgradeAmount);
+        }
+        
+        return dict;
+    }
+
+    public SO_Item GetSpellsItem(int i)
+    {
+        return uiSpellsitems[i].thisItem;
     }
 }

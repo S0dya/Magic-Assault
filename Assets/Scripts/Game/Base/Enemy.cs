@@ -35,6 +35,9 @@ public class Enemy : Creature
     //looking direction
     float xOfMove;
 
+    //for damage trigger
+    [HideInInspector] public bool canDealDamage = true;
+
     //cors
     Coroutine burningCor;
     Coroutine waitForPushEndCor;
@@ -93,14 +96,13 @@ public class Enemy : Creature
     //killed
     public void Kill() //visualise death, instantiate items on death and destroy object 
     {
-        DisableColldiers();//for better visualisation
+        DisableColliders();//for better visualisation
 
         ToggleMovement(false);
         Push((transform.position - playerTransform.position).normalized, 0.5f);
 
         LeanTween.alpha(gameObject, 0f, 0.75f).setEase(LeanTweenType.easeOutQuad).setOnComplete(() =>
         {
-            Die();
             UIInGame.I.AddKill();
             GameData.I.killedEnemies++;
 
@@ -108,13 +110,15 @@ public class Enemy : Creature
             InstantiateAfterDeath(expPrefab, expParent);
             if (Random.Range(0, 15) <= coinSpawnChance) InstantiateAfterDeath((Random.Range(0, 15) < 12 ? coinPrefab : littleBagOfGoldPrefab), coinParent);
             if (spawnsUpgradeItem) InstantiateAfterDeath(upgradePrefabs[Random.Range(0, upgradePrefabs.Length)], coinParent);
+            
+            Die();
         });
     }
     public void InstantiateAfterDeath(GameObject prefab, Transform parent) => Instantiate(prefab, transform.position, Quaternion.identity, parent);
     
     public void Die() => Destroy(gameObject);
     
-    void DisableColldiers()
+    void DisableColliders()
     {
         enemyBoxCollider.enabled = false;
         enemyCircleCollider.enabled = false;
@@ -122,5 +126,9 @@ public class Enemy : Creature
         ToggleDamageColliders(false);
     }
 
-    public void ToggleDamageColliders(bool toggle) => damageCollidersObj.SetActive(toggle);
+    public void ToggleDamageColliders(bool toggle)
+    {
+        canDealDamage = toggle;
+        damageCollidersObj.SetActive(toggle);
+    }
 }

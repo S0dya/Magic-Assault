@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Text;
 using UnityEngine.UI;
 using TMPro;
 
@@ -12,6 +11,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     [SerializeField] UISpells uiSpells;
     [SerializeField] UIUpgrades uiUpgrades;
     [SerializeField] GameData gameData;
+    [SerializeField] DrawManager drawManager;
 
     [Header("Borders")]
     [SerializeField] Image[] borderImages;
@@ -49,6 +49,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     [SerializeField] Color[] airDamageColors;
 
     //local
+    GameManager gameManager;
     Player player;
 
     //exp
@@ -71,6 +72,8 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     void Start()
     {
         for (int i = 0; i < borderImages.Length; i++) borderImages[i].color = (Settings.bordersTransparent ? borderTransparentColor : borderSolidColor);
+
+        gameManager = GameManager.I;
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         SetJoystick();
@@ -153,18 +156,8 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
             
             if (curMins == 60 && timerCor != null) StopCoroutine(timerCor);
         }
-
-        StringBuilder time = new StringBuilder();
-
-        if (curMins < 10) time.Append('0');
-        time.Append(curMins.ToString());
         
-        time.Append(':');
-        
-        if (curSecs < 10) time.Append('0');
-        time.Append(curSecs.ToString());
-        
-        timerText.text = time.ToString();
+        timerText.text = gameManager.GetTime(curSecs, curMins);
     }
 
     //money and killed enemies visualisation
@@ -265,5 +258,37 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
         yield return new WaitForSeconds(0.2f);
 
         Destroy(textObj);
+    }
+
+    //other outside methods
+    public void StopTimeScale()
+    {
+        drawManager.StopCreatingSpell();
+
+        ToggleTimeScale(false);
+    }
+
+    public void ToggleTimeScale(bool val)
+    {
+        float floatVal = val ? 1 : 0;
+
+        StartCoroutine(ToggleOnUICor(!val));
+        Time.timeScale = floatVal;
+
+        ToggleJoystickVisibility(floatVal);
+    }
+
+    //coroutine will make sure ui interaction is not considered in-game interaction
+    IEnumerator ToggleOnUICor(bool val)
+    {
+        yield return null;
+
+        drawManager.isOnUI = val;
+        if (!val) drawManager.StopCreatingSpell();
+    }
+
+    public string GetCurTime()
+    {
+        return timerText.text;
     }
 }

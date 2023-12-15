@@ -25,7 +25,7 @@ public class LoadingScene : SingletonMonobehaviour<LoadingScene>
         SceneManager.UnloadSceneAsync(sceneToClose);
         StartCoroutine(LoadMenu());
     }
-    public void OpenMenu() => OpenMenu(GameManager.I.curSceneId);
+    public void OpenMenu() => OpenMenu(Settings.curSceneId);
 
     public void OpenScene(int sceneToOpen)
     {

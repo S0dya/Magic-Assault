@@ -8,10 +8,10 @@ public class UIInGameStatsItem : UIStatsItem
     
     //local
     [HideInInspector] public UIInGameStats uiInGameStats;
-    [HideInInspector] public SO_GameItem thisItem;
+    [HideInInspector] public SO_Item thisItem;
 
 
-    public override void SetInfo(SO_GameItem item)
+    public override void SetInfo(SO_Item item)
     {
         base.SetInfo(item);
 

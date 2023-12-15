@@ -379,6 +379,7 @@ MonoBehaviour:
   isStunned: 0
   speedOnDamage: 0.7
   maxMana: 125
+  shields: 0
   amountOfTimeBeforeRestoringMana: 0.75
   amountOfTimeForRestoringMana: 0.25
   amountOfRestoringMana: 7.5
@@ -858,7 +859,7 @@ GameObject:
   - component: {fileID: 4066647701614042927}
   - component: {fileID: 4066647701614042926}
   m_Layer: 19
-  m_Name: ExpTrigger
+  m_Name: PickableTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

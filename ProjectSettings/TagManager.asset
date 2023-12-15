@@ -38,8 +38,8 @@ TagManager:
   - Enemy
   - EnemyCrowd
   - 
-  - PlayerExpTrigger
-  - Exp
+  - PlayerPickableItemsTrigger
+  - 
   - PickUps
   - 
   - LevelTrigger

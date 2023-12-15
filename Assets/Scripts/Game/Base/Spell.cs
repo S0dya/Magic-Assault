@@ -33,6 +33,7 @@ public class Spell : MonoBehaviour
     {
         damageMultiplier = size + 0.25f;
         damage *= damageMultiplier;
+        if (setsLifeTime) SetDuration();
 
         ps.Play();
     }
@@ -57,8 +58,13 @@ public class Spell : MonoBehaviour
     void SetStartSize(ParticleSystem thisPs, float size)
     {
         var main = GetMainModule(thisPs);
-        if (setsLifeTime) main.duration = lifeTime * Settings.lifeTimeMultipliers[typeOfDamage];
         main.startSize = size;
+    }
+
+    void SetDuration()
+    {
+        var main = GetMainModule(ps);
+        main.duration = lifeTime * Settings.lifeTimeMultipliers[typeOfDamage];
     }
 
     public void SetRotation(float r)

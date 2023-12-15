@@ -6,7 +6,7 @@ public class UIResultStatsItem : UIStatsItem
 {
     [SerializeField] TextMeshProUGUI amountText;
 
-    public void SetInfo(SO_GameItem item, int amount)
+    public void SetInfo(SO_Item item, int amount)
     {
         SetInfo(item);
 

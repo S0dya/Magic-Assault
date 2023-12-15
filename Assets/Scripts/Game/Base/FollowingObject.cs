@@ -6,31 +6,42 @@ using static LeanTween;
 public class FollowingObject : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] SO_Item thisItem;
+
+    //local
+    Player player;
     Transform playerTransform;
 
-
-    protected virtual void Awake()
+    protected virtual void Start()//find player this object will follow on trigger enter
     {
-        //transform.localScale = Vector2.zero;
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-    }
-
-    protected virtual void Start()
-    {
-        LeanTween.scale(gameObject, new Vector2(1, 1), 1).setEase(LeanTweenType.easeOutBack);
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        playerTransform = player.gameObject.transform;
+        LeanTween.scale(gameObject, new Vector2(1, 1), 1).setEase(LeanTweenType.easeOutBack);//make object appear 
     }
 
     protected virtual IEnumerator FollowPlayerCor()
     {
-        while (true)
+        float distance = Vector2.Distance(transform.position, playerTransform.position);
+        Vector2 playerPos;
+        Vector2 thisPos;
+
+        while (distance < 0.25f)//follow player 
         {
-            Vector2 direction = (playerTransform.position - transform.position).normalized;
+            playerPos = playerTransform.position;
+            thisPos = transform.position;
+
+            Vector2 direction = (playerPos - thisPos).normalized;
             rb.velocity = direction * 14;
 
-            if (Vector2.Distance(transform.position, playerTransform.position) < 0.25f) break;
+            distance = Vector2.Distance(thisPos, playerPos);
             yield return null;
         }
 
-        Destroy(gameObject);
+        UIResults.I.AddPickableItem(thisItem);
+    }
+
+    public Player GetPlayer()
+    {
+        return player;
     }
 }

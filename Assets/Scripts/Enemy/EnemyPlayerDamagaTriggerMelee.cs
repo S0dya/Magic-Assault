@@ -26,6 +26,8 @@ public class EnemyPlayerDamagaTriggerMelee : MonoBehaviour
     //triggers
     void OnTriggerEnter2D(Collider2D Collision)
     {
+        if (!enemy.canDealDamage) return;
+
         ToggleOnTrigger(true);
 
         player.EnemyTriggerEnter();
@@ -41,12 +43,7 @@ public class EnemyPlayerDamagaTriggerMelee : MonoBehaviour
     //other methods
     void GiveDamage()
     {
-        if (canDamage)
-        {
-            player.ChangeHP(-enemy.damageOnTriggerWithPlayer, enemy.typeOfDamageOnTriggerWithPlayer);
-
-        }
-
+        if (canDamage) player.ChangeHP(-enemy.damageOnTriggerWithPlayer, enemy.typeOfDamageOnTriggerWithPlayer);
     }
     IEnumerator GivingDamageCor()
     {

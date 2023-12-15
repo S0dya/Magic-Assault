@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53526f55d1cdc01408eacbeb74154a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 7275501178216431432}
+  thisItem: {fileID: 11400000, guid: 75c9b571283719e4586a549988ec4344, type: 2}
 --- !u!212 &7275501178216431435
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -107,7 +109,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7275501178216431436}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -137,7 +139,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.53333336, y: 0.35555556}
+    oldSize: {x: 0.6857143, y: 0.45714286}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

@@ -24,8 +24,8 @@ public static class Settings
     public static bool isFloatingJoystick = true;
     public static float[] musicStats = new float[2] { 0.5f, 0.5f };
     //menuOptions
-    public static bool additionalParticles = false;
-    public static bool bordersTransparent = false;
+    public static bool additionalParticles = true;
+    public static bool bordersTransparent = true;
     public static bool isQualityMedium = true;
 
     /// <summary>

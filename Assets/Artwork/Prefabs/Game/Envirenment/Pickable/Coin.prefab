@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4333668395104728439}
   - component: {fileID: 4333668395104728437}
   - component: {fileID: 4333668395104728436}
-  m_Layer: 20
+  m_Layer: 21
   m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4333668395104728436}
+  thisItem: {fileID: 11400000, guid: 5ba86151b54d1e541bb3808d0421f132, type: 2}
   coinsOnCollect: 1
 --- !u!212 &4333668395104728439
 SpriteRenderer:

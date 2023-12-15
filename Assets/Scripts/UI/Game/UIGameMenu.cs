@@ -48,7 +48,7 @@ public class UIGameMenu : UIPanelGame
         maxHp = player.maxHp;
         maxMana = player.maxMana;
 
-        characterPortrait.sprite = GameManager.I.characterSprite;
+        characterPortrait.sprite = Settings.characterSprite;
 
         for (int i = 0; i < 4; i++) SetMultipliersTexts(i, (int)(Settings.damageMultipliers[i] * 10));
     }

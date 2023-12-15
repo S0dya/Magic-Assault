@@ -8,9 +8,8 @@ public class UIStatsItem : MonoBehaviour
     [SerializeField] Image insideImage;
 
     //main methods
-    public virtual void SetInfo(SO_GameItem item)
+    public virtual void SetInfo(SO_Item item)
     {
         insideImage.sprite = item.ItemImage;
     }
-
 }

@@ -8,10 +8,9 @@ public class UIInGameStatsUpgrade : UIInGameStatsItem
     [Header("This upgrade")]
     [SerializeField] TextMeshProUGUI upgradeIndex;
 
-    //local 
-    int curUpgradeAmount = 1;
+    [HideInInspector] public int curUpgradeAmount = 1;
 
-    public override void SetInfo(SO_GameItem upgradeItem)
+    public override void SetInfo(SO_Item upgradeItem)
     {
         base.SetInfo(upgradeItem);
 

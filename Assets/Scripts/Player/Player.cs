@@ -60,8 +60,7 @@ public class Player : Creature
         animator.speed = directionOfMovement.magnitude;//set animator for walking visualisation
         
         xOfMove = directionOfMovement.x;
-        if ((xOfMove < 0 && !isLookingOnRight) || (xOfMove > 0 && isLookingOnRight)) 
-            ChangeLookingDirection();//rotate player if they go in another direction
+        if ((xOfMove < 0 && !isLookingOnRight) || (xOfMove > 0 && isLookingOnRight)) ChangeLookingDirection();//rotate player if they go in another direction
 
         base.Update();
     }
@@ -106,7 +105,7 @@ public class Player : Creature
 
         if (curHp == 0)
         {
-            Debug.Log("die");
+            UIResults.I.SetTransparentBg();
         }
         else if (val < 0)
         {

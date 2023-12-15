@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinFollowingObject : FollowingObject
+public class FollowingObjectMagnet : FollowingObject
 {
-    [Header("Settings of coin")]
-    public int coinsOnCollect;
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         StartCoroutine(FollowPlayerCor());
@@ -16,6 +13,8 @@ public class CoinFollowingObject : FollowingObject
     {
         yield return base.FollowPlayerCor();
 
-        UIInGame.I.ChangeMoney(coinsOnCollect);
+        LevelManager.I.MagnetExp();
+
+        Destroy(gameObject);
     }
 }
