@@ -5,6 +5,7 @@ using UnityEngine;
 public class ActiveUpgradeEarthquake : CircleSpell
 {
     List<Enemy> enemies = new List<Enemy>();
+    List<Spawner> spawners = new List<Spawner>();
 
     protected override void Start()
     {
@@ -15,13 +16,31 @@ public class ActiveUpgradeEarthquake : CircleSpell
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        enemies.Add(enemy);
+        switch(collision.tag)
+        {
+            case "Enemy":
+                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+                enemies.Add(enemy);
+                break;
+            case "ObstacleSpawner":
+                Spawner spawner = collision.gameObject.GetComponent<Spawner>();
+                spawners.Add(spawner);
+                break;
+        }
     }
     void OnTriggerExit2D(Collider2D collision)
     {
-        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        enemies.Remove(enemy);
+        switch (collision.tag)
+        {
+            case "Enemy":
+                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+                enemies.Remove(enemy);
+                break;
+            case "ObstacleSpawner":
+                Spawner spawner = collision.gameObject.GetComponent<Spawner>();
+                spawners.Remove(spawner);
+                break;
+        }
     }
 
     IEnumerator QuakeCor()
@@ -35,6 +54,7 @@ public class ActiveUpgradeEarthquake : CircleSpell
                 enemy.Stun(0.2f);
                 enemy.ChangeHP(-3, 2);
             }
+            foreach (Spawner spawner in new List<Spawner>(spawners)) if (spawner == null) spawner.ChangeHP(-3);
 
             yield return new WaitForSeconds(1f);
         }

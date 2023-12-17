@@ -6,11 +6,18 @@ public class ActiveUpgradeWaterball : CircleSpell
 {
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        switch (collision.tag)
         {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.ChangeHP(damage, typeOfDamage);
-            enemy.HandleWater();
+            case "Enemy":
+                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+                enemy.ChangeHP(damage, typeOfDamage);
+                enemy.HandleWater();
+                break;
+            case "ObstacleSpawner":
+                Spawner spawner = collision.gameObject.GetComponent<Spawner>();
+                spawner.ChangeHP(damage);
+                break;
+            default: break;
         }
 
         Destroy(gameObject);

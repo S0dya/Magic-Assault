@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class FollowingObjectHealthRestore : FollowingObject
 {
+    bool isFollowing;
+
     void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(FollowPlayerCor());
+        if (!isFollowing)
+        {
+            isFollowing = true;
+            StartCoroutine(FollowPlayerCor());
+        }
     }
 
     protected override IEnumerator FollowPlayerCor()
     {
         yield return base.FollowPlayerCor();
 
-        GetPlayer().ChangeHP(20, -1);
+        GetPlayer().ChangeHP(75, -1);
 
         Destroy(gameObject);
     }

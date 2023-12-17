@@ -16,6 +16,10 @@ public class ExplosionEffect : CircleSpell
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
                 enemy.ChangeHP(damage, typeOfDamage);
                 break;
+            case "ObstacleSpawner":
+                Spawner spawner = collision.gameObject.GetComponent<Spawner>();
+                spawner.ChangeHP(damage);
+                break;
             default: break;
         }
     }

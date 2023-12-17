@@ -23,6 +23,7 @@ public class Windball : CircleSpell
                 Player player = collision.gameObject.GetComponent<Player>();
                 player.ChangeHP(damage, typeOfDamage);
                 player.Push(direction, size);
+                
                 DestroyObj();
                 break;
             case "Enemy":
@@ -31,6 +32,13 @@ public class Windball : CircleSpell
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
                 enemy.ChangeHP(damage, typeOfDamage);
                 enemy.Push(direction, size);
+                
+                DestroyObj();
+                break;
+            case "ObstacleSpawner":
+                Spawner spawner = collision.gameObject.GetComponent<Spawner>();
+                spawner.ChangeHP(damage);
+
                 DestroyObj();
                 break;
             case "EarthEffect":

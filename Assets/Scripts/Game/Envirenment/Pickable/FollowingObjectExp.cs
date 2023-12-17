@@ -7,14 +7,21 @@ public class FollowingObjectExp : FollowingObject
     [Header("Settings of exp")]
     public float expOnCollect;
 
+    bool isFollowing;
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         StartFollowingPlayer();
     }
 
+    //outside method
     public void StartFollowingPlayer()
     {
-        StartCoroutine(FollowPlayerCor());
+        if (!isFollowing)
+        {
+            isFollowing = true;
+            StartCoroutine(FollowPlayerCor());
+        }
     }
 
     protected override IEnumerator FollowPlayerCor()

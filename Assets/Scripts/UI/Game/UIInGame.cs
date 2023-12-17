@@ -53,7 +53,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     Player player;
 
     //exp
-    int curLvl = 0;
+    [HideInInspector] public int curLvl = 0;
 
     [HideInInspector] public float curExp = 0;
     bool isUpgrading;
@@ -108,7 +108,6 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
         isUpgrading = true;
         //set new lvl, set new needed exp
         curNeededExp *= nextLevelMultiplier;
-        gameData.levelReached += curLvl++;
 
         //show player they reached new level and open upgrade panel
         VisualiseReachinNewLevelStart();
@@ -125,7 +124,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
         SetExpLine();
         uiUpgrades.OpenTab();
 
-        expText.text = curLvl.ToString();
+        expText.text = curLvl.ToString() + "lvl";
         //return text of lvl to normal size and check if we need to call upgrade once more
         VisualiseReachinNewLevelEnd();
         isUpgrading = false;
@@ -188,11 +187,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
         //set this joystick
         player.joystick = isFlJ ? flJoystick : fxJoystick;
     }
-
-    public void ToggleJoystickVisibility(float val)
-    {
-        joysticksCG.alpha = val;
-    }
+    public void ToggleJoystickVisibility(float val) => joysticksCG.alpha = val;
 
     //damage texts
     public void InstantiateTextOnDamage(Vector2 pos, int amountOfDamage, int typeOfDamage)//instantiate text above enemy

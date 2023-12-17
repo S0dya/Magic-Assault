@@ -22,6 +22,12 @@ public class Fire : BoxSpell
 
                 Destroy(gameObject);
                 break;
+            case "ObstacleSpawner":
+                Spawner spawner = collision.gameObject.GetComponent<Spawner>();
+                spawner.ChangeHP(damage);
+
+                Destroy(gameObject);
+                break;
             case "CircleEffect":
             case "WaterEffect":
             case "EarthEffect":

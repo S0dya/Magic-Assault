@@ -18,6 +18,8 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     [SerializeField] Transform levelParent;
     [SerializeField] GameObject levelPrefab;
 
+    [SerializeField] GameObject[] spawners;
+
     [Header("Other")]
     [SerializeField] Transform enemyParent;
     [SerializeField] Transform expParent;
@@ -26,6 +28,9 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     [SerializeField] GameObject[] playerCharacters;
     [SerializeField] Transform playerParent;
 
+    [Header("Mini boss")]
+    [SerializeField] GameObject SpawnOnDestroyEnemyBossObj;
+
     //local
     Transform playerTransform;
 
@@ -33,6 +38,7 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
 
     //level generation
     int platformsLength;
+    int spawnersLength;
 
     List<Vector2> allPositions = new List<Vector2>();
 
@@ -55,6 +61,7 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     {
         //sign Ns for future using 
         platformsLength = platforms.Length;
+        spawnersLength = spawners.Length;
 
         GenerateLevel(Vector2.zero);
     }
@@ -79,8 +86,27 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
             for (int y = -2; y < 3; y++)
             {
                 Vector2 pos = levelTransform.TransformPoint(new Vector2(platformSize.x * x, platformSize.y * y));
-                Instantiate(platforms[Random.Range(0, platformsLength)], pos, Quaternion.identity, levelTransform);
+                //instantiate new platform in level transform and get platforms transform
+                Transform platformTransform = Instantiate(platforms[Random.Range(0, platformsLength)], pos, Quaternion.identity, levelTransform).transform;
+
+                //Instantiate spawners
+                GenerateSpawners(platformTransform);
             }
+        }
+    }
+
+    void GenerateSpawners(Transform platformTransform)
+    {
+        for (int i = 0; i < 5; i++)//max amount of spawners on one platform - 5
+        {
+            if (Random.Range(0, 20) == 1)//5% of spawn
+            {
+                //instantiate spawner, get its transform and set random position in local scale
+                Transform spawnerTransform = Instantiate(spawners[Random.Range(0, spawnersLength)], platformTransform).transform;
+
+                spawnerTransform.localPosition = GetRandomPos(platformSize);
+            }
+            else break;
         }
     }
 
@@ -122,6 +148,21 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
         }
     }
 
+    public void SpawnMiniBoss(GameObject enemyPrefab, float size)
+    {
+        GameObject enemyObj = InstantiateEnemy(enemyPrefab, GetRandomOffsetPos());
+
+        enemyObj.transform.localScale = new Vector2(size, size);
+
+        Enemy enemy = enemyObj.GetComponent<Enemy>();
+        enemy.maxHp *= 3;
+
+        SpawnOnDestroyEnemy spawnOnDestroyEnemy = enemyObj.GetComponentInChildren<SpawnOnDestroyEnemy>();
+        Destroy(spawnOnDestroyEnemy.gameObject);
+
+        Instantiate(SpawnOnDestroyEnemyBossObj, enemyObj.transform);
+    }
+
 
     GameObject InstantiateEnemy(GameObject enemy, Vector2 pos)
     {
@@ -144,6 +185,11 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     public Vector2 GetRandomPos(float x, float y)
     {
         return new Vector2(Random.Range(-x, x), Random.Range(-y, y));
+    }
+
+    Vector2 GetRandomPos(Vector2 pos)
+    {
+        return GetRandomPos(pos.x, pos.y);
     }
 
     public Vector2 GetRandomOffsetPos(float x, float y, float offset)
@@ -188,8 +234,5 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
         }
     }
 
-    public void MoveEnemy(Transform  enemyTransform)//move enemy closer to player when player gets far from enemy
-    {
-        enemyTransform.position = GetRandomOffsetPos();
-    }
+    public void MoveEnemy(Transform  enemyTransform) => enemyTransform.position = GetRandomOffsetPos();//move enemy closer to player when player gets far from enemy
 }

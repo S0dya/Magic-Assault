@@ -105,7 +105,7 @@ public class Player : Creature
 
         if (curHp == 0)
         {
-            UIResults.I.SetTransparentBg();
+            //UIResults.I.SetTransparentBg();
         }
         else if (val < 0)
         {

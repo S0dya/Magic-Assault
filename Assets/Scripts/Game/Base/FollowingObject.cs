@@ -9,13 +9,11 @@ public class FollowingObject : MonoBehaviour
     [SerializeField] SO_Item thisItem;
 
     //local
-    Player player;
     Transform playerTransform;
 
     protected virtual void Start()//find player this object will follow on trigger enter
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        playerTransform = player.gameObject.transform;
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         LeanTween.scale(gameObject, new Vector2(1, 1), 1).setEase(LeanTweenType.easeOutBack);//make object appear 
     }
 
@@ -25,13 +23,13 @@ public class FollowingObject : MonoBehaviour
         Vector2 playerPos;
         Vector2 thisPos;
 
-        while (distance < 0.25f)//follow player 
+        while (distance > 0.25f)//follow player 
         {
             playerPos = playerTransform.position;
             thisPos = transform.position;
 
             Vector2 direction = (playerPos - thisPos).normalized;
-            rb.velocity = direction * 14;
+            rb.velocity = direction * 10;
 
             distance = Vector2.Distance(thisPos, playerPos);
             yield return null;
@@ -42,6 +40,6 @@ public class FollowingObject : MonoBehaviour
 
     public Player GetPlayer()
     {
-        return player;
+        return playerTransform.gameObject.GetComponent<Player>();
     }
 }

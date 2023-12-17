@@ -9,16 +9,9 @@ public class Enemy : Creature
     public float damageOnTriggerWithPlayer;
     public int typeOfDamageOnTriggerWithPlayer;
 
-    //spawn
-    public float coinSpawnChance;
-    public bool spawnsUpgradeItem;
-
-    [Header("Other")]
-    [SerializeField] GameObject expPrefab;
-    [SerializeField] GameObject coinPrefab;
-    [SerializeField] GameObject littleBagOfGoldPrefab;
-
-    [SerializeField] GameObject[] upgradePrefabs;
+    [Header("Skin")]
+    [SerializeField] Sprite[] skins;
+    [SerializeField] int skinsN;
 
     [Header("Colliders")]
     [SerializeField] BoxCollider2D enemyBoxCollider;
@@ -28,9 +21,6 @@ public class Enemy : Creature
 
     //local
     [HideInInspector] public Transform playerTransform;
-    Transform expParent;
-    Transform coinParent;
-    Transform upgradesParent;
 
     //looking direction
     float xOfMove;
@@ -42,20 +32,12 @@ public class Enemy : Creature
     Coroutine burningCor;
     Coroutine waitForPushEndCor;
 
-    protected override void Awake()
-    {
-        base.Awake();
-
-        expParent = GameObject.FindGameObjectWithTag("ExpParent").GetComponent<Transform>();
-        coinParent = GameObject.FindGameObjectWithTag("CoinParent").GetComponent<Transform>();
-        upgradesParent = GameObject.FindGameObjectWithTag("UpgradesParent").GetComponent<Transform>();
-    }
-
     protected override void Start()
     {
         base.Start();
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        Sr.sprite = skins[Random.Range(0, skinsN)]; 
     }
 
     public void CheckLookingDirection() => CheckLookingDirection(playerTransform.position.x);
@@ -100,24 +82,12 @@ public class Enemy : Creature
 
         ToggleMovement(false);
         Push((transform.position - playerTransform.position).normalized, 0.5f);
-
-        LeanTween.alpha(gameObject, 0f, 0.75f).setEase(LeanTweenType.easeOutQuad).setOnComplete(() =>
-        {
-            UIInGame.I.AddKill();
-            GameData.I.killedEnemies++;
-
-            //instantiate items
-            InstantiateAfterDeath(expPrefab, expParent);
-            if (Random.Range(0, 15) <= coinSpawnChance) InstantiateAfterDeath((Random.Range(0, 15) < 12 ? coinPrefab : littleBagOfGoldPrefab), coinParent);
-            if (spawnsUpgradeItem) InstantiateAfterDeath(upgradePrefabs[Random.Range(0, upgradePrefabs.Length)], coinParent);
-            
-            Die();
-        });
+        UIInGame.I.AddKill();
+     
+        Die();
     }
-    public void InstantiateAfterDeath(GameObject prefab, Transform parent) => Instantiate(prefab, transform.position, Quaternion.identity, parent);
-    
-    public void Die() => Destroy(gameObject);
-    
+    public void Die() => LeanTween.alpha(gameObject, 0f, 0.6f).setEase(LeanTweenType.easeOutQuad).setOnComplete(() => Destroy(gameObject));
+
     void DisableColliders()
     {
         enemyBoxCollider.enabled = false;

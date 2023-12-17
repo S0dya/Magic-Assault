@@ -26,7 +26,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 919bd0ff8276afd49988fad67850a917, type: 2}
   - {fileID: 11400000, guid: 727cd3dcf98304149bb317e30707a886, type: 2}
   - {fileID: 11400000, guid: a11b22c9552875a44bcb905e33402b29, type: 2}
-  <damageMultipliers>k__BackingField: 00000000000000000000000000000000
+  <damageMultipliers>k__BackingField: 0a0000000a0000000a0000000a000000
   <weaknessMultipliers>k__BackingField:
   - 1
   - 1

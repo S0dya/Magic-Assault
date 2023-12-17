@@ -13,6 +13,9 @@ public class UIUpgrades : UIPanelGame
 
     [SerializeField] List<SO_GameItem> allItems = new List<SO_GameItem>();
 
+    [Header("Other")]
+    [SerializeField] ParticleSystem upgradeEffect;
+
     //local
     ActiveUpgrades activeUpgrades;
 
@@ -36,8 +39,16 @@ public class UIUpgrades : UIPanelGame
     public override void OpenTab()
     {
         SetUpgrades();
+        upgradeEffect.Play();
 
         base.OpenTab();
+    }
+
+    public override void CloseTab()
+    {
+        base.CloseTab();
+
+        upgradeEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
     //other methods

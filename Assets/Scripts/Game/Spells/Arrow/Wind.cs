@@ -30,6 +30,10 @@ public class Wind : BoxSpell
                 enemy.Push(posOfPush, size);
                 enemy.ChangeHP(damage, typeOfDamage);
                 break;
+            case "ObstacleSpawner":
+                Spawner spawner = collision.gameObject.GetComponent<Spawner>();
+                spawner.ChangeHP(damage);
+                break;
             default: break;
         }
     }

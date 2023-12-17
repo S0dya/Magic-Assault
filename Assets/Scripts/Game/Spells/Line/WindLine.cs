@@ -31,6 +31,12 @@ public class WindLine : CircleSpell
 
                 DestroyObj();
                 break;
+            case "ObstacleSpawner":
+                Spawner spawner = collision.gameObject.GetComponent<Spawner>();
+                spawner.ChangeHP(damage);
+
+                DestroyObj();
+                break;
             case "CircleEffect":
             case "EarthEffect":
             case "ObjectCollider":

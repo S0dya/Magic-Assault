@@ -8,16 +8,13 @@ public class Creature : MonoBehaviour
     public float maxHp;
     public float movementSpeed;
 
-    public float pushMultiplier;
-    public int averageTimeOfBurning;
-
-
     [Header("0 - fire, 1 - water, 2 - earth, 3 - air")]
     public float[] elementalDamageMultipliers;
 
     [Header("Fire")]
     public float inLavaSpeed;
     public bool burningDealsDamage;
+    public int averageTimeOfBurning;
     public float damageOfBurning;
 
     [Header("Water")]
@@ -28,6 +25,7 @@ public class Creature : MonoBehaviour
 
     [Header("Air")]
     public float timeForPush;
+    public float pushMultiplier;
 
     [Header("Other")]
     [SerializeField] Rigidbody2D rb;
@@ -37,15 +35,12 @@ public class Creature : MonoBehaviour
     [SerializeField] ParticleSystem wetEffect;
     [SerializeField] ParticleSystem stunnedEffect;
 
-    [SerializeField] Color normalColor;
-    [SerializeField] Color damageColor;
-
-
     //inheriting scripts
     [HideInInspector] public float curMovementSpeed;
     [HideInInspector] public Vector2 directionOfMovement;
 
     protected Rigidbody2D Rb { get { return rb; } set { rb = value; } }
+    protected SpriteRenderer Sr { get { return sr; } set { sr = value; } }
     protected float CurMovementSpeed { get { return curMovementSpeed; } set { curMovementSpeed = value; } }
     protected float DamageMultiplierOnDamage { get { return damageMultiplierOnDamage; } set { damageMultiplierOnDamage = value; } }
     protected Vector2 DirectionOfMovement { get { return directionOfMovement; } set { directionOfMovement = value; } }
@@ -80,6 +75,10 @@ public class Creature : MonoBehaviour
     //wind
     int amountOfTriggeredTornado;
     Vector2 curPosOfCenterOfTornado;
+
+    //visualisation of damage
+    Color normalColor = new Color(255, 255, 255);
+    Color damageColor = new Color(0, 0, 0);
 
     //cor
     Coroutine visualiseDamageCor;

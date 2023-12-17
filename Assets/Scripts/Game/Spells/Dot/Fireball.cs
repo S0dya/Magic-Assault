@@ -14,6 +14,7 @@ public class Fireball : CircleSpell
                 Player player = collision.gameObject.GetComponent<Player>();
                 player.ChangeHP(damage, typeOfDamage);
                 player.Burn();
+
                 Destroy(gameObject);
                 break;
             case "Enemy":
@@ -22,6 +23,13 @@ public class Fireball : CircleSpell
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
                 enemy.ChangeHP(damage, typeOfDamage);
                 enemy.Burn();
+
+                Destroy(gameObject);
+                break;
+            case "ObstacleSpawner":
+                Spawner spawner = collision.gameObject.GetComponent<Spawner>();
+                spawner.ChangeHP(damage);
+
                 Destroy(gameObject);
                 break;
             case "WaterEffect":

@@ -18,6 +18,8 @@ TagManager:
   - SpellsManager
   - LevelManager
   - UpgradesParent
+  - PickUps
+  - ObstacleSpawner
   layers:
   - Default
   - TransparentFX
@@ -58,11 +60,11 @@ TagManager:
   - name: Floor
     uniqueID: 1772809157
     locked: 0
-  - name: OnFloor
-    uniqueID: 2462464243
-    locked: 0
   - name: FadeEffect
     uniqueID: 3083349625
+    locked: 0
+  - name: OnFloor
+    uniqueID: 2462464243
     locked: 0
   - name: DownEffects
     uniqueID: 801097515

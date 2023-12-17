@@ -61,11 +61,11 @@ public static class Settings
     /// <summary>
     /// Game data
     /// </summary>
-
     public static int totalTimeInGame;
     public static int totalKilledEnemies;
     public static int totalGoldEarned;
     public static int totalLevelReached;
+    public static int maxTotalLevelReached;
     public static int totalDamageDone;
     public static int[] totalElementalDamageDone = new int[4];
 
@@ -75,5 +75,4 @@ public static class Settings
     public static string characterName;
     public static int characterI;
     public static int curSceneId;
-
 }

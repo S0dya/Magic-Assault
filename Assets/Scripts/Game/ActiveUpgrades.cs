@@ -46,7 +46,7 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
         //EnableDotInRandomEnemy(1);
         //EnableDotInRandomPosition(2);
         //EnableDotInMovementDirection(3);
-        //EnableCircleInRandomPosition(3);
+        //EnableCircleInRandomPosition(2);
     }
 
     //enabling active upgrades

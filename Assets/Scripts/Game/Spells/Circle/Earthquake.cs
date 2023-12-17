@@ -10,6 +10,7 @@ public class Earthquake : CircleSpell
     bool playerOnTrigger;
 
     List<Enemy> enemies = new List<Enemy>();
+    List<Spawner> spawners = new List<Spawner>();
 
     protected override void Start()
     {
@@ -32,6 +33,10 @@ public class Earthquake : CircleSpell
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
                 enemies.Add(enemy);
                 break;
+            case "ObstacleSpawner":
+                Spawner spawner = collision.gameObject.GetComponent<Spawner>();
+                spawners.Add(spawner);
+                break;
             default: break;
         }
     }
@@ -46,6 +51,10 @@ public class Earthquake : CircleSpell
             case "Enemy":
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
                 enemies.Remove(enemy);
+                break;
+            case "ObstacleSpawner":
+                Spawner spawner = collision.gameObject.GetComponent<Spawner>();
+                spawners.Remove(spawner);
                 break;
             default: break;
         }
@@ -69,6 +78,7 @@ public class Earthquake : CircleSpell
                 player.ChangeHP(-3, 2);
             }
 
+            foreach (Spawner spawner in new List<Spawner>(spawners)) if (spawner != null) spawner.ChangeHP(-3);
 
             yield return new WaitForSeconds(1f);
         }

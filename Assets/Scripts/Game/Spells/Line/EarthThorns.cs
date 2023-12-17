@@ -22,6 +22,12 @@ public class EarthThorns : BoxSpell
                 
                 Destroy(gameObject);
                 break;
+            case "ObstacleSpawner":
+                Spawner spawner = collision.gameObject.GetComponent<Spawner>();
+                spawner.ChangeHP(damage);
+
+                Destroy(gameObject);
+                break;
             case "CircleEffect":
             case "ObjectCollider":
                 Destroy(gameObject);

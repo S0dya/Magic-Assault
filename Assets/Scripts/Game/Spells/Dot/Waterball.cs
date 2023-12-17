@@ -26,6 +26,12 @@ public class Waterball : CircleSpell
 
                 Destroy(gameObject);
                 break;
+            case "ObstacleSpawner":
+                Spawner spawner = collision.gameObject.GetComponent<Spawner>();
+                spawner.ChangeHP(damage);
+
+                Destroy(gameObject);
+                break;
             case "FireEffect":
             case "EarthEffect":
             case "ObjectCollider":

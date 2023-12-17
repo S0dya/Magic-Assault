@@ -12,12 +12,20 @@ public class WaterLine : CircleSpell
                 Player player = collision.gameObject.GetComponent<Player>();
                 player.ChangeHP(damage, typeOfDamage);
                 player.HandleWater();
+                
                 Destroy(gameObject);
                 break;
             case "Enemy":
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
                 enemy.ChangeHP(damage, typeOfDamage);
                 enemy.HandleWater();
+
+                Destroy(gameObject);
+                break;
+            case "ObstacleSpawner":
+                Spawner spawner = collision.gameObject.GetComponent<Spawner>();
+                spawner.ChangeHP(damage);
+
                 Destroy(gameObject);
                 break;
             case "CircleEffect":

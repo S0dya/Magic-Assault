@@ -35,6 +35,12 @@ public class Stone : CircleSpell
 
                 Destroy(gameObject);
                 break;
+            case "ObstacleSpawner":
+                Spawner spawner = collision.gameObject.GetComponent<Spawner>();
+                spawner.ChangeHP(damage);
+
+                Destroy(gameObject);
+                break;
             case "ObjectCollider":
                 Destroy(gameObject);
                 break;

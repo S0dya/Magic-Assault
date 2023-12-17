@@ -18,6 +18,10 @@ public class RollingStone : CircleSpell
                 enemy.Stun(1);
                 enemy.ChangeHP(damage, typeOfDamage);
                 break;
+            case "ObstacleSpawner":
+                Spawner spawner = collision.gameObject.GetComponent<Spawner>();
+                spawner.ChangeHP(damage);
+                break;
             default: break;
         }
     }

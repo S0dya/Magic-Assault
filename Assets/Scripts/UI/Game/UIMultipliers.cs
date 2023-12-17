@@ -33,11 +33,8 @@ public class UIMultipliers : UIPanelGame
     //arrows
     LTDescr[] arrowTweens = new LTDescr[2];
     Image[] arrowImages = new Image[2];
-    RectTransform[] arrowsTransform = new RectTransform[2];
 
-    Vector2[] arrowsAnimationStartPos = new Vector2[2];
-    float arrowStartAnimationY;
-    float[] arrowEndAnimationY = new float[2];
+    float[] arrowEndAnimationY = new float[2] { 20f, -20f };
 
     void Awake()
     {
@@ -46,17 +43,8 @@ public class UIMultipliers : UIPanelGame
 
         for (int i = 0; i < 4; i++) damageMultipliersMins[i] = (int)(Settings.damageMultipliersMins[i] * 10);
         curMultipliers = new int[4];
-
         
-        for (int i = 0; i < 2; i++)//get transform and starting position
-        {
-            arrowsTransform[i] = arrowsObj[i].GetComponent<RectTransform>();
-            arrowImages[i] = arrowsObj[i].GetComponent<Image>();
-            arrowsAnimationStartPos[i] = arrowsTransform[i].position;
-        }
-        arrowStartAnimationY = arrowsAnimationStartPos[0].y;//set animation points based on position
-        arrowEndAnimationY[0] = arrowStartAnimationY + 30f;
-        arrowEndAnimationY[1] = arrowEndAnimationY[0] - 60f;
+        for (int i = 0; i < 2; i++) arrowImages[i] = arrowsObj[i].GetComponent<Image>();
     }
 
     //panel 
@@ -170,10 +158,8 @@ public class UIMultipliers : UIPanelGame
     {
         if (arrowTweens[i] == null)//only play if arrow animation is not playing
         {
-            //set pos to start
-            arrowsTransform[i].anchoredPosition = Vector2.zero;
             //move to end position in loop
-            arrowTweens[i] = LeanTween.moveY(arrowsObj[i], arrowEndAnimationY[i], 0.5f).setEase(LeanTweenType.easeInOutQuad).setLoopPingPong();
+            arrowTweens[i] = LeanTween.moveLocalY(arrowsObj[i], -30, 0.5f).setEase(LeanTweenType.easeInOutQuad).setLoopPingPong();
             //make animation work despite scaled time being 0
             GameManager.I.SetUseEstimatedTime(arrowTweens[i]);
 
