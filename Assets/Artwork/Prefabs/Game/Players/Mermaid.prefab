@@ -148,68 +148,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &4066647700271659053
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4066647700271659052}
-  - component: {fileID: 4066647700271659050}
-  - component: {fileID: 4066647700271659051}
-  m_Layer: 13
-  m_Name: EnemiesTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4066647700271659052
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4066647700271659053}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4066647700554353187}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4066647700271659050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4066647700271659053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 040cddd8ba07484449067b589d55b9c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemiesTransforms: []
---- !u!58 &4066647700271659051
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4066647700271659053}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 5
 --- !u!1 &4066647700421797784
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +225,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4066647700421797799}
-  - {fileID: 4066647700271659052}
   - {fileID: 4066647701614042927}
   - {fileID: 4066647701529104649}
   - {fileID: 4066647701828145373}
@@ -348,8 +285,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 75
   movementSpeed: 4.25
-  pushMultiplier: 4
-  averageTimeOfBurning: 4
   elementalDamageMultipliers:
   - 1.5
   - 0.5
@@ -357,6 +292,7 @@ MonoBehaviour:
   - 0.75
   inLavaSpeed: 0.5
   burningDealsDamage: 1
+  averageTimeOfBurning: 4
   damageOfBurning: -0.5
   inWaterSpeed: 1.2
   waterDealsDamage: 0
@@ -368,8 +304,6 @@ MonoBehaviour:
   burningEffect: {fileID: 1611579280063940363}
   wetEffect: {fileID: 6686660998308376943}
   stunnedEffect: {fileID: 2368164491263618985}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
-  damageColor: {r: 0, g: 0, b: 0, a: 1}
   curMovementSpeed: 0
   directionOfMovement: {x: 0, y: 0}
   curHp: 0
@@ -408,7 +342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f8f0072ac6809469f771ca0106c417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesTrigger: {fileID: 4066647700271659050}
   player: {fileID: 4066647700768977682}
   dotEffects:
   - {fileID: 7446051607462513135, guid: e9e7f272d4437944f9430dd3c3d1e7e1, type: 3}
@@ -732,7 +665,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4066647700554353187}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4066647701529104648
 MonoBehaviour:
@@ -878,7 +811,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4066647700554353187}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &4066647701614042926
 CircleCollider2D:
@@ -930,7 +863,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4066647700554353187}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4066647701828145371
 MonoBehaviour:

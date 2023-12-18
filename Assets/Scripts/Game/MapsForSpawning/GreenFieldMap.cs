@@ -27,11 +27,23 @@ using UnityEngine;
 
 public class GreenFieldMap : MonoBehaviour
 {
+    [Header("Other scripts")]
+    [SerializeField] LevelManager levelManager;
+    
     [Header("platforms")]
     [SerializeField] GameObject[] platforms;
 
     [Header("Enemies")]
+    [SerializeField] GameObject[] zeroWaveEnemies;
     [SerializeField] GameObject[] firstWaveEnemies;
+    [SerializeField] GameObject[] secondWaveEnemies;
+    [SerializeField] GameObject[] thirdWaveEnemies;
+    [SerializeField] GameObject[] forthWaveEnemies;
+    [SerializeField] GameObject[] fifthWaveEnemies;
+    [SerializeField] GameObject[] sixthWaveEnemies;
+    [SerializeField] GameObject[] seventhWaveEnemies;
+    [SerializeField] GameObject[] eighthWaveEnemies;
+    [SerializeField] GameObject[] ninthWaveEnemies;
 
     [Header("Crowd enemies")]
     [SerializeField] GameObject firstWaveCrowdEnemy;
@@ -39,17 +51,10 @@ public class GreenFieldMap : MonoBehaviour
     [Header("Circle crowd enemies")]
     [SerializeField] GameObject firstWaveCircleCrowdEnemy;
 
-
-    [Header("Other")]
-    [SerializeField] LevelManager levelManager;
-
-    //local
-    [HideInInspector] public int curDeadEnemiesAmount;
-
     //time
     float shortWave = 10;
-    float middleWave = 60;
-    float longWave = 90;
+    float middleWave = 30;
+    float longWave = 60;
 
     //Ns
     int firstWaveEnemiesN;
@@ -68,6 +73,8 @@ public class GreenFieldMap : MonoBehaviour
 
     IEnumerator WavesCor() // each wave spawn enemies, crowds, or circle crowds of enemies
     {
+        yield return StartCoroutine(levelManager.SpawnEnemiesCor(longWave, 30, firstWaveEnemies));
+
         //levelManager.SpawnCircleCrowdEnemies(firstWaveCircleCrowdEnemy, 25);
         //levelManager.SpawnCrowdOfEnemies(firstWaveCrowdEnemy, 10);
         //StartCoroutine(SpawnEnemiesCor(shortWave, 60, firstWaveEnemies, firstWaveEnemiesN));
@@ -78,8 +85,7 @@ public class GreenFieldMap : MonoBehaviour
         {
 
             levelManager.SpawnMiniBoss(firstWaveEnemies[0], 2);
-            //StartCoroutine(SpawnEnemiesCor(shortWave, 60, firstWaveEnemies, firstWaveEnemiesN));
-            yield return new WaitForSeconds(shortWave);
+            yield return StartCoroutine(levelManager.SpawnEnemiesCor(shortWave, 30, firstWaveEnemies));
 
         }
 
@@ -88,22 +94,6 @@ public class GreenFieldMap : MonoBehaviour
             levelManager.SpawnCrowdOfEnemies(firstWaveCrowdEnemy, 10);
             yield return new WaitForSeconds(shortWave);
 
-        }
-
-    }
-
-    IEnumerator SpawnEnemiesCor(float totalTime, float amountOfEnemies, GameObject[] enemies, int n)
-    {
-        //get average time of spawning one enemy
-        float time = totalTime / amountOfEnemies;
-
-        while (totalTime > 0)// iterate while there is time
-        {
-            levelManager.SpawnEnemy(enemies[Random.Range(0, n)]);
-
-            totalTime -= time;
-
-            yield return new WaitForSeconds(time);
         }
     }
 }

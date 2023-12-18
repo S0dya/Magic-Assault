@@ -94,7 +94,6 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
             }
         }
     }
-
     void GenerateSpawners(Transform platformTransform)
     {
         for (int i = 0; i < 5; i++)//max amount of spawners on one platform - 5
@@ -110,6 +109,23 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
         }
     }
 
+    //cor
+    public IEnumerator SpawnEnemiesCor(float totalTime, float amountOfEnemies, GameObject[] enemies)
+    {
+        //get average time of spawning one enemy
+        float time = totalTime / amountOfEnemies;
+        int n = enemies.Length;
+
+        while (totalTime > 0)// iterate while there is time
+        {
+            SpawnEnemy(enemies[Random.Range(0, n)]);
+
+            totalTime -= time;
+
+            yield return new WaitForSeconds(time);
+        }
+    }
+    
     //spawn enemy
     public void SpawnEnemy(GameObject enemyPrefab)
     {
@@ -198,18 +214,10 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
 
         switch (Random.Range(0, 4))
         {
-            case 0:
-                result = new Vector2(Random.Range(-x, x), Random.Range(y, y + offset));
-                break;
-            case 1:
-                result = new Vector2(Random.Range(x, x + offset), Random.Range(-y, y));
-                break;
-            case 2:
-                result = new Vector2(Random.Range(-x, x), Random.Range(-y - offset, -y));
-                break;
-            case 3:
-                result = new Vector2(Random.Range(-x - offset, -x), Random.Range(-y, y));
-                break;
+            case 0: result = new Vector2(Random.Range(-x, x), Random.Range(y, y + offset)); break;
+            case 1: result = new Vector2(Random.Range(x, x + offset), Random.Range(-y, y)); break;
+            case 2: result = new Vector2(Random.Range(-x, x), Random.Range(-y - offset, -y)); break;
+            case 3: result = new Vector2(Random.Range(-x - offset, -x), Random.Range(-y, y)); break;
             default: break;
         }
 

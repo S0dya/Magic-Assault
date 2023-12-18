@@ -232,6 +232,7 @@ GameObject:
   - component: {fileID: -3255939646476373196}
   - component: {fileID: 7874836842616660358}
   - component: {fileID: 7882806676183235298}
+  - component: {fileID: -3166716560014944263}
   m_Layer: 16
   m_Name: FireElemental
   m_TagString: Enemy
@@ -270,9 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
-  movementSpeed: 1
-  pushMultiplier: 4
-  averageTimeOfBurning: 0
+  movementSpeed: 0.4
   elementalDamageMultipliers:
   - 0.5
   - 2
@@ -280,19 +279,18 @@ MonoBehaviour:
   - 1.25
   inLavaSpeed: 1.2
   burningDealsDamage: 0
+  averageTimeOfBurning: 0
   damageOfBurning: 0
   inWaterSpeed: 0.4
   waterDealsDamage: 1
   durationOfDrying: 3
   damageOnWet: -3
-  timeForPush: 0.5
+  timeForPush: 0.75
   rb: {fileID: 7874836842616660358}
   sr: {fileID: 7874836842616660356}
   burningEffect: {fileID: 715335852927209348}
   wetEffect: {fileID: 8501601913139871277}
   stunnedEffect: {fileID: 7741187563418099464}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
-  damageColor: {r: 0, g: 0, b: 0, a: 1}
   curMovementSpeed: 0
   directionOfMovement: {x: 0, y: 0}
   curHp: 0
@@ -303,8 +301,11 @@ MonoBehaviour:
   speedOnTriggerWithPlayer: 0.5
   damageOnTriggerWithPlayer: 5
   typeOfDamageOnTriggerWithPlayer: 0
-  coinSpawnChance: 0
-  spawnsUpgradeItem: 0
+  skins:
+  - {fileID: 21300000, guid: 2b57b52e4f640fb48bba3e5ab95bf661, type: 3}
+  - {fileID: 21300000, guid: 7ca39ae3166d57c44bef1f1ffc89da6b, type: 3}
+  - {fileID: 21300000, guid: 6f0a6fb66007f464a9761f91ca681531, type: 3}
+  skinsN: 3
   enemyBoxCollider: {fileID: 7882806676183235298}
   enemyCircleCollider: {fileID: -3255939646476373196}
   damageCollidersObj: {fileID: 7874836841929392855}
@@ -389,7 +390,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.15}
+  m_Offset: {x: 0, y: -0.1}
   serializedVersion: 2
   m_Radius: 0.15
 --- !u!50 &7874836842616660358
@@ -429,7 +430,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.3568262, y: 0.5059101}
     oldSize: {x: 0.625, y: 0.796875}
     newSize: {x: 0.4, y: 0.51}
     adaptiveTilingThreshold: 0.5
@@ -437,8 +438,29 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.73333335, y: 0.8}
+  m_Size: {x: 0.5, y: 0.8}
   m_EdgeRadius: 0
+--- !u!95 &-3166716560014944263
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874836842616660359}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e386561e4b4bdba4fb4fc9de1e0eda09, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &4604833513598916096
 PrefabInstance:
   m_ObjectHideFlags: 0

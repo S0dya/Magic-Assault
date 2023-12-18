@@ -21,6 +21,9 @@ public class Player : Creature
 
     [Header("Animation")]
     [SerializeField] Animator animator;
+    [SerializeField] GameObject[] shadowPrefabs;
+    int curShadowDirection;
+    public float bs;
 
     [Header("Damage Visualisation")]
     [SerializeField] GameObject BloodEffectObj;
@@ -35,16 +38,30 @@ public class Player : Creature
     //local
     [HideInInspector] public Vector2 lastJoystickDirection;
 
+    //movement
     float xOfMove;
 
+    //enemies trigger
     int curAmountOfEnemies;
 
+    
     float shieldProtection;
+
+    //animation
+    Transform shadowEffectsParent;
 
     //cors
     Coroutine restoreHpCor;
     Coroutine restoreManaCor;
     Coroutine visualiseDamage;
+    Coroutine shadowAnimationCor;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        shadowEffectsParent = GameObject.FindGameObjectWithTag("ShadowEffectsParent").transform;
+    }
 
     protected override void Start()
     {
@@ -60,23 +77,32 @@ public class Player : Creature
         animator.speed = directionOfMovement.magnitude;//set animator for walking visualisation
         
         xOfMove = directionOfMovement.x;
-        if ((xOfMove < 0 && !isLookingOnRight) || (xOfMove > 0 && isLookingOnRight)) ChangeLookingDirection();//rotate player if they go in another direction
+        if ((xOfMove < 0 && !isLookingOnRight) || (xOfMove > 0 && isLookingOnRight))
+        {
+            ChangeLookingDirection();//rotate player if they go in another direction
+            curShadowDirection = (isLookingOnRight ? 0 : 1);
+        }
+
 
         base.Update();
     }
 
     //joystick input
-    public void ToggleJoystickInput(bool val)
+    public void StartJoystickInput()
     {
-        joystickInput = val;
-        if (!val)
-        {
-            if (IsJoystickDirectionNotZero()) lastJoystickDirection = directionOfMovement;
+        ToggleJoystickInput(true);
 
-            Rb.velocity = Vector2.zero;
+        StartShadowAnimation();
+    }
+    public void StopJoystickInput()
+    {
+        ToggleJoystickInput(false);
 
-            StartCoroutine(UnSetCheckCor());//skip this frame for proper value set
-        }
+        if (IsJoystickDirectionNotZero()) lastJoystickDirection = directionOfMovement;
+
+        Rb.velocity = Vector2.zero;
+
+        StartCoroutine(UnSetCheckCor());//skip this frame for proper value set
     }
     IEnumerator UnSetCheckCor()
     {
@@ -177,9 +203,30 @@ public class Player : Creature
         if (curAmountOfEnemies == 0) DamageMultiplierOnDamage = 1;
     }
 
+    //animation
+    void StartShadowAnimation()
+    {
+        if (shadowAnimationCor != null) StopCoroutine(shadowAnimationCor);
+        shadowAnimationCor = StartCoroutine(ShadowAnimationCor());
+    }
+
+    IEnumerator ShadowAnimationCor()
+    {
+        while (joystickInput)
+        {
+            Instantiate(shadowPrefabs[curShadowDirection], transform.position, Quaternion.identity, shadowEffectsParent);
+
+            yield return new WaitForSeconds(bs);
+        }
+
+        shadowAnimationCor = null;
+    }
+
     //other
     public void AddShield()
     {
         shieldProtection -= 0.1f;
     }
+
+    void ToggleJoystickInput(bool val) => joystickInput = val;
 }

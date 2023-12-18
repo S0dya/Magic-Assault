@@ -48,8 +48,6 @@ public static class Settings
     //other
     public static int[] startingSpells = new int[4] { 0, 1, 0, 3 };
 
-    public static float timeForCheckTransforms = 4;
-
     public static float[] damageMultipliers = new float[4] { 1, 1, 1, 1 };
     public static float[] damageMultipliersMins = new float[4] { 0.6f, 0.6f, 0.6f, 0.6f };
     public static float[] lifeTimeMultipliers = new float[4] { 1, 1, 1, 1 };

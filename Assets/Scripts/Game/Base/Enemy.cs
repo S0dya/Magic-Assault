@@ -21,6 +21,7 @@ public class Enemy : Creature
 
     //local
     [HideInInspector] public Transform playerTransform;
+    ActiveUpgrades activeUpgrades;
 
     //looking direction
     float xOfMove;
@@ -32,11 +33,22 @@ public class Enemy : Creature
     Coroutine burningCor;
     Coroutine waitForPushEndCor;
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        activeUpgrades = playerTransform.gameObject.GetComponent<ActiveUpgrades>();
+
+        activeUpgrades.AddEnemy(transform);
+    }
+
     protected override void Start()
     {
         base.Start();
 
-        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        
+
         Sr.sprite = skins[Random.Range(0, skinsN)]; 
     }
 
@@ -83,10 +95,14 @@ public class Enemy : Creature
         ToggleMovement(false);
         Push((transform.position - playerTransform.position).normalized, 0.5f);
         UIInGame.I.AddKill();
-     
+        
         Die();
     }
-    public void Die() => LeanTween.alpha(gameObject, 0f, 0.6f).setEase(LeanTweenType.easeOutQuad).setOnComplete(() => Destroy(gameObject));
+    public void Die()
+    {
+        LeanTween.alpha(gameObject, 0f, 0.6f).setEase(LeanTweenType.easeOutQuad).setOnComplete(() => Destroy(gameObject));
+        activeUpgrades.RemoveEnemy(transform);
+    }
 
     void DisableColliders()
     {

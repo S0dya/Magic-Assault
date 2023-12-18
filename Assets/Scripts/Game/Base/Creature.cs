@@ -25,7 +25,6 @@ public class Creature : MonoBehaviour
 
     [Header("Air")]
     public float timeForPush;
-    public float pushMultiplier;
 
     [Header("Other")]
     [SerializeField] Rigidbody2D rb;
@@ -212,7 +211,7 @@ public class Creature : MonoBehaviour
     public virtual void Push(Vector2 directionOfPush, float powerOfPush)
     {
         //push creature in a specified direction with all needed multipliers
-        rb.AddForce(directionOfPush * pushMultiplier * movementMultiplier * powerOfPush * elementalDamageMultipliers[3], ForceMode2D.Impulse);
+        rb.AddForce(directionOfPush * movementMultiplier * powerOfPush * elementalDamageMultipliers[3], ForceMode2D.Impulse);
 
         if (pushCor != null) StopCoroutine(pushCor);
         pushCor = StartCoroutine(PushCor());

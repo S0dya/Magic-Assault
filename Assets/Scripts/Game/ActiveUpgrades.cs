@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
 {
-    [SerializeField] EnemiesTrigger enemiesTrigger;
+    [Header("Other scripts")]
     [SerializeField] Player player;
 
     [Header("Spells")]
@@ -31,6 +31,10 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
 
     //other
     float distanceBetweenSpells = 10;
+    
+    //enemies search
+    List<Transform> enemiesTransforms = new List<Transform>();
+    Vector2 nearestPos;
 
     protected override void Awake()
     {
@@ -42,8 +46,8 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
 
     void Start() //test
     {
-        //EnableDotInNearestEnemy(0);
-        //EnableDotInRandomEnemy(1);
+        EnableDotInNearestEnemy(0);
+        EnableDotInRandomEnemy(1);
         //EnableDotInRandomPosition(2);
         //EnableDotInMovementDirection(3);
         //EnableCircleInRandomPosition(2);
@@ -87,8 +91,7 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
         {
             for (int i = 0; i < dotSpellsAmountOnShoot[0]; i++)
             {
-                if (enemiesTrigger.HasEnemiesNearPlayer()) InstantiateSpellToPosition(dotEffects[dotSpellsIndex[0]], enemiesTrigger.GetNearestEnemyPosition(), dotSpellsSize[0]);
-                else break;
+                InstantiateSpellToPosition(dotEffects[dotSpellsIndex[0]], GetNearestEnemyPosition(), dotSpellsSize[0]);
 
                 yield return new WaitForSeconds(dotReloadTime[0]);
             }
@@ -103,8 +106,7 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
         {
             for (int i = 0; i < dotSpellsAmountOnShoot[1]; i++)
             {
-                if (enemiesTrigger.HasEnemiesNearPlayer()) InstantiateSpellToPosition(dotEffects[dotSpellsIndex[1]], enemiesTrigger.GetRandomEnemyPosition(), dotSpellsSize[1]);
-                else break;
+                InstantiateSpellToPosition(dotEffects[dotSpellsIndex[1]], GetRandomEnemyPosition(), dotSpellsSize[1]);
 
                 yield return new WaitForSeconds(dotReloadTime[1]);
             }
@@ -192,4 +194,36 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
     {
         return transform.TransformPoint(levelManager.GetRandomPos(distance, distance));
     }
+
+    //methods for finding enmies
+    public Vector2 GetNearestEnemyPosition()
+    {
+        //set private values
+        float nearestDistance = float.MaxValue;
+
+        //check nearest transform based on distance
+        foreach (Transform enemyTransform in enemiesTransforms)
+        {
+            Vector2 curPos = enemyTransform.position;
+            float curDistance = Vector2.Distance(curPos, transform.position);
+            
+            if (nearestDistance > curDistance)
+            {
+                nearestDistance = curDistance;
+                nearestPos = curPos;
+            }
+        }
+
+        return nearestPos;
+    }
+
+    public Vector2 GetRandomEnemyPosition()
+    {
+        //get random enemy near player
+        return enemiesTransforms.Count != 0 ? enemiesTransforms[Random.Range(0, enemiesTransforms.Count)].position : levelManager.GetRandomPos(1, 1);
+    }
+
+    //other
+    public void AddEnemy(Transform enemyTransform) => enemiesTransforms.Add(enemyTransform);
+    public void RemoveEnemy(Transform enemyTransform) => enemiesTransforms.Remove(enemyTransform);
 }
