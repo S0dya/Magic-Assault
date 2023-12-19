@@ -161,6 +161,7 @@ MonoBehaviour:
   damageCollidersObj: {fileID: 5797608851844853557}
   playerTransform: {fileID: 0}
   canDealDamage: 1
+  isKilled: 0
 --- !u!114 &1091649806910359453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -672,6 +673,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8448527613129957880, guid: bc7882322bbba0042acb1d06b5199bcb, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: -5993668388994124042}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc7882322bbba0042acb1d06b5199bcb, type: 3}
 --- !u!4 &2876078230345099193 stripped

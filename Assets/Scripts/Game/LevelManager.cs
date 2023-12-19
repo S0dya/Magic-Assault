@@ -109,30 +109,39 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
         }
     }
 
-    //cor
-    public IEnumerator SpawnEnemiesCor(float totalTime, float amountOfEnemies, GameObject[] enemies)
+    //enemy spawn cor
+    public IEnumerator SpawnEnemiesWaveCor(float totalTime, int amountOfEnemies, GameObject[] enemies)
     {
-        //get average time of spawning one enemy
-        float time = totalTime / amountOfEnemies;
+        float time = GetAverageTime(totalTime, (float)amountOfEnemies);
         int n = enemies.Length;
 
-        while (totalTime > 0)// iterate while there is time
+        for (int i = 0; i < amountOfEnemies; i++)
         {
             SpawnEnemy(enemies[Random.Range(0, n)]);
-
-            totalTime -= time;
 
             yield return new WaitForSeconds(time);
         }
     }
-    
+
+    public IEnumerator SpawnCrowdsEnemiesCor(float totalTime, int amountOfEnemies, GameObject enemyPrefab)
+    {
+        float time = GetAverageTime(totalTime, (float)amountOfEnemies);
+
+        for (int i = 0; i < amountOfEnemies; i++)
+        {
+            SpawnCrowdEnemies(amountOfEnemies, enemyPrefab);
+
+            yield return new WaitForSeconds(time);
+        }
+    }
+
     //spawn enemy
     public void SpawnEnemy(GameObject enemyPrefab)
     {
         InstantiateEnemy(enemyPrefab, GetRandomOffsetPos());// spawn enemy around player
     }
 
-    public void SpawnCrowdOfEnemies(GameObject enemyPrefab, int amountOfEnemies)// create many enemies in one place with one direction
+    public void SpawnCrowdEnemies(int amountOfEnemies, GameObject enemyPrefab)// create many enemies in one place with one direction
     {
         Vector2 pos = GetRandomOffsetPos();
         Vector2 directionToPlayer = ((Vector2)playerTransform.position - pos).normalized;
@@ -145,9 +154,9 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
         }
     }
 
-    public void SpawnCircleCrowdEnemies(GameObject enemyPrefab, float amountOfEnemies)// create enemies around player
+    public void SpawnCircleCrowdEnemies(int amountOfEnemies, GameObject enemyPrefab)// create enemies around player
     {
-        float deltaTheta = (2f * Mathf.PI) / amountOfEnemies;// perform some smart trigonometry things 
+        float deltaTheta = (2f * Mathf.PI) / (float)amountOfEnemies;// perform some smart trigonometry things 
         float theta = 0f;
 
         for (int i = 0; i < amountOfEnemies; i++)
@@ -173,10 +182,13 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
         Enemy enemy = enemyObj.GetComponent<Enemy>();
         enemy.maxHp *= 3;
 
+
         SpawnOnDestroyEnemy spawnOnDestroyEnemy = enemyObj.GetComponentInChildren<SpawnOnDestroyEnemy>();
         Destroy(spawnOnDestroyEnemy.gameObject);
 
-        Instantiate(SpawnOnDestroyEnemyBossObj, enemyObj.transform);
+        var spawnOnDestroy = Instantiate(SpawnOnDestroyEnemyBossObj, enemyObj.transform).GetComponent<SpawnOnDestroyEnemyBoss>();
+        spawnOnDestroy.SetEnemy();
+
     }
 
 
@@ -195,6 +207,13 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     Vector2 GetRandomOffsetPos()// get random position further than player's screen
     {
         return GetRandomOffsetPos(worldWidth, worldHeight, offestForSpawn);
+    }
+
+    //other of enemy spawn
+    float GetAverageTime(float time, float amount)
+    {
+        //get average time of spawning one enemy
+        return time / amount;
     }
 
     //in game

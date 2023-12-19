@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnOnDestroyEnemy : MonoBehaviour
 {
+    [SerializeField] Enemy enemy;
     [SerializeField] GameObject expPrefab;
     [SerializeField] GameObject coinPrefab;
 
@@ -16,11 +17,14 @@ public class SpawnOnDestroyEnemy : MonoBehaviour
     {
         expParent = GameObject.FindGameObjectWithTag("ExpParent").GetComponent<Transform>();
         coinParent = GameObject.FindGameObjectWithTag("CoinParent").GetComponent<Transform>();
-
     }
+
+    public void SetEnemy() => enemy = GetComponent<Enemy>();
 
     protected virtual void OnDestroy()
     {
+        if (!enemy.isKilled) return;
+
         if (Random.Range(0, 2) == 1) InstantiateAfterDeath(expPrefab, expParent);
         if (Random.Range(0, 20) == 1) InstantiateAfterDeath(coinPrefab, coinParent);
     }

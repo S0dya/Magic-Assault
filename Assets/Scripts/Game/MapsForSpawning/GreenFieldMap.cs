@@ -34,7 +34,6 @@ public class GreenFieldMap : MonoBehaviour
     [SerializeField] GameObject[] platforms;
 
     [Header("Enemies")]
-    [SerializeField] GameObject[] zeroWaveEnemies;
     [SerializeField] GameObject[] firstWaveEnemies;
     [SerializeField] GameObject[] secondWaveEnemies;
     [SerializeField] GameObject[] thirdWaveEnemies;
@@ -46,11 +45,18 @@ public class GreenFieldMap : MonoBehaviour
     [SerializeField] GameObject[] ninthWaveEnemies;
 
     [Header("Crowd enemies")]
-    [SerializeField] GameObject firstWaveCrowdEnemy;
+    [SerializeField] GameObject[] crowdEnemies;
 
     [Header("Circle crowd enemies")]
-    [SerializeField] GameObject firstWaveCircleCrowdEnemy;
+    [SerializeField] GameObject[] circleCrowdEnemies;
 
+    [Header("Different elementals")]
+    [SerializeField] GameObject[] firstElementals;
+
+    [Header("Bosses")]
+    [SerializeField] GameObject[] bosses;
+
+    //local
     //time
     float shortWave = 10;
     float middleWave = 30;
@@ -73,27 +79,50 @@ public class GreenFieldMap : MonoBehaviour
 
     IEnumerator WavesCor() // each wave spawn enemies, crowds, or circle crowds of enemies
     {
-        yield return StartCoroutine(levelManager.SpawnEnemiesCor(longWave, 30, firstWaveEnemies));
+        levelManager.SpawnCircleCrowdEnemies(35, circleCrowdEnemies[0]);
+        levelManager.SpawnMiniBoss(firstElementals[0], 2);
+        //00
+        yield return StartCoroutine(levelManager.SpawnEnemiesWaveCor(longWave, 60, firstWaveEnemies));
 
-        //levelManager.SpawnCircleCrowdEnemies(firstWaveCircleCrowdEnemy, 25);
-        //levelManager.SpawnCrowdOfEnemies(firstWaveCrowdEnemy, 10);
-        //StartCoroutine(SpawnEnemiesCor(shortWave, 60, firstWaveEnemies, firstWaveEnemiesN));
+        //01
+        levelManager.SpawnMiniBoss(firstWaveEnemies[0], 2);
+        yield return StartCoroutine(levelManager.SpawnEnemiesWaveCor(longWave, 60, secondWaveEnemies));
 
-        //yield return new WaitForSeconds(shortWave);
+        //02
+        StartCoroutine(levelManager.SpawnCrowdsEnemiesCor(shortWave, 15, crowdEnemies[0]));
+        yield return StartCoroutine(levelManager.SpawnEnemiesWaveCor(longWave, 90, thirdWaveEnemies));
+        
+        //03
+        levelManager.SpawnMiniBoss(thirdWaveEnemies[0], 2);
+        yield return StartCoroutine(levelManager.SpawnEnemiesWaveCor(longWave, 150, forthWaveEnemies));
+
+        //04
+        yield return StartCoroutine(levelManager.SpawnEnemiesWaveCor(longWave, 120, fifthWaveEnemies));
+
+        //05
+        levelManager.SpawnCircleCrowdEnemies(35, circleCrowdEnemies[0]);
+        levelManager.SpawnMiniBoss(firstElementals[0], 2);
+        yield return StartCoroutine(levelManager.SpawnEnemiesWaveCor(longWave, 40, sixthWaveEnemies));
 
         while (true)
         {
 
             levelManager.SpawnMiniBoss(firstWaveEnemies[0], 2);
-            yield return StartCoroutine(levelManager.SpawnEnemiesCor(shortWave, 30, firstWaveEnemies));
+            yield return StartCoroutine(levelManager.SpawnEnemiesWaveCor(longWave, 120, firstWaveEnemies));
 
         }
 
         while (true)
         {
-            levelManager.SpawnCrowdOfEnemies(firstWaveCrowdEnemy, 10);
+            StartCoroutine(levelManager.SpawnCrowdsEnemiesCor(middleWave, 10, crowdEnemies[0]));
             yield return new WaitForSeconds(shortWave);
 
         }
+    }
+
+    //DELATER
+    public void ToggleTime()
+    {
+        Time.timeScale = (Time.timeScale == 1 ? 5 : 1);
     }
 }

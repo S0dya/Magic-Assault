@@ -21,9 +21,8 @@ public class Player : Creature
 
     [Header("Animation")]
     [SerializeField] Animator animator;
+    [Header("Shadow effect (0 - left, 1 - right)")]
     [SerializeField] GameObject[] shadowPrefabs;
-    int curShadowDirection;
-    public float bs;
 
     [Header("Damage Visualisation")]
     [SerializeField] GameObject BloodEffectObj;
@@ -44,17 +43,18 @@ public class Player : Creature
     //enemies trigger
     int curAmountOfEnemies;
 
-    
     float shieldProtection;
 
-    //animation
+    //shadow animation
     Transform shadowEffectsParent;
+    int curShadowDirection; 
+    float shadowTimeReload = 0.025f;
+    float curShadowTime;
 
     //cors
     Coroutine restoreHpCor;
     Coroutine restoreManaCor;
     Coroutine visualiseDamage;
-    Coroutine shadowAnimationCor;
 
     protected override void Awake()
     {
@@ -83,16 +83,25 @@ public class Player : Creature
             curShadowDirection = (isLookingOnRight ? 0 : 1);
         }
 
+        if (joystickInput) ShadowAnimation();
 
         base.Update();
+    }
+
+    void ShadowAnimation()// instnatiate shadow effect (character's sprite) each specific amount of time behind player to visualise spead
+    {
+        if (curShadowTime > shadowTimeReload)
+        {
+            Instantiate(shadowPrefabs[curShadowDirection], transform.position, Quaternion.identity, shadowEffectsParent);
+            curShadowTime = 0;
+        }
+        else curShadowTime += Time.deltaTime;
     }
 
     //joystick input
     public void StartJoystickInput()
     {
         ToggleJoystickInput(true);
-
-        StartShadowAnimation();
     }
     public void StopJoystickInput()
     {
@@ -201,25 +210,6 @@ public class Player : Creature
         curAmountOfEnemies--;
 
         if (curAmountOfEnemies == 0) DamageMultiplierOnDamage = 1;
-    }
-
-    //animation
-    void StartShadowAnimation()
-    {
-        if (shadowAnimationCor != null) StopCoroutine(shadowAnimationCor);
-        shadowAnimationCor = StartCoroutine(ShadowAnimationCor());
-    }
-
-    IEnumerator ShadowAnimationCor()
-    {
-        while (joystickInput)
-        {
-            Instantiate(shadowPrefabs[curShadowDirection], transform.position, Quaternion.identity, shadowEffectsParent);
-
-            yield return new WaitForSeconds(bs);
-        }
-
-        shadowAnimationCor = null;
     }
 
     //other

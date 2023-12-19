@@ -76,6 +76,9 @@ TagManager:
   - name: SmallEnemy
     uniqueID: 2040444395
     locked: 0
+  - name: TallEnemy
+    uniqueID: 2156453939
+    locked: 0
   - name: Player
     uniqueID: 522007411
     locked: 0

@@ -46,8 +46,8 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
 
     void Start() //test
     {
-        EnableDotInNearestEnemy(0);
-        EnableDotInRandomEnemy(1);
+        //EnableDotInNearestEnemy(0);
+        //EnableDotInRandomEnemy(1);
         //EnableDotInRandomPosition(2);
         //EnableDotInMovementDirection(3);
         //EnableCircleInRandomPosition(2);

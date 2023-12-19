@@ -26,8 +26,11 @@ public class Enemy : Creature
     //looking direction
     float xOfMove;
 
-    //for damage trigger
+    //damage trigger
     [HideInInspector] public bool canDealDamage = true;
+
+    //item spawn after death
+    [HideInInspector] public bool isKilled;
 
     //cors
     Coroutine burningCor;
@@ -90,6 +93,8 @@ public class Enemy : Creature
     //killed
     public void Kill() //visualise death, instantiate items on death and destroy object 
     {
+        isKilled = true;
+
         DisableColliders();//for better visualisation
 
         ToggleMovement(false);
