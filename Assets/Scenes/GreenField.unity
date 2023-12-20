@@ -20089,23 +20089,102 @@ MonoBehaviour:
   platforms:
   - {fileID: 6073449549808841046, guid: 05961de77e78ef6418617a684121b4c3, type: 3}
   - {fileID: 2370511612520183500, guid: 78c942a28a4d7074b99227200d412fb0, type: 3}
-  firstWaveEnemies:
+  DescriptionOfWavesOfAMap: "0 - 1 wave enemies\r\n1 - half little enemies, mini
+    boss, half 2 wave enemies, \r\n2 - half first wave enemies, half little enemies,
+    crowd enemies (3 (20 secs))\r\n3 - many 3 wave enemies, mini boss\r\n4 - half
+    4 wave (fast enemies), half 3 wave enemies\r\n5 - boss, half 5 wave enemies,
+    circle crowd\r\n6 - half 2 wave enmies, half 5 wave enmemies\r\n7 - mini boss,
+    half 1 wave enemies, half 6 wave enemies, crowd enemies (5 (30 secs))\r\n8 -
+    many 3 wave enemies, crowd enemies (3 (1 min))\r\n9 - mini boss, half 7 wave
+    enemies, half 3 wave enemies crowd enemies (5)\r\n10 - boss, circle crowd enemies,
+    half 6 wave enemies, half 5 wave enemies\r\n11 - many 3 wave enemies\r\n12 -
+    half 4 wave enemies, half 8 wave enemies, some 3 wave enemies\r\n13 - mini boss,
+    many 4 wave crowd enemies, half 8 wave enemies, half 4 wave enemies\r\n14 - mini
+    boss, half 7 wave enemies, half 8 wave enemies \r\n15 - circle crowd enemies,
+    5, 6, 7, 8 wave enemies\r\n16 - mini boss, half 5, 6 wave enemies, half 9 wave
+    enemies\r\n17 - half (slow) 10 wave enemies"
+  mapWaves:
+  - wave:
+      enemies:
+      - {fileID: 6611707122270337637, guid: 6a920137f93b3da4e82704be8ceb12ab, type: 3}
+      - {fileID: 6611707122270337637, guid: 07984d9c6b151fa419379934e44f0dac, type: 3}
+      time: 60
+      amount: 60
+    hasCrowd: 1
+    waveCrowd:
+      enemies:
+      - {fileID: 632211951258084474, guid: 8e62eda724b0b444092c5028fd994105, type: 3}
+      time: 60
+      amount: 10
+    hasCircleCrowd: 1
+    waveCircleCrowd:
+      enemies:
+      - {fileID: 2127530778173064305, guid: 5c86e8f1528a37c44b67f62cdd9019c2, type: 3}
+      time: 60
+      amount: 10
+    hasMiniBoss: 1
+    waveMiniBoss:
+      enemy: {fileID: 7874836842616660359, guid: ffe9f0692f3c34c48a3c6fc9dac4c976, type: 3}
+      sizeMultiplier: 2
+  - wave:
+      enemies: []
+      time: 60
+      amount: 60
+    hasCrowd: 0
+    waveCrowd:
+      enemies: []
+      time: 60
+      amount: 60
+    hasCircleCrowd: 0
+    waveCircleCrowd:
+      enemies: []
+      time: 60
+      amount: 60
+    hasMiniBoss: 0
+    waveMiniBoss:
+      enemy: {fileID: 0}
+      sizeMultiplier: 2
+  wave1:
   - {fileID: 5797608852117626588, guid: b45f75e4df9bf66408128da0ffc55246, type: 3}
-  secondWaveEnemies:
+  wave2:
   - {fileID: 5797608852117626588, guid: b45f75e4df9bf66408128da0ffc55246, type: 3}
   - {fileID: 5797608852117626588, guid: d4af6f16102934b4489c51e2bcf30d95, type: 3}
-  thirdWaveEnemies:
+  wave3:
   - {fileID: 5797608852117626588, guid: d4af6f16102934b4489c51e2bcf30d95, type: 3}
-  forthWaveEnemies:
+  wave4:
   - {fileID: 5797608852117626588, guid: 5b6029485ad2205439163841168ea4ee, type: 3}
-  fifthWaveEnemies:
+  wave5:
   - {fileID: 6611707122270337637, guid: 7dae188ba365c3744bbc490d79a97643, type: 3}
   - {fileID: 5797608852117626588, guid: 5b6029485ad2205439163841168ea4ee, type: 3}
-  sixthWaveEnemies:
+  wave6:
   - {fileID: 5797608852117626588, guid: 2ba2547ed6d6aa348904f432e8b65c4a, type: 3}
-  seventhWaveEnemies: []
-  eighthWaveEnemies: []
-  ninthWaveEnemies: []
+  - {fileID: 5797608852117626588, guid: d4af6f16102934b4489c51e2bcf30d95, type: 3}
+  wave7:
+  - {fileID: 6611707122270337637, guid: 1a13e1e089955f34cb7f8596b33acf46, type: 3}
+  - {fileID: 5797608852117626588, guid: b45f75e4df9bf66408128da0ffc55246, type: 3}
+  wave8: []
+  wave9: []
+  wave10: []
+  wave11: []
+  wave12: []
+  wave13: []
+  wave14: []
+  wave15: []
+  wave16: []
+  wave17: []
+  wave18: []
+  wave19: []
+  wave20: []
+  wave21: []
+  wave22: []
+  wave23: []
+  wave24: []
+  wave25: []
+  wave26: []
+  wave27: []
+  wave28: []
+  wave29: []
+  wave30: []
   crowdEnemies:
   - {fileID: 2127530778173064305, guid: 1e9916dda45040e47863078a0798f19c, type: 3}
   - {fileID: 632211951258084474, guid: 8e62eda724b0b444092c5028fd994105, type: 3}

@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 8197722585485784528}
   - component: {fileID: 2127530778173064310}
   - component: {fileID: 1946029554722414512}
+  - component: {fileID: -630475169109869890}
   m_Layer: 17
   m_Name: EnemyCrowdCircle
   m_TagString: Enemy
@@ -393,6 +394,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &-630475169109869890
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127530778173064305}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e386561e4b4bdba4fb4fc9de1e0eda09, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &2127530776193900961
 PrefabInstance:
   m_ObjectHideFlags: 0

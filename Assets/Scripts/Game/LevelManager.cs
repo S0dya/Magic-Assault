@@ -154,7 +154,7 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
         }
     }
 
-    public void SpawnCircleCrowdEnemies(int amountOfEnemies, GameObject enemyPrefab)// create enemies around player
+    public void SpawnCircleCrowdEnemies(float lifeTime, int amountOfEnemies, GameObject enemyPrefab)// create enemies around player
     {
         float deltaTheta = (2f * Mathf.PI) / (float)amountOfEnemies;// perform some smart trigonometry things 
         float theta = 0f;
@@ -167,28 +167,29 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
 
             playerTransform.TransformPoint(pos);
             Vector2 direction = ((Vector2)playerTransform.position - pos).normalized;
-            InstantiateCrowdEnemy(enemyPrefab, pos, direction, 30);
+            InstantiateCrowdEnemy(enemyPrefab, pos, direction, lifeTime);
 
             theta += deltaTheta;
         }
     }
 
-    public void SpawnMiniBoss(GameObject enemyPrefab, float size)
+    public void SpawnMiniBoss(GameObject enemyPrefab, float sizeMultiplier)
     {
         GameObject enemyObj = InstantiateEnemy(enemyPrefab, GetRandomOffsetPos());
-
+        float size = enemyObj.transform.localScale.x * sizeMultiplier;
         enemyObj.transform.localScale = new Vector2(size, size);
+
+        var rb = enemyObj.GetComponent<Rigidbody2D>();
+        rb.mass *= 2;
 
         Enemy enemy = enemyObj.GetComponent<Enemy>();
         enemy.maxHp *= 3;
-
 
         SpawnOnDestroyEnemy spawnOnDestroyEnemy = enemyObj.GetComponentInChildren<SpawnOnDestroyEnemy>();
         Destroy(spawnOnDestroyEnemy.gameObject);
 
         var spawnOnDestroy = Instantiate(SpawnOnDestroyEnemyBossObj, enemyObj.transform).GetComponent<SpawnOnDestroyEnemyBoss>();
         spawnOnDestroy.SetEnemy();
-
     }
 
 

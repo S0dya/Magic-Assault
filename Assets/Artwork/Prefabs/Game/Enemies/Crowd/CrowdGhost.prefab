@@ -63,6 +63,10 @@ PrefabInstance:
       propertyPath: movementSpeed
       value: 4.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2127530778173064314, guid: 1e9916dda45040e47863078a0798f19c, type: 3}
+      propertyPath: skins.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9d9ffa5d1892b5247a45af6e7cb32633, type: 3}
     - target: {fileID: 8488641146793470093, guid: 1e9916dda45040e47863078a0798f19c, type: 3}
       propertyPath: m_Sprite
       value: 
