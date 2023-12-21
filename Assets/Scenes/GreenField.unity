@@ -7833,7 +7833,18 @@ MonoBehaviour:
   radiusForCircleEnemy: 10
   levelParent: {fileID: 87350363}
   levelPrefab: {fileID: 4296974656074180037, guid: abcd23ef13705d3448a43d1352cf70e2, type: 3}
-  spawners:
+  allEnvirenmentObjects:
+  - {fileID: 6530617672685871784, guid: 47e56d68e2d1e73408e5a469db8c5dba, type: 3}
+  - {fileID: 6530617672685871784, guid: d52c2acb942261c4fb0559a79d6cae38, type: 3}
+  - {fileID: 7945615596047814472, guid: 7d47a9f3f1236f94e8c93e1cfb4f69be, type: 3}
+  - {fileID: 6761073283085702790, guid: fee5f4c9940969a47bbe3f09b016357f, type: 3}
+  - {fileID: 6761073283085702790, guid: 48d321100093e2d42916521ea9ca8a01, type: 3}
+  - {fileID: 6761073283085702790, guid: 10fac324591a29e40a16647f05a1dee7, type: 3}
+  - {fileID: 6761073283085702790, guid: a87e45f9fb16ba346b0ccdcc4c15bc4f, type: 3}
+  - {fileID: 7945615596047814472, guid: 3731c9dd9bcd63c4a99dddde60c27b34, type: 3}
+  - {fileID: 362101383678206829, guid: 75ccd72c81cdbd040b9e3604fddc4e56, type: 3}
+  - {fileID: 362101383678206829, guid: ba3ccd1816dad2440985f5a54be04ef2, type: 3}
+  - {fileID: 7945615596047814472, guid: a4a633509214e6e4a9a39d1bedef1ea8, type: 3}
   - {fileID: 3244305783738909551, guid: 22170c6beb045fb438b1fd2e345e9fb0, type: 3}
   enemyParent: {fileID: 2114224553}
   expParent: {fileID: 1831110778}
@@ -20110,92 +20121,68 @@ MonoBehaviour:
       - {fileID: 6611707122270337637, guid: 07984d9c6b151fa419379934e44f0dac, type: 3}
       time: 60
       amount: 60
+      setsEnemyOnChoose: 0
+      enemyChoose: []
     hasCrowd: 1
     waveCrowd:
       enemies:
       - {fileID: 632211951258084474, guid: 8e62eda724b0b444092c5028fd994105, type: 3}
       time: 60
       amount: 10
+      setsEnemyOnChoose: 1
+      enemyChoose:
+      - {fileID: 632211951258084474, guid: 0f365440fb5c46842bfcd3276f240c49, type: 3}
+      - {fileID: 2127530778173064305, guid: 1e9916dda45040e47863078a0798f19c, type: 3}
+      - {fileID: 632211951258084474, guid: 8e62eda724b0b444092c5028fd994105, type: 3}
+      - {fileID: 632211951258084474, guid: 8e62eda724b0b444092c5028fd994105, type: 3}
     hasCircleCrowd: 1
     waveCircleCrowd:
       enemies:
       - {fileID: 2127530778173064305, guid: 5c86e8f1528a37c44b67f62cdd9019c2, type: 3}
       time: 60
       amount: 10
+      setsEnemyOnChoose: 1
+      enemyChoose:
+      - {fileID: 632211951258084474, guid: 0f365440fb5c46842bfcd3276f240c49, type: 3}
+      - {fileID: 2127530778173064305, guid: 1e9916dda45040e47863078a0798f19c, type: 3}
+      - {fileID: 632211951258084474, guid: 8e62eda724b0b444092c5028fd994105, type: 3}
+      - {fileID: 632211951258084474, guid: 8e62eda724b0b444092c5028fd994105, type: 3}
     hasMiniBoss: 1
     waveMiniBoss:
       enemy: {fileID: 7874836842616660359, guid: ffe9f0692f3c34c48a3c6fc9dac4c976, type: 3}
       sizeMultiplier: 2
+      setsEnemyOnChoose: 1
+      enemyChoose:
+      - {fileID: 6611707122270337637, guid: 209d87b81286d79439347443f969b925, type: 3}
+      - {fileID: 6611707122270337637, guid: 7a41774dfaf4ab84fb6125bc6afa2d47, type: 3}
+      - {fileID: 6611707122270337637, guid: 07984d9c6b151fa419379934e44f0dac, type: 3}
+      - {fileID: 6611707122270337637, guid: 1e6997bea4248f343ba736a13b7bd9b8, type: 3}
   - wave:
       enemies: []
       time: 60
       amount: 60
+      setsEnemyOnChoose: 0
+      enemyChoose: []
     hasCrowd: 0
     waveCrowd:
       enemies: []
       time: 60
       amount: 60
+      setsEnemyOnChoose: 0
+      enemyChoose: []
     hasCircleCrowd: 0
     waveCircleCrowd:
       enemies: []
       time: 60
       amount: 60
+      setsEnemyOnChoose: 0
+      enemyChoose: []
     hasMiniBoss: 0
     waveMiniBoss:
       enemy: {fileID: 0}
       sizeMultiplier: 2
-  wave1:
-  - {fileID: 5797608852117626588, guid: b45f75e4df9bf66408128da0ffc55246, type: 3}
-  wave2:
-  - {fileID: 5797608852117626588, guid: b45f75e4df9bf66408128da0ffc55246, type: 3}
-  - {fileID: 5797608852117626588, guid: d4af6f16102934b4489c51e2bcf30d95, type: 3}
-  wave3:
-  - {fileID: 5797608852117626588, guid: d4af6f16102934b4489c51e2bcf30d95, type: 3}
-  wave4:
-  - {fileID: 5797608852117626588, guid: 5b6029485ad2205439163841168ea4ee, type: 3}
-  wave5:
-  - {fileID: 6611707122270337637, guid: 7dae188ba365c3744bbc490d79a97643, type: 3}
-  - {fileID: 5797608852117626588, guid: 5b6029485ad2205439163841168ea4ee, type: 3}
-  wave6:
-  - {fileID: 5797608852117626588, guid: 2ba2547ed6d6aa348904f432e8b65c4a, type: 3}
-  - {fileID: 5797608852117626588, guid: d4af6f16102934b4489c51e2bcf30d95, type: 3}
-  wave7:
-  - {fileID: 6611707122270337637, guid: 1a13e1e089955f34cb7f8596b33acf46, type: 3}
-  - {fileID: 5797608852117626588, guid: b45f75e4df9bf66408128da0ffc55246, type: 3}
-  wave8: []
-  wave9: []
-  wave10: []
-  wave11: []
-  wave12: []
-  wave13: []
-  wave14: []
-  wave15: []
-  wave16: []
-  wave17: []
-  wave18: []
-  wave19: []
-  wave20: []
-  wave21: []
-  wave22: []
-  wave23: []
-  wave24: []
-  wave25: []
-  wave26: []
-  wave27: []
-  wave28: []
-  wave29: []
-  wave30: []
-  crowdEnemies:
-  - {fileID: 2127530778173064305, guid: 1e9916dda45040e47863078a0798f19c, type: 3}
-  - {fileID: 632211951258084474, guid: 8e62eda724b0b444092c5028fd994105, type: 3}
-  circleCrowdEnemies:
-  - {fileID: 2127530778173064305, guid: 5c86e8f1528a37c44b67f62cdd9019c2, type: 3}
-  firstElementals:
-  - {fileID: 7874836842616660359, guid: 5d4343c597602fe41a7aae05ce1972ae, type: 3}
-  - {fileID: 7874836842616660359, guid: e9be1fcdac2e8a7459826bdb04fe4e60, type: 3}
-  - {fileID: 7874836842616660359, guid: dcf28a55a10d72e43a5dd80ca7853f66, type: 3}
-  - {fileID: 7874836842616660359, guid: ffe9f0692f3c34c48a3c6fc9dac4c976, type: 3}
-  bosses: []
+      setsEnemyOnChoose: 0
+      enemyChoose: []
 --- !u!1 &2011374745
 GameObject:
   m_ObjectHideFlags: 0

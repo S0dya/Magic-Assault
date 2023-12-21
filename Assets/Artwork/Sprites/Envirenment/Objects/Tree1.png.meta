@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e875bb0f3f0c5484d82cccfd75812b56
+guid: 86fa8758f2794fc4bbadb74b149c9a0e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,7 +69,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -129,43 +129,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tree_0
+      name: Tree1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 13
-        width: 31
-        height: 57
+        y: 20
+        width: 101
+        height: 88
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3172f67acca18934c9fb96e7a3c7caa7
-      internalID: -1492209219
+      spriteID: 8c871056b6793e549a44d71426b984e2
+      internalID: 123181972
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree_1
+      name: Tree1_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 31
-        height: 13
+        width: 101
+        height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fd912a2699fd104bb2aad4ed42d8637
-      internalID: 1659541276
+      spriteID: a9e781aa7e9f3df4e99e03e665ebdb70
+      internalID: -1439078603
       vertices: []
       indices: 
       edges: []
@@ -181,8 +181,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tree_0: -1492209219
-      Tree_1: 1659541276
+      Tree1_0: 123181972
+      Tree1_1: -1439078603
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

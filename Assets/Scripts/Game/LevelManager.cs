@@ -18,7 +18,7 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     [SerializeField] Transform levelParent;
     [SerializeField] GameObject levelPrefab;
 
-    [SerializeField] GameObject[] spawners;
+    [SerializeField] GameObject[] allEnvirenmentObjects;
 
     [Header("Other")]
     [SerializeField] Transform enemyParent;
@@ -36,9 +36,12 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
 
     [HideInInspector] public GameObject[] platforms;
 
+    Vector2 halfPlatformSize;
+    Vector2 thirdPlatformSize;
+
     //level generation
     int platformsLength;
-    int spawnersLength;
+    int allEnvirenmentObjectsLength;
 
     List<Vector2> allPositions = new List<Vector2>();
 
@@ -61,7 +64,10 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     {
         //sign Ns for future using 
         platformsLength = platforms.Length;
-        spawnersLength = spawners.Length;
+        allEnvirenmentObjectsLength = allEnvirenmentObjects.Length;
+
+        halfPlatformSize = -platformSize / 2;
+        thirdPlatformSize = platformSize / 3;
 
         GenerateLevel(Vector2.zero);
     }
@@ -85,27 +91,26 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
         {
             for (int y = -2; y < 3; y++)
             {
-                Vector2 pos = levelTransform.TransformPoint(new Vector2(platformSize.x * x, platformSize.y * y));
+                Vector2 pos = levelTransform.TransformPoint(platformSize * new Vector2(x, y));
                 //instantiate new platform in level transform and get platforms transform
                 Transform platformTransform = Instantiate(platforms[Random.Range(0, platformsLength)], pos, Quaternion.identity, levelTransform).transform;
 
                 //Instantiate spawners
-                GenerateSpawners(platformTransform);
+                GenerateObjects(platformTransform);
             }
         }
     }
-    void GenerateSpawners(Transform platformTransform)
+    void GenerateObjects(Transform platformTransform)
     {
-        for (int i = 0; i < 5; i++)//max amount of spawners on one platform - 5
+        for (int x = -1; x < 2; x++)
         {
-            if (Random.Range(0, 20) == 1)//5% of spawn
+            for (int y = -1; y < 2; y++)
             {
-                //instantiate spawner, get its transform and set random position in local scale
-                Transform spawnerTransform = Instantiate(spawners[Random.Range(0, spawnersLength)], platformTransform).transform;
-
-                spawnerTransform.localPosition = GetRandomPos(platformSize);
+                //Vect (lerpf)
+                Vector2 pos = platformTransform.TransformPoint(GetRandomPos(halfPlatformSize * new Vector2(x, y)));
+                //instantiate new platform in level transform and get platforms transform
+                Instantiate(allEnvirenmentObjects[Random.Range(0, allEnvirenmentObjectsLength)], pos, Quaternion.identity, platformTransform);
             }
-            else break;
         }
     }
 
