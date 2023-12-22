@@ -7,8 +7,9 @@ public class Map : SingletonMonobehaviour<Map>
     [Header("Other scripts")]
     [SerializeField] LevelManager levelManager;
     
-    [Header("platforms")]
+    [Header("level consistency")]
     [SerializeField] GameObject[] platforms;
+    [SerializeField] GameObject[] decor;
 
     [Header("Waves")]
     [SerializeField][TextArea(30, 10)] string DescriptionOfWavesOfAMap;
@@ -26,9 +27,8 @@ public class Map : SingletonMonobehaviour<Map>
     {
         base.Awake();
 
-        levelManager.platforms = platforms;
+        levelManager.SetPlatformsAndDecor(platforms, decor);
     }
-
     void Start()
     {
         StartCoroutine(WavesCor());

@@ -11,14 +11,12 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     public float offestForSpawn;
 
     public float distanceBetweenCrowdEnemies;
-    
+
     public float radiusForCircleEnemy;
 
     [Header("Level generation")]
     [SerializeField] Transform levelParent;
     [SerializeField] GameObject levelPrefab;
-
-    [SerializeField] GameObject[] allEnvirenmentObjects;
 
     [Header("Other")]
     [SerializeField] Transform enemyParent;
@@ -34,27 +32,27 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     //local
     Transform playerTransform;
 
-    [HideInInspector] public GameObject[] platforms;
-
-    Vector2 halfPlatformSize;
-    Vector2 thirdPlatformSize;
-
+    GameObject[] platforms;
+    GameObject[] decor;
+    
     //level generation
     int platformsLength;
-    int allEnvirenmentObjectsLength;
+    int decorLength;
 
     List<Vector2> allPositions = new List<Vector2>();
-
+    
+    Vector2[][] platformsPositions;
+    Vector2[][] envirenmentPositions;
+    
     //enemy spawn 
     float worldWidth;
     float worldHeight;
-
 
     protected override void Awake()
     {
         base.Awake();
 
-        playerTransform = Instantiate(playerCharacters[Settings.characterI], playerParent).GetComponent<Transform>(); 
+        playerTransform = Instantiate(playerCharacters[Settings.characterI], playerParent).GetComponent<Transform>();
 
         worldHeight = Settings.worldHeight;
         worldWidth = Settings.worldWidth;
@@ -64,10 +62,10 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     {
         //sign Ns for future using 
         platformsLength = platforms.Length;
-        allEnvirenmentObjectsLength = allEnvirenmentObjects.Length;
+        decorLength = decor.Length;
 
-        halfPlatformSize = -platformSize / 2;
-        thirdPlatformSize = platformSize / 3;
+        platformsPositions = GetPositionsArray(5, platformSize);
+        envirenmentPositions = GetPositionsArray(4, platformSize / 4);
 
         GenerateLevel(Vector2.zero);
     }
@@ -77,41 +75,62 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     {
         if (allPositions.Contains(position)) return; //no need to create level if it already exists 
 
-        allPositions.Add(position); 
+        allPositions.Add(position);
 
         //instantiate this level on new position and get all needed components
         GameObject levelObj = Instantiate(levelPrefab, position * levelSize, Quaternion.identity, levelParent);
         Level level = levelObj.GetComponent<Level>();
-        level.position = position; 
+        level.position = position;
 
         Transform levelTransform = levelObj.GetComponent<Transform>();
 
         //instantiate 25 platforms of level randomly in local scale of level's transform
-        for (int x = -2; x < 3; x++)
+        for (int i = 0; i < 5; i++)
         {
-            for (int y = -2; y < 3; y++)
+            for (int j = 0; j < 5; j++)
             {
-                Vector2 pos = levelTransform.TransformPoint(platformSize * new Vector2(x, y));
                 //instantiate new platform in level transform and get platforms transform
-                Transform platformTransform = Instantiate(platforms[Random.Range(0, platformsLength)], pos, Quaternion.identity, levelTransform).transform;
+                Transform platformTransform = Instantiate(platforms[Random.Range(0, platformsLength)], GetPointPos(levelTransform, platformsPositions[i][j]), Quaternion.identity, levelTransform).transform;
 
-                //Instantiate spawners
-                GenerateObjects(platformTransform);
+                //Instantiate differtent objects
+                GenerateEnvirenment(platformTransform);
             }
         }
     }
-    void GenerateObjects(Transform platformTransform)
+    void GenerateEnvirenment(Transform platformTransform)
     {
-        for (int x = -1; x < 2; x++)
-        {
-            for (int y = -1; y < 2; y++)
-            {
-                //Vect (lerpf)
-                Vector2 pos = platformTransform.TransformPoint(GetRandomPos(halfPlatformSize * new Vector2(x, y)));
-                //instantiate new platform in level transform and get platforms transform
-                Instantiate(allEnvirenmentObjects[Random.Range(0, allEnvirenmentObjectsLength)], pos, Quaternion.identity, platformTransform);
-            }
-        }
+        //instantiate new objects on level 
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++)
+               if (Random.Range(0, 10) == 1)
+                    Instantiate(decor[Random.Range(0, decorLength)],
+                        GetPointPos(platformTransform, GetRandomPos(envirenmentPositions[i][j], envirenmentPositions[i + 1][j + 1])), Quaternion.identity, platformTransform);
+    }
+
+    //level generation other
+    Vector2[][] GetPositionsArray(int n, Vector2 sidesLength)// create 2d array of all positions based on length
+    {
+        Vector2[][] result = new Vector2[n][];
+        for (int i = 0; i < n; i++) result[i] = new Vector2[n];
+
+        int start = -n / 2;
+
+        for (int i = 0, x = start; i < n; i++, x++)
+            for (int j = 0, y = start; j < n; j++, y++)
+                result[i][j] = sidesLength * new Vector2(x, y);
+
+        return result;
+    }
+
+    Vector2 GetPointPos(Transform transform, Vector2 pos)
+    {
+        return transform.TransformPoint(pos);
+    }
+
+    public void SetPlatformsAndDecor(GameObject[] platformsObjs, GameObject[] decorObjs)
+    {
+        platforms = platformsObjs;
+        decor = decorObjs;
     }
 
     //enemy spawn cor
@@ -170,7 +189,7 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
             float y = radiusForCircleEnemy * Mathf.Sin(theta);
             Vector2 pos = new Vector2(x, y);// position around player
 
-            playerTransform.TransformPoint(pos);
+            pos = playerTransform.TransformPoint(pos);
             Vector2 direction = ((Vector2)playerTransform.position - pos).normalized;
             InstantiateCrowdEnemy(enemyPrefab, pos, direction, lifeTime);
 
@@ -185,10 +204,10 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
         enemyObj.transform.localScale = new Vector2(size, size);
 
         var rb = enemyObj.GetComponent<Rigidbody2D>();
-        rb.mass *= 2;
+        rb.mass *= sizeMultiplier;
 
         Enemy enemy = enemyObj.GetComponent<Enemy>();
-        enemy.maxHp *= 3;
+        enemy.maxHp *= sizeMultiplier * 1.5f;
 
         SpawnOnDestroyEnemy spawnOnDestroyEnemy = enemyObj.GetComponentInChildren<SpawnOnDestroyEnemy>();
         Destroy(spawnOnDestroyEnemy.gameObject);
@@ -210,11 +229,6 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
         enemyCrowd.Invoke("Die", lifeTime);// enemy dies after life time
     }
 
-    Vector2 GetRandomOffsetPos()// get random position further than player's screen
-    {
-        return GetRandomOffsetPos(worldWidth, worldHeight, offestForSpawn);
-    }
-
     //other of enemy spawn
     float GetAverageTime(float time, float amount)
     {
@@ -227,12 +241,19 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     {
         return new Vector2(Random.Range(-x, x), Random.Range(-y, y));
     }
-
     Vector2 GetRandomPos(Vector2 pos)
     {
         return GetRandomPos(pos.x, pos.y);
     }
+    Vector2 GetRandomPos(Vector2 start, Vector2 end)
+    {
+        return new Vector2(Random.Range(start.x, end.x), Random.Range(start.y, end.y));
+    }
 
+    Vector2 GetRandomOffsetPos()// get random position further than player's screen
+    {
+        return GetRandomOffsetPos(worldWidth, worldHeight, offestForSpawn);
+    }
     public Vector2 GetRandomOffsetPos(float x, float y, float offset)
     {
         Vector2 result = new Vector2();
