@@ -154,10 +154,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e34157a61f51d7b4e897930c71a7a55f, type: 3}
   - {fileID: 21300000, guid: fc00d131b22b9e443908321b26a43fec, type: 3}
   - {fileID: 21300000, guid: aa1b9534eb5b493408020d2b1a37604f, type: 3}
-  - {fileID: 21300000, guid: 0323e3f0638daa34990f15eb5e2f29ae, type: 3}
-  - {fileID: 21300000, guid: 5ce25cd99d74c58488124876d14f8432, type: 3}
-  - {fileID: 21300000, guid: accfcfb93b4367c43ac1480d80af8b04, type: 3}
-  skinsN: 6
+  skinsN: 3
   enemyBoxCollider: {fileID: 7316692591779294779}
   enemyCircleCollider: {fileID: 4339101911170248573}
   damageCollidersObj: {fileID: 5797608851844853557}

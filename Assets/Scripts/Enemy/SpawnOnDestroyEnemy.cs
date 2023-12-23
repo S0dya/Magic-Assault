@@ -4,30 +4,31 @@ using UnityEngine;
 
 public class SpawnOnDestroyEnemy : MonoBehaviour
 {
+    [Header("Settings")]
+    [Range(0, 1)] public float expChance;
+    [Range(0, 1)] public float coinChance;
+
+    [Header("Other")]
     [SerializeField] Enemy enemy;
     [SerializeField] GameObject expPrefab;
     [SerializeField] GameObject coinPrefab;
 
     //local
-    Transform expParent;
-    Transform coinParent;
+    [HideInInspector] public LevelManager levelManager;
 
 
     protected virtual void Awake()
     {
-        expParent = GameObject.FindGameObjectWithTag("ExpParent").GetComponent<Transform>();
-        coinParent = GameObject.FindGameObjectWithTag("CoinParent").GetComponent<Transform>();
+        levelManager = LevelManager.I;
     }
 
-    public void SetEnemy() => enemy = GetComponent<Enemy>();
+    public void SetEnemy() => enemy = GetComponentInParent<Enemy>();
 
     protected virtual void OnDestroy()
     {
         if (!enemy.isKilled) return;
 
-        if (Random.Range(0, 2) == 1) InstantiateAfterDeath(expPrefab, expParent);
-        if (Random.Range(0, 20) == 1) InstantiateAfterDeath(coinPrefab, coinParent);
+        if (expChance > Random.value) levelManager.InstantiateExp(expPrefab, transform.position);
+        if (coinChance > Random.value) levelManager.InstantiateCoin(coinPrefab, transform.position);
     }
-
-    public void InstantiateAfterDeath(GameObject prefab, Transform parent) => Instantiate(prefab, transform.position, Quaternion.identity, parent);
 }

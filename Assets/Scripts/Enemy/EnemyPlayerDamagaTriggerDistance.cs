@@ -74,6 +74,5 @@ public class EnemyPlayerDamagaTriggerDistance : MonoBehaviour
     void ToggleOnTrigger(bool val)
     {
         onTrigger = val;
-        enemy.ToggleMovement(val);
     }
 }

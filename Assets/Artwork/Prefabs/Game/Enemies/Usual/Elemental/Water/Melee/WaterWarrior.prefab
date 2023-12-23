@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: skinsN
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: inLavaSpeed
@@ -37,7 +37,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: skins.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: waterDealsDamage
@@ -50,15 +50,15 @@ PrefabInstance:
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: skins.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: bd7f788b23b8c4c4fb21c7937d7c8c68, type: 3}
+      objectReference: {fileID: 21300000, guid: 7f9b63dcc3737d64baf646fa2922647b, type: 3}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: skins.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: 3e4d4b8c0315be045b2c0815dd0cfb66, type: 3}
+      objectReference: {fileID: 21300000, guid: ad6caabd72b89fb468b6cf774fe2fb28, type: 3}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: skins.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: 576db4386ec0eee45959553fe6e9179e, type: 3}
+      objectReference: {fileID: 21300000, guid: 227c40add5c8e094f957adc3481d56e7, type: 3}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: speedOnTriggerWithPlayer
       value: 0.6
@@ -89,7 +89,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4339101911170248573, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_Radius
-      value: 0.1
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 4339101911170248573, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_Offset.y
@@ -98,7 +98,7 @@ PrefabInstance:
     - target: {fileID: 4844398067622054017, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d411feb77d86ad840be932be9fd1d13e, type: 3}
+      objectReference: {fileID: 21300000, guid: 7f9b63dcc3737d64baf646fa2922647b, type: 3}
     - target: {fileID: 5797608852117626585, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -153,23 +153,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5797608852117626588, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_Name
-      value: SeaCreature 1
+      value: WaterWarrior
       objectReference: {fileID: 0}
     - target: {fileID: 5797608852956595081, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_Size.x
-      value: 0.4
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5797608852956595081, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_Size.y
-      value: 0.76
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 7316692591779294779, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_Size.x
-      value: 0.4
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7316692591779294779, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_Size.y
-      value: 0.76
+      value: 0.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}

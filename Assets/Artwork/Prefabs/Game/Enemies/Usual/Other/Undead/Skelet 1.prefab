@@ -9,39 +9,39 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: maxHp
-      value: 40
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: skinsN
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: inLavaSpeed
-      value: 0.4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: timeForPush
-      value: 1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: inWaterSpeed
-      value: 1.4
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: movementSpeed
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
+      propertyPath: durationOfDrying
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
-      propertyPath: damageOfBurning
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: skins.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: waterDealsDamage
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: burningDealsDamage
@@ -50,34 +50,30 @@ PrefabInstance:
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: skins.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: bd7f788b23b8c4c4fb21c7937d7c8c68, type: 3}
+      objectReference: {fileID: 21300000, guid: 0323e3f0638daa34990f15eb5e2f29ae, type: 3}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: skins.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: 3e4d4b8c0315be045b2c0815dd0cfb66, type: 3}
+      objectReference: {fileID: 21300000, guid: 5ce25cd99d74c58488124876d14f8432, type: 3}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: skins.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: 576db4386ec0eee45959553fe6e9179e, type: 3}
+      objectReference: {fileID: 21300000, guid: accfcfb93b4367c43ac1480d80af8b04, type: 3}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: speedOnTriggerWithPlayer
-      value: 0.6
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: damageOnTriggerWithPlayer
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
-      propertyPath: typeOfDamageOnTriggerWithPlayer
+      propertyPath: elementalDamageMultipliers.Array.data[0]
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
-      propertyPath: elementalDamageMultipliers.Array.data[0]
-      value: 1.75
-      objectReference: {fileID: 0}
-    - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: elementalDamageMultipliers.Array.data[1]
-      value: 0.25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: elementalDamageMultipliers.Array.data[2]
@@ -87,18 +83,10 @@ PrefabInstance:
       propertyPath: elementalDamageMultipliers.Array.data[3]
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4339101911170248573, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
-      propertyPath: m_Radius
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339101911170248573, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 4844398067622054017, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d411feb77d86ad840be932be9fd1d13e, type: 3}
+      objectReference: {fileID: 21300000, guid: 1ca5f133c9b345b42a9ae8852800ec55, type: 3}
     - target: {fileID: 5797608852117626585, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -153,23 +141,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5797608852117626588, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_Name
-      value: SeaCreature 1
+      value: Skelet 1
       objectReference: {fileID: 0}
     - target: {fileID: 5797608852956595081, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_Size.x
-      value: 0.4
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 5797608852956595081, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_Size.y
-      value: 0.76
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 7316692591779294779, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_Size.x
-      value: 0.4
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 7316692591779294779, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_Size.y
-      value: 0.76
+      value: 0.7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5132611123894805298, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}

@@ -12,6 +12,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     [SerializeField] UIUpgrades uiUpgrades;
     [SerializeField] GameData gameData;
     [SerializeField] DrawManager drawManager;
+    [SerializeField] Map map;
 
     [Header("Borders")]
     [SerializeField] Image[] borderImages;
@@ -148,6 +149,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     {
         if (curSecs == 60)
         {
+            map.NextWave();
             curSecs = 0;
             curMins++;
 
@@ -220,8 +222,8 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
         //instantiate text obj
         GameObject textObj = Instantiate(textPrefab, pos, Quaternion.identity, damageTextParent);
 
-        var startScaleValue = 1 + (float)textType * 0.25f; //get scale size
-        textObj.transform.localScale = new Vector2(startScaleValue, startScaleValue);//set scale 
+        float scale = 1 + (float)textType * 0.1f; //get scale size
+        textObj.transform.localScale = new Vector2(scale, scale);//set scale 
 
         //set amount of damage and color of text
         TextMeshPro textTmp = textObj.GetComponent<TextMeshPro>();

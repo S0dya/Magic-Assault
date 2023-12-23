@@ -6,7 +6,7 @@ public class Map : SingletonMonobehaviour<Map>
 {
     [Header("Other scripts")]
     [SerializeField] LevelManager levelManager;
-    
+
     [Header("level consistency")]
     [SerializeField] GameObject[] platforms;
     [SerializeField] GameObject[] decor;
@@ -19,9 +19,13 @@ public class Map : SingletonMonobehaviour<Map>
     GameObject firstElemental;
 
     //treshhold
-    MapWave curMapWave;
-    MapWaveEnemies curMapWaveEnemies;
+    MapWave curWave;
+    MapWaveEnemies curWaveEnemies;
+    MapWaveChordEnemies curWaveChordEnemies;
+    MapWaveCircleCrowdWaveEnemies curWaveCircleCrowdEnemies;
     MapWaveMiniBoss curWaveMiniBoss;
+
+    int curWaveIndex = 25;
 
     protected override void Awake()
     {
@@ -29,40 +33,96 @@ public class Map : SingletonMonobehaviour<Map>
 
         levelManager.SetPlatformsAndDecor(platforms, decor);
     }
+
     void Start()
     {
-        StartCoroutine(WavesCor());
+        Wave();
     }
 
+    /*
     IEnumerator WavesCor() // each wave spawn enemies, crowds, circle crowds, mini-bosses and/or bosses
     {
         for (int i = 0; i < 30; i++)//iterate throught each wave, each wave is one minute - iterate each minute
         {
-            curMapWave = mapWaves[i];//set current wave 
+            curWave = mapWaves[i];//set current wave 
 
             //check additioanal conditions of a wave
-            if (curMapWave.hasCrowd)
+            if (curWave.hasCrowd)
             {
-                curMapWaveEnemies = curMapWave.waveCrowd;//set cur wave enemies
+                curWaveChordEnemies = curWave.waveCrowd;//set cur wave enemies
                 //start coroutine of spawining enemies. assign time, amonut and enemy object for spawn. if there is an elemental type enemy - choose 1 of 4 of them
-                StartCoroutine(levelManager.SpawnCrowdsEnemiesCor(curMapWaveEnemies.time, curMapWaveEnemies.amount, (curMapWaveEnemies.setsEnemyOnChoose ? curMapWaveEnemies.enemyChoose[Random.Range(0, 4)] : curMapWaveEnemies.enemies[0])));
+                StartCoroutine(levelManager.SpawnCrowdsEnemiesCor(curWaveChordEnemies.time, curWaveChordEnemies.amount, curWaveChordEnemies.AmountOfChords, 
+                    (curWaveChordEnemies.setsEnemyOnChoose ? curWaveChordEnemies.enemyChoose.enemiesChoose[Random.Range(0, curWaveChordEnemies.enemyChoose.enemiesChoose.Length)] : curWaveChordEnemies.enemy)));
             }
 
-            if (curMapWave.hasCircleCrowd)
+            if (curWave.hasCircleCrowd)
             {
-                curMapWaveEnemies = curMapWave.waveCircleCrowd;
-                levelManager.SpawnCircleCrowdEnemies(curMapWaveEnemies.time, curMapWaveEnemies.amount, (curMapWaveEnemies.setsEnemyOnChoose ? curMapWaveEnemies.enemyChoose[Random.Range(0, 4)] : curMapWaveEnemies.enemies[0]));
+                curWaveCircleCrowdEnemies = curWave.waveCircleCrowd;
+                levelManager.SpawnCircleCrowdEnemies(curWaveCircleCrowdEnemies.time, curWaveCircleCrowdEnemies.amount, curWaveCircleCrowdEnemies.radius, 
+                    (curWaveCircleCrowdEnemies.setsEnemyOnChoose ? curWaveCircleCrowdEnemies.enemyChoose.enemiesChoose[Random.Range(0, curWaveCircleCrowdEnemies.enemyChoose.enemiesChoose.Length)] : curWaveCircleCrowdEnemies.enemy));
             }
 
-            if (curMapWave.hasMiniBoss)
+            if (curWave.hasMiniBoss)
             {
-                curWaveMiniBoss = curMapWave.waveMiniBoss;
-                levelManager.SpawnMiniBoss((curWaveMiniBoss.setsEnemyOnChoose ? curWaveMiniBoss.enemyChoose[Random.Range(0, 4)] : curWaveMiniBoss.enemy), curWaveMiniBoss.sizeMultiplier);
+                curWaveMiniBoss = curWave.waveMiniBoss;
+                levelManager.SpawnMiniBoss(curWaveMiniBoss.sizeMultiplier, 
+                    (curWaveMiniBoss.setsEnemyOnChoose ? curWaveMiniBoss.enemyChoose.enemiesChoose[Random.Range(0, curWaveMiniBoss.enemyChoose.enemiesChoose.Length)] : curWaveMiniBoss.enemy));
             }
 
-            curMapWaveEnemies = curMapWave.wave;
-            if (curMapWaveEnemies.setsEnemyOnChoose) curMapWaveEnemies.enemies[^1] = curMapWaveEnemies.enemyChoose[Random.Range(0, 4)];//add additional elemental enemy (last index of an array must be empty)
-            yield return StartCoroutine(levelManager.SpawnEnemiesWaveCor(curMapWaveEnemies.time, curMapWaveEnemies.amount, curMapWaveEnemies.enemies));
+            curWaveEnemies = curWave.wave;
+            if (curWaveEnemies.setsEnemiesOnChoose) AddEnemiesOnChoose();
+            levelManager.StartSpawningEnemies(curWaveEnemies.time, curWaveEnemies.amount, curWaveEnemies.enemies.ToArray());
+        }
+    }
+    */
+
+    public void NextWave()
+    {
+        curWaveIndex++;
+
+        Wave();
+    }
+
+    //main method
+    void Wave()
+    {
+        curWave = mapWaves[curWaveIndex];//set current wave 
+
+        //check additioanal conditions of a wave
+        if (curWave.hasCrowd)
+        {
+            curWaveChordEnemies = curWave.waveCrowd;//set cur wave enemies
+            //start coroutine of spawining enemies. assign time, amonut and enemy object for spawn. if there is a choose type of enemies - choose 1 of n
+            StartCoroutine(levelManager.SpawnCrowdsEnemiesCor(curWaveChordEnemies.time, curWaveChordEnemies.amount, curWaveChordEnemies.AmountOfChords,
+                (curWaveChordEnemies.setsEnemyOnChoose ? curWaveChordEnemies.enemyChoose.enemiesChoose[Random.Range(0, curWaveChordEnemies.enemyChoose.enemiesChoose.Length)] : curWaveChordEnemies.enemy)));
+        }
+
+        if (curWave.hasCircleCrowd)
+        {
+            curWaveCircleCrowdEnemies = curWave.waveCircleCrowd;
+            levelManager.SpawnCircleCrowdEnemies(curWaveCircleCrowdEnemies.time, curWaveCircleCrowdEnemies.amount, curWaveCircleCrowdEnemies.radius,
+                (curWaveCircleCrowdEnemies.setsEnemyOnChoose ? curWaveCircleCrowdEnemies.enemyChoose.enemiesChoose[Random.Range(0, curWaveCircleCrowdEnemies.enemyChoose.enemiesChoose.Length)] : curWaveCircleCrowdEnemies.enemy));
+        }
+
+        if (curWave.hasMiniBoss)
+        {
+            curWaveMiniBoss = curWave.waveMiniBoss;
+            levelManager.SpawnMiniBoss(curWaveMiniBoss.sizeMultiplier,
+                (curWaveMiniBoss.setsEnemyOnChoose ? curWaveMiniBoss.enemyChoose.enemiesChoose[Random.Range(0, curWaveMiniBoss.enemyChoose.enemiesChoose.Length)] : curWaveMiniBoss.enemy));
+        }
+
+        curWaveEnemies = curWave.wave;
+        if (curWaveEnemies.setsEnemiesOnChoose) AddEnemiesOnChoose();
+        levelManager.StartSpawningEnemies(curWaveEnemies.time, curWaveEnemies.amount, curWaveEnemies.enemies.ToArray());
+    }
+
+    void AddEnemiesOnChoose()//add additional elementals or other enemies on choose
+    {
+        int n = curWaveEnemies.enemiesChoose.Length;
+
+        for (int i = 0; i < n; i++)
+        {
+            curWaveEnemies.enemies.Add(curWaveEnemies.enemiesChoose[i].enemiesChoose[Random.Range(0, curWaveEnemies.enemiesChoose[i].enemiesChoose.Length)]);
         }
     }
 
@@ -82,38 +142,79 @@ public class MapWave
     //additional
     [Header("Crowd wave")]
     [SerializeField] public bool hasCrowd;
-    [SerializeField] public MapWaveEnemies waveCrowd;
+    [SerializeField] public MapWaveChordEnemies waveCrowd;
 
     [Header("Circle crowd wave")]
     [SerializeField] public bool hasCircleCrowd;
-    [SerializeField] public MapWaveEnemies waveCircleCrowd;
+    [SerializeField] public MapWaveCircleCrowdWaveEnemies waveCircleCrowd;
 
     [Header("Mini boss wave")]
     [SerializeField] public bool hasMiniBoss;
     [SerializeField] public MapWaveMiniBoss waveMiniBoss;
 }
 
+//types of waves
 [System.Serializable]
-public class MapWaveEnemies
+public class MapWaveEnemies : MapWaveManyEnemiesTimeAmount
 {
-    [SerializeField] public GameObject[] enemies;
-
-    [SerializeField] public float time = 60;
-    [SerializeField] public int amount = 60;
-
-    [Header("elemntals logic")]
-    [SerializeField] public bool setsEnemyOnChoose;
-    [SerializeField] public GameObject[] enemyChoose;
 }
 
 [System.Serializable]
-public class MapWaveMiniBoss
+public class MapWaveChordEnemies : MapWaveSingleEnemyTimeAmount
+{
+    [SerializeField] public int AmountOfChords = 5;
+}
+
+[System.Serializable]
+public class MapWaveCircleCrowdWaveEnemies : MapWaveSingleEnemyTimeAmount
+{
+    [SerializeField] public float radius = 10;
+}
+
+[System.Serializable]
+public class MapWaveMiniBoss : MapWaveSingleEnemy
+{
+    [SerializeField] public float sizeMultiplier = 2;
+}
+
+//base scripts
+[System.Serializable]
+public class MapWaveManyEnemiesTimeAmount : MapWaveManyEnemies
+{
+    [SerializeField] public float time = 60;
+    [SerializeField] public int amount = 60;
+}
+
+
+[System.Serializable]
+public class MapWaveSingleEnemyTimeAmount : MapWaveSingleEnemy
+{
+    [SerializeField] public float time = 60;
+    [SerializeField] public int amount = 60;
+}
+
+[System.Serializable]
+public class MapWaveManyEnemies
+{
+    [SerializeField] public List<GameObject> enemies;
+
+    [Header("Choose logic")]
+    [SerializeField] public bool setsEnemiesOnChoose;
+    [SerializeField] public WaveEnemiesChoose[] enemiesChoose;
+}
+
+[System.Serializable]
+public class MapWaveSingleEnemy
 {
     [SerializeField] public GameObject enemy;
 
-    [SerializeField] public float sizeMultiplier = 2;
-
-    [Header("elemntals logic")]
+    [Header("Choose logic")]
     [SerializeField] public bool setsEnemyOnChoose;
-    [SerializeField] public GameObject[] enemyChoose;
+    [SerializeField] public WaveEnemiesChoose enemyChoose;
+}
+
+[System.Serializable]
+public class WaveEnemiesChoose
+{
+    [SerializeField] public GameObject[] enemiesChoose;
 }

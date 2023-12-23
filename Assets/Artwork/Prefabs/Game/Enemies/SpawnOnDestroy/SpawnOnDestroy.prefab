@@ -44,5 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f521c3330da87704db58e24a6a9785f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  expChance: 0.5
+  coinChance: 0.2
+  enemy: {fileID: 0}
   expPrefab: {fileID: 4333668395104728432, guid: a14eff1e33bdc7644b8b63d86635ca0e, type: 3}
   coinPrefab: {fileID: 4333668395104728432, guid: 233a4667b41d7ae48bf2681037e0c550, type: 3}
+  levelManager: {fileID: 0}

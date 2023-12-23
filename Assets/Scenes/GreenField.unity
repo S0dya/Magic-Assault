@@ -2305,6 +2305,7 @@ MonoBehaviour:
   uiUpgrades: {fileID: 1275266307}
   gameData: {fileID: 1208598901}
   drawManager: {fileID: 1975163949}
+  map: {fileID: 2001888640}
   borderImages:
   - {fileID: 609588477}
   - {fileID: 431234036}
@@ -2324,9 +2325,9 @@ MonoBehaviour:
   textPrefab: {fileID: 6384041013109238367, guid: e336f9a3e67ab5248be93a05ba99a68c, type: 3}
   damageTextParent: {fileID: 954616027}
   nonElementDamageColors:
-  - {r: 1, g: 1, b: 1, a: 0.49019608}
-  - {r: 1, g: 1, b: 1, a: 0.49019608}
-  - {r: 1, g: 1, b: 1, a: 0.49019608}
+  - {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 0.49019608}
+  - {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 0.49019608}
+  - {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 0.49019608}
   - {r: 1, g: 1, b: 1, a: 0.49019608}
   fireDamageColors:
   - {r: 1, g: 0.53207546, b: 0.53207546, a: 0.49019608}
@@ -5063,6 +5064,7 @@ RectTransform:
   - {fileID: 431234034}
   - {fileID: 1547041227}
   - {fileID: 810730222}
+  - {fileID: 884499929}
   m_Father: {fileID: 1262228039}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7830,11 +7832,12 @@ MonoBehaviour:
   platformSize: {x: 20, y: 20}
   offestForSpawn: 0.25
   distanceBetweenCrowdEnemies: 1
-  radiusForCircleEnemy: 10
   levelParent: {fileID: 87350363}
   levelPrefab: {fileID: 4296974656074180037, guid: abcd23ef13705d3448a43d1352cf70e2, type: 3}
   enemyParent: {fileID: 2114224553}
   expParent: {fileID: 1831110778}
+  coinParent: {fileID: 1658918807}
+  upgradeParent: {fileID: 2032478236}
   playerCharacters:
   - {fileID: 4066647700768977686, guid: 8e0f55b291b31494688ec26747a16c86, type: 3}
   - {fileID: 4066647700768977686, guid: d5ff58f25e3c99a4eafc96ecbf5e03df, type: 3}
@@ -8642,7 +8645,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 12
+    OrthographicSize: 11
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -8872,6 +8875,139 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &884499928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 884499929}
+  - component: {fileID: 884499932}
+  - component: {fileID: 884499931}
+  - component: {fileID: 884499930}
+  m_Layer: 0
+  m_Name: DELATER (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &884499929
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884499928}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 418924083}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -429, y: 267}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &884499930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884499928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 884499931}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2001888640}
+        m_TargetAssemblyTypeName: Map, Assembly-CSharp
+        m_MethodName: NextWave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &884499931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884499928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &884499932
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884499928}
+  m_CullTransparentMesh: 1
 --- !u!224 &900913902 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 418095546713733441, guid: fa2c96d0002f95647b614f95329d1444, type: 3}
@@ -9633,7 +9769,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12
+  orthographic size: 11
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -20136,841 +20272,1140 @@ MonoBehaviour:
   - wave:
       enemies:
       - {fileID: 5797608852117626588, guid: b45f75e4df9bf66408128da0ffc55246, type: 3}
+      setsEnemiesOnChoose: 0
+      enemiesChoose: []
       time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      amount: 120
     hasCrowd: 0
     waveCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      AmountOfChords: 0
     hasCircleCrowd: 0
     waveCircleCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      radius: 10
     hasMiniBoss: 0
     waveMiniBoss:
       enemy: {fileID: 0}
-      sizeMultiplier: 2
       setsEnemyOnChoose: 0
-      enemyChoose: []
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 2
   - wave:
       enemies:
       - {fileID: 5797608852117626588, guid: b45f75e4df9bf66408128da0ffc55246, type: 3}
       - {fileID: 5797608852117626588, guid: d4af6f16102934b4489c51e2bcf30d95, type: 3}
+      setsEnemiesOnChoose: 0
+      enemiesChoose: []
       time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      amount: 120
     hasCrowd: 0
     waveCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      AmountOfChords: 0
     hasCircleCrowd: 0
     waveCircleCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasMiniBoss: 0
+      radius: 10
+    hasMiniBoss: 1
     waveMiniBoss:
-      enemy: {fileID: 0}
-      sizeMultiplier: 2
+      enemy: {fileID: 5797608852117626588, guid: b45f75e4df9bf66408128da0ffc55246, type: 3}
       setsEnemyOnChoose: 0
-      enemyChoose: []
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 2
   - wave:
       enemies:
       - {fileID: 5797608852117626588, guid: d4af6f16102934b4489c51e2bcf30d95, type: 3}
+      setsEnemiesOnChoose: 0
+      enemiesChoose: []
       time: 60
-      amount: 90
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      amount: 120
     hasCrowd: 1
     waveCrowd:
-      enemies:
-      - {fileID: 2127530778173064305, guid: 1e9916dda45040e47863078a0798f19c, type: 3}
+      enemy: {fileID: 2127530778173064305, guid: 1e9916dda45040e47863078a0798f19c, type: 3}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 20
       amount: 15
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      AmountOfChords: 3
     hasCircleCrowd: 0
     waveCircleCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      radius: 10
     hasMiniBoss: 0
     waveMiniBoss:
       enemy: {fileID: 0}
-      sizeMultiplier: 2
       setsEnemyOnChoose: 0
-      enemyChoose: []
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 2
   - wave:
       enemies:
       - {fileID: 5797608852117626588, guid: 5b6029485ad2205439163841168ea4ee, type: 3}
+      setsEnemiesOnChoose: 0
+      enemiesChoose: []
       time: 60
-      amount: 120
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      amount: 150
     hasCrowd: 0
     waveCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      AmountOfChords: 0
     hasCircleCrowd: 0
     waveCircleCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      radius: 10
     hasMiniBoss: 1
     waveMiniBoss:
       enemy: {fileID: 5797608852117626588, guid: d4af6f16102934b4489c51e2bcf30d95, type: 3}
-      sizeMultiplier: 1.5
       setsEnemyOnChoose: 0
-      enemyChoose: []
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 1.5
   - wave:
       enemies:
       - {fileID: 5797608852117626588, guid: 5b6029485ad2205439163841168ea4ee, type: 3}
       - {fileID: 6611707122270337637, guid: 7dae188ba365c3744bbc490d79a97643, type: 3}
+      setsEnemiesOnChoose: 0
+      enemiesChoose: []
       time: 60
-      amount: 130
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      amount: 160
     hasCrowd: 0
     waveCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      AmountOfChords: 0
     hasCircleCrowd: 0
     waveCircleCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      radius: 10
     hasMiniBoss: 0
     waveMiniBoss:
       enemy: {fileID: 0}
-      sizeMultiplier: 2
       setsEnemyOnChoose: 0
-      enemyChoose: []
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 2
   - wave:
       enemies:
       - {fileID: 5797608852117626588, guid: 2ba2547ed6d6aa348904f432e8b65c4a, type: 3}
+      setsEnemiesOnChoose: 0
+      enemiesChoose: []
       time: 60
-      amount: 30
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      amount: 40
     hasCrowd: 0
     waveCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      AmountOfChords: 0
     hasCircleCrowd: 1
     waveCircleCrowd:
-      enemies:
-      - {fileID: 2127530778173064305, guid: 5c86e8f1528a37c44b67f62cdd9019c2, type: 3}
+      enemy: {fileID: 2127530778173064305, guid: 5c86e8f1528a37c44b67f62cdd9019c2, type: 3}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 30
       amount: 25
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      radius: 10
     hasMiniBoss: 1
     waveMiniBoss:
       enemy: {fileID: 0}
-      sizeMultiplier: 2
       setsEnemyOnChoose: 1
       enemyChoose:
-      - {fileID: 7874836842616660359, guid: ffe9f0692f3c34c48a3c6fc9dac4c976, type: 3}
-      - {fileID: 7874836842616660359, guid: dcf28a55a10d72e43a5dd80ca7853f66, type: 3}
-      - {fileID: 7874836842616660359, guid: e9be1fcdac2e8a7459826bdb04fe4e60, type: 3}
-      - {fileID: 7874836842616660359, guid: 5d4343c597602fe41a7aae05ce1972ae, type: 3}
+        enemiesChoose:
+        - {fileID: 7874836842616660359, guid: ffe9f0692f3c34c48a3c6fc9dac4c976, type: 3}
+        - {fileID: 7874836842616660359, guid: dcf28a55a10d72e43a5dd80ca7853f66, type: 3}
+        - {fileID: 7874836842616660359, guid: e9be1fcdac2e8a7459826bdb04fe4e60, type: 3}
+        - {fileID: 7874836842616660359, guid: 5d4343c597602fe41a7aae05ce1972ae, type: 3}
+      sizeMultiplier: 2
   - wave:
       enemies:
       - {fileID: 5797608852117626588, guid: 2ba2547ed6d6aa348904f432e8b65c4a, type: 3}
       - {fileID: 5797608852117626588, guid: d4af6f16102934b4489c51e2bcf30d95, type: 3}
+      setsEnemiesOnChoose: 0
+      enemiesChoose: []
       time: 60
       amount: 90
-      setsEnemyOnChoose: 0
-      enemyChoose: []
     hasCrowd: 0
     waveCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      AmountOfChords: 0
     hasCircleCrowd: 0
     waveCircleCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      radius: 10
     hasMiniBoss: 0
     waveMiniBoss:
       enemy: {fileID: 0}
-      sizeMultiplier: 2
       setsEnemyOnChoose: 0
-      enemyChoose: []
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 2
+  - wave:
+      enemies:
+      - {fileID: 5797608852117626588, guid: b45f75e4df9bf66408128da0ffc55246, type: 3}
+      - {fileID: 5797608852117626588, guid: 2ba2547ed6d6aa348904f432e8b65c4a, type: 3}
+      setsEnemiesOnChoose: 0
+      enemiesChoose: []
+      time: 60
+      amount: 130
+    hasCrowd: 1
+    waveCrowd:
+      enemy: {fileID: 2127530778173064305, guid: 1e9916dda45040e47863078a0798f19c, type: 3}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 30
+      amount: 20
+      AmountOfChords: 5
+    hasCircleCrowd: 0
+    waveCircleCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      radius: 10
+    hasMiniBoss: 1
+    waveMiniBoss:
+      enemy: {fileID: 5797608852117626588, guid: 4f510bd20b550e8478d726461f751f00, type: 3}
+      setsEnemyOnChoose: 1
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 1.5
+  - wave:
+      enemies:
+      - {fileID: 5797608852117626588, guid: d4af6f16102934b4489c51e2bcf30d95, type: 3}
+      setsEnemiesOnChoose: 0
+      enemiesChoose: []
+      time: 60
+      amount: 200
+    hasCrowd: 1
+    waveCrowd:
+      enemy: {fileID: 632211951258084474, guid: 8e62eda724b0b444092c5028fd994105, type: 3}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 15
+      AmountOfChords: 3
+    hasCircleCrowd: 0
+    waveCircleCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      radius: 10
+    hasMiniBoss: 0
+    waveMiniBoss:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 2
+  - wave:
+      enemies:
+      - {fileID: 5797608852117626588, guid: 4f510bd20b550e8478d726461f751f00, type: 3}
+      - {fileID: 5797608852117626588, guid: d4af6f16102934b4489c51e2bcf30d95, type: 3}
+      setsEnemiesOnChoose: 0
+      enemiesChoose: []
+      time: 60
+      amount: 120
+    hasCrowd: 1
+    waveCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 30
+      amount: 20
+      AmountOfChords: 8
+    hasCircleCrowd: 0
+    waveCircleCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      radius: 10
+    hasMiniBoss: 1
+    waveMiniBoss:
+      enemy: {fileID: 5797608852117626588, guid: 2ba2547ed6d6aa348904f432e8b65c4a, type: 3}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 1.5
+  - wave:
+      enemies:
+      - {fileID: 5797608852117626588, guid: 2ba2547ed6d6aa348904f432e8b65c4a, type: 3}
+      setsEnemiesOnChoose: 1
+      enemiesChoose:
+      - enemiesChoose:
+        - {fileID: 6611707122270337637, guid: 3e8c43a519204db42a432aec7192c428, type: 3}
+        - {fileID: 6611707122270337637, guid: 6a920137f93b3da4e82704be8ceb12ab, type: 3}
+        - {fileID: 6611707122270337637, guid: 9d69147859dcc6349b226bedb3a73138, type: 3}
+        - {fileID: 6611707122270337637, guid: c5f4d1a695138244f9eb9975037a56be, type: 3}
+      time: 60
+      amount: 110
+    hasCrowd: 0
+    waveCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      AmountOfChords: 0
+    hasCircleCrowd: 1
+    waveCircleCrowd:
+      enemy: {fileID: 2127530778173064305, guid: 5c86e8f1528a37c44b67f62cdd9019c2, type: 3}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 40
+      radius: 15
+    hasMiniBoss: 1
+    waveMiniBoss:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 1
+      enemyChoose:
+        enemiesChoose:
+        - {fileID: 6611707122270337637, guid: c5f4d1a695138244f9eb9975037a56be, type: 3}
+        - {fileID: 6611707122270337637, guid: 9d69147859dcc6349b226bedb3a73138, type: 3}
+        - {fileID: 6611707122270337637, guid: 6a920137f93b3da4e82704be8ceb12ab, type: 3}
+        - {fileID: 6611707122270337637, guid: 3e8c43a519204db42a432aec7192c428, type: 3}
+      sizeMultiplier: 2.5
+  - wave:
+      enemies:
+      - {fileID: 5797608852117626588, guid: 5b6029485ad2205439163841168ea4ee, type: 3}
+      setsEnemiesOnChoose: 0
+      enemiesChoose: []
+      time: 60
+      amount: 250
+    hasCrowd: 0
+    waveCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      AmountOfChords: 0
+    hasCircleCrowd: 0
+    waveCircleCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      radius: 10
+    hasMiniBoss: 0
+    waveMiniBoss:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 2
+  - wave:
+      enemies:
+      - {fileID: 6611707122270337637, guid: f687b872f5524f046bd241f885d02ec5, type: 3}
+      - {fileID: 5797608852117626588, guid: 5b6029485ad2205439163841168ea4ee, type: 3}
+      - {fileID: 6611707122270337637, guid: 7dae188ba365c3744bbc490d79a97643, type: 3}
+      setsEnemiesOnChoose: 0
+      enemiesChoose: []
+      time: 60
+      amount: 180
+    hasCrowd: 0
+    waveCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      AmountOfChords: 0
+    hasCircleCrowd: 0
+    waveCircleCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      radius: 10
+    hasMiniBoss: 0
+    waveMiniBoss:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 2
+  - wave:
+      enemies:
+      - {fileID: 6611707122270337637, guid: 7dae188ba365c3744bbc490d79a97643, type: 3}
+      - {fileID: 6611707122270337637, guid: f687b872f5524f046bd241f885d02ec5, type: 3}
+      setsEnemiesOnChoose: 0
+      enemiesChoose: []
+      time: 60
+      amount: 200
+    hasCrowd: 1
+    waveCrowd:
+      enemy: {fileID: 2127530778173064305, guid: 5c86e8f1528a37c44b67f62cdd9019c2, type: 3}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 30
+      AmountOfChords: 10
+    hasCircleCrowd: 0
+    waveCircleCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      radius: 10
+    hasMiniBoss: 1
+    waveMiniBoss:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 1
+      enemyChoose:
+        enemiesChoose:
+        - {fileID: 7874836842616660359, guid: ffe9f0692f3c34c48a3c6fc9dac4c976, type: 3}
+        - {fileID: 7874836842616660359, guid: dcf28a55a10d72e43a5dd80ca7853f66, type: 3}
+        - {fileID: 7874836842616660359, guid: e9be1fcdac2e8a7459826bdb04fe4e60, type: 3}
+        - {fileID: 7874836842616660359, guid: 5d4343c597602fe41a7aae05ce1972ae, type: 3}
+      sizeMultiplier: 1.5
+  - wave:
+      enemies:
+      - {fileID: 5797608852117626588, guid: 2ba2547ed6d6aa348904f432e8b65c4a, type: 3}
+      setsEnemiesOnChoose: 1
+      enemiesChoose:
+      - enemiesChoose:
+        - {fileID: 6611707122270337637, guid: c5f4d1a695138244f9eb9975037a56be, type: 3}
+        - {fileID: 6611707122270337637, guid: 9d69147859dcc6349b226bedb3a73138, type: 3}
+        - {fileID: 6611707122270337637, guid: 6a920137f93b3da4e82704be8ceb12ab, type: 3}
+        - {fileID: 6611707122270337637, guid: 3e8c43a519204db42a432aec7192c428, type: 3}
+      time: 60
+      amount: 180
+    hasCrowd: 0
+    waveCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      AmountOfChords: 0
+    hasCircleCrowd: 0
+    waveCircleCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      radius: 10
+    hasMiniBoss: 1
+    waveMiniBoss:
+      enemy: {fileID: 6611707122270337637, guid: f687b872f5524f046bd241f885d02ec5, type: 3}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 2
+  - wave:
+      enemies:
+      - {fileID: 6611707122270337637, guid: f687b872f5524f046bd241f885d02ec5, type: 3}
+      - {fileID: 5797608852117626588, guid: 4f510bd20b550e8478d726461f751f00, type: 3}
+      setsEnemiesOnChoose: 1
+      enemiesChoose:
+      - enemiesChoose:
+        - {fileID: 6611707122270337637, guid: c5f4d1a695138244f9eb9975037a56be, type: 3}
+        - {fileID: 6611707122270337637, guid: 9d69147859dcc6349b226bedb3a73138, type: 3}
+        - {fileID: 6611707122270337637, guid: 6a920137f93b3da4e82704be8ceb12ab, type: 3}
+        - {fileID: 6611707122270337637, guid: 3e8c43a519204db42a432aec7192c428, type: 3}
+      time: 60
+      amount: 160
+    hasCrowd: 0
+    waveCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      AmountOfChords: 0
+    hasCircleCrowd: 1
+    waveCircleCrowd:
+      enemy: {fileID: 2127530778173064305, guid: 5c86e8f1528a37c44b67f62cdd9019c2, type: 3}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 50
+      radius: 20
+    hasMiniBoss: 0
+    waveMiniBoss:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 2
+  - wave:
+      enemies:
+      - {fileID: 6611707122270337637, guid: 1a13e1e089955f34cb7f8596b33acf46, type: 3}
+      - {fileID: 5797608852117626588, guid: 2ba2547ed6d6aa348904f432e8b65c4a, type: 3}
+      setsEnemiesOnChoose: 1
+      enemiesChoose:
+      - enemiesChoose:
+        - {fileID: 6611707122270337637, guid: 209d87b81286d79439347443f969b925, type: 3}
+        - {fileID: 6611707122270337637, guid: 7a41774dfaf4ab84fb6125bc6afa2d47, type: 3}
+        - {fileID: 6611707122270337637, guid: 07984d9c6b151fa419379934e44f0dac, type: 3}
+        - {fileID: 6611707122270337637, guid: 1e6997bea4248f343ba736a13b7bd9b8, type: 3}
+      time: 60
+      amount: 170
+    hasCrowd: 0
+    waveCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      AmountOfChords: 0
+    hasCircleCrowd: 0
+    waveCircleCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      radius: 10
+    hasMiniBoss: 1
+    waveMiniBoss:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 1
+      enemyChoose:
+        enemiesChoose:
+        - {fileID: 7874836842616660359, guid: ffe9f0692f3c34c48a3c6fc9dac4c976, type: 3}
+        - {fileID: 7874836842616660359, guid: dcf28a55a10d72e43a5dd80ca7853f66, type: 3}
+        - {fileID: 7874836842616660359, guid: e9be1fcdac2e8a7459826bdb04fe4e60, type: 3}
+        - {fileID: 7874836842616660359, guid: 5d4343c597602fe41a7aae05ce1972ae, type: 3}
+      sizeMultiplier: 1.5
   - wave:
       enemies: []
+      setsEnemiesOnChoose: 1
+      enemiesChoose:
+      - enemiesChoose:
+        - {fileID: 7874836842616660359, guid: ffe9f0692f3c34c48a3c6fc9dac4c976, type: 3}
+        - {fileID: 7874836842616660359, guid: dcf28a55a10d72e43a5dd80ca7853f66, type: 3}
+        - {fileID: 7874836842616660359, guid: e9be1fcdac2e8a7459826bdb04fe4e60, type: 3}
+        - {fileID: 7874836842616660359, guid: 5d4343c597602fe41a7aae05ce1972ae, type: 3}
       time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      amount: 30
     hasCrowd: 0
     waveCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      AmountOfChords: 0
     hasCircleCrowd: 0
     waveCircleCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      radius: 10
     hasMiniBoss: 0
     waveMiniBoss:
       enemy: {fileID: 0}
-      sizeMultiplier: 2
       setsEnemyOnChoose: 0
-      enemyChoose: []
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 2
+  - wave:
+      enemies:
+      - {fileID: 5797608852117626588, guid: 4f510bd20b550e8478d726461f751f00, type: 3}
+      setsEnemiesOnChoose: 1
+      enemiesChoose:
+      - enemiesChoose:
+        - {fileID: 7874836842616660359, guid: ffe9f0692f3c34c48a3c6fc9dac4c976, type: 3}
+        - {fileID: 7874836842616660359, guid: dcf28a55a10d72e43a5dd80ca7853f66, type: 3}
+        - {fileID: 7874836842616660359, guid: e9be1fcdac2e8a7459826bdb04fe4e60, type: 3}
+        - {fileID: 7874836842616660359, guid: 5d4343c597602fe41a7aae05ce1972ae, type: 3}
+      time: 60
+      amount: 90
+    hasCrowd: 0
+    waveCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      AmountOfChords: 0
+    hasCircleCrowd: 0
+    waveCircleCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      radius: 10
+    hasMiniBoss: 0
+    waveMiniBoss:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 2
+  - wave:
+      enemies:
+      - {fileID: 6611707122270337637, guid: 1a13e1e089955f34cb7f8596b33acf46, type: 3}
+      setsEnemiesOnChoose: 1
+      enemiesChoose:
+      - enemiesChoose:
+        - {fileID: 7874836842616660359, guid: ffe9f0692f3c34c48a3c6fc9dac4c976, type: 3}
+        - {fileID: 7874836842616660359, guid: dcf28a55a10d72e43a5dd80ca7853f66, type: 3}
+        - {fileID: 7874836842616660359, guid: e9be1fcdac2e8a7459826bdb04fe4e60, type: 3}
+        - {fileID: 7874836842616660359, guid: 5d4343c597602fe41a7aae05ce1972ae, type: 3}
+      time: 60
+      amount: 110
+    hasCrowd: 0
+    waveCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      AmountOfChords: 0
+    hasCircleCrowd: 0
+    waveCircleCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      radius: 10
+    hasMiniBoss: 0
+    waveMiniBoss:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 2
+  - wave:
+      enemies:
+      - {fileID: 5797608852117626588, guid: 2ba2547ed6d6aa348904f432e8b65c4a, type: 3}
+      - {fileID: 6611707122270337637, guid: f687b872f5524f046bd241f885d02ec5, type: 3}
+      setsEnemiesOnChoose: 1
+      enemiesChoose:
+      - enemiesChoose:
+        - {fileID: 7874836842616660359, guid: ffe9f0692f3c34c48a3c6fc9dac4c976, type: 3}
+        - {fileID: 7874836842616660359, guid: dcf28a55a10d72e43a5dd80ca7853f66, type: 3}
+        - {fileID: 7874836842616660359, guid: e9be1fcdac2e8a7459826bdb04fe4e60, type: 3}
+        - {fileID: 7874836842616660359, guid: 5d4343c597602fe41a7aae05ce1972ae, type: 3}
+      - enemiesChoose:
+        - {fileID: 6611707122270337637, guid: 3e8c43a519204db42a432aec7192c428, type: 3}
+        - {fileID: 6611707122270337637, guid: 6a920137f93b3da4e82704be8ceb12ab, type: 3}
+        - {fileID: 6611707122270337637, guid: 9d69147859dcc6349b226bedb3a73138, type: 3}
+        - {fileID: 6611707122270337637, guid: c5f4d1a695138244f9eb9975037a56be, type: 3}
+      time: 60
+      amount: 220
+    hasCrowd: 1
+    waveCrowd:
+      enemy: {fileID: 2127530778173064305, guid: 1e9916dda45040e47863078a0798f19c, type: 3}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 30
+      amount: 20
+      AmountOfChords: 20
+    hasCircleCrowd: 0
+    waveCircleCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      radius: 10
+    hasMiniBoss: 1
+    waveMiniBoss:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 1
+      enemyChoose:
+        enemiesChoose:
+        - {fileID: 6611707122270337637, guid: 1e6997bea4248f343ba736a13b7bd9b8, type: 3}
+        - {fileID: 6611707122270337637, guid: 07984d9c6b151fa419379934e44f0dac, type: 3}
+        - {fileID: 6611707122270337637, guid: 7a41774dfaf4ab84fb6125bc6afa2d47, type: 3}
+        - {fileID: 6611707122270337637, guid: 209d87b81286d79439347443f969b925, type: 3}
+      sizeMultiplier: 1.5
   - wave:
       enemies: []
+      setsEnemiesOnChoose: 1
+      enemiesChoose:
+      - enemiesChoose:
+        - {fileID: 6611707122270337637, guid: 1e6997bea4248f343ba736a13b7bd9b8, type: 3}
+        - {fileID: 6611707122270337637, guid: 07984d9c6b151fa419379934e44f0dac, type: 3}
+        - {fileID: 6611707122270337637, guid: 7a41774dfaf4ab84fb6125bc6afa2d47, type: 3}
+        - {fileID: 6611707122270337637, guid: 209d87b81286d79439347443f969b925, type: 3}
       time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      amount: 160
     hasCrowd: 0
     waveCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      AmountOfChords: 0
     hasCircleCrowd: 0
     waveCircleCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      radius: 10
     hasMiniBoss: 0
     waveMiniBoss:
       enemy: {fileID: 0}
-      sizeMultiplier: 2
       setsEnemyOnChoose: 0
-      enemyChoose: []
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 2
   - wave:
       enemies: []
+      setsEnemiesOnChoose: 1
+      enemiesChoose:
+      - enemiesChoose:
+        - {fileID: 6611707122270337637, guid: 209d87b81286d79439347443f969b925, type: 3}
+        - {fileID: 6611707122270337637, guid: 7a41774dfaf4ab84fb6125bc6afa2d47, type: 3}
+        - {fileID: 6611707122270337637, guid: 07984d9c6b151fa419379934e44f0dac, type: 3}
+        - {fileID: 6611707122270337637, guid: 1e6997bea4248f343ba736a13b7bd9b8, type: 3}
+      - enemiesChoose:
+        - {fileID: 7874836842616660359, guid: ffe9f0692f3c34c48a3c6fc9dac4c976, type: 3}
+        - {fileID: 7874836842616660359, guid: dcf28a55a10d72e43a5dd80ca7853f66, type: 3}
+        - {fileID: 7874836842616660359, guid: e9be1fcdac2e8a7459826bdb04fe4e60, type: 3}
+        - {fileID: 7874836842616660359, guid: 5d4343c597602fe41a7aae05ce1972ae, type: 3}
       time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      amount: 90
     hasCrowd: 0
     waveCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      AmountOfChords: 0
     hasCircleCrowd: 0
     waveCircleCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasMiniBoss: 0
+      radius: 10
+    hasMiniBoss: 1
     waveMiniBoss:
       enemy: {fileID: 0}
-      sizeMultiplier: 2
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      setsEnemyOnChoose: 1
+      enemyChoose:
+        enemiesChoose:
+        - {fileID: 7874836842616660359, guid: ffe9f0692f3c34c48a3c6fc9dac4c976, type: 3}
+        - {fileID: 7874836842616660359, guid: dcf28a55a10d72e43a5dd80ca7853f66, type: 3}
+        - {fileID: 7874836842616660359, guid: e9be1fcdac2e8a7459826bdb04fe4e60, type: 3}
+        - {fileID: 7874836842616660359, guid: 5d4343c597602fe41a7aae05ce1972ae, type: 3}
+      sizeMultiplier: 3
   - wave:
       enemies: []
+      setsEnemiesOnChoose: 1
+      enemiesChoose:
+      - enemiesChoose:
+        - {fileID: 6611707122270337637, guid: 209d87b81286d79439347443f969b925, type: 3}
+        - {fileID: 6611707122270337637, guid: 7a41774dfaf4ab84fb6125bc6afa2d47, type: 3}
+        - {fileID: 6611707122270337637, guid: 07984d9c6b151fa419379934e44f0dac, type: 3}
+        - {fileID: 6611707122270337637, guid: 1e6997bea4248f343ba736a13b7bd9b8, type: 3}
+      - enemiesChoose:
+        - {fileID: 7874836842616660359, guid: ffe9f0692f3c34c48a3c6fc9dac4c976, type: 3}
+        - {fileID: 7874836842616660359, guid: dcf28a55a10d72e43a5dd80ca7853f66, type: 3}
+        - {fileID: 7874836842616660359, guid: e9be1fcdac2e8a7459826bdb04fe4e60, type: 3}
+        - {fileID: 7874836842616660359, guid: 5d4343c597602fe41a7aae05ce1972ae, type: 3}
       time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      amount: 160
     hasCrowd: 0
     waveCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      AmountOfChords: 0
     hasCircleCrowd: 0
     waveCircleCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
+      radius: 10
+    hasMiniBoss: 1
+    waveMiniBoss:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 1
+      enemyChoose:
+        enemiesChoose:
+        - {fileID: 6611707122270337637, guid: 38ff13c17e0a8af479da39be45bcf9fa, type: 3}
+        - {fileID: 6611707122270337637, guid: 52217c34a56f059459c72f6b6f790912, type: 3}
+        - {fileID: 6611707122270337637, guid: 631b46efbf1830d459ec82bbb701c7fa, type: 3}
+        - {fileID: 6611707122270337637, guid: d4cbc62594bb52c4ea3c983b134f88c3, type: 3}
+      sizeMultiplier: 2
+  - wave:
+      enemies:
+      - {fileID: 6611707122270337637, guid: 1a13e1e089955f34cb7f8596b33acf46, type: 3}
+      setsEnemiesOnChoose: 1
+      enemiesChoose:
+      - enemiesChoose:
+        - {fileID: 6611707122270337637, guid: 209d87b81286d79439347443f969b925, type: 3}
+        - {fileID: 6611707122270337637, guid: 7a41774dfaf4ab84fb6125bc6afa2d47, type: 3}
+        - {fileID: 6611707122270337637, guid: 07984d9c6b151fa419379934e44f0dac, type: 3}
+        - {fileID: 6611707122270337637, guid: 1e6997bea4248f343ba736a13b7bd9b8, type: 3}
+      time: 60
+      amount: 220
+    hasCrowd: 0
+    waveCrowd:
+      enemy: {fileID: 0}
       setsEnemyOnChoose: 0
-      enemyChoose: []
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      AmountOfChords: 0
+    hasCircleCrowd: 0
+    waveCircleCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      radius: 10
     hasMiniBoss: 0
     waveMiniBoss:
       enemy: {fileID: 0}
-      sizeMultiplier: 2
       setsEnemyOnChoose: 0
-      enemyChoose: []
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 2
   - wave:
       enemies: []
+      setsEnemiesOnChoose: 1
+      enemiesChoose:
+      - enemiesChoose:
+        - {fileID: 6611707122270337637, guid: 38ff13c17e0a8af479da39be45bcf9fa, type: 3}
+        - {fileID: 6611707122270337637, guid: 52217c34a56f059459c72f6b6f790912, type: 3}
+        - {fileID: 6611707122270337637, guid: 631b46efbf1830d459ec82bbb701c7fa, type: 3}
+        - {fileID: 6611707122270337637, guid: d4cbc62594bb52c4ea3c983b134f88c3, type: 3}
       time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      amount: 90
     hasCrowd: 0
     waveCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCircleCrowd: 0
+      AmountOfChords: 0
+    hasCircleCrowd: 1
     waveCircleCrowd:
-      enemies: []
-      time: 60
-      amount: 60
+      enemy: {fileID: 2127530778173064305, guid: 5c86e8f1528a37c44b67f62cdd9019c2, type: 3}
       setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasMiniBoss: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 55
+      amount: 50
+      radius: 30
+    hasMiniBoss: 1
     waveMiniBoss:
       enemy: {fileID: 0}
-      sizeMultiplier: 2
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      setsEnemyOnChoose: 1
+      enemyChoose:
+        enemiesChoose:
+        - {fileID: 6611707122270337637, guid: 38ff13c17e0a8af479da39be45bcf9fa, type: 3}
+        - {fileID: 6611707122270337637, guid: 52217c34a56f059459c72f6b6f790912, type: 3}
+        - {fileID: 6611707122270337637, guid: 631b46efbf1830d459ec82bbb701c7fa, type: 3}
+        - {fileID: 6611707122270337637, guid: d4cbc62594bb52c4ea3c983b134f88c3, type: 3}
+      sizeMultiplier: 2.5
   - wave:
       enemies: []
+      setsEnemiesOnChoose: 1
+      enemiesChoose:
+      - enemiesChoose:
+        - {fileID: 6611707122270337637, guid: 38ff13c17e0a8af479da39be45bcf9fa, type: 3}
+        - {fileID: 6611707122270337637, guid: 52217c34a56f059459c72f6b6f790912, type: 3}
+        - {fileID: 6611707122270337637, guid: 631b46efbf1830d459ec82bbb701c7fa, type: 3}
+        - {fileID: 6611707122270337637, guid: d4cbc62594bb52c4ea3c983b134f88c3, type: 3}
       time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      amount: 200
     hasCrowd: 0
     waveCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      AmountOfChords: 0
     hasCircleCrowd: 0
     waveCircleCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      radius: 10
     hasMiniBoss: 0
     waveMiniBoss:
       enemy: {fileID: 0}
-      sizeMultiplier: 2
       setsEnemyOnChoose: 0
-      enemyChoose: []
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 2
+  - wave:
+      enemies:
+      - {fileID: 6611707122270337637, guid: 1a13e1e089955f34cb7f8596b33acf46, type: 3}
+      setsEnemiesOnChoose: 1
+      enemiesChoose:
+      - enemiesChoose:
+        - {fileID: 6611707122270337637, guid: 38ff13c17e0a8af479da39be45bcf9fa, type: 3}
+        - {fileID: 6611707122270337637, guid: 52217c34a56f059459c72f6b6f790912, type: 3}
+        - {fileID: 6611707122270337637, guid: 631b46efbf1830d459ec82bbb701c7fa, type: 3}
+        - {fileID: 6611707122270337637, guid: d4cbc62594bb52c4ea3c983b134f88c3, type: 3}
+      - enemiesChoose:
+        - {fileID: 7874836842616660359, guid: dcf28a55a10d72e43a5dd80ca7853f66, type: 3}
+        - {fileID: 7874836842616660359, guid: e9be1fcdac2e8a7459826bdb04fe4e60, type: 3}
+        - {fileID: 7874836842616660359, guid: 5d4343c597602fe41a7aae05ce1972ae, type: 3}
+        - {fileID: 7874836842616660359, guid: ffe9f0692f3c34c48a3c6fc9dac4c976, type: 3}
+      - enemiesChoose:
+        - {fileID: 6611707122270337637, guid: 209d87b81286d79439347443f969b925, type: 3}
+        - {fileID: 6611707122270337637, guid: 7a41774dfaf4ab84fb6125bc6afa2d47, type: 3}
+        - {fileID: 6611707122270337637, guid: 07984d9c6b151fa419379934e44f0dac, type: 3}
+        - {fileID: 6611707122270337637, guid: 1e6997bea4248f343ba736a13b7bd9b8, type: 3}
+      time: 60
+      amount: 220
+    hasCrowd: 0
+    waveCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      AmountOfChords: 0
+    hasCircleCrowd: 0
+    waveCircleCrowd:
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 60
+      radius: 10
+    hasMiniBoss: 1
+    waveMiniBoss:
+      enemy: {fileID: 6611707122270337637, guid: 1a13e1e089955f34cb7f8596b33acf46, type: 3}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 4
   - wave:
       enemies: []
+      setsEnemiesOnChoose: 1
+      enemiesChoose:
+      - enemiesChoose:
+        - {fileID: 6611707122270337637, guid: 52217c34a56f059459c72f6b6f790912, type: 3}
+        - {fileID: 6611707122270337637, guid: 38ff13c17e0a8af479da39be45bcf9fa, type: 3}
+        - {fileID: 6611707122270337637, guid: 631b46efbf1830d459ec82bbb701c7fa, type: 3}
+        - {fileID: 6611707122270337637, guid: d4cbc62594bb52c4ea3c983b134f88c3, type: 3}
       time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      amount: 300
     hasCrowd: 0
     waveCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      AmountOfChords: 0
     hasCircleCrowd: 0
     waveCircleCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      radius: 10
     hasMiniBoss: 0
     waveMiniBoss:
       enemy: {fileID: 0}
-      sizeMultiplier: 2
       setsEnemyOnChoose: 0
-      enemyChoose: []
+      enemyChoose:
+        enemiesChoose: []
+      sizeMultiplier: 2
   - wave:
       enemies: []
+      setsEnemiesOnChoose: 1
+      enemiesChoose:
+      - enemiesChoose:
+        - {fileID: 7874836842616660359, guid: ffe9f0692f3c34c48a3c6fc9dac4c976, type: 3}
+        - {fileID: 7874836842616660359, guid: dcf28a55a10d72e43a5dd80ca7853f66, type: 3}
+        - {fileID: 7874836842616660359, guid: e9be1fcdac2e8a7459826bdb04fe4e60, type: 3}
+        - {fileID: 7874836842616660359, guid: 5d4343c597602fe41a7aae05ce1972ae, type: 3}
       time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
+      amount: 300
     hasCrowd: 0
     waveCrowd:
-      enemies: []
+      enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       time: 60
       amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCircleCrowd: 0
+      AmountOfChords: 0
+    hasCircleCrowd: 1
     waveCircleCrowd:
-      enemies: []
-      time: 60
-      amount: 60
+      enemy: {fileID: 2127530778173064305, guid: 5c86e8f1528a37c44b67f62cdd9019c2, type: 3}
       setsEnemyOnChoose: 0
-      enemyChoose: []
+      enemyChoose:
+        enemiesChoose: []
+      time: 60
+      amount: 40
+      radius: 25
     hasMiniBoss: 0
     waveMiniBoss:
       enemy: {fileID: 0}
+      setsEnemyOnChoose: 0
+      enemyChoose:
+        enemiesChoose: []
       sizeMultiplier: 2
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-  - wave:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCrowd: 0
-    waveCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCircleCrowd: 0
-    waveCircleCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasMiniBoss: 0
-    waveMiniBoss:
-      enemy: {fileID: 0}
-      sizeMultiplier: 2
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-  - wave:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCrowd: 0
-    waveCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCircleCrowd: 0
-    waveCircleCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasMiniBoss: 0
-    waveMiniBoss:
-      enemy: {fileID: 0}
-      sizeMultiplier: 2
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-  - wave:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCrowd: 0
-    waveCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCircleCrowd: 0
-    waveCircleCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasMiniBoss: 0
-    waveMiniBoss:
-      enemy: {fileID: 0}
-      sizeMultiplier: 2
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-  - wave:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCrowd: 0
-    waveCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCircleCrowd: 0
-    waveCircleCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasMiniBoss: 0
-    waveMiniBoss:
-      enemy: {fileID: 0}
-      sizeMultiplier: 2
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-  - wave:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCrowd: 0
-    waveCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCircleCrowd: 0
-    waveCircleCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasMiniBoss: 0
-    waveMiniBoss:
-      enemy: {fileID: 0}
-      sizeMultiplier: 2
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-  - wave:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCrowd: 0
-    waveCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCircleCrowd: 0
-    waveCircleCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasMiniBoss: 0
-    waveMiniBoss:
-      enemy: {fileID: 0}
-      sizeMultiplier: 2
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-  - wave:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCrowd: 0
-    waveCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCircleCrowd: 0
-    waveCircleCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasMiniBoss: 0
-    waveMiniBoss:
-      enemy: {fileID: 0}
-      sizeMultiplier: 2
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-  - wave:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCrowd: 0
-    waveCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCircleCrowd: 0
-    waveCircleCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasMiniBoss: 0
-    waveMiniBoss:
-      enemy: {fileID: 0}
-      sizeMultiplier: 2
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-  - wave:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCrowd: 0
-    waveCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCircleCrowd: 0
-    waveCircleCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasMiniBoss: 0
-    waveMiniBoss:
-      enemy: {fileID: 0}
-      sizeMultiplier: 2
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-  - wave:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCrowd: 0
-    waveCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCircleCrowd: 0
-    waveCircleCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasMiniBoss: 0
-    waveMiniBoss:
-      enemy: {fileID: 0}
-      sizeMultiplier: 2
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-  - wave:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCrowd: 0
-    waveCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCircleCrowd: 0
-    waveCircleCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasMiniBoss: 0
-    waveMiniBoss:
-      enemy: {fileID: 0}
-      sizeMultiplier: 2
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-  - wave:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCrowd: 0
-    waveCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCircleCrowd: 0
-    waveCircleCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasMiniBoss: 0
-    waveMiniBoss:
-      enemy: {fileID: 0}
-      sizeMultiplier: 2
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-  - wave:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCrowd: 0
-    waveCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCircleCrowd: 0
-    waveCircleCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasMiniBoss: 0
-    waveMiniBoss:
-      enemy: {fileID: 0}
-      sizeMultiplier: 2
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-  - wave:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCrowd: 0
-    waveCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCircleCrowd: 0
-    waveCircleCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasMiniBoss: 0
-    waveMiniBoss:
-      enemy: {fileID: 0}
-      sizeMultiplier: 2
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-  - wave:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCrowd: 0
-    waveCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCircleCrowd: 0
-    waveCircleCrowd:
-      enemies: []
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasMiniBoss: 0
-    waveMiniBoss:
-      enemy: {fileID: 0}
-      sizeMultiplier: 2
-      setsEnemyOnChoose: 0
-      enemyChoose: []
   - wave:
       enemies:
       - {fileID: 6611707122270337637, guid: 6a920137f93b3da4e82704be8ceb12ab, type: 3}
-      - {fileID: 6611707122270337637, guid: 07984d9c6b151fa419379934e44f0dac, type: 3}
-      time: 60
-      amount: 60
-      setsEnemyOnChoose: 0
-      enemyChoose: []
-    hasCrowd: 1
+      setsEnemiesOnChoose: 0
+      enemiesChoose: []
+      time: 1
+      amount: 1
+    hasCrowd: 0
     waveCrowd:
-      enemies:
-      - {fileID: 632211951258084474, guid: 8e62eda724b0b444092c5028fd994105, type: 3}
-      time: 60
-      amount: 10
+      enemy: {fileID: 0}
       setsEnemyOnChoose: 1
       enemyChoose:
-      - {fileID: 632211951258084474, guid: 0f365440fb5c46842bfcd3276f240c49, type: 3}
-      - {fileID: 2127530778173064305, guid: 1e9916dda45040e47863078a0798f19c, type: 3}
-      - {fileID: 632211951258084474, guid: 8e62eda724b0b444092c5028fd994105, type: 3}
-      - {fileID: 632211951258084474, guid: 8e62eda724b0b444092c5028fd994105, type: 3}
-    hasCircleCrowd: 1
+        enemiesChoose: []
+      time: 60
+      amount: 10
+      AmountOfChords: 0
+    hasCircleCrowd: 0
     waveCircleCrowd:
-      enemies:
-      - {fileID: 2127530778173064305, guid: 5c86e8f1528a37c44b67f62cdd9019c2, type: 3}
-      time: 60
-      amount: 10
+      enemy: {fileID: 0}
       setsEnemyOnChoose: 1
       enemyChoose:
-      - {fileID: 632211951258084474, guid: 0f365440fb5c46842bfcd3276f240c49, type: 3}
-      - {fileID: 2127530778173064305, guid: 1e9916dda45040e47863078a0798f19c, type: 3}
-      - {fileID: 632211951258084474, guid: 8e62eda724b0b444092c5028fd994105, type: 3}
-      - {fileID: 632211951258084474, guid: 8e62eda724b0b444092c5028fd994105, type: 3}
+        enemiesChoose: []
+      time: 60
+      amount: 10
+      radius: 10
     hasMiniBoss: 1
     waveMiniBoss:
       enemy: {fileID: 7874836842616660359, guid: ffe9f0692f3c34c48a3c6fc9dac4c976, type: 3}
-      sizeMultiplier: 2
-      setsEnemyOnChoose: 1
+      setsEnemyOnChoose: 0
       enemyChoose:
-      - {fileID: 6611707122270337637, guid: 209d87b81286d79439347443f969b925, type: 3}
-      - {fileID: 6611707122270337637, guid: 7a41774dfaf4ab84fb6125bc6afa2d47, type: 3}
-      - {fileID: 6611707122270337637, guid: 07984d9c6b151fa419379934e44f0dac, type: 3}
-      - {fileID: 6611707122270337637, guid: 1e6997bea4248f343ba736a13b7bd9b8, type: 3}
+        enemiesChoose: []
+      sizeMultiplier: 2
 --- !u!1 &2011374745
 GameObject:
   m_ObjectHideFlags: 0
@@ -23647,6 +24082,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e0bdd58c187d74eb314826e7a712c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &3023099512745533775
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 105844024863995552, guid: ba1d125299ba81a46a3ec74a4dd36dae, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 105844024863995552, guid: ba1d125299ba81a46a3ec74a4dd36dae, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.623
+      objectReference: {fileID: 0}
+    - target: {fileID: 105844024863995552, guid: ba1d125299ba81a46a3ec74a4dd36dae, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.81060416
+      objectReference: {fileID: 0}
+    - target: {fileID: 105844024863995552, guid: ba1d125299ba81a46a3ec74a4dd36dae, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 105844024863995552, guid: ba1d125299ba81a46a3ec74a4dd36dae, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 105844024863995552, guid: ba1d125299ba81a46a3ec74a4dd36dae, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 105844024863995552, guid: ba1d125299ba81a46a3ec74a4dd36dae, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 105844024863995552, guid: ba1d125299ba81a46a3ec74a4dd36dae, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 105844024863995552, guid: ba1d125299ba81a46a3ec74a4dd36dae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 105844024863995552, guid: ba1d125299ba81a46a3ec74a4dd36dae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 105844024863995552, guid: ba1d125299ba81a46a3ec74a4dd36dae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 105844024863995558, guid: ba1d125299ba81a46a3ec74a4dd36dae, type: 3}
+      propertyPath: m_Name
+      value: RedSkull
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ba1d125299ba81a46a3ec74a4dd36dae, type: 3}
 --- !u!224 &4534301985501580097 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3669711138052547207, guid: c94e3ee7ad5bbda4abeb75b5c77b5f4f, type: 3}

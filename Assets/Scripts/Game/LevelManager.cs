@@ -12,8 +12,6 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
 
     public float distanceBetweenCrowdEnemies;
 
-    public float radiusForCircleEnemy;
-
     [Header("Level generation")]
     [SerializeField] Transform levelParent;
     [SerializeField] GameObject levelPrefab;
@@ -21,6 +19,8 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     [Header("Other")]
     [SerializeField] Transform enemyParent;
     [SerializeField] Transform expParent;
+    [SerializeField] Transform coinParent;
+    [SerializeField] Transform upgradeParent;
 
     [Header("Player characters")]
     [SerializeField] GameObject[] playerCharacters;
@@ -34,19 +34,22 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
 
     GameObject[] platforms;
     GameObject[] decor;
-    
+
     //level generation
     int platformsLength;
     int decorLength;
 
     List<Vector2> allPositions = new List<Vector2>();
-    
+
     Vector2[][] platformsPositions;
     Vector2[][] envirenmentPositions;
-    
+
     //enemy spawn 
     float worldWidth;
     float worldHeight;
+
+    //cor
+    Coroutine spawnEnemiesWaveCor;
 
     protected override void Awake()
     {
@@ -102,7 +105,7 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
         //instantiate new objects on level 
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
-               if (Random.Range(0, 10) == 1)
+                if (Random.Range(0, 10) == 1)
                     Instantiate(decor[Random.Range(0, decorLength)],
                         GetPointPos(platformTransform, GetRandomPos(envirenmentPositions[i][j], envirenmentPositions[i + 1][j + 1])), Quaternion.identity, platformTransform);
     }
@@ -133,7 +136,15 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
         decor = decorObjs;
     }
 
+
+
     //enemy spawn cor
+    public void StartSpawningEnemies(float totalTime, int amountOfEnemies, GameObject[] enemies)
+    {
+        if (spawnEnemiesWaveCor != null) StopCoroutine(spawnEnemiesWaveCor);
+        spawnEnemiesWaveCor = StartCoroutine(SpawnEnemiesWaveCor(totalTime, amountOfEnemies, enemies));
+    }
+
     public IEnumerator SpawnEnemiesWaveCor(float totalTime, int amountOfEnemies, GameObject[] enemies)
     {
         float time = GetAverageTime(totalTime, (float)amountOfEnemies);
@@ -147,11 +158,11 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
         }
     }
 
-    public IEnumerator SpawnCrowdsEnemiesCor(float totalTime, int amountOfEnemies, GameObject enemyPrefab)
+    public IEnumerator SpawnCrowdsEnemiesCor(float totalTime, int amountOfEnemies, int amountOfChords, GameObject enemyPrefab)
     {
-        float time = GetAverageTime(totalTime, (float)amountOfEnemies);
+        float time = GetAverageTime(totalTime, (float)amountOfChords);
 
-        for (int i = 0; i < amountOfEnemies; i++)
+        for (int i = 0; i < amountOfChords; i++)
         {
             SpawnCrowdEnemies(amountOfEnemies, enemyPrefab);
 
@@ -162,7 +173,7 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     //spawn enemy
     public void SpawnEnemy(GameObject enemyPrefab)
     {
-        InstantiateEnemy(enemyPrefab, GetRandomOffsetPos());// spawn enemy around player
+        InstantiateObject(enemyPrefab, GetRandomOffsetPos(), enemyParent);// spawn enemy around player
     }
 
     public void SpawnCrowdEnemies(int amountOfEnemies, GameObject enemyPrefab)// create many enemies in one place with one direction
@@ -178,28 +189,28 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
         }
     }
 
-    public void SpawnCircleCrowdEnemies(float lifeTime, int amountOfEnemies, GameObject enemyPrefab)// create enemies around player
+    public void SpawnCircleCrowdEnemies(float lifeTime, int amountOfEnemies, float radius, GameObject enemyPrefab)// create enemies around player
     {
         float deltaTheta = (2f * Mathf.PI) / (float)amountOfEnemies;// perform some smart trigonometry things 
         float theta = 0f;
 
         for (int i = 0; i < amountOfEnemies; i++)
         {
-            float x = radiusForCircleEnemy * Mathf.Cos(theta);
-            float y = radiusForCircleEnemy * Mathf.Sin(theta);
+            float x = radius * Mathf.Cos(theta);
+            float y = radius * Mathf.Sin(theta);
             Vector2 pos = new Vector2(x, y);// position around player
 
-            pos = playerTransform.TransformPoint(pos);
             Vector2 direction = ((Vector2)playerTransform.position - pos).normalized;
+            pos = playerTransform.TransformPoint(pos);
             InstantiateCrowdEnemy(enemyPrefab, pos, direction, lifeTime);
 
             theta += deltaTheta;
         }
     }
 
-    public void SpawnMiniBoss(GameObject enemyPrefab, float sizeMultiplier)
+    public void SpawnMiniBoss(float sizeMultiplier, GameObject enemyPrefab)
     {
-        GameObject enemyObj = InstantiateEnemy(enemyPrefab, GetRandomOffsetPos());
+        GameObject enemyObj = InstantiateObject(enemyPrefab, GetRandomOffsetPos(), enemyParent);
         float size = enemyObj.transform.localScale.x * sizeMultiplier;
         enemyObj.transform.localScale = new Vector2(size, size);
 
@@ -216,15 +227,9 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
         spawnOnDestroy.SetEnemy();
     }
 
-
-    GameObject InstantiateEnemy(GameObject enemy, Vector2 pos)
-    {
-        return Instantiate(enemy, pos, Quaternion.identity, enemyParent);
-    }
-
     void InstantiateCrowdEnemy(GameObject enemy, Vector2 pos, Vector2 direction, float lifeTime)
     {
-        EnemyCrowd enemyCrowd = InstantiateEnemy(enemy, pos).GetComponent<EnemyCrowd>();
+        EnemyCrowd enemyCrowd = InstantiateObject(enemy, pos, enemyParent).GetComponent<EnemyCrowd>();
         enemyCrowd.directionOfMove = direction;
         enemyCrowd.Invoke("Die", lifeTime);// enemy dies after life time
     }
@@ -287,6 +292,26 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
             freezeEnemy.Freeze();
         }
     }
+    public void KillEnemies()
+    {
+        foreach (Transform transform in enemyParent)
+        {
+            Enemy enemy = transform.gameObject.GetComponent<Enemy>();
+            enemy.ChangeHP(-500, 1);
+        }
+    }
 
-    public void MoveEnemy(Transform  enemyTransform) => enemyTransform.position = GetRandomOffsetPos();//move enemy closer to player when player gets far from enemy
+
+    //on enemy death
+    public void InstantiateExp(GameObject prefab, Vector2 pos) => InstantiateObject(prefab, pos, expParent);
+    public void InstantiateCoin(GameObject prefab, Vector2 pos) => InstantiateObject(prefab, pos, coinParent);
+    public void InstantiateUpgrade(GameObject prefab, Vector2 pos) => InstantiateObject(prefab, pos, upgradeParent);
+
+    //other
+    public void MoveEnemy(Transform enemyTransform) => enemyTransform.position = GetRandomOffsetPos();//move enemy closer to player when player gets far from enemy
+ 
+    GameObject InstantiateObject(GameObject prefab, Vector2 pos, Transform parent)
+    {
+        return Instantiate(prefab, pos, Quaternion.identity, parent);
+    }
 }
