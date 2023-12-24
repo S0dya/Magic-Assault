@@ -1,38 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
 {
-    [Header("Settings")]
-    public int increasePlayerSpeedAmount;
-    public float increasePlayerSpeedBy;
-
-    [Header("Other")]
+    public List<PassiveUpgrade> upgrades;
 
     //local
     Player player;
 
-    //cur amounts of passive upgrades
-    int curIncreasePlayerSpeedAmount;
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-    }
+    //treshhold
+    PassiveUpgrade curUpgrade;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
-    //upgrades 
-    public bool CanIncreasePlayerSpeed()
+    //main method
+    public bool CanPerformPassiveUpgrade(UpgradeType upgradeType)//find item with same upgrade type and increase its amount. if amount reaches its limit - remove this item from list
     {
-        curIncreasePlayerSpeedAmount++;
-        player.movementSpeed += increasePlayerSpeedBy;
+        foreach (var upgrade in upgrades)
+        {
+            if (upgrade.upgradeType == upgradeType)
+            {
+                curUpgrade = upgrade;
 
-        return curIncreasePlayerSpeedAmount < increasePlayerSpeedAmount;
+                break;
+            }
+        }
+
+        return IncreaseAmountAndCheckIfLimitIsReached();
     }
+
+    bool IncreaseAmountAndCheckIfLimitIsReached()
+    {
+        curUpgrade.upgradeEvent.Invoke();
+        curUpgrade.curAmount++;
+
+        bool reachedLimit = curUpgrade.curAmount != curUpgrade.amountLimit;
+
+        if (reachedLimit) upgrades.Remove(curUpgrade);
+
+        return reachedLimit;
+    }
+
+    //upgrades 
+    public void IncreasePlayerSpeed()
+    {
+        player.movementSpeed *= 1.1f;
+    }
+}
+
+[System.Serializable]
+public class PassiveUpgrade
+{
+    [Header("Upgrade info")]
+    [SerializeField] public UpgradeType upgradeType;
+    [SerializeField] public UnityEvent upgradeEvent;
+ 
+    [Header("Settings")]
+    [SerializeField] public int amountLimit = 5;
+    [SerializeField] public int curAmount;
 }

@@ -39,43 +39,6 @@ public class Map : SingletonMonobehaviour<Map>
         Wave();
     }
 
-    /*
-    IEnumerator WavesCor() // each wave spawn enemies, crowds, circle crowds, mini-bosses and/or bosses
-    {
-        for (int i = 0; i < 30; i++)//iterate throught each wave, each wave is one minute - iterate each minute
-        {
-            curWave = mapWaves[i];//set current wave 
-
-            //check additioanal conditions of a wave
-            if (curWave.hasCrowd)
-            {
-                curWaveChordEnemies = curWave.waveCrowd;//set cur wave enemies
-                //start coroutine of spawining enemies. assign time, amonut and enemy object for spawn. if there is an elemental type enemy - choose 1 of 4 of them
-                StartCoroutine(levelManager.SpawnCrowdsEnemiesCor(curWaveChordEnemies.time, curWaveChordEnemies.amount, curWaveChordEnemies.AmountOfChords, 
-                    (curWaveChordEnemies.setsEnemyOnChoose ? curWaveChordEnemies.enemyChoose.enemiesChoose[Random.Range(0, curWaveChordEnemies.enemyChoose.enemiesChoose.Length)] : curWaveChordEnemies.enemy)));
-            }
-
-            if (curWave.hasCircleCrowd)
-            {
-                curWaveCircleCrowdEnemies = curWave.waveCircleCrowd;
-                levelManager.SpawnCircleCrowdEnemies(curWaveCircleCrowdEnemies.time, curWaveCircleCrowdEnemies.amount, curWaveCircleCrowdEnemies.radius, 
-                    (curWaveCircleCrowdEnemies.setsEnemyOnChoose ? curWaveCircleCrowdEnemies.enemyChoose.enemiesChoose[Random.Range(0, curWaveCircleCrowdEnemies.enemyChoose.enemiesChoose.Length)] : curWaveCircleCrowdEnemies.enemy));
-            }
-
-            if (curWave.hasMiniBoss)
-            {
-                curWaveMiniBoss = curWave.waveMiniBoss;
-                levelManager.SpawnMiniBoss(curWaveMiniBoss.sizeMultiplier, 
-                    (curWaveMiniBoss.setsEnemyOnChoose ? curWaveMiniBoss.enemyChoose.enemiesChoose[Random.Range(0, curWaveMiniBoss.enemyChoose.enemiesChoose.Length)] : curWaveMiniBoss.enemy));
-            }
-
-            curWaveEnemies = curWave.wave;
-            if (curWaveEnemies.setsEnemiesOnChoose) AddEnemiesOnChoose();
-            levelManager.StartSpawningEnemies(curWaveEnemies.time, curWaveEnemies.amount, curWaveEnemies.enemies.ToArray());
-        }
-    }
-    */
-
     public void NextWave()
     {
         curWaveIndex++;

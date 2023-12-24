@@ -3389,6 +3389,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawManager: {fileID: 1975163949}
   effectsParent: {fileID: 1216226232}
+  spells:
+  - spells: []
+  - spells: []
+  - spells: []
+  - spells: []
   dotEffects:
   - {fileID: 7446051607462513135, guid: 91b8a1f10b1853c40bfbdab3d7d84ea3, type: 3}
   - {fileID: 3319565365602608531, guid: 561b34c9b24ff4b4b873a699e8d19bf6, type: 3}
@@ -3409,6 +3414,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 8003008054671404004, guid: 4d6c838e3a330d64d84bbafeb5985fe0, type: 3}
   - {fileID: 8472967301382161360, guid: 0190d08a885880448ba2471a04c90d61, type: 3}
+  improvedSpells:
+  - spells: []
+  - spells: []
+  - spells: []
+  - spells: []
   improvedDotEffects:
   - {fileID: 8402523139529078394, guid: 4fec6226e996b8b409e836d15566d512, type: 3}
   - {fileID: 9089976005012192728, guid: 3b931a8fe7cdb5c4182c6e27fd813a8a, type: 3}
@@ -5438,7 +5448,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 540, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &446194737
@@ -15250,8 +15260,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e8f2a087006034ca1ebc9bff34d259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  increasePlayerSpeedAmount: 2
-  increasePlayerSpeedBy: 0.2
+  upgrades:
+  - upgradeType: 0
+    upgradeEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    amountLimit: 5
+    curAmount: 0
 --- !u!1 &1504165851
 GameObject:
   m_ObjectHideFlags: 0
@@ -17522,7 +17549,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 540, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1763560224

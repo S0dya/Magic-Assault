@@ -89,6 +89,14 @@ public class UIUpgrades : UIPanelGame
         SO_GameItem item = curUpgrades[index];
         uiInGameStats.AddItem(item);
 
+        switch (item.parentType)
+        {
+            case UpgradeTypeParent.PassiveUpgrade:
+                if (!passiveUpgrades.CanPerformPassiveUpgrade(item.type)) AddNewUpgrades(item);
+                break;
+            default: break;
+        }
+
         switch (item.type)
         {
             //active upgrades
@@ -111,7 +119,7 @@ public class UIUpgrades : UIPanelGame
 
             //passive upgrades
             case UpgradeType.PassiveIncreasePlayerSpeed:
-                if (passiveUpgrades.CanIncreasePlayerSpeed()) allItems.Add(item);//add this passive upgrade back only if can use it more times
+                passiveUpgrades.IncreasePlayerSpeed();//add this passive upgrade back only if can use it more times
                 break;
             default: break;
         }

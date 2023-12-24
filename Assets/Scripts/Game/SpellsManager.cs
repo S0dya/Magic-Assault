@@ -9,12 +9,16 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
     [SerializeField] Transform effectsParent;
 
+    public Spells[] spells= new Spells[4];
+
     public GameObject[] dotEffects;//dot
     public GameObject[] circleEffects;//circle
     public GameObject[] lineEffects;//line
     public GameObject[] arrowEffects;//arrow
 
     [Header("Improved spells")]
+    public Spells[] improvedSpells = new Spells[4];
+
     [SerializeField] GameObject[] improvedDotEffects;
     [SerializeField] GameObject[] improvedCircleEffects;
     [SerializeField] GameObject[] improvedLineEffects;
@@ -37,6 +41,10 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
     [HideInInspector] public bool additionalEffectsOfArrow;
 
+    //spells threshold
+    GameObject[] effectsThreshold = new GameObject[4];
+
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -54,8 +62,9 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         //get angle from player to draw position
         Vector2 direction = (drawPoints[^1] - (Vector2)playerTransform.position).normalized;
         float rotation = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
+        effectsThreshold[0] = spells[0].spells[curTypeOfSpell[0]];
 
-        InstantiateEffect(dotEffects[curTypeOfSpell[0]], (Vector2)playerTransform.position + direction, size, direction, rotation);
+        InstantiateEffect(effectsThreshold[0], (Vector2)playerTransform.position + direction, size, direction, rotation);
         UseMana(0, 1);
     }
 
@@ -65,7 +74,9 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
         //get radius of circle
         Vector2 pos = Vector2.Lerp(drawPoints[0], drawPoints[drawPoints.Count / 2], 0.5f);
-        InstantiateEffect(circleEffects[curTypeOfSpell[1]], pos, size * distance);
+        effectsThreshold[1] = spells[1].spells[curTypeOfSpell[1]];
+
+        InstantiateEffect(effectsThreshold[1], pos, size * distance);
         UseMana(1, 1);
     }
 
@@ -80,11 +91,12 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         //check if players mana allows to spawn as many objects as needed
         float manaNeeded = Mathf.Min(player.curMana, numObjects * effectManaUsage[2]);
         float totalN = manaNeeded / effectManaUsage[2];
+        effectsThreshold[2] = spells[2].spells[curTypeOfSpell[2]];
 
         //instantiate effect from first draw position to last 
         for (int i = 0; i < totalN; i++)
         {
-            InstantiateEffect(lineEffects[curTypeOfSpell[2]], Vector2.Lerp(drawPoints[0], drawPoints[^1], i / numObjects), size);
+            InstantiateEffect(effectsThreshold[2], Vector2.Lerp(drawPoints[0], drawPoints[^1], i / numObjects), size);
         }
 
         UseMana(2, (int)manaNeeded);
@@ -98,11 +110,12 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         Vector2 direction = (middleElementPos - arrowStartPos).normalized;
         float rotation = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
 
-        Vector2[] posOfSpells = new Vector2[] { drawPoints[0], middleElementPos, drawPoints[^1] };
+        Vector2[] posOfSpells = new Vector2[] { middleElementPos, drawPoints[0],  drawPoints[^1] };
+        effectsThreshold[3] = spells[3].spells[curTypeOfSpell[3]];
 
         for (int i = 0; i < (additionalEffectsOfArrow ? 3 : 1); i++)
         {
-            InstantiateEffect(arrowEffects[curTypeOfSpell[3]], posOfSpells[i], size, direction, rotation);
+            InstantiateEffect(effectsThreshold[3], posOfSpells[i], size, direction, rotation);
             UseMana(3, 1);
             if (PlayerHasEnoughMana(3)) break;
         }
@@ -155,10 +168,8 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     public void ImproveSpells(int typeOfDamage)
     {
         //set general spells 
-        dotEffects[typeOfDamage] = improvedDotEffects[typeOfDamage];
-        circleEffects[typeOfDamage] = improvedCircleEffects[typeOfDamage];
-        lineEffects[typeOfDamage] = improvedLineEffects[typeOfDamage];
-
-        if (typeOfDamage == 2) arrowEffects[typeOfDamage]= improvedArrowEffects[typeOfDamage]; //set arrow for earth
+        for (int i = 0; i < 3; i++) spells[i].spells[typeOfDamage] = improvedSpells[i].spells[typeOfDamage];
+        
+        if (typeOfDamage == 2) spells[3].spells[typeOfDamage]= improvedSpells[3].spells[typeOfDamage]; //set arrow for earth
     }
 }

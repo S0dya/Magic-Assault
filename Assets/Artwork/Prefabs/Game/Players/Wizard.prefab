@@ -509,6 +509,33 @@ MonoBehaviour:
   - {fileID: 8970256659375900879, guid: badfbee910ac8a94c9f1f7ab0a02b0ca, type: 3}
   - {fileID: 485007773328823295, guid: cf5d2bd2b3ea796438953fdbdbbc7db7, type: 3}
   - {fileID: 7643365883497227030, guid: fe42960a71001a6498f476ece66b917c, type: 3}
+  spells:
+  - spells:
+    - {fileID: 0}
+  upgrades:
+  - upgradeType: 0
+    upgradeEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4066647700768977686}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    amountOfSpells: 0
+    reloadTime: 0
+    timeBeforeNextSpells: 0
+    size: 0
+    speed: 0
+    spellI: 0
+    typeOfDaamge: 0
   dotSpellsSize:
   - 0.5
   - 0.5
@@ -666,7 +693,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 522007411
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d34d45797eab440489b5607a7d281c31, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

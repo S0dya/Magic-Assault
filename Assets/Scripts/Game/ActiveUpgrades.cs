@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
 {
@@ -10,6 +11,9 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
     [Header("Spells")]
     [SerializeField] GameObject[] dotEffects;
     [SerializeField] GameObject[] circleEffects;
+
+    [SerializeField] Spells[] spells;
+    [SerializeField] ActiveUpgrade[] upgrades;
 
     //local
     SpellsManager spellsManager;
@@ -36,12 +40,17 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
     List<Transform> enemiesTransforms = new List<Transform>();
     Vector2 nearestPos;
 
+    //cors
+    Coroutine[] upgradesCors;
+
     protected override void Awake()
     {
         base.Awake();
 
         spellsManager = GameObject.FindGameObjectWithTag("SpellsManager").GetComponent<SpellsManager>();
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+
+        upgradesCors = new Coroutine[upgrades.Length];
     }
 
     void Start() //test
@@ -150,6 +159,56 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
             yield return new WaitForSeconds(dotSpellsTime[3]);
         }
     }
+
+
+    public void PerformActiveUpgrade(UpgradeType upgradeType)
+    {
+        foreach (var upgrade in upgrades)
+        {
+            if (upgrade.upgradeType == upgradeType)
+            {
+                SetActiveUpgrade(upgrade);
+
+                break;
+            }
+        }
+    }
+
+    public void SetActiveUpgrade(ActiveUpgrade upgrade)
+    {
+        int i = upgrade.upgradeIndex;
+
+        if (upgradesCors[i] != null) StopCoroutine(upgradesCors[i]);
+
+        upgradesCors[i] = StartCoroutine(UpgradeCor(spells[upgrade.spellI].spells[upgrade.typeOfDaamge], 
+            upgrade.amountOfSpells, upgrade.reloadTime, upgrade.timeBeforeNextSpells, upgrade.size, upgrade.upgradeEvent));
+    }
+
+    IEnumerator UpgradeCor(GameObject effectPrefab, int amountOfSpells, float reloadTime, float timeBeforeNextSpells, float size, UpgradeEvent action)
+    {
+        while (true)
+        {
+            for (int i = 0; i < amountOfSpells; i++)
+            {
+                action.Invoke(effectPrefab, i, size);
+
+                yield return new WaitForSeconds(reloadTime);
+            }
+
+            yield return new WaitForSeconds(timeBeforeNextSpells);
+        }
+    }
+
+    //active upgrades
+    void DonInMovementDirection(GameObject effectPrefab, int i, float size)
+    {
+        //if player isn't moving get last direction of movement. if player is moving but direction of movement is zero shoot last movement direction
+        Vector2 direction = (player.joystickInput && player.IsJoystickDirectionNotZero() ? player.directionOfMovement : player.lastJoystickDirection);
+        float distance = (float)i * 0.02f;
+        direction += levelManager.GetRandomPos(distance, distance);
+
+        InstantiateSpellToDirection(effectPrefab, direction, size);
+    }
     
     //circle
     IEnumerator CircleInRandomPositionCor()
@@ -227,3 +286,31 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
     public void AddEnemy(Transform enemyTransform) => enemiesTransforms.Add(enemyTransform);
     public void RemoveEnemy(Transform enemyTransform) => enemiesTransforms.Remove(enemyTransform);
 }
+
+
+[System.Serializable]
+public class ActiveUpgrade
+{
+    [Header("Upgrade info")]
+    [SerializeField] public UpgradeType upgradeType;
+    [SerializeField] public UpgradeEvent upgradeEvent;
+
+    [Header("Settings")]
+    [SerializeField] public int amountOfSpells;
+
+    [SerializeField] public float reloadTime;
+    [SerializeField] public float timeBeforeNextSpells;
+    
+    [SerializeField] public float size;
+    [SerializeField] public float speed;
+
+    [Header("Other")]
+    [SerializeField] public int spellI;
+    [SerializeField] public int typeOfDaamge;
+
+    [SerializeField] public int upgradeIndex { get; set; }
+
+}
+
+[System.Serializable]
+public class UpgradeEvent : UnityEvent<GameObject, int, float>{}
