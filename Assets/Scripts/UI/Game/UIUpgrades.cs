@@ -91,35 +91,12 @@ public class UIUpgrades : UIPanelGame
 
         switch (item.parentType)
         {
+            case UpgradeTypeParent.ActiveUpgrade:
+                activeUpgrades.PerformActiveUpgrade(item.type);
+                AddNewUpgrades(item);
+                break;
             case UpgradeTypeParent.PassiveUpgrade:
-                if (!passiveUpgrades.CanPerformPassiveUpgrade(item.type)) AddNewUpgrades(item);
-                break;
-            default: break;
-        }
-
-        switch (item.type)
-        {
-            //active upgrades
-            case UpgradeType.ActiveDotInNearestEnemy:
-                activeUpgrades.EnableDotInNearestEnemy(item.typeOfDamage);
-                AddNewUpgrades(item);
-                break;
-            case UpgradeType.ActiveDotInRandomEnemy:
-                activeUpgrades.EnableDotInNearestEnemy(item.typeOfDamage);
-                AddNewUpgrades(item);
-                break;
-            case UpgradeType.ActiveDotInRandomPosition:
-                activeUpgrades.EnableDotInNearestEnemy(item.typeOfDamage);
-                AddNewUpgrades(item);
-                break;
-            case UpgradeType.ActiveDotInMovementDirection:
-                activeUpgrades.EnableDotInMovementDirection(item.typeOfDamage);
-                AddNewUpgrades(item);
-                break;
-
-            //passive upgrades
-            case UpgradeType.PassiveIncreasePlayerSpeed:
-                passiveUpgrades.IncreasePlayerSpeed();//add this passive upgrade back only if can use it more times
+                if (!passiveUpgrades.CanPerformPassiveUpgrade(item.type)) AddNewUpgrades(item);//add this passive upgrade back only if can use it more times
                 break;
             default: break;
         }

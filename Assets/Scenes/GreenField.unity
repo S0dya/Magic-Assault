@@ -3388,62 +3388,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawManager: {fileID: 1975163949}
+  levelManager: {fileID: 731267892}
   effectsParent: {fileID: 1216226232}
   spells:
-  - spells: []
-  - spells: []
-  - spells: []
-  - spells: []
-  dotEffects:
-  - {fileID: 7446051607462513135, guid: 91b8a1f10b1853c40bfbdab3d7d84ea3, type: 3}
-  - {fileID: 3319565365602608531, guid: 561b34c9b24ff4b4b873a699e8d19bf6, type: 3}
-  - {fileID: 2343054465367942814, guid: 5a9af24e0e42b704fbb89fb74e598ce0, type: 3}
-  - {fileID: 3167704520240122553, guid: 7cebad98f63ade145b5fa3a805fda6f6, type: 3}
-  circleEffects:
-  - {fileID: 6929152276597107592, guid: 543e117d1969ae44dba30bb1aec152ad, type: 3}
-  - {fileID: 8970256659375900879, guid: b5d49af0fd3268848a2355d4bac2fcd5, type: 3}
-  - {fileID: 485007773328823295, guid: df39918e7b9bebe4fa1fbd133aa2a9e4, type: 3}
-  - {fileID: 7643365883497227030, guid: 1b281f4b9e1a7bf4cb4ce753cf2380fd, type: 3}
-  lineEffects:
-  - {fileID: 3328960950643150081, guid: 7d1a4518fd51c884fb978e725e1b8471, type: 3}
-  - {fileID: 1150876778735590874, guid: ff7bddfd44bdffe4892b87ac7ef59846, type: 3}
-  - {fileID: 2981299850714058667, guid: 72beeb894adfcf84395cbff339761ab5, type: 3}
-  - {fileID: 8118451972308086777, guid: b7aa95d7fa352b447a640f6a029755ea, type: 3}
-  arrowEffects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 8003008054671404004, guid: 4d6c838e3a330d64d84bbafeb5985fe0, type: 3}
-  - {fileID: 8472967301382161360, guid: 0190d08a885880448ba2471a04c90d61, type: 3}
+  - spells:
+    - {fileID: 7446051607462513135, guid: 91b8a1f10b1853c40bfbdab3d7d84ea3, type: 3}
+    - {fileID: 3319565365602608531, guid: 561b34c9b24ff4b4b873a699e8d19bf6, type: 3}
+    - {fileID: 2343054465367942814, guid: 5a9af24e0e42b704fbb89fb74e598ce0, type: 3}
+    - {fileID: 3167704520240122553, guid: 7cebad98f63ade145b5fa3a805fda6f6, type: 3}
+  - spells:
+    - {fileID: 6929152276597107592, guid: 543e117d1969ae44dba30bb1aec152ad, type: 3}
+    - {fileID: 8970256659375900879, guid: b5d49af0fd3268848a2355d4bac2fcd5, type: 3}
+    - {fileID: 485007773328823295, guid: df39918e7b9bebe4fa1fbd133aa2a9e4, type: 3}
+    - {fileID: 7643365883497227030, guid: 1b281f4b9e1a7bf4cb4ce753cf2380fd, type: 3}
+  - spells:
+    - {fileID: 3328960950643150081, guid: 7d1a4518fd51c884fb978e725e1b8471, type: 3}
+    - {fileID: 1150876778735590874, guid: ff7bddfd44bdffe4892b87ac7ef59846, type: 3}
+    - {fileID: 2981299850714058667, guid: 72beeb894adfcf84395cbff339761ab5, type: 3}
+    - {fileID: 8118451972308086777, guid: b7aa95d7fa352b447a640f6a029755ea, type: 3}
+  - spells:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 8003008054671404004, guid: 4d6c838e3a330d64d84bbafeb5985fe0, type: 3}
+    - {fileID: 8472967301382161360, guid: 0190d08a885880448ba2471a04c90d61, type: 3}
   improvedSpells:
-  - spells: []
-  - spells: []
-  - spells: []
-  - spells: []
-  improvedDotEffects:
-  - {fileID: 8402523139529078394, guid: 4fec6226e996b8b409e836d15566d512, type: 3}
-  - {fileID: 9089976005012192728, guid: 3b931a8fe7cdb5c4182c6e27fd813a8a, type: 3}
-  - {fileID: 8766719808907599634, guid: bd34f0b0e0e1abb4b99adb0f347db7b9, type: 3}
-  improvedCircleEffects:
-  - {fileID: 6393713924164108291, guid: d8c854989b6770744937bd8129f3262c, type: 3}
-  - {fileID: 2609702007265552693, guid: 4e373a9543ffae14dad0243b8dfed4be, type: 3}
-  - {fileID: 5470106051079697511, guid: fcba373cf8df69b478cd75611f0f7c0e, type: 3}
-  improvedLineEffects:
-  - {fileID: 6246699860230325483, guid: ec3b4bef419e8c4419a8a045fc28a0e6, type: 3}
-  - {fileID: 7158198835048880338, guid: 0bdf19bf13025a941a5bdb028d97a3a1, type: 3}
-  - {fileID: 5118258951359764025, guid: e5555a0e419d7d04186f2772d0281c72, type: 3}
-  improvedArrowEffects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 843512910869411806, guid: fe052fdf9712ae94390cc3d25e448ee7, type: 3}
+  - spells:
+    - {fileID: 8402523139529078394, guid: 4fec6226e996b8b409e836d15566d512, type: 3}
+    - {fileID: 9089976005012192728, guid: 3b931a8fe7cdb5c4182c6e27fd813a8a, type: 3}
+    - {fileID: 8766719808907599634, guid: bd34f0b0e0e1abb4b99adb0f347db7b9, type: 3}
+  - spells:
+    - {fileID: 6393713924164108291, guid: d8c854989b6770744937bd8129f3262c, type: 3}
+    - {fileID: 2609702007265552693, guid: 4e373a9543ffae14dad0243b8dfed4be, type: 3}
+    - {fileID: 5470106051079697511, guid: fcba373cf8df69b478cd75611f0f7c0e, type: 3}
+  - spells:
+    - {fileID: 6246699860230325483, guid: ec3b4bef419e8c4419a8a045fc28a0e6, type: 3}
+    - {fileID: 7158198835048880338, guid: 0bdf19bf13025a941a5bdb028d97a3a1, type: 3}
+    - {fileID: 5118258951359764025, guid: e5555a0e419d7d04186f2772d0281c72, type: 3}
+  - spells:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 843512910869411806, guid: fe052fdf9712ae94390cc3d25e448ee7, type: 3}
   fadeEffects:
   - {fileID: 7181206973625727211, guid: 0d2d7fb641b358b4f8349023e938eefe, type: 3}
   - {fileID: 7269475651343398540, guid: 9163c43a1a423f5459e537409f04b52f, type: 3}
   - {fileID: 1606318585643417090, guid: 8f16f3cff0661f54a9842ec42661d5d4, type: 3}
   - {fileID: 7086243842536501312, guid: 05323a799bf11fe4b8d03be620166630, type: 3}
-  size: 0
-  drawPoints: []
   curTypeOfSpell: 00000000000000000000000000000000
-  additionalEffectsOfArrow: 0
+  effectManaUsage:
+  - 15
+  - 25
+  - 3
+  - 10
 --- !u!1001 &376260499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5448,7 +5443,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 540, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &446194737
@@ -7850,10 +7845,10 @@ MonoBehaviour:
   upgradeParent: {fileID: 2032478236}
   playerCharacters:
   - {fileID: 4066647700768977686, guid: 8e0f55b291b31494688ec26747a16c86, type: 3}
-  - {fileID: 4066647700768977686, guid: d5ff58f25e3c99a4eafc96ecbf5e03df, type: 3}
-  - {fileID: 4066647700768977686, guid: aaf662a6bc5a9ef44a39b9520ce6109f, type: 3}
-  - {fileID: 4066647700768977686, guid: 9dc04ed49faf3c348bc35244224c8c8f, type: 3}
-  - {fileID: 4066647700768977686, guid: ab5164f4eefa9b44282f4ddbb7fec914, type: 3}
+  - {fileID: 4730825795043432556, guid: 1d8f6f0c953eb024f80f6bae970f077e, type: 3}
+  - {fileID: 4730825795043432556, guid: 61a772eb24cb3d444adeff50da874af5, type: 3}
+  - {fileID: 4730825795043432556, guid: 219f77897fdb4fa4f9de9b9d56a6b5d5, type: 3}
+  - {fileID: 4730825795043432556, guid: 582bcd0daa4cda349baa48df3c3b7cfd, type: 3}
   playerParent: {fileID: 115602581}
   SpawnOnDestroyEnemyBossObj: {fileID: 6322672198437911237, guid: 38be8f27172feb6458022525bf5cf123, type: 3}
 --- !u!1001 &734996943
@@ -12526,6 +12521,12 @@ MonoBehaviour:
   timeInGame: 0
   damageDone: 0
   elementalDamageDone: 00000000000000000000000000000000
+  lifetimeMultiplier: 1
+  elementalLifeTimeMultipliers:
+  - 1
+  - 1
+  - 1
+  - 1
   amountOfAdditionalForceEffects: 1
   amountOfPassTroughTriggers: 4
 --- !u!1001 &1211145099
@@ -15265,7 +15266,7 @@ MonoBehaviour:
     upgradeEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 1495624164}
           m_TargetAssemblyTypeName: 
           m_MethodName: 
           m_Mode: 1
@@ -17549,7 +17550,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 540, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1763560224

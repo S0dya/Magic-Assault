@@ -6,23 +6,14 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 {
     [Header("Other scripts")]
     [SerializeField] DrawManager drawManager;
+    [SerializeField] LevelManager levelManager;
 
     [SerializeField] Transform effectsParent;
 
     public Spells[] spells= new Spells[4];
-
-    public GameObject[] dotEffects;//dot
-    public GameObject[] circleEffects;//circle
-    public GameObject[] lineEffects;//line
-    public GameObject[] arrowEffects;//arrow
-
+    
     [Header("Improved spells")]
     public Spells[] improvedSpells = new Spells[4];
-
-    [SerializeField] GameObject[] improvedDotEffects;
-    [SerializeField] GameObject[] improvedCircleEffects;
-    [SerializeField] GameObject[] improvedLineEffects;
-    [SerializeField] GameObject[] improvedArrowEffects;
 
     [Header("Additional effects")]
     [SerializeField] GameObject[] fadeEffects;
@@ -30,16 +21,18 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     //local
     Player player;
     Transform playerTransform;
+    GameData gameData;
 
     System.Action<Vector2> handleArrow;
 
-    [HideInInspector] public float size;
-    [HideInInspector] public List<Vector2> drawPoints;
+    float size;
+    Vector2[] drawPoints;
 
     [HideInInspector] public int[] curTypeOfSpell;// 0 - dot 1 - circle 2 - line 3 - arrow
-    public static float[] effectManaUsage = new float[4] { 15f, 25f, 3f, 10f };
+    public float[] effectManaUsage = new float[4] { 15f, 25f, 3f, 10f };
 
-    [HideInInspector] public bool additionalEffectsOfArrow;
+    int[] amountOfSpells = new int[4] { 5, 5, 5, 5 };
+    int arrowsAmount = 1; //3 - max
 
     //spells threshold
     GameObject[] effectsThreshold = new GameObject[4];
@@ -49,41 +42,70 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         playerTransform = player.transform;
+        gameData = GameData.I;
 
         //set values of current spells and mana usage
         curTypeOfSpell = Settings.startingSpells;
     }
-
     //Spells
-    public void useDot()
+    public void UseDot()
     {
-        if (PlayerHasEnoughMana(0)) return;
-
+        if (HasMana(0)) StartCoroutine(UseDotCor());
+    }
+    IEnumerator UseDotCor()
+    {
         //get angle from player to draw position
         Vector2 direction = (drawPoints[^1] - (Vector2)playerTransform.position).normalized;
         float rotation = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
         effectsThreshold[0] = spells[0].spells[curTypeOfSpell[0]];
 
-        InstantiateEffect(effectsThreshold[0], (Vector2)playerTransform.position + direction, size, direction, rotation);
         UseMana(0, 1);
+
+        float distance = 0;
+        for (int i = 0; i < amountOfSpells[0]; i++)
+        {
+            distance = (float)i * 0.02f;
+            direction += levelManager.GetRandomPos(distance, distance);
+
+            InstantiateEffect(effectsThreshold[0], (Vector2)playerTransform.position + direction, size, direction, rotation);
+
+            size *= 0.95f;
+            yield return new WaitForSeconds(0.1f * gameData.cooldown);
+        }
     }
 
-    public void useCircle(float distance)
+    public void UseCircle(float distanceOfCircle)
     {
-        if (PlayerHasEnoughMana(1)) return;
-
+        if (HasMana(1)) StartCoroutine(UseCircleCor(distanceOfCircle));
+    }
+    IEnumerator UseCircleCor(float distanceOfCircle)
+    {
         //get radius of circle
-        Vector2 pos = Vector2.Lerp(drawPoints[0], drawPoints[drawPoints.Count / 2], 0.5f);
+        Vector2 pos = Vector2.Lerp(drawPoints[0], drawPoints[drawPoints.Length / 2], 0.5f);
         effectsThreshold[1] = spells[1].spells[curTypeOfSpell[1]];
+        size *= distanceOfCircle;
 
-        InstantiateEffect(effectsThreshold[1], pos, size * distance);
         UseMana(1, 1);
+
+        float distance = 0;
+        for (int i = 0; i < amountOfSpells[1]; i++)
+        {
+            distance = (float)i * 0.5f;
+            pos += levelManager.GetRandomPos(distance, distance);
+
+            InstantiateEffect(effectsThreshold[1], pos, size);
+
+            size *= 0.85f;
+            yield return new WaitForSeconds(1f * gameData.cooldown);
+        }
     }
 
-    public void useLine()
+    public void UseLine()
     {
-        if (PlayerHasEnoughMana(2)) return;
-
+        if (HasMana(2)) StartCoroutine(UseLineCor());
+    }
+    IEnumerator UseLineCor()
+    {
         //find total number of objects that needs to be spawn 
         float distance = Vector2.Distance(drawPoints[0], drawPoints[^1]);
         float numObjects = Mathf.CeilToInt(distance / size);
@@ -93,19 +115,27 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         float totalN = manaNeeded / effectManaUsage[2];
         effectsThreshold[2] = spells[2].spells[curTypeOfSpell[2]];
 
-        //instantiate effect from first draw position to last 
-        for (int i = 0; i < totalN; i++)
-        {
-            InstantiateEffect(effectsThreshold[2], Vector2.Lerp(drawPoints[0], drawPoints[^1], i / numObjects), size);
-        }
-
         UseMana(2, (int)manaNeeded);
+
+        for (int i = 0; i < amountOfSpells[2]; i++)
+        {
+            //instantiate effect from first draw position to last 
+            for (int j = 0; j < totalN; j++)
+            {
+                InstantiateEffect(effectsThreshold[2], Vector2.Lerp(drawPoints[0], drawPoints[^1], j / numObjects), size);
+            }
+
+            size *= 0.95f;
+            yield return new WaitForSeconds(2f * gameData.cooldown);
+        }
     }
 
-    public void useArrow(Vector2 middleElementPos)
+    public void UseArrow(Vector2 middleElementPos)
     {
-        if (PlayerHasEnoughMana(3)) return;
-
+        if (HasMana(3)) StartCoroutine(UseArrowCor(middleElementPos));
+    }
+    IEnumerator UseArrowCor(Vector2 middleElementPos)
+    {
         Vector2 arrowStartPos = Vector2.Lerp(drawPoints[0], drawPoints[^1], 0.5f);
         Vector2 direction = (middleElementPos - arrowStartPos).normalized;
         float rotation = (Mathf.Atan2(direction.y, direction.x) - 1.5f) * Mathf.Rad2Deg;
@@ -113,11 +143,20 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         Vector2[] posOfSpells = new Vector2[] { middleElementPos, drawPoints[0],  drawPoints[^1] };
         effectsThreshold[3] = spells[3].spells[curTypeOfSpell[3]];
 
-        for (int i = 0; i < (additionalEffectsOfArrow ? 3 : 1); i++)
+        bool hasMana = true;
+        for (int i = 0; i < amountOfSpells[3]; i++)
         {
-            InstantiateEffect(effectsThreshold[3], posOfSpells[i], size, direction, rotation);
-            UseMana(3, 1);
-            if (PlayerHasEnoughMana(3)) break;
+            for (int j = 0; j < arrowsAmount; j++)
+            {
+                InstantiateEffect(effectsThreshold[3], posOfSpells[j], size, direction, rotation);
+                UseMana(3, 1);
+                hasMana = HasMana(3);
+                if (!hasMana) yield break;
+            }
+
+            if (!hasMana) yield break;
+            size *= 0.95f;
+            yield return new WaitForSeconds(1.2f * gameData.cooldown);
         }
     }
 
@@ -156,10 +195,17 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         return obj.GetComponent<ParticleSystem>();
     }
 
-    //check if player has enough mana to do spells
-    bool PlayerHasEnoughMana(int i)
+    //set draw points and size 
+    public void SetDrawPointsAndSize(Vector2[] points, float spellSize)
     {
-        return player.curMana <= effectManaUsage[i];
+        drawPoints = points;
+        size = spellSize;
+    }
+
+    //check if player has enough mana to use spells
+    bool HasMana(int i)
+    {
+        return player.curMana > effectManaUsage[i];
     }
     //subtract mana
     void UseMana(int i, int amount) => player.ChangeMana(-effectManaUsage[i] * size * amount);

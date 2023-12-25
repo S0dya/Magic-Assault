@@ -64,7 +64,7 @@ public class Spell : MonoBehaviour
     void SetDuration()
     {
         var main = GetMainModule(ps);
-        main.duration = lifeTime * Settings.lifeTimeMultipliers[typeOfDamage];
+        main.duration = lifeTime * GameData.I.elementalLifeTimeMultipliers[typeOfDamage] * GameData.I.lifetimeMultiplier;
     }
 
     public void SetRotation(float r)

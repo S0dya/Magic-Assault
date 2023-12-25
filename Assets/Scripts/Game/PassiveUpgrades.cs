@@ -9,6 +9,7 @@ public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
 
     //local
     Player player;
+    GameData gameData;
 
     //treshhold
     PassiveUpgrade curUpgrade;
@@ -16,9 +17,10 @@ public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        gameData = GameData.I;
     }
 
-    //main method
+    //main methods
     public bool CanPerformPassiveUpgrade(UpgradeType upgradeType)//find item with same upgrade type and increase its amount. if amount reaches its limit - remove this item from list
     {
         foreach (var upgrade in upgrades)
@@ -46,10 +48,40 @@ public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
         return reachedLimit;
     }
 
-    //upgrades 
+    //passive upgrades 
+    public void IncreasePower()
+    {
+        gameData.power += 0.1f;
+    }
+
+    public void AddArmor()
+    {
+        player.AddShield();
+    }
+
+    public void HealthRecovery()
+    {
+        player.canRestoreHp = true;
+    }
+    public void IncreaseHealthRecovery()
+    {
+        player.amountOfTimeBeforeRestoringHp *= 0.9f;
+        player.amountOfRestoringHp *= 1.1f;
+    }
+
+    public void DecreaseCooldown()
+    {
+        gameData.cooldown -= 0.1f;
+    }
+
     public void IncreasePlayerSpeed()
     {
         player.movementSpeed *= 1.1f;
+    }
+
+    public void IncreaseLifetime()
+    {
+        gameData.lifetimeMultiplier += 0.1f;
     }
 }
 

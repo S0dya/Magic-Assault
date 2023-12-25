@@ -22,6 +22,7 @@ public class Enemy : Creature
     //local
     [HideInInspector] public Transform playerTransform;
     ActiveUpgrades activeUpgrades;
+    GameData gameData;
 
     //looking direction
     float xOfMove;
@@ -50,7 +51,7 @@ public class Enemy : Creature
     {
         base.Start();
 
-        
+        gameData = GameData.I;
 
         Sr.sprite = skins[Random.Range(0, skinsN)]; 
     }
@@ -77,12 +78,12 @@ public class Enemy : Creature
     //health
     public override void ChangeHP(float val, int typeOfDamage)
     {
-        val *= Settings.damageMultipliers[typeOfDamage];
+        val *= Settings.damageMultipliers[typeOfDamage] * gameData.power;
         base.ChangeHP(val, typeOfDamage);
 
         int valForVisual = (int)-val;
-        GameData.I.damageDone += valForVisual;//add damage amount to settings' data 
-        if (typeOfDamage != -1) GameData.I.elementalDamageDone[typeOfDamage] += valForVisual;
+        gameData.damageDone += valForVisual;//add damage amount to settings' data 
+        if (typeOfDamage != -1) gameData.elementalDamageDone[typeOfDamage] += valForVisual;
 
         UIInGame.I.InstantiateTextOnDamage(transform.position, valForVisual, typeOfDamage);
 

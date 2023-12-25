@@ -47,7 +47,7 @@ public class Player : Creature
 
     //shadow animation
     Transform shadowEffectsParent;
-    int curShadowDirection; 
+    int curShadowDirection = 1; 
     float shadowTimeReload = 0.025f;
     float curShadowTime;
 
@@ -136,9 +136,10 @@ public class Player : Creature
     //UI
     public override void ChangeHP(float val, int typeOfDamage)
     {
+        if (val < 0) val -= val * shieldProtection;
         base.ChangeHP(val, typeOfDamage);
 
-        if (curHp == 0)
+        if (curHp == 0) 
         {
             //UIResults.I.SetTransparentBg();
         }
@@ -146,17 +147,16 @@ public class Player : Creature
         {
             if (Settings.showBlood) Instantiate(BloodEffectObj, transform);
             VisualiseDamage(); //visualise hp damage
+            //start coroutines to restore stats
+            if (canRestoreHp && !isBurning)//creature cant restore hp while burning
+            {
+                if (restoreHpCor != null) StopCoroutine(restoreHpCor);
+                restoreHpCor = StartCoroutine(RestoreHpCor());
+            }
         }
         
         //set stats from 0 to 1
         statsImages[0].fillAmount = curHp / maxHp;
-
-        //start coroutines to restore stats
-        if (canRestoreHp && !isBurning)//creature cant restore hp while burning
-        {
-            if (restoreHpCor != null) StopCoroutine(restoreHpCor);
-            restoreHpCor = StartCoroutine(RestoreHpCor());
-        }
     }
     IEnumerator RestoreHpCor()
     {
@@ -215,7 +215,7 @@ public class Player : Creature
     //other
     public void AddShield()
     {
-        shieldProtection -= 0.1f;
+        shieldProtection += 0.1f;
     }
 
     void ToggleJoystickInput(bool val) => joystickInput = val;

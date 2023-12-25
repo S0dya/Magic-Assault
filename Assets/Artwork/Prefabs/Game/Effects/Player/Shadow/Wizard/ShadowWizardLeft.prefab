@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShadowWizardLeft
       objectReference: {fileID: 0}
+    - target: {fileID: 4523846361123399331, guid: 62144bb52b4f82249a8b3bd3e9e16da9, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 6738404047960490961, guid: 62144bb52b4f82249a8b3bd3e9e16da9, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -156,14 +156,13 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
             return;
         }
 
-        //set points for spell manager
-        spellsManager.drawPoints = drawPoints;
-        //set size according to length of line (adding 0.5f to make max size = 1)
-        spellsManager.size = lineWidth[0] + 0.5f;
+        //set points for spell manager. set size according to length of line (adding 0.5f to make max size = 1)
+        spellsManager.SetDrawPointsAndSize(drawPoints.ToArray(), lineWidth[0]+0.5f);
+        
         //check dot
         if (positionCount < 3)
         {
-            spellsManager.useDot();
+            spellsManager.UseDot();
             return;
         }
 
@@ -197,16 +196,16 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
         {
             //size of water is min between distance and set value
             float distance = Vector2.Distance(drawPoints[0], drawPoints[positionCount / 2]);
-            spellsManager.useCircle(Mathf.Min(distance, maxSizeOfCircleSpell));
+            spellsManager.UseCircle(Mathf.Min(distance, maxSizeOfCircleSpell));
         }
         else if (totalAngle < angleThreshold)
         {
-            spellsManager.useLine();
+            spellsManager.UseLine();
         }
         else if (Mathf.Abs(totalAngle - 150) < angleThreshold && maxAngle > 80
             && Vector2.Distance(drawPoints[0], drawPoints[^1]) > arrowTresholdDistance)//avoid player drawing beggining and last dots too close to each other
         {
-            spellsManager.useArrow(maxAnglePosition);
+            spellsManager.UseArrow(maxAnglePosition);
         }
         else
         {

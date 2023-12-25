@@ -12,6 +12,18 @@ PrefabInstance:
       value: ShadowElfRight
       objectReference: {fileID: 0}
     - target: {fileID: 4523846361123399331, guid: 62144bb52b4f82249a8b3bd3e9e16da9, type: 3}
+      propertyPath: InitialModule.size3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523846361123399331, guid: 62144bb52b4f82249a8b3bd3e9e16da9, type: 3}
+      propertyPath: InitialModule.rotation3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523846361123399331, guid: 62144bb52b4f82249a8b3bd3e9e16da9, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523846361123399331, guid: 62144bb52b4f82249a8b3bd3e9e16da9, type: 3}
       propertyPath: UVModule.sprites.Array.data[0].sprite
       value: 
       objectReference: {fileID: 21300000, guid: d6ee09cee7f82054a8d8e94bc5d2e2f7, type: 3}

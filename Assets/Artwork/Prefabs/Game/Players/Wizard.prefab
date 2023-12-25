@@ -511,29 +511,58 @@ MonoBehaviour:
   - {fileID: 7643365883497227030, guid: fe42960a71001a6498f476ece66b917c, type: 3}
   spells:
   - spells:
-    - {fileID: 0}
+    - {fileID: 7446051607462513135, guid: e9e7f272d4437944f9430dd3c3d1e7e1, type: 3}
+    - {fileID: 3319565365602608531, guid: 4380c7bd453e0ad46821cf0eb3e8c8b1, type: 3}
+    - {fileID: 2343054465367942814, guid: 2bc9169df5e885849b8c85ab4a27e700, type: 3}
+    - {fileID: 3167704520240122553, guid: 751ad18c1a7a8dd44ac800900c0549ba, type: 3}
+  - spells:
+    - {fileID: 6929152276597107592, guid: 9fa220d192cfea4408d28cd1ba4f54b0, type: 3}
+    - {fileID: 8970256659375900879, guid: badfbee910ac8a94c9f1f7ab0a02b0ca, type: 3}
+    - {fileID: 485007773328823295, guid: cf5d2bd2b3ea796438953fdbdbbc7db7, type: 3}
+    - {fileID: 7643365883497227030, guid: fe42960a71001a6498f476ece66b917c, type: 3}
   upgrades:
   - upgradeType: 0
     upgradeEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4066647700768977686}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: 
-          m_Mode: 1
+        - m_Target: {fileID: 4066647700768977680}
+          m_TargetAssemblyTypeName: ActiveUpgrades, Assembly-CSharp
+          m_MethodName: DonInMovementDirection
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    amountOfSpells: 0
-    reloadTime: 0
-    timeBeforeNextSpells: 0
-    size: 0
-    speed: 0
+    amountOfSpells: 1
+    reloadTime: 0.01
+    timeBeforeNextSpells: 1
+    size: 0.25
+    spellI: 0
+    typeOfDaamge: 0
+  - upgradeType: 3
+    upgradeEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4066647700768977680}
+          m_TargetAssemblyTypeName: ActiveUpgrades, Assembly-CSharp
+          m_MethodName: DonInMovementDirection
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    amountOfSpells: 1
+    reloadTime: 0.01
+    timeBeforeNextSpells: 1
+    size: 0.25
     spellI: 0
     typeOfDaamge: 0
   dotSpellsSize:

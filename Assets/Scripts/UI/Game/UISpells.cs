@@ -50,7 +50,6 @@ public class UISpells : UIPanelGame
     //panel
     public override void OpenTab()
     {
-        Debug.Log("asd123");
         SetSpells();
 
         base.OpenTab();
