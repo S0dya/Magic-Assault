@@ -215,6 +215,7 @@ public class Player : Creature
     //other
     public void AddShield()
     {
+        Debug.Log("asd");
         shieldProtection += 0.1f;
     }
 

@@ -202,6 +202,13 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         size = spellSize;
     }
 
+    //passive upgrades logic
+    public void IncreaseAmountOfSpells()
+    {
+        for (int i = 0; i < 4; i++) IncreaseAmountOfSpells(i);
+    }
+    public void IncreaseAmountOfSpells(int i) => amountOfSpells[i]++;
+
     //check if player has enough mana to use spells
     bool HasMana(int i)
     {

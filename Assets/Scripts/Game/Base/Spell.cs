@@ -33,7 +33,11 @@ public class Spell : MonoBehaviour
     {
         damageMultiplier = size + 0.25f;
         damage *= damageMultiplier;
-        if (setsLifeTime) SetDuration();
+        if (setsLifeTime)
+        {
+            size *= GameData.I.area;
+            SetDuration();
+        }
 
         ps.Play();
     }

@@ -20,7 +20,9 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
 
     //other
     float distanceBetweenSpells = 10;
-    
+
+    int upgradesN;
+
     //enemies search
     List<Transform> enemiesTransforms = new List<Transform>();
     Vector2 nearestPos;
@@ -35,16 +37,19 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
         spellsManager = GameObject.FindGameObjectWithTag("SpellsManager").GetComponent<SpellsManager>();
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
 
-        upgradesCors = new Coroutine[upgrades.Length];
+        upgradesN = upgrades.Length;
+        upgradesCors = new Coroutine[upgradesN];
+        for (int i = 0; i < upgradesN; i++) upgrades[i].upgradeIndex = i;
     }
 
     //main methods
-    public void PerformActiveUpgrade(UpgradeType upgradeType)
+    public void PerformActiveUpgrade(UpgradeType upgradeType, int typeOfDamage)
     {
         foreach (var upgrade in upgrades)
         {
             if (upgrade.upgradeType == upgradeType)
             {
+                upgrade.typeOfDaamge = typeOfDamage;
                 SetActiveUpgrade(upgrade);
 
                 break;
@@ -55,6 +60,7 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
     public void SetActiveUpgrade(ActiveUpgrade upgrade)
     {
         int i = upgrade.upgradeIndex;
+        Debug.Log(i);
 
         if (upgradesCors[i] != null) StopCoroutine(upgradesCors[i]);
 
@@ -76,6 +82,35 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
             yield return new WaitForSeconds(timeBeforeNextSpells);
         }
     }
+
+    //outside methods for upgrading
+    void ResetUpgrade(int i)
+    {
+        if (upgradesCors[i] != null) SetActiveUpgrade(upgrades[i]);
+    }
+
+    public void IncreaseAmount()
+    {
+        for (int i = 0; i < upgradesN; i++) IncreaseAmount(i);
+    }
+    public void IncreaseAmount(UpgradeType upgradeType)
+    {
+        for (int i = 0; i < upgradesN; i++)
+        {
+            if (upgrades[i].upgradeType == upgradeType)
+            {
+                IncreaseAmount(i);
+
+                break;
+            }
+        }
+    }
+    public void IncreaseAmount(int i)
+    {
+        upgrades[i].amountOfSpells++;
+        ResetUpgrade(i);
+    }
+
 
     //dot active upgrades
     public void DotInNearestEnemy(GameObject effectPrefab, int i, float size)
@@ -106,7 +141,7 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
     //circle active upgrades
     public void CircleInRandomPosition(GameObject effectPrefab, int i, float size)
     {
-        InstantiateSpellToPosition(effectPrefab, GetRandomDistancePos(distanceBetweenSpells), size);
+        InstantiateSpellAtPosition(effectPrefab, GetRandomDistancePos(distanceBetweenSpells), size);
     }
 
     //other
@@ -184,9 +219,9 @@ public class ActiveUpgrade
     [SerializeField] public float timeBeforeNextSpells;
     
     [SerializeField] public float size;
+    [SerializeField] public int spellI;
 
     //Other
-    [HideInInspector] public int spellI;
     [HideInInspector] public int typeOfDaamge;
 
     [HideInInspector] public int upgradeIndex { get; set; }

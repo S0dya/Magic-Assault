@@ -12,6 +12,7 @@ public class UIUpgrades : UIPanelGame
     [SerializeField] UIUpgrade[] uiUpgrades;
 
     [SerializeField] List<SO_GameItem> allItems = new List<SO_GameItem>();
+    [SerializeField] SO_GameItem[] additionalItems;
 
     [Header("Other")]
     [SerializeField] ParticleSystem upgradeEffect;
@@ -54,9 +55,14 @@ public class UIUpgrades : UIPanelGame
     //other methods
     void SetUpgrades()
     {
-        //get random upgrade, then remove this upgrade to get 2 more random upgrades
+        //get random upgrade, then remove this upgrade and get 2 more random upgrades
         for (int i = 0; i < 3; i++)
         {
+            if (allItems.Count == 0)//if there are no upgrades - place items
+            {
+                uiUpgrades[i].SetInfo(additionalItems[i]);
+                continue;
+            }
             int randomI = Random.Range(0, allItems.Count);
             curUpgrades[i] = allItems[randomI];
             allItems.RemoveAt(randomI);
@@ -92,7 +98,7 @@ public class UIUpgrades : UIPanelGame
         switch (item.parentType)
         {
             case UpgradeTypeParent.ActiveUpgrade:
-                activeUpgrades.PerformActiveUpgrade(item.type);
+                activeUpgrades.PerformActiveUpgrade(item.type, item.typeOfDamage);
                 AddNewUpgrades(item);
                 break;
             case UpgradeTypeParent.PassiveUpgrade:

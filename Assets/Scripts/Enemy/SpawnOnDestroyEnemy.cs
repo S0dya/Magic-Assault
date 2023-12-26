@@ -15,11 +15,13 @@ public class SpawnOnDestroyEnemy : MonoBehaviour
 
     //local
     [HideInInspector] public LevelManager levelManager;
-
+    //[HideInInspector] public 
+    float luck;
 
     protected virtual void Awake()
     {
         levelManager = LevelManager.I;
+        luck = GameData.I.luck;
     }
 
     public void SetEnemy() => enemy = GetComponentInParent<Enemy>();
@@ -28,7 +30,7 @@ public class SpawnOnDestroyEnemy : MonoBehaviour
     {
         if (!enemy.isKilled) return;
 
-        if (expChance > Random.value) levelManager.InstantiateExp(expPrefab, transform.position);
-        if (coinChance > Random.value) levelManager.InstantiateCoin(coinPrefab, transform.position);
+        if (expChance + luck > Random.value) levelManager.InstantiateExp(expPrefab, transform.position);
+        if (coinChance + luck > Random.value) levelManager.InstantiateCoin(coinPrefab, transform.position);
     }
 }

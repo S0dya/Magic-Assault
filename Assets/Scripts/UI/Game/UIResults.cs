@@ -97,7 +97,7 @@ public class UIResults : SingletonMonobehaviour<UIResults>
     void SetStats()
     {
         killed = uiInGame.killedAmount;
-        goldEarned = uiInGame.moneyAmount;
+        goldEarned = (int)uiInGame.moneyAmount;
         levelReached = uiInGame.curLvl;
 
         survivedAmountText.text = uiInGame.GetCurTime();

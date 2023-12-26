@@ -5,10 +5,14 @@ using UnityEngine.Events;
 
 public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
 {
+    [Header("OtherScripts")]
+    [SerializeField] SpellsManager spellsManager;
+
     public List<PassiveUpgrade> upgrades;
 
     //local
     Player player;
+    ActiveUpgrades activeUpgrades;
     GameData gameData;
 
     //treshhold
@@ -17,6 +21,7 @@ public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        activeUpgrades = player.gameObject.GetComponent<ActiveUpgrades>();
         gameData = GameData.I;
     }
 
@@ -41,14 +46,14 @@ public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
         curUpgrade.upgradeEvent.Invoke();
         curUpgrade.curAmount++;
 
-        bool reachedLimit = curUpgrade.curAmount != curUpgrade.amountLimit;
+        bool reachedLimit = curUpgrade.curAmount == curUpgrade.amountLimit;
 
         if (reachedLimit) upgrades.Remove(curUpgrade);
 
         return reachedLimit;
     }
 
-    //passive upgrades 
+    //general passive upgrades 
     public void IncreasePower()
     {
         gameData.power += 0.1f;
@@ -69,12 +74,28 @@ public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
         player.amountOfRestoringHp *= 1.1f;
     }
 
+    public void IncreaseMaxHealth()
+    {
+        player.maxHp *= 1.1f;
+    }
+
     public void DecreaseCooldown()
     {
         gameData.cooldown -= 0.1f;
     }
 
-    public void IncreasePlayerSpeed()
+    public void IncreaseArea()
+    {
+        gameData.area += 0.05f;
+    }
+
+    public void IncreaseGeneralAmount()
+    {
+        spellsManager.IncreaseAmountOfSpells();
+        activeUpgrades.IncreaseAmount();
+    }
+
+    public void IncreaseSpeed()
     {
         player.movementSpeed *= 1.1f;
     }
@@ -83,6 +104,20 @@ public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
     {
         gameData.lifetimeMultiplier += 0.1f;
     }
+
+    public void IncreaseGrowth()
+    {
+        gameData.growth += 0.05f;
+    }
+
+    public void IncreaseGreed()
+    {
+        gameData.greed += 0.1f;
+    }
+
+    //active upgrades' passive upgrades
+
+
 }
 
 [System.Serializable]

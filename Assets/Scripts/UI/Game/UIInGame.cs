@@ -65,7 +65,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
 
     //killed and money
     [HideInInspector] public int killedAmount;
-    [HideInInspector] public int moneyAmount;
+    [HideInInspector] public float moneyAmount;
 
     //cor
     Coroutine timerCor;
@@ -85,7 +85,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     //exp methods
     public void ChangeExp(float val)
     {
-        curExp += val;
+        curExp += val * gameData.growth;
 
         SetExpLine();
 
@@ -118,19 +118,20 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     void SetExpLine() => expLine.fillAmount = curExp / curNeededExp;
 
     //level text methods
-    void VisualiseReachinNewLevelStart() => LeanTween.scale(expTextObj, new Vector2(2, 2), 1f).setEase(LeanTweenType.easeOutBack).setOnComplete(() => SetExpText());
+    void VisualiseReachinNewLevelStart() => LeanTween.scale(expTextObj, new Vector2(2, 2), 0.5f).setEase(LeanTweenType.easeOutBack).setOnComplete(() => SetExpText());
     void SetExpText()
     {
         //we set exp one more time, since if we upgraded several times fillAmount will not be changed for last upgrade
         SetExpLine();
         uiUpgrades.OpenTab();
 
+        curLvl++;
         expText.text = curLvl.ToString() + "lvl";
         //return text of lvl to normal size and check if we need to call upgrade once more
         VisualiseReachinNewLevelEnd();
         isUpgrading = false;
     }
-    void VisualiseReachinNewLevelEnd() => LeanTween.scale(expTextObj, new Vector2(1, 1), 0.75f).setEase(LeanTweenType.easeOutBack).setOnComplete(() => CheckIfNextLevelIsReached());
+    void VisualiseReachinNewLevelEnd() => LeanTween.scale(expTextObj, new Vector2(1, 1), 0.25f).setEase(LeanTweenType.easeOutBack).setOnComplete(() => CheckIfNextLevelIsReached());
 
 
     //time methods
@@ -168,10 +169,10 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
         killedText.text = killedAmount.ToString();
     }
     
-    public void ChangeMoney(int val)
+    public void ChangeMoney(float val)
     {
-        moneyAmount += val;
-        moneyText.text = moneyAmount.ToString();
+        moneyAmount += val * gameData.greed;
+        moneyText.text = ((int)moneyAmount).ToString();
     }
 
     //other methods

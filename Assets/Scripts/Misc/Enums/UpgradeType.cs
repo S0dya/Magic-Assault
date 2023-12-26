@@ -6,6 +6,22 @@ public enum UpgradeType
     ActiveDotInRandomPosition,
     ActiveDotInMovementDirection,
 
+    ActiveCircleInRandomPosition,
+
     //passive
-    PassiveIncreasePlayerSpeed,
+    PassiveIncreasePower,
+    PassiveAddArmor,
+    PassiveToggleHealthRecovery,
+    PassiveIncreaseHealthRecovery,
+    PassiveIncreaseMaxHealth,
+    PassiveDecreaseCooldown,
+    PassiveIncreaseArea,
+    PassiveIncreaseGeneralAmount,
+    PassiveIncreaseSpeed,
+    PassiveIncreaseLifetime,
+    PassiveIncreaseGrowth,
+    PassiveIncreaseGreed,
+
+    //passive-active
+
 }

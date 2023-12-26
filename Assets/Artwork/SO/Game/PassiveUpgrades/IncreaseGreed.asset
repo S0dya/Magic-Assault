@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d18e4a4996f320d47b5dfa5c123598b5, type: 3}
+  m_Name: IncreaseGreed
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Greed
+  <Description>k__BackingField: Gains <b>10%</b> more coins
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: a987545556ad6d14e9206c7afd0d15a8, type: 3}
+  parentType: 2
+  type: 16
+  typeOfDamage: 0
+  itemsOnUpgrade:
+  - {fileID: 11400000}
+  spellI: 0

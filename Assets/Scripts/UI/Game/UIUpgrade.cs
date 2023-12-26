@@ -27,7 +27,7 @@ public class UIUpgrade : UIItem
         base.SetInfo(item);
 
         curItem = item;
-        isActiveSpell = curItem.itemsOnUpgrade.Length > 0;
+        isActiveSpell = item.parentType != UpgradeTypeParent.PassiveUpgrade;
         if (isActiveSpell) SetHighlight(curItem.typeOfDamage);
     }
 
