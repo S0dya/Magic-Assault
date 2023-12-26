@@ -46,7 +46,7 @@ public class UIInGameStats : UIPanelMenu
     public void AddItem(SO_GameItem item)
     {
         //get type index
-        int type = (item.parentType == UpgradeTypeParent.ActiveUpgrade ? 0 : 1);
+        int type = (item.parentType == UpgradeTypeParent.ActiveUpgrade || item.parentType == UpgradeTypeParent.PassiveActiveUpgrade ? 0 : 1);
 
         if (upgradeItemsDics[type].ContainsKey(item)) //if there is alr an upgrade - add upgrade amount 
         {

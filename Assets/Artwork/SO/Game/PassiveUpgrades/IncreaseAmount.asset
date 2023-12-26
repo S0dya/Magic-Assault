@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: IncreaseAmount
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Amount
-  <Description>k__BackingField: All spells create <b>1 more</b> particle
+  <Description>k__BackingField: 'All spells create <b>1 more</b> projectile
+
+'
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 6f74359f7332af544b62ae0578c30b1f, type: 3}
   parentType: 2
   type: 12

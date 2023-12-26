@@ -9,6 +9,7 @@ public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
     [SerializeField] SpellsManager spellsManager;
 
     public List<PassiveUpgrade> upgrades;
+    public List<PassiveUpgrade> passiveActiveUpgrades;
 
     //local
     Player player;
@@ -20,6 +21,8 @@ public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
 
     void Start()
     {
+        foreach (var passiveActiveUpgrade in passiveActiveUpgrades) upgrades.Add(passiveActiveUpgrade);
+
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         activeUpgrades = player.gameObject.GetComponent<ActiveUpgrades>();
         gameData = GameData.I;
@@ -28,29 +31,29 @@ public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
     //main methods
     public bool CanPerformPassiveUpgrade(UpgradeType upgradeType)//find item with same upgrade type and increase its amount. if amount reaches its limit - remove this item from list
     {
-        foreach (var upgrade in upgrades)
-        {
-            if (upgrade.upgradeType == upgradeType)
-            {
-                curUpgrade = upgrade;
+        SetUpgrade(upgradeType);
 
-                break;
-            }
-        }
+        return PerformPassiveUpgrade();
+    }
+    public bool CanPerformActivePassiveUpgrade(UpgradeType upgradeType)
+    {
+        SetUpgrade(upgradeType);
+
+        return PerformActivePassiveUpgrade();
+    }
+
+    bool PerformPassiveUpgrade()
+    {
+        curUpgrade.upgradeEventPassive.Invoke();
 
         return IncreaseAmountAndCheckIfLimitIsReached();
     }
 
-    bool IncreaseAmountAndCheckIfLimitIsReached()
+    bool PerformActivePassiveUpgrade()
     {
-        curUpgrade.upgradeEvent.Invoke();
-        curUpgrade.curAmount++;
+        curUpgrade.upgradeEventActivePassive.Invoke(curUpgrade.upgradeTypeActivePassive);
 
-        bool reachedLimit = curUpgrade.curAmount == curUpgrade.amountLimit;
-
-        if (reachedLimit) upgrades.Remove(curUpgrade);
-
-        return reachedLimit;
+        return IncreaseAmountAndCheckIfLimitIsReached();
     }
 
     //general passive upgrades 
@@ -116,17 +119,59 @@ public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
     }
 
     //active upgrades' passive upgrades
+    public void IncreaseActiveAmount(UpgradeType upgradeType)
+    {
+        activeUpgrades.IncreaseAmount(upgradeType);
+    }
 
+    public void IncreaseActiveArea(UpgradeType upgradeType)
+    {
+        activeUpgrades.IncreaseArea(upgradeType);
+    }
 
+    public void DecreaseActiveCooldown(UpgradeType upgradeType)
+    {
+        activeUpgrades.DecreaseCooldown(upgradeType);
+    }
+
+    //other
+    void SetUpgrade(UpgradeType upgradeType)
+    {
+        foreach (var upgrade in upgrades)
+        {
+            if (upgrade.upgradeType == upgradeType)
+            {
+                curUpgrade = upgrade;
+
+                break;
+            }
+        }
+    }
+
+    bool IncreaseAmountAndCheckIfLimitIsReached()
+    {
+        curUpgrade.curAmount++;
+
+        bool reachedLimit = curUpgrade.curAmount == curUpgrade.amountLimit;
+
+        if (reachedLimit) upgrades.Remove(curUpgrade);
+
+        return reachedLimit;
+    }
 }
 
 [System.Serializable]
 public class PassiveUpgrade
 {
+    
     [Header("Upgrade info")]
     [SerializeField] public UpgradeType upgradeType;
-    [SerializeField] public UnityEvent upgradeEvent;
- 
+
+    [Header("Passive")] [SerializeField] public UnityEvent upgradeEventPassive;
+    [Header("Active-Passive")]
+    [SerializeField] public UnityEvent<UpgradeType> upgradeEventActivePassive;
+    [SerializeField] public UpgradeType upgradeTypeActivePassive;
+
     [Header("Settings")]
     [SerializeField] public int amountLimit = 5;
     [SerializeField] public int curAmount;

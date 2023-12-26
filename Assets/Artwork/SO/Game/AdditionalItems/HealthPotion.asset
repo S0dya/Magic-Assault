@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d18e4a4996f320d47b5dfa5c123598b5, type: 3}
-  m_Name: DotInMovement
+  m_Name: HealthPotion
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Windward Surge
-  <Description>k__BackingField: Fires element in the faced direction
-  <ItemImage>k__BackingField: {fileID: 21300000, guid: c78b6ebd971a2174a9342f11c4b9b791, type: 3}
-  parentType: 1
-  type: 3
+  <Name>k__BackingField: Vitality Elixir
+  <Description>k__BackingField: Restores <b>75</b> health points
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: 88b54bbd5983cc74685d2fa77e08e259, type: 3}
+  parentType: 4
+  type: 34
   typeOfDamage: 0
-  itemsOnUpgrade: []
+  itemsOnUpgrade:
+  - {fileID: 11400000}
   spellI: 0

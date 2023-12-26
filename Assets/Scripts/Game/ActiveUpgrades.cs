@@ -88,29 +88,48 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
     {
         if (upgradesCors[i] != null) SetActiveUpgrade(upgrades[i]);
     }
-
     public void IncreaseAmount()
     {
-        for (int i = 0; i < upgradesN; i++) IncreaseAmount(i);
+        for (int i = 0; i < upgradesN; i++)
+        {
+            IncreaseAmount(i);
+            ResetUpgrade(i);
+        }
     }
     public void IncreaseAmount(UpgradeType upgradeType)
+    {
+        PerformUpgrade(upgradeType, IncreaseAmount);
+    }
+    public void IncreaseArea(UpgradeType upgradeType)
+    {
+        PerformUpgrade(upgradeType, IncreaseArea);
+    }
+    public void DecreaseCooldown(UpgradeType upgradeType)
+    {
+        PerformUpgrade(upgradeType, DecreaseCooldown);
+    }
+
+    public void PerformUpgrade(UpgradeType upgradeType, System.Action<int> action)
     {
         for (int i = 0; i < upgradesN; i++)
         {
             if (upgrades[i].upgradeType == upgradeType)
             {
-                IncreaseAmount(i);
+                action.Invoke(i);
+                ResetUpgrade(i);
 
                 break;
             }
         }
     }
-    public void IncreaseAmount(int i)
+    public void IncreaseAmount(int i) => upgrades[i].amountOfSpells++;
+    public void IncreaseArea(int i) => upgrades[i].size *= 1.1f;
+    public void DecreaseCooldown(int i)
     {
-        upgrades[i].amountOfSpells++;
-        ResetUpgrade(i);
+        Debug.Log("asd");
+        upgrades[i].reloadTime *= 0.9f;
+        upgrades[i].timeBeforeNextSpells *= 0.9f;
     }
-
 
     //dot active upgrades
     public void DotInNearestEnemy(GameObject effectPrefab, int i, float size)

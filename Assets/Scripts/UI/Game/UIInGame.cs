@@ -192,6 +192,26 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     }
     public void ToggleJoystickVisibility(float val) => joysticksCG.alpha = val;
 
+    //pick ups on no upgrades
+    public void UsePickUpUpgrade(UpgradeType upgradeType)
+    {
+        switch (upgradeType)
+        {
+            case UpgradeType.PickUpsManaPotion:
+                Debug.Log("asd");
+                player.ChangeMana(75f);
+                break;
+            case UpgradeType.PickUpsCoinsBag:
+                ChangeMoney(25);
+                break;
+            case UpgradeType.PickUpsHealthPotion:
+                player.ChangeHP(75f, -1);
+
+                break;
+            default: break;
+        }
+    }
+
     //damage texts
     public void InstantiateTextOnDamage(Vector2 pos, int amountOfDamage, int typeOfDamage)//instantiate text above enemy
     {

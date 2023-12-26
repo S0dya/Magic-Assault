@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7535651583214915215}
   thisItem: {fileID: 11400000, guid: 1a3f1738bef87294d8437e93b6019366, type: 2}
+  hpRestores: 75
 --- !u!212 &7535651583214915212
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -95,7 +96,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.29, y: 0.45}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

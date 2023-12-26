@@ -7,6 +7,7 @@ public class UIUpgrades : UIPanelGame
     [Header("Other scripts")]
     [SerializeField] PassiveUpgrades passiveUpgrades;
     [SerializeField] UIInGameStats uiInGameStats;
+    [SerializeField] UIInGame uiInGame;
 
     [Header("Upgrades")]
     [SerializeField] UIUpgrade[] uiUpgrades;
@@ -58,14 +59,14 @@ public class UIUpgrades : UIPanelGame
         //get random upgrade, then remove this upgrade and get 2 more random upgrades
         for (int i = 0; i < 3; i++)
         {
-            if (allItems.Count == 0)//if there are no upgrades - place items
+            if (allItems.Count == 0) curUpgrades[i] = additionalItems[i]; //if there are no upgrades - place items 
+            else
             {
-                uiUpgrades[i].SetInfo(additionalItems[i]);
-                continue;
+                int randomI = Random.Range(0, allItems.Count);
+                curUpgrades[i] = allItems[randomI];
+                allItems.RemoveAt(randomI);
             }
-            int randomI = Random.Range(0, allItems.Count);
-            curUpgrades[i] = allItems[randomI];
-            allItems.RemoveAt(randomI);
+           
 
             uiUpgrades[i].SetInfo(curUpgrades[i]);
         }
@@ -103,6 +104,13 @@ public class UIUpgrades : UIPanelGame
                 break;
             case UpgradeTypeParent.PassiveUpgrade:
                 if (!passiveUpgrades.CanPerformPassiveUpgrade(item.type)) AddNewUpgrades(item);//add this passive upgrade back only if can use it more times
+                break;
+            case UpgradeTypeParent.PassiveActiveUpgrade:
+                if (!passiveUpgrades.CanPerformActivePassiveUpgrade(item.type)) AddNewUpgrades(item);//add this passive upgrade back only if can use it more times
+                break;
+            case UpgradeTypeParent.PickUps:
+                uiInGame.UsePickUpUpgrade(item.type);
+                AddNewUpgrades(item);
                 break;
             default: break;
         }

@@ -23,5 +23,35 @@ public enum UpgradeType
     PassiveIncreaseGreed,
 
     //passive-active
+    /*
+    PassiveActiveIncreaseAmount,
+    PassiveActiveIncreaseArea,
+    PassiveActiveDecreaseCooldown,
+    */
 
+    PassiveActiveIncreaseAmountDotInNearestEnemy,
+    PassiveActiveIncreaseAreaDotInNearestEnemy,
+    PassiveActiveDecreaseCooldownDotInNearestEnemy,
+
+    PassiveActiveIncreaseAmountDotInRandomEnemy,
+    PassiveActiveIncreaseAreaDotInRandomEnemy,
+    PassiveActiveDecreaseCooldownDotInRandomEnemy,
+
+    PassiveActiveIncreaseAmountDotInRandomPosition,
+    PassiveActiveIncreaseAreaDotInRandomPosition,
+    PassiveActiveDecreaseCooldownDotInRandomPosition,
+
+    PassiveActiveIncreaseAmountDotInMovementDirection,
+    PassiveActiveIncreaseAreaDotInMovementDirection,
+    PassiveActiveDecreaseCooldownDotInMovementDirection,
+
+    PassiveActiveIncreaseAmountCircleInRandomPosition,
+    PassiveActiveIncreaseAreaCircleInRandomPosition,
+    PassiveActiveDecreaseCooldownCircleInRandomPosition,
+
+    //additional upgrades items/ pick ups
+    PickUpsManaPotion,
+    PickUpsCoinsBag,
+    PickUpsHealthPotion,
 }
+

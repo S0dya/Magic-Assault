@@ -12426,7 +12426,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7400723636426308874, guid: 58a236577ef755947aa11855458f77ae, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7400723636426308874, guid: 58a236577ef755947aa11855458f77ae, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13030,15 +13030,16 @@ MonoBehaviour:
   panelCG: {fileID: 1275266308}
   passiveUpgrades: {fileID: 1495624166}
   uiInGameStats: {fileID: 1333477717}
+  uiInGame: {fileID: 229356975}
   uiUpgrades:
   - {fileID: 331910657853035829}
   - {fileID: 957447954}
   - {fileID: 392425181}
-  allItems:
-  - {fileID: 11400000, guid: d4f845753cd53d5438a9aa362a588c79, type: 2}
-  - {fileID: 11400000, guid: fbc24533ff6d44b46acdd07b1c0c2ba6, type: 2}
-  - {fileID: 11400000, guid: 72c96bf5a94da8d488640e81cbdcc50c, type: 2}
-  additionalItems: []
+  allItems: []
+  additionalItems:
+  - {fileID: 11400000, guid: 4bb5be000d95b3b4c80b373e24496be8, type: 2}
+  - {fileID: 11400000, guid: cca818ed2dd9a0f458f81c83229a0275, type: 2}
+  - {fileID: 11400000, guid: 74c90c2b7ebb7ef41b5a4b6fe0305248, type: 2}
   upgradeEffect: {fileID: 198310899}
 --- !u!225 &1275266308
 CanvasGroup:
@@ -15269,7 +15270,7 @@ MonoBehaviour:
   spellsManager: {fileID: 373334626}
   upgrades:
   - upgradeType: 5
-    upgradeEvent:
+    upgradeEventPassive:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1495624166}
@@ -15284,10 +15285,14 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeTypeActivePassive: 0
     amountLimit: 5
     curAmount: 0
   - upgradeType: 6
-    upgradeEvent:
+    upgradeEventPassive:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1495624166}
@@ -15302,10 +15307,14 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeTypeActivePassive: 0
     amountLimit: 4
     curAmount: 0
   - upgradeType: 7
-    upgradeEvent:
+    upgradeEventPassive:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1495624166}
@@ -15320,10 +15329,14 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeTypeActivePassive: 0
     amountLimit: 1
     curAmount: 0
   - upgradeType: 8
-    upgradeEvent:
+    upgradeEventPassive:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1495624166}
@@ -15338,10 +15351,14 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeTypeActivePassive: 0
     amountLimit: 5
     curAmount: 0
   - upgradeType: 9
-    upgradeEvent:
+    upgradeEventPassive:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1495624166}
@@ -15356,10 +15373,14 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeTypeActivePassive: 0
     amountLimit: 4
     curAmount: 0
   - upgradeType: 10
-    upgradeEvent:
+    upgradeEventPassive:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1495624166}
@@ -15374,10 +15395,14 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeTypeActivePassive: 0
     amountLimit: 2
     curAmount: 0
   - upgradeType: 11
-    upgradeEvent:
+    upgradeEventPassive:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1495624166}
@@ -15392,28 +15417,14 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    amountLimit: 3
-    curAmount: 0
-  - upgradeType: 11
-    upgradeEvent:
+    upgradeEventActivePassive:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1495624166}
-          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
-          m_MethodName: IncreaseArea
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
+    upgradeTypeActivePassive: 0
     amountLimit: 3
     curAmount: 0
   - upgradeType: 12
-    upgradeEvent:
+    upgradeEventPassive:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1495624166}
@@ -15428,10 +15439,14 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeTypeActivePassive: 0
     amountLimit: 3
     curAmount: 0
   - upgradeType: 13
-    upgradeEvent:
+    upgradeEventPassive:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1495624166}
@@ -15446,10 +15461,14 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeTypeActivePassive: 0
     amountLimit: 4
     curAmount: 0
   - upgradeType: 14
-    upgradeEvent:
+    upgradeEventPassive:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1495624166}
@@ -15464,10 +15483,14 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeTypeActivePassive: 0
     amountLimit: 3
     curAmount: 0
   - upgradeType: 15
-    upgradeEvent:
+    upgradeEventPassive:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1495624166}
@@ -15482,10 +15505,14 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeTypeActivePassive: 0
     amountLimit: 4
     curAmount: 0
   - upgradeType: 16
-    upgradeEvent:
+    upgradeEventPassive:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1495624166}
@@ -15500,6 +15527,77 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeTypeActivePassive: 0
+    amountLimit: 5
+    curAmount: 0
+  passiveActiveUpgrades:
+  - upgradeType: 26
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: IncreaseActiveAmount
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeTypeActivePassive: 3
+    amountLimit: 5
+    curAmount: 0
+  - upgradeType: 27
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: IncreaseActiveArea
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeTypeActivePassive: 3
+    amountLimit: 5
+    curAmount: 0
+  - upgradeType: 28
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: DecreaseActiveCooldown
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeTypeActivePassive: 3
     amountLimit: 5
     curAmount: 0
 --- !u!1 &1504165851
@@ -16001,6 +16099,63 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1001 &1561193106
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7535651583214915211, guid: 6cafd1523fe33f54a9e4fdc3fdc7083f, type: 3}
+      propertyPath: m_Name
+      value: ManaPotion
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535651583214915213, guid: 6cafd1523fe33f54a9e4fdc3fdc7083f, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535651583214915213, guid: 6cafd1523fe33f54a9e4fdc3fdc7083f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.8175
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535651583214915213, guid: 6cafd1523fe33f54a9e4fdc3fdc7083f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.9861
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535651583214915213, guid: 6cafd1523fe33f54a9e4fdc3fdc7083f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535651583214915213, guid: 6cafd1523fe33f54a9e4fdc3fdc7083f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535651583214915213, guid: 6cafd1523fe33f54a9e4fdc3fdc7083f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535651583214915213, guid: 6cafd1523fe33f54a9e4fdc3fdc7083f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535651583214915213, guid: 6cafd1523fe33f54a9e4fdc3fdc7083f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535651583214915213, guid: 6cafd1523fe33f54a9e4fdc3fdc7083f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535651583214915213, guid: 6cafd1523fe33f54a9e4fdc3fdc7083f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535651583214915213, guid: 6cafd1523fe33f54a9e4fdc3fdc7083f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6cafd1523fe33f54a9e4fdc3fdc7083f, type: 3}
 --- !u!1 &1566049289
 GameObject:
   m_ObjectHideFlags: 0
@@ -24341,7 +24496,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 105844024863995552, guid: ba1d125299ba81a46a3ec74a4dd36dae, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 105844024863995552, guid: ba1d125299ba81a46a3ec74a4dd36dae, type: 3}
       propertyPath: m_LocalPosition.x

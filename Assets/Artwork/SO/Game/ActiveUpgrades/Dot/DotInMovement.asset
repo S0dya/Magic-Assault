@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d18e4a4996f320d47b5dfa5c123598b5, type: 3}
+  m_Name: DotInMovement
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Windward Surge
+  <Description>k__BackingField: Fires element in the faced direction
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: c78b6ebd971a2174a9342f11c4b9b791, type: 3}
+  parentType: 1
+  type: 3
+  typeOfDamage: 0
+  itemsOnUpgrade:
+  - {fileID: 11400000, guid: 046f05b09ac72a241b5455049b92ee7e, type: 2}
+  - {fileID: 11400000, guid: 5a222e0ca680be84abeabc3ab2f2684e, type: 2}
+  - {fileID: 11400000, guid: a0271cf5191765c459d0a0a26e1732c3, type: 2}
+  spellI: 0
