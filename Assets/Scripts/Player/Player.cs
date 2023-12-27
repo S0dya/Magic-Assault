@@ -60,6 +60,7 @@ public class Player : Creature
     {
         base.Awake();
 
+        HealthChanged += UpdateHealthBar;
         shadowEffectsParent = GameObject.FindGameObjectWithTag("ShadowEffectsParent").transform;
     }
 
@@ -134,31 +135,33 @@ public class Player : Creature
     }
 
     //UI
-    public override void ChangeHP(float val, int typeOfDamage)
+    public void DecreaseHP(float val, int typeOfDamage)
     {
-        if (val < 0) val -= val * shieldProtection;
-        base.ChangeHP(val, typeOfDamage);
+        val -= val * shieldProtection;
+        ChangeHP(val, typeOfDamage);
 
-        if (curHp == 0) 
+        if (curHp == 0)
         {
             //UIResults.I.SetTransparentBg();
+            return;
         }
-        else if (val < 0)
+
+        if (Settings.showBlood) Instantiate(BloodEffectObj, transform);
+        VisualiseDamage(); //visualise hp damage
+        //start coroutines to restore stats
+        if (canRestoreHp && !isBurning)//creature cant restore hp while burning
         {
-            if (Settings.showBlood) Instantiate(BloodEffectObj, transform);
-            VisualiseDamage(); //visualise hp damage
-            //start coroutines to restore stats
-            if (canRestoreHp && !isBurning)//creature cant restore hp while burning
-            {
-                if (restoreHpCor != null) StopCoroutine(restoreHpCor);
-                restoreHpCor = StartCoroutine(RestoreHpCor());
-            }
+            if (restoreHpCor != null) StopCoroutine(restoreHpCor);
+            restoreHpCor = StartCoroutine(RestoreHPCor());
         }
-        
-        //set stats from 0 to 1
-        statsImages[0].fillAmount = curHp / maxHp;
     }
-    IEnumerator RestoreHpCor()
+    public void RestoreHPWithItem(float val)
+    {
+        UIInGame.I.InstantiateTextOnHPRestore(transform.position, (int)val);
+        RestoreHP(val);
+    }
+    void RestoreHP(float val) => ChangeHP(val, -1);
+    IEnumerator RestoreHPCor()
     {
         yield return new WaitForSeconds(amountOfTimeBeforeRestoringHp);
 
@@ -166,22 +169,30 @@ public class Player : Creature
         {
             yield return new WaitForSeconds(amountOfTimeForRestoringHp);
 
-            ChangeHP(amountOfRestoringHp, -1);
+            RestoreHP(amountOfRestoringHp);
         }
 
         restoreHpCor = null;
     }
+    void SetHPText() => statsImages[0].fillAmount = curHp / maxHp;//set stats from 0 to 1
 
+    public void RestoreManaWithItem(float val)
+    {
+        if (val > 0) UIInGame.I.InstantiateTextOnManaRestore(transform.position, (int)val);
+        RestoreMana(val);
+    }
+    public void RestoreMana(float val) => ChangeMana(val);
+    public void DecreaseMana(float val)
+    {
+        ChangeMana(val);
+
+        if (restoreManaCor != null) StopCoroutine(restoreManaCor);
+        restoreManaCor = StartCoroutine(RestoreManaCor());
+    }
     public void ChangeMana(float val)
     {
         curMana = ChangeStat(val, curMana, maxMana);
         statsImages[1].fillAmount = curMana / maxMana;
-
-        //visualise mana usage
-        //else if (i == 1) play spell animation;
-
-        if (restoreManaCor != null) StopCoroutine(restoreManaCor);
-        restoreManaCor = StartCoroutine(RestoreManaCor());
     }
     IEnumerator RestoreManaCor()
     {
@@ -191,7 +202,7 @@ public class Player : Creature
         {
             yield return new WaitForSeconds(amountOfTimeForRestoringMana);
 
-            ChangeMana(amountOfRestoringMana);
+            RestoreMana(amountOfRestoringMana);
         }
 
         restoreManaCor = null;
@@ -202,20 +213,21 @@ public class Player : Creature
     {
         curAmountOfEnemies++;
 
-        if (curAmountOfEnemies == 1) DamageMultiplierOnDamage = speedOnDamage;
+        if (curAmountOfEnemies == 1) SpeedMultiplierOnDamage = speedOnDamage;
     }
-
     public void EnemyTriggerExit()
     {
         curAmountOfEnemies--;
 
-        if (curAmountOfEnemies == 0) DamageMultiplierOnDamage = 1;
+        if (curAmountOfEnemies == 0) SpeedMultiplierOnDamage = 1;
     }
+
+    //events
+    void UpdateHealthBar() => SetHPText();
 
     //other
     public void AddShield()
     {
-        Debug.Log("asd");
         shieldProtection += 0.1f;
     }
 

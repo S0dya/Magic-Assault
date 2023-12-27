@@ -15,7 +15,7 @@ public class Stone : CircleSpell
                 if (!worksForPlayer) return;
 
                 Player player = collision.gameObject.GetComponent<Player>();
-                player.ChangeHP(damage, typeOfDamage);
+                player.DecreaseHP(damage, typeOfDamage);
                 player.Stun(0.4f);
 
                 Destroy(gameObject);

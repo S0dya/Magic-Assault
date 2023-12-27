@@ -49,6 +49,9 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     [SerializeField] Color[] earthDamageColors;
     [SerializeField] Color[] airDamageColors;
 
+    [SerializeField] Color hpRestoreColor;
+    [SerializeField] Color manaRestoreColor;
+
     //local
     GameManager gameManager;
     Player player;
@@ -197,58 +200,57 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     {
         switch (upgradeType)
         {
-            case UpgradeType.PickUpsManaPotion:
-                Debug.Log("asd");
-                player.ChangeMana(75f);
-                break;
-            case UpgradeType.PickUpsCoinsBag:
-                ChangeMoney(25);
-                break;
-            case UpgradeType.PickUpsHealthPotion:
-                player.ChangeHP(75f, -1);
-
-                break;
+            case UpgradeType.PickUpsManaPotion: player.RestoreManaWithItem(75f); break;
+            case UpgradeType.PickUpsCoinsBag: ChangeMoney(25); break;
+            case UpgradeType.PickUpsHealthPotion: player.RestoreHPWithItem(75f); break;
             default: break;
         }
     }
 
     //damage texts
-    public void InstantiateTextOnDamage(Vector2 pos, int amountOfDamage, int typeOfDamage)//instantiate text above enemy
+    public void InstantiateTextOnDamage(Vector2 pos, int amount, int typeOfDamage)//instantiate text above enemy
     {
         if (!Settings.showDamageNumbers) return;
 
         Color color = new Color();
-        int textType = Mathf.Min(amountOfDamage / 30, 3);//get type of text
+        int textType = Mathf.Min(amount / 30, 3);//get type of text
 
         switch (typeOfDamage)//get color
         {
-            case -1:
-                color = nonElementDamageColors[textType];
-                break;
-            case 0:
-                color = fireDamageColors[textType];
-                break;
-            case 1:
-                color = waterDamageColors[textType];
-                break;
-            case 2:
-                color = earthDamageColors[textType];
-                break;
-            case 3:
-                color = airDamageColors[textType];
-                break;
+            case -1: color = nonElementDamageColors[textType]; break;
+            case 0: color = fireDamageColors[textType]; break;
+            case 1: color = waterDamageColors[textType]; break;
+            case 2: color = earthDamageColors[textType]; break;
+            case 3: color = airDamageColors[textType]; break;
             default: break;
         }
 
+        SetDamageText(InstantiateText(pos, 1 + (float)textType * 0.1f), amount, color);
+    }
+    //instantiate text above player
+    public void InstantiateTextOnHPRestore(Vector2 pos, int amount)
+    {
+        SetDamageText(InstantiateText(pos, 1.25f), amount, hpRestoreColor);
+    }
+    public void InstantiateTextOnManaRestore(Vector2 pos, int amount)
+    {
+        SetDamageText(InstantiateText(pos, 1.25f), amount, manaRestoreColor);
+    }
+
+    GameObject InstantiateText(Vector2 pos, float scale)
+    {
         //instantiate text obj
         GameObject textObj = Instantiate(textPrefab, pos, Quaternion.identity, damageTextParent);
-
-        float scale = 1 + (float)textType * 0.1f; //get scale size
         textObj.transform.localScale = new Vector2(scale, scale);//set scale 
 
+        return textObj;
+    }
+
+    void SetDamageText(GameObject textObj, int amount, Color color)
+    {
         //set amount of damage and color of text
         TextMeshPro textTmp = textObj.GetComponent<TextMeshPro>();
-        textTmp.text = amountOfDamage.ToString();
+        textTmp.text = amount.ToString();
         textTmp.color = color;
 
         //move text up and destroy on complete
@@ -262,7 +264,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
         float x = textPos.x;
         float y = textPos.y;
 
-        float endValLimit = textPos.y + 2;
+        float endValLimit = y + 2;
         float endVal = endValLimit + 2;
 
         while (textTransform.position.y < endValLimit)

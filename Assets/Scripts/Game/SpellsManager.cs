@@ -215,7 +215,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         return player.curMana > effectManaUsage[i];
     }
     //subtract mana
-    void UseMana(int i, int amount) => player.ChangeMana(-effectManaUsage[i] * size * amount);
+    void UseMana(int i, int amount) => player.DecreaseMana(-effectManaUsage[i] * size * amount);
 
     //Improve first 3 spells (air cant be improved by this logic)
     public void ImproveSpells(int typeOfDamage)

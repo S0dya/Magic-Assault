@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Creature : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class Creature : MonoBehaviour
     [Header("Air")]
     public float timeForPush;
 
+    [Header("Earth")]
+    public float stunMultiplier = 1;
+
     [Header("Other")]
     [SerializeField] Rigidbody2D rb;
     [SerializeField] SpriteRenderer sr;
@@ -41,10 +45,24 @@ public class Creature : MonoBehaviour
     protected Rigidbody2D Rb { get { return rb; } set { rb = value; } }
     protected SpriteRenderer Sr { get { return sr; } set { sr = value; } }
     protected float CurMovementSpeed { get { return curMovementSpeed; } set { curMovementSpeed = value; } }
-    protected float DamageMultiplierOnDamage { get { return damageMultiplierOnDamage; } set { damageMultiplierOnDamage = value; } }
+    protected float SpeedMultiplierOnDamage { get { return speedMultiplierOnDamage; } set { speedMultiplierOnDamage = value; } }
     protected Vector2 DirectionOfMovement { get { return directionOfMovement; } set { directionOfMovement = value; } }
     protected bool CanMove { get { return canMove; } set { canMove = value; } }
 
+    public event Action HealthChanged;
+
+    public float CurHp
+    {
+        get { return curHp; }
+        set
+        {
+            if (curHp != value)
+            {
+                curHp = value;
+                OnHealthChanged();
+            }
+        }
+    }
 
     //local
     System.Action handleWaterEncounter;
@@ -55,7 +73,7 @@ public class Creature : MonoBehaviour
     //movement
     bool canMove = true;
     float movementMultiplier = 1;
-    float damageMultiplierOnDamage = 1;
+    float speedMultiplierOnDamage = 1;
     [HideInInspector] public bool isLookingOnRight;
 
     //elemenatal bools
@@ -102,7 +120,7 @@ public class Creature : MonoBehaviour
 
     protected virtual void Start()
     {
-        curHp = maxHp;
+        CurHp = maxHp;
         curMovementSpeed = movementSpeed;
     }
 
@@ -111,7 +129,7 @@ public class Creature : MonoBehaviour
     {
         if (canMove && !isStunned && !isPushed)
         {
-            rb.velocity = directionOfMovement * curMovementSpeed * movementMultiplier * damageMultiplierOnDamage; 
+            rb.velocity = directionOfMovement * curMovementSpeed * movementMultiplier * speedMultiplierOnDamage; 
         }
     }
 
@@ -244,7 +262,7 @@ public class Creature : MonoBehaviour
             Vector2 direction = (curPosOfCenterOfTornado - (Vector2)transform.position).normalized;
             Push(direction, Vector2.Distance(curPosOfCenterOfTornado, (Vector2)transform.position)/2f);
 
-            yield return new WaitForSeconds(Random.Range(0.2f, 0.5f));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(0.2f, 0.5f));
         }
     }
     public void ExitTornado()
@@ -266,7 +284,7 @@ public class Creature : MonoBehaviour
 
         //start or restart stun coroutine
         if (stunCor != null) StopCoroutine(stunCor);
-        stunCor = StartCoroutine(StunCor(timeOfStun * elementalDamageMultipliers[2]));
+        stunCor = StartCoroutine(StunCor(timeOfStun * elementalDamageMultipliers[2] * stunMultiplier));
     }
     IEnumerator StunCor(float timeOfStun)
     {
@@ -386,7 +404,7 @@ public class Creature : MonoBehaviour
     public virtual void ChangeHP(float val, int type)
     {
         if (type != -1) val *= elementalDamageMultipliers[type];
-        curHp = ChangeStat(val, curHp, maxHp);
+        CurHp = ChangeStat(val, CurHp, maxHp);
     }
     public float ChangeStat(float val, float curStat, float maxStat)
     {
@@ -394,5 +412,11 @@ public class Creature : MonoBehaviour
         float newStat = curStat + val;
         //set new stats from 0 to 100. depending on whether val is - or + check if its less or more than 100 or 0 
         return newStat = (val > 0 ? Mathf.Min(newStat, maxStat) : Mathf.Max(0, newStat));
+    }
+
+    //events
+    protected virtual void OnHealthChanged()
+    {
+        HealthChanged?.Invoke();
     }
 }

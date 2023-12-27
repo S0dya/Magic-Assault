@@ -452,6 +452,7 @@ MonoBehaviour:
   durationOfDrying: 4
   damageOnWet: -1
   timeForPush: 0.5
+  stunMultiplier: 0.1
   rb: {fileID: 4066647700768977683}
   sr: {fileID: 4066647701063737299}
   burningEffect: {fileID: 1611579280063940363}

@@ -10,7 +10,7 @@ public class EarthThorns : BoxSpell
         {
             case "Player":
                 Player player = collision.gameObject.GetComponent<Player>();
-                player.ChangeHP(damage, typeOfDamage);
+                player.DecreaseHP(damage, typeOfDamage);
                 player.Stun(0.1f);
                 
                 Destroy(gameObject);

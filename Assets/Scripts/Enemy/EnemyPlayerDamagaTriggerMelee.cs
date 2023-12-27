@@ -43,7 +43,7 @@ public class EnemyPlayerDamagaTriggerMelee : MonoBehaviour
     //other methods
     void GiveDamage()
     {
-        if (canDamage) player.ChangeHP(-enemy.damageOnTriggerWithPlayer, enemy.typeOfDamageOnTriggerWithPlayer);
+        if (canDamage) player.DecreaseHP(-enemy.damageOnTriggerWithPlayer, enemy.typeOfDamageOnTriggerWithPlayer);
     }
     IEnumerator GivingDamageCor()
     {

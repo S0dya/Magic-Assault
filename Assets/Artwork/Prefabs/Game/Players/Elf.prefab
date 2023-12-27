@@ -89,7 +89,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4066647700768977682, guid: 8e0f55b291b31494688ec26747a16c86, type: 3}
       propertyPath: timeForPush
-      value: 0.75
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4066647700768977682, guid: 8e0f55b291b31494688ec26747a16c86, type: 3}
       propertyPath: inWaterSpeed
@@ -111,6 +111,10 @@ PrefabInstance:
       propertyPath: stunnedEffect
       value: 
       objectReference: {fileID: 6419194596799661267}
+    - target: {fileID: 4066647700768977682, guid: 8e0f55b291b31494688ec26747a16c86, type: 3}
+      propertyPath: stunMultiplier
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4066647700768977682, guid: 8e0f55b291b31494688ec26747a16c86, type: 3}
       propertyPath: damageOfBurning
       value: -1
@@ -181,7 +185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4066647700768977686, guid: 8e0f55b291b31494688ec26747a16c86, type: 3}
       propertyPath: m_Name
-      value: Wizard Variant 3
+      value: Elf
       objectReference: {fileID: 0}
     - target: {fileID: 4066647701063737299, guid: 8e0f55b291b31494688ec26747a16c86, type: 3}
       propertyPath: m_Sprite

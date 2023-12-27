@@ -12,7 +12,7 @@ public class Fireball : CircleSpell
                 if (!worksForPlayer) return;
 
                 Player player = collision.gameObject.GetComponent<Player>();
-                player.ChangeHP(damage, typeOfDamage);
+                player.DecreaseHP(damage, typeOfDamage);
                 player.Burn();
 
                 Destroy(gameObject);

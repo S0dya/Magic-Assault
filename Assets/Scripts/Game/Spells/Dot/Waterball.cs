@@ -12,7 +12,7 @@ public class Waterball : CircleSpell
                 if (!worksForPlayer) return;
 
                 Player player = collision.gameObject.GetComponent<Player>();
-                player.ChangeHP(damage, typeOfDamage);
+                player.DecreaseHP(damage, typeOfDamage);
                 player.HandleWater();
 
                 Destroy(gameObject);

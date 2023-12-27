@@ -24,6 +24,9 @@ public class UIUpgrades : UIPanelGame
     //upgrades
     SO_GameItem[] curUpgrades = new SO_GameItem[3];
 
+    //tracking active upgrades amount 
+    int curAmountOfActiveUpgrades;
+
     void Awake()
     {
         StartEndX = new float[2] { 0, 0 };
@@ -101,6 +104,8 @@ public class UIUpgrades : UIPanelGame
             case UpgradeTypeParent.ActiveUpgrade:
                 activeUpgrades.PerformActiveUpgrade(item.type, item.typeOfDamage);
                 AddNewUpgrades(item);
+                curAmountOfActiveUpgrades++;
+                if (curAmountOfActiveUpgrades == 1) StartCoroutine(RemoveAllActiveUpgradesCor());
                 break;
             case UpgradeTypeParent.PassiveUpgrade:
                 if (!passiveUpgrades.CanPerformPassiveUpgrade(item.type)) AddNewUpgrades(item);//add this passive upgrade back only if can use it more times
@@ -116,9 +121,25 @@ public class UIUpgrades : UIPanelGame
         }
     }
 
+
+
     void AddNewUpgrades(SO_GameItem item) //since some active upgrades can additional passive or active upgrades - add them to all upgrades
     {
         foreach (SO_GameItem newItem in item.itemsOnUpgrade) allItems.Add(newItem);
+    }
+
+    IEnumerator RemoveAllActiveUpgradesCor()
+    {
+        yield return null;
+
+        for (int i = 0; i < allItems.Count; i++)
+        {
+            if (allItems[i].parentType == UpgradeTypeParent.ActiveUpgrade)
+            {
+                allItems.RemoveAt(i);
+                i--;
+            }
+        }
     }
 
 }

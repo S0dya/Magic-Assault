@@ -19,7 +19,7 @@ public class WindLine : CircleSpell
         {
             case "Player":
                 Player player = collision.gameObject.GetComponent<Player>();
-                player.ChangeHP(damage, typeOfDamage);
+                player.DecreaseHP(damage, typeOfDamage);
                 player.Push(((Vector2)player.transform.position - (Vector2)transform.position).normalized, 0.2f);
 
                 DestroyObj();

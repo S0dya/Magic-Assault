@@ -75,7 +75,7 @@ public class Earthquake : CircleSpell
             if (playerOnTrigger)
             {
                 player.Stun(0.2f);
-                player.ChangeHP(-3, 2);
+                player.DecreaseHP(-3, 2);
             }
 
             foreach (Spawner spawner in new List<Spawner>(spawners)) if (spawner != null) spawner.ChangeHP(-3);

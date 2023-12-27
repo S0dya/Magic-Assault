@@ -199,8 +199,8 @@ MonoBehaviour:
   timeBetweenAttacks: 3
   timeForAttack: 1
   timeAfterAttack: 1
-  size: 0.5
-  spell: {fileID: 7446051607462513135, guid: 2ab78ec4693fda340897b27a03dcd520, type: 3}
+  size: 0.25
+  spell: {fileID: 3319565365602608531, guid: d91ae2e716aa28e49bd84847a84bad3a, type: 3}
   enemy: {fileID: 7217926887710065900}
 --- !u!61 &7874836842170283659
 BoxCollider2D:

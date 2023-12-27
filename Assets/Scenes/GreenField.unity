@@ -2349,6 +2349,8 @@ MonoBehaviour:
   - {r: 0.5886792, g: 1, b: 0.97835153, a: 0.49019608}
   - {r: 0.4943396, g: 1, b: 0.9690412, a: 0.49019608}
   - {r: 0.2867924, g: 1, b: 0.9606506, a: 0.49019608}
+  hpRestoreColor: {r: 0, g: 1, b: 0, a: 0.49019608}
+  manaRestoreColor: {r: 0, g: 0, b: 1, a: 0.49019608}
   curLvl: 0
   curExp: 0
   killedAmount: 0
@@ -5443,7 +5445,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 540, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &446194737
@@ -13035,7 +13037,10 @@ MonoBehaviour:
   - {fileID: 331910657853035829}
   - {fileID: 957447954}
   - {fileID: 392425181}
-  allItems: []
+  allItems:
+  - {fileID: 11400000, guid: d4f845753cd53d5438a9aa362a588c79, type: 2}
+  - {fileID: 11400000, guid: fbc24533ff6d44b46acdd07b1c0c2ba6, type: 2}
+  - {fileID: 11400000, guid: f318f96803d2b7f42ae76b7bcd89f253, type: 2}
   additionalItems:
   - {fileID: 11400000, guid: 4bb5be000d95b3b4c80b373e24496be8, type: 2}
   - {fileID: 11400000, guid: cca818ed2dd9a0f458f81c83229a0275, type: 2}
@@ -17927,7 +17932,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 540, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1763560224

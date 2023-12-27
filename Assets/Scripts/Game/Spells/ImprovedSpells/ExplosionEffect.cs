@@ -10,7 +10,7 @@ public class ExplosionEffect : CircleSpell
         {
             case "Player":
                 Player player = collision.gameObject.GetComponent<Player>();
-                player.ChangeHP(damage, typeOfDamage);
+                player.DecreaseHP(damage, typeOfDamage);
                 break;
             case "Enemy":
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();

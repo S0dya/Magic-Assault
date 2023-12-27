@@ -60,7 +60,6 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
     public void SetActiveUpgrade(ActiveUpgrade upgrade)
     {
         int i = upgrade.upgradeIndex;
-        Debug.Log(i);
 
         if (upgradesCors[i] != null) StopCoroutine(upgradesCors[i]);
 

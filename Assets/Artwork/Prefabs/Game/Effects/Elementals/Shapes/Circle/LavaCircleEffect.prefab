@@ -1516,7 +1516,7 @@ ParticleSystem:
     tilesY: 1
     animationType: 0
     rowIndex: 0
-    cycles: 6
+    cycles: 3
     uvChannelMask: -1
     rowMode: 1
     sprites:

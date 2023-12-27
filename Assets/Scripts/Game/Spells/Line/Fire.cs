@@ -10,7 +10,7 @@ public class Fire : BoxSpell
         {
             case "Player":
                 Player player = collision.gameObject.GetComponent<Player>();
-                player.ChangeHP(damage, typeOfDamage);
+                player.DecreaseHP(damage, typeOfDamage);
                 player.Burn();
                 
                 Destroy(gameObject);
