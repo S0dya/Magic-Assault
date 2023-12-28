@@ -480,6 +480,7 @@ MonoBehaviour:
   - {fileID: 1267837696066258129, guid: c56cbd82630570a4d9bb9f25d06afced, type: 3}
   - {fileID: 1267837696066258129, guid: 5a26e267e029feb47841d928f90e9d71, type: 3}
   BloodEffectObj: {fileID: 4671066131612643815, guid: 0bed531b862ac3742b1ac7a4321e4aeb, type: 3}
+  pickingTrigger: {fileID: 4066647701614042926}
   statsImages:
   - {fileID: 4066647700185313907}
   - {fileID: 4066647701591637735}
@@ -529,9 +530,9 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     amountOfSpells: 1
-    reloadTime: 0.01
-    timeBeforeNextSpells: 1
-    size: 0.25
+    reloadTime: 0.15
+    timeBeforeNextSpells: 2
+    size: 0.3
     spellI: 0
     typeOfDaamge: 0
   - upgradeType: 1
@@ -551,8 +552,8 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     amountOfSpells: 1
-    reloadTime: 0.01
-    timeBeforeNextSpells: 1
+    reloadTime: 0.05
+    timeBeforeNextSpells: 1.25
     size: 0.25
     spellI: 0
     typeOfDaamge: 0
@@ -574,8 +575,8 @@ MonoBehaviour:
           m_CallState: 2
     amountOfSpells: 1
     reloadTime: 0.01
-    timeBeforeNextSpells: 1
-    size: 0.25
+    timeBeforeNextSpells: 3
+    size: 0.45
     spellI: 0
     typeOfDaamge: 0
   - upgradeType: 3
@@ -595,9 +596,9 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     amountOfSpells: 1
-    reloadTime: 0.01
-    timeBeforeNextSpells: 1
-    size: 0.25
+    reloadTime: 0.2
+    timeBeforeNextSpells: 0.8
+    size: 0.2
     spellI: 0
     typeOfDaamge: 0
   - upgradeType: 4
@@ -618,7 +619,7 @@ MonoBehaviour:
           m_CallState: 2
     amountOfSpells: 1
     reloadTime: 0.01
-    timeBeforeNextSpells: 1
+    timeBeforeNextSpells: 10
     size: 2
     spellI: 1
     typeOfDaamge: 0
@@ -1033,7 +1034,7 @@ GameObject:
   - component: {fileID: 4066647701614042927}
   - component: {fileID: 4066647701614042926}
   m_Layer: 19
-  m_Name: PickableTrigger
+  m_Name: PickingTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -125,7 +125,6 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
     public void IncreaseArea(int i) => upgrades[i].size *= 1.1f;
     public void DecreaseCooldown(int i)
     {
-        Debug.Log("asd");
         upgrades[i].reloadTime *= 0.9f;
         upgrades[i].timeBeforeNextSpells *= 0.9f;
     }

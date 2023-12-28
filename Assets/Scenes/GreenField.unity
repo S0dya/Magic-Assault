@@ -2349,8 +2349,8 @@ MonoBehaviour:
   - {r: 0.5886792, g: 1, b: 0.97835153, a: 0.49019608}
   - {r: 0.4943396, g: 1, b: 0.9690412, a: 0.49019608}
   - {r: 0.2867924, g: 1, b: 0.9606506, a: 0.49019608}
-  hpRestoreColor: {r: 0, g: 1, b: 0, a: 0.49019608}
-  manaRestoreColor: {r: 0, g: 0, b: 1, a: 0.49019608}
+  hpRestoreColor: {r: 0, g: 1, b: 0, a: 0.6862745}
+  manaRestoreColor: {r: 0, g: 0, b: 1, a: 0.6862745}
   curLvl: 0
   curExp: 0
   killedAmount: 0
@@ -5445,7 +5445,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 540, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &446194737
@@ -13038,9 +13038,8 @@ MonoBehaviour:
   - {fileID: 957447954}
   - {fileID: 392425181}
   allItems:
-  - {fileID: 11400000, guid: d4f845753cd53d5438a9aa362a588c79, type: 2}
   - {fileID: 11400000, guid: fbc24533ff6d44b46acdd07b1c0c2ba6, type: 2}
-  - {fileID: 11400000, guid: f318f96803d2b7f42ae76b7bcd89f253, type: 2}
+  - {fileID: 11400000, guid: f6be7d03f968e324193035397dd1f5a0, type: 2}
   additionalItems:
   - {fileID: 11400000, guid: 4bb5be000d95b3b4c80b373e24496be8, type: 2}
   - {fileID: 11400000, guid: cca818ed2dd9a0f458f81c83229a0275, type: 2}
@@ -15538,7 +15537,227 @@ MonoBehaviour:
     upgradeTypeActivePassive: 0
     amountLimit: 5
     curAmount: 0
+  - upgradeType: 35
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: IncreaseMagnet
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeTypeActivePassive: 0
+    amountLimit: 3
+    curAmount: 0
   passiveActiveUpgrades:
+  - upgradeType: 17
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: IncreaseActiveAmount
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeTypeActivePassive: 0
+    amountLimit: 5
+    curAmount: 0
+  - upgradeType: 18
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: IncreaseActiveArea
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeTypeActivePassive: 0
+    amountLimit: 6
+    curAmount: 0
+  - upgradeType: 19
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: DecreaseActiveCooldown
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeTypeActivePassive: 0
+    amountLimit: 14
+    curAmount: 0
+  - upgradeType: 20
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: IncreaseActiveAmount
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeTypeActivePassive: 1
+    amountLimit: 18
+    curAmount: 0
+  - upgradeType: 21
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: IncreaseActiveArea
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeTypeActivePassive: 1
+    amountLimit: 4
+    curAmount: 0
+  - upgradeType: 22
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: DecreaseActiveCooldown
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeTypeActivePassive: 1
+    amountLimit: 3
+    curAmount: 0
+  - upgradeType: 23
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: IncreaseActiveAmount
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeTypeActivePassive: 2
+    amountLimit: 7
+    curAmount: 0
+  - upgradeType: 24
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: DecreaseActiveCooldown
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeTypeActivePassive: 2
+    amountLimit: 14
+    curAmount: 0
+  - upgradeType: 25
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: DecreaseActiveCooldown
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeTypeActivePassive: 2
+    amountLimit: 4
+    curAmount: 0
   - upgradeType: 26
     upgradeEventPassive:
       m_PersistentCalls:
@@ -15559,7 +15778,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     upgradeTypeActivePassive: 3
-    amountLimit: 5
+    amountLimit: 12
     curAmount: 0
   - upgradeType: 27
     upgradeEventPassive:
@@ -15583,7 +15802,51 @@ MonoBehaviour:
     upgradeTypeActivePassive: 3
     amountLimit: 5
     curAmount: 0
-  - upgradeType: 28
+  - upgradeType: 29
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: IncreaseActiveAmount
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeTypeActivePassive: 4
+    amountLimit: 6
+    curAmount: 0
+  - upgradeType: 30
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: IncreaseActiveArea
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeTypeActivePassive: 4
+    amountLimit: 12
+    curAmount: 0
+  - upgradeType: 31
     upgradeEventPassive:
       m_PersistentCalls:
         m_Calls: []
@@ -15602,8 +15865,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    upgradeTypeActivePassive: 3
-    amountLimit: 5
+    upgradeTypeActivePassive: 4
+    amountLimit: 6
     curAmount: 0
 --- !u!1 &1504165851
 GameObject:
@@ -17932,7 +18195,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 540, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1763560224

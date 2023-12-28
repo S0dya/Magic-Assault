@@ -23,6 +23,7 @@ public class UIUpgrades : UIPanelGame
 
     //upgrades
     SO_GameItem[] curUpgrades = new SO_GameItem[3];
+    bool[] upgradesAddBackCheck = new bool[3];
 
     //tracking active upgrades amount 
     int curAmountOfActiveUpgrades;
@@ -62,15 +63,21 @@ public class UIUpgrades : UIPanelGame
         //get random upgrade, then remove this upgrade and get 2 more random upgrades
         for (int i = 0; i < 3; i++)
         {
-            if (allItems.Count == 0) curUpgrades[i] = additionalItems[i]; //if there are no upgrades - place items 
+            if (allItems.Count == 0)
+            {
+                curUpgrades[i] = additionalItems[i]; //if there are no upgrades - place items 
+
+                AddUpgradeBack(i, false);
+            }
             else
             {
                 int randomI = Random.Range(0, allItems.Count);
                 curUpgrades[i] = allItems[randomI];
                 allItems.RemoveAt(randomI);
+                
+                AddUpgradeBack(i, true);
             }
-           
-
+            
             uiUpgrades[i].SetInfo(curUpgrades[i]);
         }
     }
@@ -89,7 +96,7 @@ public class UIUpgrades : UIPanelGame
     {
         SetUpgrade(index);
 
-        for (int i = 0; i < 3; i++) if (i != index) allItems.Add(curUpgrades[i]);
+        for (int i = 0; i < 3; i++) if (i != index && upgradesAddBackCheck[i]) allItems.Add(curUpgrades[i]);
 
         CloseTab();
     }
@@ -115,7 +122,6 @@ public class UIUpgrades : UIPanelGame
                 break;
             case UpgradeTypeParent.PickUps:
                 uiInGame.UsePickUpUpgrade(item.type);
-                AddNewUpgrades(item);
                 break;
             default: break;
         }
@@ -128,7 +134,7 @@ public class UIUpgrades : UIPanelGame
         foreach (SO_GameItem newItem in item.itemsOnUpgrade) allItems.Add(newItem);
     }
 
-    IEnumerator RemoveAllActiveUpgradesCor()
+    IEnumerator RemoveAllActiveUpgradesCor()//skip current frame and remove all active upgrades from all items
     {
         yield return null;
 
@@ -142,4 +148,6 @@ public class UIUpgrades : UIPanelGame
         }
     }
 
+    //other
+    void AddUpgradeBack(int i, bool val) => upgradesAddBackCheck[i] = val;//since items on upgrades finished are not added back to all items for further upgrades
 }

@@ -21,7 +21,7 @@ public class FollowingObjectHealthRestore : FollowingObject
     {
         yield return base.FollowPlayerCor();
 
-        GetPlayer().ChangeHP(hpRestores, -1);
+        GetPlayer().RestoreHPWithItem(hpRestores);
 
         Destroy(gameObject);
     }

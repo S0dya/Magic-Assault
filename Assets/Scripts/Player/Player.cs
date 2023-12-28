@@ -27,6 +27,9 @@ public class Player : Creature
     [Header("Damage Visualisation")]
     [SerializeField] GameObject BloodEffectObj;
 
+    [Header("Magnet")]
+    [SerializeField] CircleCollider2D pickingTrigger;
+
     [Header("UI")]
     [SerializeField] Image[] statsImages; //0 - hp, 1 - mana
 
@@ -225,11 +228,18 @@ public class Player : Creature
     //events
     void UpdateHealthBar() => SetHPText();
 
-    //other
+    //upgrades
     public void AddShield()
     {
         shieldProtection += 0.1f;
     }
 
+    public void IncreaseMagnet()
+    {
+        Debug.Log("asd");
+        pickingTrigger.radius *= 1.25f;
+    }
+
+    //other
     void ToggleJoystickInput(bool val) => joystickInput = val;
 }

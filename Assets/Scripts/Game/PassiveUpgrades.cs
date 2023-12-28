@@ -118,6 +118,11 @@ public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
         gameData.greed += 0.1f;
     }
 
+    public void IncreaseMagnet()
+    {
+        player.IncreaseMagnet();
+    }
+
     //active upgrades' passive upgrades
     public void IncreaseActiveAmount(UpgradeType upgradeType)
     {

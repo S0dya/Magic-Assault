@@ -18,6 +18,5 @@ MonoBehaviour:
   parentType: 4
   type: 34
   typeOfDamage: 0
-  itemsOnUpgrade:
-  - {fileID: 11400000}
+  itemsOnUpgrade: []
   spellI: 0

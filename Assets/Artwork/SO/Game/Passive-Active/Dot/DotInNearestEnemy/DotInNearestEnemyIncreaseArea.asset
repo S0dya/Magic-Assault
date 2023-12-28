@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DotInNearestEnemyIncreaseArea
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Homing Havoc
-  <Description>k__BackingField: Increases area of attack by <b>5%</b>
+  <Description>k__BackingField: Increases area of attack by <b>10%</b>
   <ItemImage>k__BackingField: {fileID: 21300000, guid: adf6ed11964a29a41ad29847c43e8f06, type: 3}
   parentType: 3
   type: 18

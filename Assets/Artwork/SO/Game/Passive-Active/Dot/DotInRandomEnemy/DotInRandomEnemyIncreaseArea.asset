@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d18e4a4996f320d47b5dfa5c123598b5, type: 3}
-  m_Name: LittleCoinsBag
+  m_Name: DotInRandomEnemyIncreaseArea
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Prosperity Purse
-  <Description>k__BackingField: Adds <b>25</b> gold coins
-  <ItemImage>k__BackingField: {fileID: 21300000, guid: fa92b66e0883e1a44923c039f82bda60, type: 3}
-  parentType: 4
-  type: 33
+  <Name>k__BackingField: Disparate Assault
+  <Description>k__BackingField: Increases area of attack by <b>10%</b>
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: dbdda6086aa8fcd45ac6f82af1a2aa55, type: 3}
+  parentType: 3
+  type: 21
   typeOfDamage: 0
-  itemsOnUpgrade: []
+  itemsOnUpgrade:
+  - {fileID: 11400000}
   spellI: 0

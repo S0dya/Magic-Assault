@@ -53,5 +53,9 @@ public enum UpgradeType
     PickUpsManaPotion,
     PickUpsCoinsBag,
     PickUpsHealthPotion,
+
+    //since i cant add enums when they are alr set
+    PassiveIncreaseMagnet,
+
 }
 
