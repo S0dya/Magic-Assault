@@ -21122,7 +21122,7 @@ MonoBehaviour:
       AmountOfChords: 0
     hasCircleCrowd: 1
     waveCircleCrowd:
-      enemy: {fileID: 2127530778173064305, guid: 5c86e8f1528a37c44b67f62cdd9019c2, type: 3}
+      enemy: {fileID: 8069501643582900935, guid: 142df26de3abb6f4594765d98c4a1bd3, type: 3}
       setsEnemyOnChoose: 0
       enemyChoose:
         enemiesChoose: []
@@ -21294,13 +21294,13 @@ MonoBehaviour:
       AmountOfChords: 0
     hasCircleCrowd: 1
     waveCircleCrowd:
-      enemy: {fileID: 2127530778173064305, guid: 5c86e8f1528a37c44b67f62cdd9019c2, type: 3}
+      enemy: {fileID: 8069501643582900935, guid: bbc45cb2a82986d4f92f9519e00c4b81, type: 3}
       setsEnemyOnChoose: 0
       enemyChoose:
         enemiesChoose: []
       time: 60
       amount: 40
-      radius: 15
+      radius: 10
     hasMiniBoss: 1
     waveMiniBoss:
       enemy: {fileID: 0}
@@ -21388,7 +21388,7 @@ MonoBehaviour:
       amount: 200
     hasCrowd: 1
     waveCrowd:
-      enemy: {fileID: 2127530778173064305, guid: 5c86e8f1528a37c44b67f62cdd9019c2, type: 3}
+      enemy: {fileID: 8069501643582900935, guid: bbc45cb2a82986d4f92f9519e00c4b81, type: 3}
       setsEnemyOnChoose: 0
       enemyChoose:
         enemiesChoose: []
@@ -21476,13 +21476,13 @@ MonoBehaviour:
       AmountOfChords: 0
     hasCircleCrowd: 1
     waveCircleCrowd:
-      enemy: {fileID: 2127530778173064305, guid: 5c86e8f1528a37c44b67f62cdd9019c2, type: 3}
+      enemy: {fileID: 8069501643582900935, guid: 142df26de3abb6f4594765d98c4a1bd3, type: 3}
       setsEnemyOnChoose: 0
       enemyChoose:
         enemiesChoose: []
       time: 60
-      amount: 50
-      radius: 20
+      amount: 100
+      radius: 10
     hasMiniBoss: 0
     waveMiniBoss:
       enemy: {fileID: 0}
@@ -21874,13 +21874,13 @@ MonoBehaviour:
       AmountOfChords: 0
     hasCircleCrowd: 1
     waveCircleCrowd:
-      enemy: {fileID: 2127530778173064305, guid: 5c86e8f1528a37c44b67f62cdd9019c2, type: 3}
+      enemy: {fileID: 8069501643582900935, guid: e2cdc847663c3f74c94a602d888e9003, type: 3}
       setsEnemyOnChoose: 0
       enemyChoose:
         enemiesChoose: []
       time: 55
       amount: 50
-      radius: 30
+      radius: 10
     hasMiniBoss: 1
     waveMiniBoss:
       enemy: {fileID: 0}
@@ -22033,13 +22033,13 @@ MonoBehaviour:
       AmountOfChords: 0
     hasCircleCrowd: 1
     waveCircleCrowd:
-      enemy: {fileID: 2127530778173064305, guid: 5c86e8f1528a37c44b67f62cdd9019c2, type: 3}
+      enemy: {fileID: 8069501643582900935, guid: e2cdc847663c3f74c94a602d888e9003, type: 3}
       setsEnemyOnChoose: 0
       enemyChoose:
         enemiesChoose: []
       time: 60
       amount: 40
-      radius: 25
+      radius: 8
     hasMiniBoss: 0
     waveMiniBoss:
       enemy: {fileID: 0}

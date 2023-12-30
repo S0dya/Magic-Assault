@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: maxHp
-      value: 250
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: skinsN

@@ -219,6 +219,7 @@ MonoBehaviour:
   durationOfDrying: 3
   damageOnWet: -3
   timeForPush: 0.5
+  stunMultiplier: 1
   rb: {fileID: 5797608852117626587}
   sr: {fileID: 4844398067622054017}
   burningEffect: {fileID: 3805918547158849674}
@@ -271,7 +272,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.15}
   serializedVersion: 2
-  m_Radius: 0.15
+  m_Radius: 0.25
 --- !u!50 &5797608852117626587
 Rigidbody2D:
   serializedVersion: 4

@@ -119,8 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be1caec30781de9488a20249d85573d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
-  movementSpeed: 0.4
+  maxHp: 15
+  movementSpeed: 0.5
   elementalDamageMultipliers:
   - 1.25
   - 1.25
@@ -135,6 +135,7 @@ MonoBehaviour:
   durationOfDrying: 1
   damageOnWet: -3
   timeForPush: 0.75
+  stunMultiplier: 1
   rb: {fileID: 5797608852117626587}
   sr: {fileID: 3208763845680974005}
   burningEffect: {fileID: 3805918547158849674}
@@ -188,9 +189,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1}
+  m_Offset: {x: 0, y: -0.15}
   serializedVersion: 2
-  m_Radius: 0.15
+  m_Radius: 0.2
 --- !u!50 &5797608852117626587
 Rigidbody2D:
   serializedVersion: 4

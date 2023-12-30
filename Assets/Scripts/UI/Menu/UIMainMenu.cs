@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIMainMenu : MonoBehaviour
+public class UIMainMenu : SingletonMonobehaviour<UIMainMenu>
 {
     [Header("Other scripts")]
     [SerializeField] UIMainMenuCharacterDescription characterDescription;
     [SerializeField] UIMainMenuMapDescription mapDescription;
 
+    [SerializeField] UIMainMenuTraining uiMainMenuTraining;
+
     [SerializeField] UIMainMenuSettings uiMainMenuSettings;
+
 
     [Header("Canvas groups")]
     [SerializeField] CanvasGroup pressToStartCG;
@@ -26,6 +29,7 @@ public class UIMainMenu : MonoBehaviour
 
     //local
     bool mapDescriptionOpen;
+    bool inputsInfoOpen;
 
     void Start()
     {
@@ -71,17 +75,23 @@ public class UIMainMenu : MonoBehaviour
     //maps panel
     public void OnConfirmMap()
     {
-        int i = characterDescription.curCharacterI;
-        int sceneId = mapDescription.curMapI + 2;
-
-        LoadingScene.I.OpenScene(sceneId);//add 2, since first 2 scenes are persistant and menu
-
-        SetCharacterSettings(characterDescription.characters[i], i, sceneId);
+        if (Settings.showTraining)
+        {
+            uiMainMenuTraining.OpenTab();
+            inputsInfoOpen = true;
+        }
+        else StartGame();
     }
 
+    //back button
     public void OnBack()
     {
-        if (mapDescriptionOpen)
+        if (inputsInfoOpen)
+        {
+            uiMainMenuTraining.CloseTab();
+            inputsInfoOpen = false;
+        }
+        else if (mapDescriptionOpen)
         {
             mapDescription.CloseTab();
             mapDescriptionOpen = false;
@@ -101,6 +111,16 @@ public class UIMainMenu : MonoBehaviour
     {
         mainButtonsObj.SetActive(val);
         backButtonObj.SetActive(!val);
+    }
+
+    public void StartGame()
+    {
+        int i = characterDescription.curCharacterI;
+        int sceneId = mapDescription.curMapI + 2;
+
+        LoadingScene.I.OpenScene(sceneId);//add 2, since first 2 scenes are persistant and menu
+
+        SetCharacterSettings(characterDescription.characters[i], i, sceneId);
     }
 
     void SetCharacterSettings(SO_Character character, int i, int sceneId)//set all info for settings about character

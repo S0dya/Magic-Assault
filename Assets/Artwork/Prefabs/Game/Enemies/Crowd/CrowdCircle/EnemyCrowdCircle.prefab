@@ -292,6 +292,7 @@ MonoBehaviour:
   durationOfDrying: 5
   damageOnWet: 0
   timeForPush: 1
+  stunMultiplier: 1
   rb: {fileID: 2127530778173064310}
   sr: {fileID: 5630326425055790242}
   burningEffect: {fileID: 8728795977704505895}
@@ -304,7 +305,7 @@ MonoBehaviour:
   isBurning: 0
   isPushed: 0
   isStunned: 0
-  speedOnTriggerWithPlayer: 4
+  speedOnTriggerWithPlayer: 0.5
   damageOnTriggerWithPlayer: 3
   typeOfDamageOnTriggerWithPlayer: -1
   skins:

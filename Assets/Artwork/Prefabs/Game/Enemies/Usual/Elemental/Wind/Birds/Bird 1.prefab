@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: maxHp
-      value: 40
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: skinsN
@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: movementSpeed
-      value: 1.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: -5993668388994124042, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: damageOfBurning
@@ -89,11 +89,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4339101911170248573, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_Radius
-      value: 0.1
+      value: 0.175
       objectReference: {fileID: 0}
     - target: {fileID: 4339101911170248573, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_Offset.y
-      value: -0.1
+      value: -0.175
       objectReference: {fileID: 0}
     - target: {fileID: 4844398067622054017, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_Sprite

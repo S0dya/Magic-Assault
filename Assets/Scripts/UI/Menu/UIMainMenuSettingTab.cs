@@ -6,7 +6,7 @@ public class UIMainMenuSettingTab : UIPanelMenu
 {
     void Awake()
     {
-        StartEndX = new float[2] { Settings.width, 0 };
+        StartEndX = new float[2] { Settings.width, 20 };
         StartEndY = new float[2] { 0, 0 };
     }
 }

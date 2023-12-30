@@ -203,8 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be1caec30781de9488a20249d85573d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 300
-  movementSpeed: 1.4
+  maxHp: 180
+  movementSpeed: 0.65
   elementalDamageMultipliers:
   - 1.5
   - 1.25
@@ -219,6 +219,7 @@ MonoBehaviour:
   durationOfDrying: 5
   damageOnWet: -7
   timeForPush: 0.9
+  stunMultiplier: 1
   rb: {fileID: 5797608852117626587}
   sr: {fileID: 7369398360791206418}
   burningEffect: {fileID: 3805918547158849674}

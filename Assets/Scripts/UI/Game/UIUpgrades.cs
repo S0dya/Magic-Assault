@@ -31,7 +31,7 @@ public class UIUpgrades : UIPanelGame
     void Awake()
     {
         StartEndX = new float[2] { 0, 0 };
-        StartEndY = new float[2] { -Settings.height, 0 };
+        StartEndY = new float[2] { -Settings.height, -20 };
     }
 
     protected override void Start()

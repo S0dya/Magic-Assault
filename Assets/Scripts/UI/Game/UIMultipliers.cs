@@ -38,7 +38,7 @@ public class UIMultipliers : UIPanelGame
 
     void Awake()
     {
-        StartEndX = new float[2] { Settings.width, 0 };
+        StartEndX = new float[2] { Settings.width, 20 };
         StartEndY = new float[2] { 0, 0 };
 
         for (int i = 0; i < 4; i++) damageMultipliersMins[i] = (int)(Settings.damageMultipliersMins[i] * 10);
