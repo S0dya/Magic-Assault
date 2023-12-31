@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FreezeEnemy : MonoBehaviour
+public class EnemyFreeze : MonoBehaviour
 {
     [SerializeField] Enemy enemy;
 
@@ -24,7 +24,7 @@ public class FreezeEnemy : MonoBehaviour
 
     IEnumerator FreezeCor()
     {
-        yield return new WaitForSeconds(Settings.freezeTime);
+        yield return new WaitForSeconds(GameData.I.freezeTime);
 
         Unfreeze();
         freezeCor = null;

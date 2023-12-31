@@ -37,10 +37,8 @@ public class Enemy : Creature
     Coroutine burningCor;
     Coroutine waitForPushEndCor;
 
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();
-
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         activeUpgrades = playerTransform.gameObject.GetComponent<ActiveUpgrades>();
 
@@ -78,7 +76,7 @@ public class Enemy : Creature
     //health
     public override void ChangeHP(float val, int typeOfDamage)
     {
-        val *= Settings.damageMultipliers[typeOfDamage] * gameData.power;
+        if (typeOfDamage != -1) val *= Settings.damageMultipliers[typeOfDamage] * gameData.power;
         base.ChangeHP(val, typeOfDamage);
 
         int valForVisual = (int)-val;

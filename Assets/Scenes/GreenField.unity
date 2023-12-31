@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e134c9188ed7105449e0fb0310a81482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 1208598901}
+  gameData: {fileID: 0}
   uiInGame: {fileID: 229356975}
   uiInGameStats: {fileID: 1333477717}
   bgCg: {fileID: 3035957}
@@ -2317,18 +2317,18 @@ MonoBehaviour:
   expLine: {fileID: 1853159774}
   expTextObj: {fileID: 714901059}
   expText: {fileID: 714901061}
-  curNeededExp: 15
-  nextLevelMultiplier: 2.5
+  curNeededExp: 30
+  nextLevelMultiplier: 1.25
   timerText: {fileID: 378598674}
   moneyText: {fileID: 647168619}
   killedText: {fileID: 726336664}
   textPrefab: {fileID: 6384041013109238367, guid: e336f9a3e67ab5248be93a05ba99a68c, type: 3}
   damageTextParent: {fileID: 954616027}
   nonElementDamageColors:
-  - {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 0.49019608}
-  - {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 0.49019608}
-  - {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 0.49019608}
   - {r: 1, g: 1, b: 1, a: 0.49019608}
+  - {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 0.49019608}
+  - {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 0.49019608}
+  - {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 0.49019608}
   fireDamageColors:
   - {r: 1, g: 0.53207546, b: 0.53207546, a: 0.49019608}
   - {r: 1, g: 0.37169808, b: 0.37169808, a: 0.49019608}
@@ -12531,13 +12531,17 @@ MonoBehaviour:
   lifetimeMultiplier: 1
   growth: 1
   greed: 1
+  freezeTime: 7
   elementalLifeTimeMultipliers:
   - 1
   - 1
   - 1
   - 1
+  explosionDamageMultiplier: 1
+  isWaterPoisened: 0
+  poisonDamageMultiplier: 1
   amountOfAdditionalForceEffects: 1
-  amountOfPassTroughTriggers: 4
+  amountOfPassTroughTriggers: 1
 --- !u!1001 &1211145099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13039,11 +13043,33 @@ MonoBehaviour:
   - {fileID: 392425181}
   allItems:
   - {fileID: 11400000, guid: fbc24533ff6d44b46acdd07b1c0c2ba6, type: 2}
+  - {fileID: 11400000, guid: 7ddf266009e09484093505c4069e68d4, type: 2}
+  - {fileID: 11400000, guid: 4d3e30181646d2a4aa3f418a920c6ab7, type: 2}
+  - {fileID: 11400000, guid: 25eef22b29578b549b420b02cb8c6ed5, type: 2}
+  - {fileID: 11400000, guid: bf11062e96b470d4f8495007b57da635, type: 2}
+  - {fileID: 11400000, guid: 978fbbd947385644aae733de220a1a1c, type: 2}
+  - {fileID: 11400000, guid: 7fa0f69e37085a042a1963fa52194361, type: 2}
+  - {fileID: 11400000, guid: e6790f92d107d4e4b804b264c918ea6a, type: 2}
+  - {fileID: 11400000, guid: 9f86bd2f84c270c4ca4fa69b87a2f309, type: 2}
+  - {fileID: 11400000, guid: 311c913cffc79774baa5cd5d4810ce5a, type: 2}
   - {fileID: 11400000, guid: f6be7d03f968e324193035397dd1f5a0, type: 2}
+  - {fileID: 11400000, guid: 7e72e56da8b961e41a11ddde8cc21058, type: 2}
+  - {fileID: 11400000, guid: 6c543e2ceafa7184c9ac0eb1dd8899d2, type: 2}
+  - {fileID: 11400000, guid: 499f5ab8fd7ad3c4a9a70f4610e0d5a2, type: 2}
+  - {fileID: 11400000, guid: ed8e44fb0ef6e164aa23316dede7fc7d, type: 2}
+  - {fileID: 11400000, guid: d4f845753cd53d5438a9aa362a588c79, type: 2}
+  - {fileID: 11400000, guid: f318f96803d2b7f42ae76b7bcd89f253, type: 2}
+  - {fileID: 11400000, guid: 835ae5886faf35b4b9e859a057f695bf, type: 2}
+  - {fileID: 11400000, guid: 72c96bf5a94da8d488640e81cbdcc50c, type: 2}
   additionalItems:
   - {fileID: 11400000, guid: 4bb5be000d95b3b4c80b373e24496be8, type: 2}
   - {fileID: 11400000, guid: cca818ed2dd9a0f458f81c83229a0275, type: 2}
   - {fileID: 11400000, guid: 74c90c2b7ebb7ef41b5a4b6fe0305248, type: 2}
+  improvedSpellsItems:
+  - {fileID: 11400000, guid: 8d70f2e1127520e419c91dfec1a6198c, type: 2}
+  - {fileID: 11400000, guid: b4b22a10ebe61eb44942b9e9fcd8acc2, type: 2}
+  - {fileID: 11400000, guid: 74ef0d00ba9bfa54dab4ead305579a9b, type: 2}
+  - {fileID: 11400000, guid: fa4dc734a24725f4fa0a31c04e0b8ef7, type: 2}
   upgradeEffect: {fileID: 198310899}
 --- !u!225 &1275266308
 CanvasGroup:
@@ -15558,6 +15584,138 @@ MonoBehaviour:
         m_Calls: []
     upgradeTypeActivePassive: 0
     amountLimit: 3
+    curAmount: 0
+  - upgradeType: 40
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: IncreaseArrowAmount
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeTypeActivePassive: 0
+    amountLimit: 2
+    curAmount: 0
+  - upgradeType: 36
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: ImproveFire
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeTypeActivePassive: 0
+    amountLimit: 7
+    curAmount: 0
+  - upgradeType: 37
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: ImproveWater
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeTypeActivePassive: 0
+    amountLimit: 7
+    curAmount: 0
+  - upgradeType: 38
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: ImproveEarth
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeTypeActivePassive: 0
+    amountLimit: 7
+    curAmount: 0
+  - upgradeType: 39
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: ImproveWind
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeTypeActivePassive: 0
+    amountLimit: 7
+    curAmount: 0
+  - upgradeType: 39
+    upgradeEventPassive:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1495624166}
+          m_TargetAssemblyTypeName: PassiveUpgrades, Assembly-CSharp
+          m_MethodName: ImproveWind
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    upgradeEventActivePassive:
+      m_PersistentCalls:
+        m_Calls: []
+    upgradeTypeActivePassive: 34
+    amountLimit: 7
     curAmount: 0
   passiveActiveUpgrades:
   - upgradeType: 17
@@ -19657,7 +19815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

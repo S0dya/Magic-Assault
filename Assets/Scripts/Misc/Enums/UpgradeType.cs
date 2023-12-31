@@ -57,5 +57,12 @@ public enum UpgradeType
     //since i cant add enums when they are alr set
     PassiveIncreaseMagnet,
 
-}
+    //improved spells
+    PassiveImprovedSpellsFire,
+    PassiveImprovedSpellsWater,
+    PassiveImprovedSpellsEarth,
+    PassiveImprovedSpellsWind,
 
+    //arrow
+    PassiveIncreaseArrowAmount,
+}

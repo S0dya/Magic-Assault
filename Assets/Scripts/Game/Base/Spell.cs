@@ -26,8 +26,12 @@ public class Spell : MonoBehaviour
     //vars for inheriting scripts
     public float damage;
     [HideInInspector] public float damageMultiplier;
+    [HideInInspector] public GameData gameData;
 
-
+    void Awake()
+    {
+        gameData = GameData.I;
+    }
 
     public void Play() //before play all needed parametrs are set inside other spells scripts
     {
@@ -35,7 +39,7 @@ public class Spell : MonoBehaviour
         damage *= damageMultiplier;
         if (setsLifeTime)
         {
-            size *= GameData.I.area;
+            size *= gameData.area;
             SetDuration();
         }
 
@@ -68,7 +72,7 @@ public class Spell : MonoBehaviour
     void SetDuration()
     {
         var main = GetMainModule(ps);
-        main.duration = lifeTime * GameData.I.elementalLifeTimeMultipliers[typeOfDamage] * GameData.I.lifetimeMultiplier;
+        main.duration = lifeTime * gameData.elementalLifeTimeMultipliers[typeOfDamage] * GameData.I.lifetimeMultiplier;
     }
 
     public void SetRotation(float r)

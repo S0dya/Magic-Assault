@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d18e4a4996f320d47b5dfa5c123598b5, type: 3}
+  m_Name: ImprovedSpellsEarth
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Terra Cascade
+  <Description>k__BackingField: Summon Terra Cascade, generating extra rocks upon
+    collision with enemies
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: 2a2e156bf3104404984c9c82e084af0e, type: 3}
+  parentType: 5
+  type: 38
+  typeOfDamage: 2
+  itemsOnUpgrade:
+  - {fileID: 11400000, guid: 3a800e63b888a2c45b33e6598864ce69, type: 2}
+  spellI: 0

@@ -25,7 +25,7 @@ public class Map : SingletonMonobehaviour<Map>
     MapWaveCircleCrowdWaveEnemies curWaveCircleCrowdEnemies;
     MapWaveMiniBoss curWaveMiniBoss;
 
-    int curWaveIndex = 15;
+    int curWaveIndex = 0;
 
     protected override void Awake()
     {

@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class ExplosionEffect : CircleSpell
 {
+    protected override void Start()
+    {
+        base.Start();
+
+        damage *= gameData.explosionDamageMultiplier;
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)

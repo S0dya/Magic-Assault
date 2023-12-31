@@ -17,11 +17,19 @@ public class GameData : SingletonMonobehaviour<GameData>
     [HideInInspector] public float growth = 1;
     [HideInInspector] public float greed = 1;
 
+    //envrenment
+    [HideInInspector] public float freezeTime = 7;
+
     //elementals
     [HideInInspector] public float[] elementalLifeTimeMultipliers = new float[4] { 1, 1, 1, 1 };
 
+    //fire
+    [HideInInspector] public float explosionDamageMultiplier = 1;
+    //water
+    [HideInInspector] public bool isWaterPoisened;
+    [HideInInspector] public float poisonDamageMultiplier = 1;
     //earth
     [HideInInspector] public int amountOfAdditionalForceEffects = 1;
     //wind
-    [HideInInspector] public int amountOfPassTroughTriggers = 4;
+    [HideInInspector] public int amountOfPassTroughTriggers = 1;
 }

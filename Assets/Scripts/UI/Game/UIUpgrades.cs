@@ -14,6 +14,7 @@ public class UIUpgrades : UIPanelGame
 
     [SerializeField] List<SO_GameItem> allItems = new List<SO_GameItem>();
     [SerializeField] SO_GameItem[] additionalItems;
+    [SerializeField] List<SO_GameItem> improvedSpellsItems;
 
     [Header("Other")]
     [SerializeField] ParticleSystem upgradeEffect;
@@ -60,6 +61,11 @@ public class UIUpgrades : UIPanelGame
     //other methods
     void SetUpgrades()
     {
+        if (uiInGame.curLvl == 20) SetImprovedSpellsUpgrades(); 
+        else SetUsualUpgrades();
+    }
+    void SetUsualUpgrades()
+    {
         //get random upgrade, then remove this upgrade and get 2 more random upgrades
         for (int i = 0; i < 3; i++)
         {
@@ -74,10 +80,23 @@ public class UIUpgrades : UIPanelGame
                 int randomI = Random.Range(0, allItems.Count);
                 curUpgrades[i] = allItems[randomI];
                 allItems.RemoveAt(randomI);
-                
+
                 AddUpgradeBack(i, true);
             }
-            
+
+            uiUpgrades[i].SetInfo(curUpgrades[i]);
+        }
+    }
+    void SetImprovedSpellsUpgrades()
+    {
+        //remove one random improved spell upgrade, set other 3 improved spells upgrades. remove 2 after choosing an upgrade
+        improvedSpellsItems.RemoveAt(Random.Range(-1, 4));
+
+        for (int i = 0; i < 3; i++)
+        {
+            curUpgrades[i] = improvedSpellsItems[i];
+            AddUpgradeBack(i, false);
+
             uiUpgrades[i].SetInfo(curUpgrades[i]);
         }
     }
@@ -112,7 +131,7 @@ public class UIUpgrades : UIPanelGame
                 activeUpgrades.PerformActiveUpgrade(item.type, item.typeOfDamage);
                 AddNewUpgrades(item);
                 curAmountOfActiveUpgrades++;
-                if (curAmountOfActiveUpgrades == 1) StartCoroutine(RemoveAllActiveUpgradesCor());
+                if (curAmountOfActiveUpgrades == 4) StartCoroutine(RemoveAllActiveUpgradesCor());
                 break;
             case UpgradeTypeParent.PassiveUpgrade:
                 if (!passiveUpgrades.CanPerformPassiveUpgrade(item.type)) AddNewUpgrades(item);//add this passive upgrade back only if can use it more times
@@ -122,6 +141,10 @@ public class UIUpgrades : UIPanelGame
                 break;
             case UpgradeTypeParent.PickUps:
                 uiInGame.UsePickUpUpgrade(item.type);
+                break;
+            case UpgradeTypeParent.PassiveImproveSpells:
+                passiveUpgrades.ImproveSpells(item.typeOfDamage);
+                AddNewUpgrades(item);
                 break;
             default: break;
         }

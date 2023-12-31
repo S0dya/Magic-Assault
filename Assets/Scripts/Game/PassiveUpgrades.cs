@@ -123,6 +123,11 @@ public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
         player.IncreaseMagnet();
     }
 
+    public void IncreaseArrowAmount()
+    {
+        spellsManager.IncreaseArrowAmount();
+    }
+
     //active upgrades' passive upgrades
     public void IncreaseActiveAmount(UpgradeType upgradeType)
     {
@@ -137,6 +142,32 @@ public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
     public void DecreaseActiveCooldown(UpgradeType upgradeType)
     {
         activeUpgrades.DecreaseCooldown(upgradeType);
+    }
+
+    //impoved spells main
+    public void ImproveSpells(int typeOfDamage)
+    {
+        if (typeOfDamage == 3) return;//since there is no logic for it (yet)
+        spellsManager.ImproveSpells(typeOfDamage);
+    }
+
+    //impoved spells upgrades
+    public void ImproveFire()//increases power
+    {
+        gameData.explosionDamageMultiplier += 0.1f;
+    }
+    public void ImproveWater()
+    {
+        gameData.poisonDamageMultiplier += 0.1f;
+    }
+
+    public void ImproveEarth()//increases amount
+    {
+        gameData.amountOfAdditionalForceEffects++;
+    }
+    public void ImproveWind()
+    {
+        gameData.amountOfPassTroughTriggers++;
     }
 
     //other

@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34628d7cdb270545bcb1404cb6d29db, type: 3}
   m_Name: GreenFields
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Green fields
-  <Description>k__BackingField: 'once once once once once once once once once once
-    once once once once once once once once once once once '
-  <ItemImage>k__BackingField: {fileID: 0}
+  <Name>k__BackingField: 'Verdant Enclave '
+  <Description>k__BackingField: Nestled in Eldoria's heart, the Verdant Enclave is
+    a serene expanse of green fields embodying the elements. Elemental Guardians
+    gather here, honing their skills amidst the dance of wind-blown grasses. In this
+    tranquil haven, the Guardians unite to face the impending doom foretold in the
+    ancient prophecy.
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: 37dd4e035c63a7e4e87c21c49ce74b22, type: 3}
   <timeLimit>k__BackingField: 30:00
   <clockSpeed>k__BackingField: 1
   <moveSpeed>k__BackingField: 1
-  <goldBonus>k__BackingField: 1
-  <luckBonus>k__BackingField: 1
-  <expBonus>k__BackingField: 1
+  <goldBonus>k__BackingField: 0
+  <luckBonus>k__BackingField: 0
+  <expBonus>k__BackingField: 0

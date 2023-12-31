@@ -6,4 +6,5 @@ public enum UpgradeTypeParent
     PassiveUpgrade,
     PassiveActiveUpgrade,
     PickUps,
+    PassiveImproveSpells,
 }

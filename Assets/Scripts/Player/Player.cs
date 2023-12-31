@@ -40,6 +40,8 @@ public class Player : Creature
     //local
     [HideInInspector] public Vector2 lastJoystickDirection;
 
+    System.Action movementAction;
+
     //movement
     float xOfMove;
 
@@ -59,12 +61,13 @@ public class Player : Creature
     Coroutine restoreManaCor;
     Coroutine visualiseDamage;
 
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();
-
         HealthChanged += UpdateHealthBar;
         shadowEffectsParent = GameObject.FindGameObjectWithTag("ShadowEffectsParent").transform;
+
+        if (Settings.isQualityMedium) movementAction = ShadowMovement;
+        else movementAction = NoShadowMovement;
     }
 
     protected override void Start()
@@ -87,10 +90,17 @@ public class Player : Creature
             curShadowDirection = (isLookingOnRight ? 0 : 1);
         }
 
-        if (joystickInput) ShadowAnimation();
+        movementAction.Invoke();
 
         base.Update();
     }
+
+    void ShadowMovement()
+    {
+        if (joystickInput) ShadowAnimation();
+    }
+
+    void NoShadowMovement(){}
 
     void ShadowAnimation()// instnatiate shadow effect (character's sprite) each specific amount of time behind player to visualise spead
     {

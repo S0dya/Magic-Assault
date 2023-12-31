@@ -276,31 +276,32 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     }
 
     //other
-    public void MagnetExp()
-    {
-        foreach (Transform transform in expParent)
-        {
-            FollowingObjectExp followingObjectexp = transform.gameObject.GetComponent<FollowingObjectExp>();
-            followingObjectexp.StartFollowingPlayer();
-        }
-    }
-    public void FreezeEnemies()
-    {
-        foreach (Transform transform in enemyParent)
-        {
-            FreezeEnemy freezeEnemy = transform.gameObject.GetComponent<FreezeEnemy>();
-            freezeEnemy.Freeze();
-        }
-    }
-    public void KillEnemies()
-    {
-        foreach (Transform transform in enemyParent)
-        {
-            Enemy enemy = transform.gameObject.GetComponent<Enemy>();
-            enemy.ChangeHP(-500, 1);
-        }
-    }
 
+    //get exps and magnet it to player
+    public void MagnetExps() => LoopThroughTransforms(expParent, MagnetExp);
+    void MagnetExp(Transform transform) => transform.gameObject.GetComponent<FollowingObjectExp>().StartFollowingPlayer();
+
+    //get enemy and freeze them
+    public void FreezeEnemies() => LoopThroughTransforms(enemyParent, FreezeEnemy);
+    void FreezeEnemy(Transform transform) => transform.gameObject.GetComponent<EnemyFreeze>().Freeze();
+
+    //get enemy's transform and change their hp
+    public void KillEnemies() => LoopThroughTransforms(enemyParent, KillEnemy);
+    void KillEnemy(Transform transform) => GetEenemy(transform).ChangeHP(-500, -1);
+
+    //on improved water set enemies to recceive damage from water
+    public void SetWaterDealsDamageForEnemies() => LoopThroughTransforms(enemyParent, SetWaterDealsDamageForEnemy);
+    void SetWaterDealsDamageForEnemy(Transform transform) => GetEenemy(transform).SetWaterDealsDamage();
+
+    //other base
+    void LoopThroughTransforms(Transform parent, System.Action<Transform> action)//loop thorught enemies and invoke action
+    {
+        foreach (Transform transform in parent) action.Invoke(transform);
+    }
+    Enemy GetEenemy(Transform transform)
+    {
+        return transform.gameObject.GetComponent<Enemy>();
+    }
 
     //on enemy death
     public void InstantiateExp(GameObject prefab, Vector2 pos) => InstantiateObject(prefab, pos, expParent);

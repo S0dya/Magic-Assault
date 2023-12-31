@@ -31,7 +31,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     [HideInInspector] public int[] curTypeOfSpell;// 0 - dot 1 - circle 2 - line 3 - arrow
     public float[] effectManaUsage = new float[4] { 15f, 25f, 3f, 10f };
 
-    int[] amountOfSpells = new int[4] { 5, 5, 5, 5 };
+    int[] amountOfSpells = new int[4] { 1, 1, 1, 1 };
     int arrowsAmount = 1; //3 - max
 
     //spells threshold
@@ -202,13 +202,6 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
         size = spellSize;
     }
 
-    //passive upgrades logic
-    public void IncreaseAmountOfSpells()
-    {
-        for (int i = 0; i < 4; i++) IncreaseAmountOfSpells(i);
-    }
-    public void IncreaseAmountOfSpells(int i) => amountOfSpells[i]++;
-
     //check if player has enough mana to use spells
     bool HasMana(int i)
     {
@@ -216,13 +209,32 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     }
     //subtract mana
     void UseMana(int i, int amount) => player.DecreaseMana(-effectManaUsage[i] * size * amount);
+    
+    //passive upgrades logic
+    public void IncreaseAmountOfSpells()
+    {
+        for (int i = 0; i < 4; i++) IncreaseAmountOfSpells(i);
+    }
+    public void IncreaseAmountOfSpells(int i) => amountOfSpells[i]++;
+
+    public void IncreaseArrowAmount() => arrowsAmount++;
 
     //Improve first 3 spells (air cant be improved by this logic)
     public void ImproveSpells(int typeOfDamage)
     {
         //set general spells 
         for (int i = 0; i < 3; i++) spells[i].spells[typeOfDamage] = improvedSpells[i].spells[typeOfDamage];
-        
-        if (typeOfDamage == 2) spells[3].spells[typeOfDamage]= improvedSpells[3].spells[typeOfDamage]; //set arrow for earth
+
+        switch (typeOfDamage)
+        {
+            case 1:
+                gameData.isWaterPoisened = true;
+                LevelManager.I.SetWaterDealsDamageForEnemies();
+                break;
+            case 2:
+                spells[3].spells[typeOfDamage] = improvedSpells[3].spells[typeOfDamage]; //set arrow for earth
+                break;
+            default: break;
+        }
     }
 }

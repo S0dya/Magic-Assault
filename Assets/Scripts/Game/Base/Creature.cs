@@ -112,14 +112,11 @@ public class Creature : MonoBehaviour
     //stun
     Coroutine stunCor;
 
-    protected virtual void Awake()
-    {
-        if (waterDealsDamage || Settings.allWaterIsPoisened) handleWaterEncounter = OnWaterDealsDamage;
-        else handleWaterEncounter = OnWater;
-    }
-
     protected virtual void Start()
     {
+        if (waterDealsDamage || GameData.I.isWaterPoisened) SetWaterDealsDamage();
+        else handleWaterEncounter = OnWater;
+        
         CurHp = maxHp;
         curMovementSpeed = movementSpeed;
     }
@@ -412,6 +409,13 @@ public class Creature : MonoBehaviour
         float newStat = curStat + val;
         //set new stats from 0 to 100. depending on whether val is - or + check if its less or more than 100 or 0 
         return newStat = (val > 0 ? Mathf.Min(newStat, maxStat) : Mathf.Max(0, newStat));
+    }
+
+    //outside
+    public void SetWaterDealsDamage()
+    {
+        handleWaterEncounter = OnWaterDealsDamage;
+        damageOnWet *= GameData.I.poisonDamageMultiplier;
     }
 
     //events

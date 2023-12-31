@@ -59,8 +59,9 @@ MonoBehaviour:
   lifeTime: 3
   direction: {x: 0, y: 0}
   speed: 0
-  damage: -5
+  damage: -33
   damageMultiplier: 0
+  gameData: {fileID: 0}
   circleCol: {fileID: 485007773328823265}
 --- !u!198 &485007773328823293
 ParticleSystem:
@@ -70,7 +71,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485007773328823295}
   serializedVersion: 8
-  lengthInSec: 7
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 2
   cullingMode: 0
@@ -145,7 +146,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -315,7 +316,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 1
-      minScalar: 1
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -698,7 +699,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 0, y: 0, z: 0}
+    m_Scale: {x: 0.15, y: 0.15, z: 0}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -1005,7 +1006,7 @@ ParticleSystem:
     enabled: 1
     curve:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 2
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -1021,8 +1022,8 @@ ParticleSystem:
           inWeight: 0.57825273
           outWeight: 0.3114754
         - serializedVersion: 3
-          time: 0.816767
-          value: 0.93150216
+          time: 0.48888612
+          value: 0.6466015
           inSlope: -0.024386736
           outSlope: -0.024386736
           tangentMode: 0
@@ -1031,7 +1032,7 @@ ParticleSystem:
           outWeight: 1
         - serializedVersion: 3
           time: 1
-          value: 0.49243164
+          value: 0.39813232
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1067,7 +1068,7 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 2
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -1120,7 +1121,7 @@ ParticleSystem:
         m_RotationOrder: 4
     z:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 2
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -1520,10 +1521,12 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 620938557, guid: 6a943407621ab0a43b6d43cde79309f5, type: 3}
-    - sprite: {fileID: 1473141595, guid: 6a943407621ab0a43b6d43cde79309f5, type: 3}
-    - sprite: {fileID: -2062570569, guid: 6a943407621ab0a43b6d43cde79309f5, type: 3}
-    - sprite: {fileID: 1365476512, guid: 6a943407621ab0a43b6d43cde79309f5, type: 3}
+    - sprite: {fileID: 100869262, guid: 13007da627d41274ab766bd08e39314b, type: 3}
+    - sprite: {fileID: -2078032862, guid: 13007da627d41274ab766bd08e39314b, type: 3}
+    - sprite: {fileID: -2088516271, guid: 13007da627d41274ab766bd08e39314b, type: 3}
+    - sprite: {fileID: -1940610353, guid: 13007da627d41274ab766bd08e39314b, type: 3}
+    - sprite: {fileID: -2088516271, guid: 13007da627d41274ab766bd08e39314b, type: 3}
+    - sprite: {fileID: -2078032862, guid: 13007da627d41274ab766bd08e39314b, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -3660,7 +3663,7 @@ ParticleSystem:
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
-    multiplyColliderForceByCollisionAngle: 1
+    multiplyColliderForceByCollisionAngle: 0
     m_Planes: []
     m_Dampen:
       serializedVersion: 2
@@ -3828,7 +3831,7 @@ ParticleSystem:
       serializedVersion: 2
       m_Bits: 4294967295
     maxCollisionShapes: 256
-    quality: 0
+    quality: 1
     voxelSize: 0.5
     collisionMessages: 1
     collidesWithDynamic: 1

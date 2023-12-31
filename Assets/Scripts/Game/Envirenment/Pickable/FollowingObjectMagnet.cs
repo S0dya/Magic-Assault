@@ -19,7 +19,7 @@ public class FollowingObjectMagnet : FollowingObject
     {
         yield return base.FollowPlayerCor();
 
-        LevelManager.I.MagnetExp();
+        LevelManager.I.MagnetExps();
 
         Destroy(gameObject);
     }

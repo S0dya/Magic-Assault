@@ -59,8 +59,9 @@ MonoBehaviour:
   lifeTime: 1.5
   direction: {x: 0, y: 0}
   speed: 5
-  damage: -6
+  damage: -24
   damageMultiplier: 0
+  gameData: {fileID: 0}
   circleCol: {fileID: 8003008054671404001}
 --- !u!198 &8003008054671404006
 ParticleSystem:
@@ -4812,7 +4813,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 202178703
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

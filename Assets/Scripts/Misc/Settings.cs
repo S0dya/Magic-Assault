@@ -51,9 +51,6 @@ public static class Settings
     public static float[] damageMultipliers = new float[4] { 1, 1, 1, 1 };
     public static float[] damageMultipliersMins = new float[4] { 0.6f, 0.6f, 0.6f, 0.6f };
 
-    public static bool allWaterIsPoisened;
-
-    public static float freezeTime = 7;
 
     /// <summary>
     /// Game data
