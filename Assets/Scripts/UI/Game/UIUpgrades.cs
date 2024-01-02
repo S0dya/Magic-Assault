@@ -130,6 +130,9 @@ public class UIUpgrades : UIPanelGame
             case UpgradeTypeParent.ActiveUpgrade:
                 activeUpgrades.PerformActiveUpgrade(item.type, item.typeOfDamage);
                 AddNewUpgrades(item);
+                
+                uiInGame.ShowcaseActiveUpgrade(item);
+
                 curAmountOfActiveUpgrades++;
                 if (curAmountOfActiveUpgrades == 4) StartCoroutine(RemoveAllActiveUpgradesCor());
                 break;

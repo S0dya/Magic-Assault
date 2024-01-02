@@ -52,6 +52,10 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     [SerializeField] Color hpRestoreColor;
     [SerializeField] Color manaRestoreColor;
 
+    [Header("Upgrades")]
+    [SerializeField] GameObject itemPrefab;
+    [SerializeField] Transform activeUpgradesLineTransform;
+
     //local
     GameManager gameManager;
     Player player;
@@ -69,6 +73,9 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     //killed and money
     [HideInInspector] public int killedAmount;
     [HideInInspector] public float moneyAmount;
+
+    //active upgrades showcase
+    
 
     //cor
     Coroutine timerCor;
@@ -264,8 +271,8 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
         float x = textPos.x;
         float y = textPos.y;
 
-        float endValLimit = y + 2;
-        float endVal = endValLimit + 2;
+        float endValLimit = y + 0.75f;
+        float endVal = endValLimit + 0.75f;
 
         while (textTransform.position.y < endValLimit)
         {
@@ -278,6 +285,14 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
         yield return new WaitForSeconds(0.2f);
 
         Destroy(textObj);
+    }
+
+    //upgrades showcase
+    public void ShowcaseActiveUpgrade(SO_Item item) => InstantiateItem(activeUpgradesLineTransform).SetInfo(item);
+
+    UIStatsItem InstantiateItem(Transform parent)
+    {
+        return Instantiate(itemPrefab, parent).GetComponent<UIStatsItem>();
     }
 
     //other outside methods

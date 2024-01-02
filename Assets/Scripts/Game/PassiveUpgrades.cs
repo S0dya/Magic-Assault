@@ -69,17 +69,16 @@ public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
 
     public void HealthRecovery()
     {
-        player.canRestoreHp = true;
+        player.StartRestoringHp();
     }
     public void IncreaseHealthRecovery()
     {
-        player.amountOfTimeBeforeRestoringHp *= 0.9f;
-        player.amountOfRestoringHp *= 1.1f;
+        player.IncreaseHealthRecovery();
     }
 
     public void IncreaseMaxHealth()
     {
-        player.maxHp *= 1.1f;
+        player.IncreaseMaxHp();
     }
 
     public void DecreaseCooldown()
@@ -119,7 +118,7 @@ public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
     }
 
     public void IncreaseMagnet()
-    {
+    {                               
         player.IncreaseMagnet();
     }
 

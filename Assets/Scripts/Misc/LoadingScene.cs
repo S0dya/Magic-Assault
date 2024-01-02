@@ -16,7 +16,7 @@ public class LoadingScene : SingletonMonobehaviour<LoadingScene>
     {
         base.Awake();
 
-        StartCoroutine(LoadMenu());
+        //StartCoroutine(LoadMenu());
     }
 
     //outside methods

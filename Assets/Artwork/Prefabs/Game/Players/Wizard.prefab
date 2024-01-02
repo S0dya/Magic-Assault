@@ -437,7 +437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
-  movementSpeed: 3.5
+  movementSpeed: 2.5
   elementalDamageMultipliers:
   - 1
   - 1

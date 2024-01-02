@@ -60,8 +60,9 @@ MonoBehaviour:
   lifeTime: 2
   direction: {x: 0, y: 0}
   speed: 4
-  damage: -4
+  damage: -13
   damageMultiplier: 0
+  gameData: {fileID: 0}
   circleCol: {fileID: 4965448726942540376}
 --- !u!114 &4965448726942540383
 MonoBehaviour:

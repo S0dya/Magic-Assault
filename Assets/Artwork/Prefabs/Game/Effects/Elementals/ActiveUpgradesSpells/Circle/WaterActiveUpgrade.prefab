@@ -59,8 +59,9 @@ MonoBehaviour:
   lifeTime: 8
   direction: {x: 0, y: 0}
   speed: 0
-  damage: -2
+  damage: -10
   damageMultiplier: 0
+  gameData: {fileID: 0}
   circleCol: {fileID: 8970256659375900881}
 --- !u!198 &8970256659375900877
 ParticleSystem:

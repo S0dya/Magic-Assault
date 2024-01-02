@@ -95,11 +95,11 @@ public class Player : Creature
         base.Update();
     }
 
+    //shadow annimation
     void ShadowMovement()
     {
         if (joystickInput) ShadowAnimation();
     }
-
     void NoShadowMovement(){}
 
     void ShadowAnimation()// instnatiate shadow effect (character's sprite) each specific amount of time behind player to visualise spead
@@ -239,15 +239,22 @@ public class Player : Creature
     void UpdateHealthBar() => SetHPText();
 
     //upgrades
-    public void AddShield()
+    public void IncreaseMaxHp() => MaxHp *= 1.1f;
+    public void AddShield() => shieldProtection += 0.1f;
+    public void IncreaseMagnet() => pickingTrigger.radius *= 1.25f;
+    public void StartRestoringHp()
     {
-        shieldProtection += 0.1f;
+        canRestoreHp = true;
+        restoreHpCor = StartCoroutine(RestoreHPCor());
     }
-
-    public void IncreaseMagnet()
+    public void IncreaseHealthRecovery()
     {
-        Debug.Log("asd");
-        pickingTrigger.radius *= 1.25f;
+        Debug.Log("before" + amountOfTimeBeforeRestoringHp + " " + amountOfRestoringHp);
+
+        amountOfTimeBeforeRestoringHp *= 0.9f;
+        amountOfRestoringHp *= 1.1f;
+
+        Debug.Log("After" + amountOfTimeBeforeRestoringHp + " " + amountOfRestoringHp);
     }
 
     //other

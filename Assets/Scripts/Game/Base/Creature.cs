@@ -42,6 +42,7 @@ public class Creature : MonoBehaviour
     [HideInInspector] public float curMovementSpeed;
     [HideInInspector] public Vector2 directionOfMovement;
 
+    protected float MaxHp { get { return maxHp; } set { maxHp = value; } }
     protected Rigidbody2D Rb { get { return rb; } set { rb = value; } }
     protected SpriteRenderer Sr { get { return sr; } set { sr = value; } }
     protected float CurMovementSpeed { get { return curMovementSpeed; } set { curMovementSpeed = value; } }

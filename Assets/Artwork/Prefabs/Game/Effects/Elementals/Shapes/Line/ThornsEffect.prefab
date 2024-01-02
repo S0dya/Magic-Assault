@@ -59,7 +59,7 @@ MonoBehaviour:
   lifeTime: 2
   direction: {x: 0, y: 0}
   speed: 0
-  damage: -18
+  damage: -7
   damageMultiplier: 0
   gameData: {fileID: 0}
   boxCol: {fileID: 535202900345432583}
