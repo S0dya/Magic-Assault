@@ -89,7 +89,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         SetJoystick();
 
-        StartCoroutine(TImerCor());
+        StartCoroutine(TimerCor());
     }
 
     //exp methods
@@ -145,7 +145,7 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
 
 
     //time methods
-    IEnumerator TImerCor()//we add 1 to timer each second
+    IEnumerator TimerCor()//we add 1 to timer each second
     {
         while (true)
         {

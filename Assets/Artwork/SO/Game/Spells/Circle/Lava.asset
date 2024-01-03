@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18e4a4996f320d47b5dfa5c123598b5, type: 3}
   m_Name: Lava
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Lava
-  <Description>k__BackingField: 
+  <Name>k__BackingField: Inferno Embrace
+  <Description>k__BackingField: Create a molten pool, hindering foes in scalding
+    embrace
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 0e9044020facf8043b509a3330d41b2e, type: 3}
   parentType: 0
   type: 0

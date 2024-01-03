@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18e4a4996f320d47b5dfa5c123598b5, type: 3}
   m_Name: Wind
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Wind
-  <Description>k__BackingField: 
+  <Name>k__BackingField: Tempest Veil
+  <Description>k__BackingField: Invoke Tempest Veil to create a swirling torrent,
+    pushing enemies away
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 87b7baf49ddf30049b36244b6d2241d1, type: 3}
   parentType: 0
   type: 0

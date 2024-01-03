@@ -27,10 +27,19 @@ public class UISpells : UIPanelGame
     {
         base.Start();
 
+        int curAddedSpells = 0;
+
         for (int i = 0; i < 4; i++) //set cur spells player uses
         {
-            int curIndex = spellsManager.curTypeOfSpell[i] + (i * 4 - i);
+            if (spellsManager.curTypeOfSpell[i] == -1)
+            {
+                uiInGameStats.SetNoSpellItem(i);//set no spell item
+                continue;
+            }
+
+            int curIndex = spellsManager.curTypeOfSpell[i] + (i * 4 - curAddedSpells);
             curUsedSpells[i] = allSpells[curIndex];
+            curAddedSpells++;
 
             uiInGameStats.SetSpellItem(i, allSpells[curIndex]);//set spell in statistics
 
@@ -92,7 +101,7 @@ public class UISpells : UIPanelGame
         SO_GameItem newSpell = curCheckedSpells[index];
         int spellI = newSpell.spellI;
 
-        allSpells.Add(curUsedSpells[spellI]);
+        if (spellsManager.curTypeOfSpell[spellI] != -1) allSpells.Add(curUsedSpells[spellI]);
         curUsedSpells[spellI] = newSpell;
 
         spellsManager.curTypeOfSpell[spellI] = newSpell.typeOfDamage;

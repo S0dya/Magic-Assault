@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d18e4a4996f320d47b5dfa5c123598b5, type: 3}
-  m_Name: Waterball
+  m_Name: NoItem
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Aqueous Flow
-  <Description>k__BackingField: Slow enemies with Aqueous Flow, a watery enchantment
-    disrupting their movements
-  <ItemImage>k__BackingField: {fileID: 21300000, guid: 467b08bf53dad0d47aa34fa635c7a317, type: 3}
+  <Name>k__BackingField: no item
+  <Description>k__BackingField: 
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: 98f2dff5b272f2549aed8ed68bd975e4, type: 3}
   parentType: 0
   type: 0
-  typeOfDamage: 1
+  typeOfDamage: -1
   itemsOnUpgrade: []
-  spellI: 0
+  spellI: -1

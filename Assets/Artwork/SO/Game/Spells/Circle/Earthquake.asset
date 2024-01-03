@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18e4a4996f320d47b5dfa5c123598b5, type: 3}
   m_Name: Earthquake
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Eearhquake
-  <Description>k__BackingField: 
+  <Name>k__BackingField: Earthen Tremor
+  <Description>k__BackingField: "\rSummon an Earthen Tremor, damaging all in its
+    seismic radius"
   <ItemImage>k__BackingField: {fileID: 21300000, guid: ba1c87a02036c4641bc3c14fdf564156, type: 3}
   parentType: 0
   type: 0

@@ -40,7 +40,7 @@ public class UIMainMenuMapDescription : UIPanelMenu
     {
         base.Start();
 
-        OnMapClicked(0); //open wizard's statistics
+        OnMapClicked(0); //open green field
     }
 
     //buttons
@@ -48,9 +48,7 @@ public class UIMainMenuMapDescription : UIPanelMenu
     {
         curMapI = i;
 
-        bool isUnlocked = startGameButtonCG.interactable = Settings.unlockedMaps[curMapI];
-
-        if (isUnlocked) SetInfo(maps[curMapI]);
+        if (startGameButtonCG.interactable = Settings.unlockedMaps[curMapI]) SetInfo(maps[curMapI]);
         else SetEmpty();
     }
 

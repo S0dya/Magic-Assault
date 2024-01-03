@@ -14,6 +14,7 @@ public class UIInGameStats : UIPanelMenu
 
     [Header("Spells")]
     [SerializeField] UIInGameStatsItem[] uiSpellsitems;
+    [SerializeField] SO_Item NoItemItem;
 
     [Header("Parents")]
     [SerializeField] Transform[] upgradesParents;
@@ -88,6 +89,7 @@ public class UIInGameStats : UIPanelMenu
         uiSpellsitems[i].SetInfo(item);
         uiSpellsitems[i].uiInGameStats = this;
     }
+    public void SetNoSpellItem(int i) => SetSpellItem(i, NoItemItem);
 
     //description (bottom)
     public void SetDescriptionInfo(UIInGameStatsItem uiInGameStatsItem, SO_Item item) //outside method for showcasing upgrade

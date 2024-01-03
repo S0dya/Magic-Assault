@@ -49,6 +49,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7275501178216431432}
   thisItem: {fileID: 11400000, guid: 75c9b571283719e4586a549988ec4344, type: 2}
+  actionOnPlayerReached:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5231493103485748534}
+        m_TargetAssemblyTypeName: FollowingObjectSpellChest, Assembly-CSharp
+        m_MethodName: PerformAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!212 &7275501178216431435
 SpriteRenderer:
   m_ObjectHideFlags: 0

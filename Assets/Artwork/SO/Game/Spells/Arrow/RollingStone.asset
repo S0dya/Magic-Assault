@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18e4a4996f320d47b5dfa5c123598b5, type: 3}
   m_Name: RollingStone
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Rolling Stone
-  <Description>k__BackingField: 
+  <Name>k__BackingField: Stone Quake
+  <Description>k__BackingField: "\rPropel a rolling stone, stunning foes in its path"
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 0a53f8756ceafaf4a970e6a95bb00a2e, type: 3}
   parentType: 0
   type: 0

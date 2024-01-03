@@ -1038,17 +1038,17 @@ ParticleSystem:
           inWeight: 0.57825273
           outWeight: 0.3114754
         - serializedVersion: 3
-          time: 0.48888612
-          value: 0.6466015
-          inSlope: -0.024386736
-          outSlope: -0.024386736
+          time: 0.3259604
+          value: 0.9673603
+          inSlope: 0.014693018
+          outSlope: 0.014693018
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 1
+          outWeight: 0.399895
         - serializedVersion: 3
           time: 1
-          value: 0.39813232
+          value: 0.95474243
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1533,16 +1533,14 @@ ParticleSystem:
     tilesY: 1
     animationType: 0
     rowIndex: 0
-    cycles: 4
+    cycles: 1.5
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 100869262, guid: 13007da627d41274ab766bd08e39314b, type: 3}
-    - sprite: {fileID: -2078032862, guid: 13007da627d41274ab766bd08e39314b, type: 3}
-    - sprite: {fileID: -2088516271, guid: 13007da627d41274ab766bd08e39314b, type: 3}
-    - sprite: {fileID: -1940610353, guid: 13007da627d41274ab766bd08e39314b, type: 3}
-    - sprite: {fileID: -2088516271, guid: 13007da627d41274ab766bd08e39314b, type: 3}
-    - sprite: {fileID: -2078032862, guid: 13007da627d41274ab766bd08e39314b, type: 3}
+    - sprite: {fileID: 620938557, guid: 6a943407621ab0a43b6d43cde79309f5, type: 3}
+    - sprite: {fileID: 1473141595, guid: 6a943407621ab0a43b6d43cde79309f5, type: 3}
+    - sprite: {fileID: -2062570569, guid: 6a943407621ab0a43b6d43cde79309f5, type: 3}
+    - sprite: {fileID: 1365476512, guid: 6a943407621ab0a43b6d43cde79309f5, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:

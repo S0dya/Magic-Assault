@@ -6,23 +6,5 @@ public class FollowingObjectHealthRestore : FollowingObject
 {
     public float hpRestores;
 
-    bool isFollowing;
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!isFollowing)
-        {
-            isFollowing = true;
-            StartCoroutine(FollowPlayerCor());
-        }
-    }
-
-    protected override IEnumerator FollowPlayerCor()
-    {
-        yield return base.FollowPlayerCor();
-
-        GetPlayer().RestoreHPWithItem(hpRestores);
-
-        Destroy(gameObject);
-    }
+    public void PerformAction() => GetPlayer().RestoreHPWithItem(hpRestores);
 }

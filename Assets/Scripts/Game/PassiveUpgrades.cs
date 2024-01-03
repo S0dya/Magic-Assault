@@ -198,7 +198,6 @@ public class PassiveUpgrades : SingletonMonobehaviour<PassiveUpgrades>
 [System.Serializable]
 public class PassiveUpgrade
 {
-    
     [Header("Upgrade info")]
     [SerializeField] public UpgradeType upgradeType;
 

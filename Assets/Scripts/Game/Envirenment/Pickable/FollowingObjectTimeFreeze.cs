@@ -4,24 +4,5 @@ using UnityEngine;
 
 public class FollowingObjectTimeFreeze : FollowingObject
 {
-    bool isFollowing;
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!isFollowing)
-        {
-            isFollowing = true;
-            StartCoroutine(FollowPlayerCor());
-        }
-    }
-
-    protected override IEnumerator FollowPlayerCor()
-    {
-        yield return base.FollowPlayerCor();
-
-
-        LevelManager.I.FreezeEnemies();
-     
-        Destroy(gameObject);
-    }
+    public void PerformAction() => LevelManager.I.FreezeEnemies();
 }

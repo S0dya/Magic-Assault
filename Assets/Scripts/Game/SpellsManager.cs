@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 {
     [Header("Other scripts")]
-    [SerializeField] DrawManager drawManager;
     [SerializeField] LevelManager levelManager;
 
     [SerializeField] Transform effectsParent;
@@ -37,7 +36,6 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     //spells threshold
     GameObject[] effectsThreshold = new GameObject[4];
 
-
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -50,7 +48,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     //Spells
     public void UseDot()
     {
-        if (HasMana(0)) StartCoroutine(UseDotCor());
+        if (CanCreateSpell(0)) StartCoroutine(UseDotCor());
     }
     IEnumerator UseDotCor()
     {
@@ -76,7 +74,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
     public void UseCircle(float distanceOfCircle)
     {
-        if (HasMana(1)) StartCoroutine(UseCircleCor(distanceOfCircle));
+        if (CanCreateSpell(1)) StartCoroutine(UseCircleCor(distanceOfCircle));
     }
     IEnumerator UseCircleCor(float distanceOfCircle)
     {
@@ -102,7 +100,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
     public void UseLine()
     {
-        if (HasMana(2)) StartCoroutine(UseLineCor());
+        if (CanCreateSpell(2)) StartCoroutine(UseLineCor());
     }
     IEnumerator UseLineCor()
     {
@@ -132,7 +130,7 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
     public void UseArrow(Vector2 middleElementPos)
     {
-        if (HasMana(3)) StartCoroutine(UseArrowCor(middleElementPos));
+        if (CanCreateSpell(3)) StartCoroutine(UseArrowCor(middleElementPos));
     }
     IEnumerator UseArrowCor(Vector2 middleElementPos)
     {
@@ -200,6 +198,11 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     {
         drawPoints = points;
         size = spellSize;
+    }
+
+    bool CanCreateSpell(int i)
+    {
+        return HasMana(i) && curTypeOfSpell[i] != -1;
     }
 
     //check if player has enough mana to use spells

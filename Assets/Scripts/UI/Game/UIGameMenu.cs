@@ -28,6 +28,9 @@ public class UIGameMenu : UIPanelGame
     float maxHp;
     float maxMana;
 
+    float[] curPlayerVals = new float[3];
+    float[] maxPlayerVals = new float[3];
+
     //bools
     bool isSettingsOpen;
     bool isStatsOpen;
@@ -118,13 +121,13 @@ public class UIGameMenu : UIPanelGame
 
     public void SetPlayerStats()
     {
-        float[] curVals = new float[3] { player.curHp, player.curMana, uiInGame.curExp };
-        float[] maxVals = new float[3] { maxHp, maxMana, uiInGame.curNeededExp };
+        curPlayerVals[0] = player.curHp; curPlayerVals[1] = player.curMana; curPlayerVals[2] = uiInGame.curExp;
+        maxPlayerVals[0] = maxHp; maxPlayerVals[1] = maxMana; maxPlayerVals[2] = uiInGame.curNeededExp;
 
         for (int i = 0; i < 3; i++)
         {
-            barsTexts[i].text = GetAmountText((int)curVals[i], (int)maxVals[i]);
-            barsImages[i].fillAmount = curVals[i] / maxVals[i];
+            barsTexts[i].text = GetAmountText((int)curPlayerVals[i], (int)maxPlayerVals[i]);
+            barsImages[i].fillAmount = curPlayerVals[i] / maxPlayerVals[i];
         }
     }
 

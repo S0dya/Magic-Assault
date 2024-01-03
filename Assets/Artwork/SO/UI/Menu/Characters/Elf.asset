@@ -24,9 +24,9 @@ MonoBehaviour:
   <shields>k__BackingField: 0
   <speed>k__BackingField: 4.25
   <startingSpells>k__BackingField:
-  - {fileID: 11400000, guid: 29aa5097b43c7264a821cf7ab2ca9758, type: 2}
-  - {fileID: 11400000, guid: 606dcd3007f36d24789bff1ee12a7916, type: 2}
-  - {fileID: 11400000, guid: 7567d73d5db83274f8ee343aa02051b5, type: 2}
+  - {fileID: 11400000, guid: 7c40bd3b31fc02040a1e302bfa879d5d, type: 2}
+  - {fileID: 11400000, guid: 7c40bd3b31fc02040a1e302bfa879d5d, type: 2}
+  - {fileID: 11400000, guid: 7c40bd3b31fc02040a1e302bfa879d5d, type: 2}
   - {fileID: 11400000, guid: a11b22c9552875a44bcb905e33402b29, type: 2}
   <damageMultipliers>k__BackingField: 050000000f000000050000000f000000
   <weaknessMultipliers>k__BackingField:
@@ -47,4 +47,4 @@ MonoBehaviour:
   - 1
   - 0.4
   - 1.4
-  <startingSpellsIndexes>k__BackingField: 03000000030000000300000003000000
+  <startingSpellsIndexes>k__BackingField: ffffffffffffffffffffffff03000000

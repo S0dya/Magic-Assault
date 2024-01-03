@@ -46,7 +46,7 @@ public static class Settings
     /// </summary>
 
     //other
-    public static int[] startingSpells = new int[4] { 0, 1, 0, 3 };
+    public static int[] startingSpells = new int[4] { 0, -1, -1, -1 };
 
     public static float[] damageMultipliers = new float[4] { 1, 1, 1, 1 };
     public static float[] damageMultipliersMins = new float[4] { 0.6f, 0.6f, 0.6f, 0.6f };

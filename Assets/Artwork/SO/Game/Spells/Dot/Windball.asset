@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18e4a4996f320d47b5dfa5c123598b5, type: 3}
   m_Name: Windball
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Windball
-  <Description>k__BackingField: 
+  <Name>k__BackingField: Zephyr Sway
+  <Description>k__BackingField: Disturb foes with Zephyr Sway, a whimsical gust disrupting
+    their composure
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 5a4665ad3cec92b4d894b603325c9cca, type: 3}
   parentType: 0
   type: 0

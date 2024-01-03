@@ -3494,7 +3494,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d8f546afc0b8f46b9eb918dbb30a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawManager: {fileID: 1975163949}
   levelManager: {fileID: 731267892}
   effectsParent: {fileID: 1216226232}
   spells:
@@ -13579,6 +13578,7 @@ MonoBehaviour:
   - {fileID: 1852859435}
   - {fileID: 1934470866}
   - {fileID: 662389974}
+  NoItemItem: {fileID: 11400000, guid: 7c40bd3b31fc02040a1e302bfa879d5d, type: 2}
   upgradesParents:
   - {fileID: 1844661114}
   - {fileID: 1504165852}
