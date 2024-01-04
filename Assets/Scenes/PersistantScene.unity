@@ -243,6 +243,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78045c0cf715c964a9b85f8e1ea28d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Music>k__BackingField:
+    Guid:
+      Data1: -773822302
+      Data2: 1327754600
+      Data3: -1567933275
+      Data4: -1791646787
+    Path: event:/Music/GreenField
 --- !u!1 &482144831
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,18 +14,18 @@ public class FollowingObject : MonoBehaviour
     //local
     Transform playerTransform;
 
-    bool isFollowing; bool canBePicked;
+    bool isFollowing; 
 
     void Start()//find player this object will follow on trigger enter
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        LeanTween.scale(gameObject, new Vector2(1, 1), 1).setEase(LeanTweenType.easeOutBack).setOnComplete(() => canBePicked = true);//make object appear 
+        LeanTween.scale(gameObject, new Vector2(1, 1), 0.2f).setEase(LeanTweenType.easeOutBack);//make object appear 
     }
 
     //trigger
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (canBePicked && !isFollowing) StartFollowingPlayer();
+        if (!isFollowing) StartFollowingPlayer();
     }
 
     public void StartFollowingPlayer()

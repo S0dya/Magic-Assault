@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
+using System.Linq;
 
 public class UIInGame : SingletonMonobehaviour<UIInGame>
 {
@@ -23,6 +25,10 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     [SerializeField] CanvasGroup joysticksCG;
     [SerializeField] FloatingJoystick flJoystick;
     [SerializeField] FixedJoystick fxJoystick;
+
+    [SerializeField] Image[] handlesImages;
+    [SerializeField] Sprite[] handles;
+    [SerializeField] Sprite defaultHandle;
 
     [Header("Exp")]
     [SerializeField] Image expLine;
@@ -74,8 +80,8 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     [HideInInspector] public int killedAmount;
     [HideInInspector] public float moneyAmount;
 
-    //active upgrades showcase
-    
+    //joystick
+    Image handleImage;
 
     //cor
     Coroutine timerCor;
@@ -88,6 +94,8 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         SetJoystick();
+
+        SetHandleSprite();
 
         StartCoroutine(TimerCor());
     }
@@ -197,8 +205,10 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
         flJoystick.gameObject.SetActive(isFlJ);
         fxJoystick.gameObject.SetActive(!isFlJ);
 
+        handleImage = isFlJ ? handlesImages[0] : handlesImages[1];
+
         //set this joystick
-        player.joystick = isFlJ ? flJoystick : fxJoystick;
+        player.SetJoystick(isFlJ? flJoystick : fxJoystick);
     }
     public void ToggleJoystickVisibility(float val) => joysticksCG.alpha = val;
 
@@ -311,6 +321,21 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
         Time.timeScale = floatVal;
 
         ToggleJoystickVisibility(floatVal);
+    }
+
+    //joystick outside methods
+    public void SetHandleSprite()
+    {
+        float[] elemtalsMultipliers = Settings.damageMultipliers.ToArray();
+
+        float firstMax = elemtalsMultipliers.Max();
+        int firstMaxI = Array.IndexOf(elemtalsMultipliers, firstMax);
+
+        elemtalsMultipliers[firstMaxI] = -1;
+
+        float secondMax = elemtalsMultipliers.Max();
+
+        handleImage.sprite = (firstMax != secondMax ? handles[firstMaxI] : defaultHandle);
     }
 
     //coroutine will make sure ui interaction is not considered in-game interaction

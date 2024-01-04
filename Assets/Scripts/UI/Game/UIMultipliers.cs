@@ -64,6 +64,7 @@ public class UIMultipliers : UIPanelGame
             int curVal = curMultipliers[i];
             uiGameMenu.SetMultipliersTexts(i, curVal);
             Settings.damageMultipliers[i] = (float)curVal * 0.1f;
+            UIInGame.I.SetHandleSprite();
         }
 
     }

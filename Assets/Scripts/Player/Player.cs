@@ -15,7 +15,7 @@ public class Player : Creature
 
     [Header("Health restoring")]
     public bool canRestoreHp;
-    public float amountOfTimeBeforeRestoringHp;
+    public float amountOfTimeBeforeRestoringHp; 
     public float amountOfTimeForRestoringHp;
     public float amountOfRestoringHp;
 
@@ -34,7 +34,7 @@ public class Player : Creature
     [SerializeField] Image[] statsImages; //0 - hp, 1 - mana
 
     [HideInInspector] public float curMana;
-    [HideInInspector] public Joystick joystick;
+    Joystick joystick;
     [HideInInspector] public bool joystickInput;
 
     //local
@@ -77,6 +77,8 @@ public class Player : Creature
         curMana = maxMana;
         shieldProtection = (float)shields * 0.1f;
     }
+
+    public void SetJoystick(Joystick js) => joystick = js;
 
     protected override void Update()
     {
@@ -249,12 +251,8 @@ public class Player : Creature
     }
     public void IncreaseHealthRecovery()
     {
-        Debug.Log("before" + amountOfTimeBeforeRestoringHp + " " + amountOfRestoringHp);
-
         amountOfTimeBeforeRestoringHp *= 0.9f;
         amountOfRestoringHp *= 1.1f;
-
-        Debug.Log("After" + amountOfTimeBeforeRestoringHp + " " + amountOfRestoringHp);
     }
 
     //other
