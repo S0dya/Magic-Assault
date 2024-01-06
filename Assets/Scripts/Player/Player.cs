@@ -15,7 +15,7 @@ public class Player : Creature
 
     [Header("Health restoring")]
     public bool canRestoreHp;
-    public float amountOfTimeBeforeRestoringHp; 
+    public float amountOfTimeBeforeRestoringHp;
     public float amountOfTimeForRestoringHp;
     public float amountOfRestoringHp;
 
@@ -157,7 +157,8 @@ public class Player : Creature
 
         if (curHp == 0)
         {
-            //UIResults.I.SetTransparentBg();
+            AudioManager.I.PlayOneShot("death");
+            UIResults.I.SetTransparentBg();
             return;
         }
 
@@ -175,7 +176,7 @@ public class Player : Creature
         UIInGame.I.InstantiateTextOnHPRestore(transform.position, (int)val);
         RestoreHP(val);
     }
-    void RestoreHP(float val) => ChangeHP(val, -1);
+    public void RestoreHP(float val) => ChangeHP(val, -1);
     IEnumerator RestoreHPCor()
     {
         yield return new WaitForSeconds(amountOfTimeBeforeRestoringHp);

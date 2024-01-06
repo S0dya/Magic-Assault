@@ -64,6 +64,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  soundOnPick: money
   coinsOnCollect: 25
 --- !u!212 &4333668395104728439
 SpriteRenderer:

@@ -12,7 +12,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     {
         base.Awake();
 
-        LoadData();
+        //LoadData();
         //Settings.firstTime = false;
     }
 
@@ -101,30 +101,63 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     public void SaveData()
     {
-        /*
-        PlayerPrefs.SetInt("money", Settings.money);
-        for (int i = 0; i < Settings.itemPrices.Length; i++)
-        {
-            PlayerPrefs.SetInt($"itemPrice {i}", Settings.itemPrices[i]);
-        }
+        //menu
+        SaveInt("money", Settings.money);
 
-        PlayerPrefs.SetInt("firstTime", Settings.firstTime ? 0 : 1);
-        PlayerPrefs.SetInt("isMusicOn", Settings.isMusicOn ? 0 : 1);
-        */
+        for (int i = 0; i < Settings.charactersPrices.Length; i++) SaveInt($"charactersPrices {i}", Settings.charactersPrices[i]);
+        for (int i = 0; i < Settings.unlockedMaps.Length; i++) SaveBool($"unlockedMaps {i}", Settings.unlockedMaps[i]);
+
+        //options
+        for (int i = 0; i < Settings.musicStats.Length; i++) SaveFloat($"musicStats {i}", Settings.musicStats[i]);
+
+        SaveBool("firstTime", Settings.firstTime);
+        SaveBool("showTraining", Settings.showTraining);
+
+        SaveBool("showDamageNumbers", Settings.showDamageNumbers);
+        SaveBool("showBlood", Settings.showBlood);
+        SaveBool("isFloatingJoystick", Settings.isFloatingJoystick);
+        SaveBool("additionalParticles", Settings.additionalParticles);
+        SaveBool("bordersTransparent", Settings.bordersTransparent);
+        SaveBool("isQualityMedium", Settings.isQualityMedium);
     }
 
     public void LoadData() 
     {
-        /*
-        if (PlayerPrefs.GetInt("firstTime") == 0) return;
+        if (LoadBool("firstTime")) return;
 
-        Settings.money = PlayerPrefs.GetInt("money");
-        for (int i = 0; i < Settings.itemPrices.Length; i++)
-        {
-            Settings.itemPrices[i] = PlayerPrefs.GetInt($"itemPrice {i}");
-        }
+        //menu
+        Settings.money = LoadInt("money");
+        for (int i = 0; i < Settings.charactersPrices.Length; i++) Settings.charactersPrices[i] = LoadInt($"charactersPrices {i}");
+        for (int i = 0; i < Settings.unlockedMaps.Length; i++) Settings.unlockedMaps[i] = LoadBool($"unlockedMaps {i}");
 
-        Settings.isMusicOn = (PlayerPrefs.GetInt("isMusicOn") == 0);
-        */
+        //options
+        for (int i = 0; i < Settings.musicStats.Length; i++) Settings.musicStats[i] = LoadFloat($"musicStats {i}");
+
+        Settings.firstTime = LoadBool("firstTime");
+        Settings.showTraining = LoadBool("showTraining");
+
+        Settings.showDamageNumbers = LoadBool("showDamageNumbers");
+        Settings.showBlood = LoadBool("showBlood");
+        Settings.isFloatingJoystick = LoadBool("isFloatingJoystick");
+        Settings.additionalParticles = LoadBool("additionalParticles");
+        Settings.bordersTransparent = LoadBool("bordersTransparent");
+        Settings.isQualityMedium = LoadBool("isQualityMedium");
+    }
+
+    void SaveInt(string name, int val) => PlayerPrefs.SetInt(name, val);
+    void SaveFloat(string name, float val) => PlayerPrefs.SetFloat(name, val);
+    void SaveBool(string name, bool val) => PlayerPrefs.SetInt(name, val ? 0 : 1);
+
+    int LoadInt(string name)
+    {
+        return PlayerPrefs.GetInt(name);
+    }
+    float LoadFloat(string name)
+    {
+        return PlayerPrefs.GetFloat(name);
+    }
+    bool LoadBool(string name)
+    {
+        return PlayerPrefs.GetInt(name) == 0;
     }
 }

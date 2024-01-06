@@ -401,7 +401,12 @@ public class Creature : MonoBehaviour
     //health 
     public virtual void ChangeHP(float val, int type)
     {
-        if (type != -1) val *= elementalDamageMultipliers[type];
+        if (type != -1)
+        {
+            val *= elementalDamageMultipliers[type];
+            AudioManager.I.PlayOneShot("elemental", type);
+        }
+        else AudioManager.I.PlayOneShot("damage");
         CurHp = ChangeStat(val, CurHp, maxHp);
     }
     public float ChangeStat(float val, float curStat, float maxStat)

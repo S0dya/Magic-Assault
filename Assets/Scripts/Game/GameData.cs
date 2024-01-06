@@ -17,7 +17,7 @@ public class GameData : SingletonMonobehaviour<GameData>
     [HideInInspector] public float growth = 1;
     [HideInInspector] public float greed = 1;
 
-    //envrenment
+    //envirenment
     [HideInInspector] public float freezeTime = 7;
 
     //elementals

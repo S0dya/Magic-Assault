@@ -99,7 +99,8 @@ public class Enemy : Creature
         ToggleMovement(false);
         Push((transform.position - playerTransform.position).normalized, 0.5f);
         UIInGame.I.AddKill();
-        
+
+        AudioManager.I.PlayOneShot("kill");
         Die();
     }
     public void Die()

@@ -202,7 +202,12 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
 
     bool CanCreateSpell(int i)
     {
-        return HasMana(i) && curTypeOfSpell[i] != -1;
+        bool result = HasMana(i) && curTypeOfSpell[i] != -1;
+
+        if (result) AudioManager.I.PlayOneShot("shape", i);
+        else AudioManager.I.PlayOneShot("spellFailed");
+        
+        return result;
     }
 
     //check if player has enough mana to use spells

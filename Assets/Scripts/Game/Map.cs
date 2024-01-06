@@ -14,6 +14,7 @@ public class Map : SingletonMonobehaviour<Map>
     [Header("Waves")]
     [SerializeField][TextArea(30, 10)] string DescriptionOfWavesOfAMap;
     [SerializeField] MapWave[] mapWaves;
+    [SerializeField] GameObject deathPrefab;
 
     //local
     GameObject firstElemental;
@@ -25,7 +26,7 @@ public class Map : SingletonMonobehaviour<Map>
     MapWaveCircleCrowdWaveEnemies curWaveCircleCrowdEnemies;
     MapWaveMiniBoss curWaveMiniBoss;
 
-    int curWaveIndex = 0;
+    int curWaveIndex = 27;
 
     protected override void Awake()
     {
@@ -43,7 +44,8 @@ public class Map : SingletonMonobehaviour<Map>
     {
         curWaveIndex++;
 
-        Wave();
+        if (curWaveIndex >= 30) LastWave();
+        else Wave();
     }
 
     //main method
@@ -77,6 +79,13 @@ public class Map : SingletonMonobehaviour<Map>
         curWaveEnemies = curWave.wave;
         if (curWaveEnemies.setsEnemiesOnChoose) AddEnemiesOnChoose();
         levelManager.StartSpawningEnemies(curWaveEnemies.time, curWaveEnemies.amount, curWaveEnemies.enemies.ToArray());
+    }
+
+    void LastWave()
+    {
+        levelManager.WapeOutEnemies();  
+
+        levelManager.SpawnEnemy(deathPrefab);
     }
 
     void AddEnemiesOnChoose()//add additional elementals or other enemies on choose

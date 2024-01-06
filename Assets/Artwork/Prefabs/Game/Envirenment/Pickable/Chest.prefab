@@ -64,6 +64,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  soundOnPick: chest
 --- !u!212 &7275501178216431435
 SpriteRenderer:
   m_ObjectHideFlags: 0

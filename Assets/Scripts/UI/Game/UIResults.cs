@@ -7,7 +7,6 @@ using TMPro;
 public class UIResults : SingletonMonobehaviour<UIResults>
 {
     [Header("Other scripts")]
-    [SerializeField] GameData gameData;
     [SerializeField] UIInGame uiInGame;
     [SerializeField] UIInGameStats uiInGameStats;
 
@@ -23,6 +22,9 @@ public class UIResults : SingletonMonobehaviour<UIResults>
     [Header("Dicts part")]
     [SerializeField] Transform[] linesParents;
     [SerializeField] Transform[] curLinesTransforms;
+
+    [Header("Ads button")]
+    [SerializeField] Button watchAdButton;
 
     [Header("Stats")]
     //header
@@ -46,6 +48,8 @@ public class UIResults : SingletonMonobehaviour<UIResults>
     public Dictionary<SO_Item, int> pickedItems;
 
     //local
+    GameData gameData;
+    
     Dictionary<SO_Item, int>[] dics = new Dictionary<SO_Item, int>[3]; // 0 - active upgrades, 1 - passive upgrades, 2 - pickablve items
     int[] curLinesN = new int[3];
 
@@ -56,7 +60,25 @@ public class UIResults : SingletonMonobehaviour<UIResults>
 
     void Start()
     {
+        gameData = GameData.I;
+
         for (int i = 0; i < 3; i++) dics[i] = new Dictionary<SO_Item, int>();
+    }
+
+    public void OpenPrePanel()
+    {
+        GameManager.I.Open(bgCg, 0.2f, 0.4f);
+        GameManager.I.Open(gameoverCg, 0.2f);
+
+        uiInGame.StopTimeScale();
+    }
+
+    public void ClosePrePanel()
+    {
+        GameManager.I.Close(bgCg, 0.3f);
+        GameManager.I.Close(gameoverCg, 0.3f);
+
+        uiInGame.ToggleTimeScale(true);
     }
 
     public void SetTransparentBg()
@@ -85,7 +107,7 @@ public class UIResults : SingletonMonobehaviour<UIResults>
 
     public void OnWatchAd()
     {
-
+        AdsManager.I.ShowRewardedAd();
     }
 
     public void OnDone()
@@ -167,6 +189,15 @@ public class UIResults : SingletonMonobehaviour<UIResults>
     {
         if (dics[2].ContainsKey(item)) dics[2][item]++;
         else dics[2].Add(item, 1);
+    }
+
+    public void RewardPlayer()
+    {
+        UIInGame.I.RestoreHP();
+        LevelManager.I.WapeOutEnemies();
+        ClosePrePanel();
+
+        watchAdButton.interactable = false;
     }
 
     //other methods

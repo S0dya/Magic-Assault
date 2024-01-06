@@ -10,9 +10,7 @@ public static class Settings
     public static bool firstTime;
     public static bool showTraining = true;
 
-    public static bool[] unlockedCharacters = new bool[5] { true, false, true, false, false};
     public static int[] charactersPrices = new int[5] { 0, 200, 300, 400, 500, };
-
     public static bool[] unlockedMaps = new bool[5] { true, false, false, false, false };
 
     /// <summary>

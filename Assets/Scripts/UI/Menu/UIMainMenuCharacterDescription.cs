@@ -60,7 +60,7 @@ public class UIMainMenuCharacterDescription : UIPanelMenu
 
         for (int i = 0; i < 5; i++)
         {
-            charactersImages[i].sprite = (Settings.unlockedCharacters[i] ? unlockedCharacters[i] : lockedCharacters[i]);
+            charactersImages[i].sprite = (Settings.charactersPrices[i] == 0 ? unlockedCharacters[i] : lockedCharacters[i]);
         }
 
         OnCharacterClicked(0);
@@ -77,7 +77,7 @@ public class UIMainMenuCharacterDescription : UIPanelMenu
 
         SetInfo(characters[curCharacterI]);
 
-        ToggleBuyCharacterPanel(!Settings.unlockedCharacters[curCharacterI]);
+        ToggleBuyCharacterPanel(Settings.charactersPrices[curCharacterI] == 0);
         SetString(Settings.charactersPrices[curCharacterI], priceText);
     }
 
@@ -89,7 +89,7 @@ public class UIMainMenuCharacterDescription : UIPanelMenu
             Settings.money -= curPrice;
             uiMainMenu.SetMoneyText();
 
-            Settings.unlockedCharacters[curCharacterI] = true;
+            Settings.charactersPrices[curCharacterI] = 0;
             charactersImages[curCharacterI].sprite = unlockedCharacters[curCharacterI];
 
             ToggleBuyCharacterPanel(false);

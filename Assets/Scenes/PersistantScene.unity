@@ -243,13 +243,196 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78045c0cf715c964a9b85f8e1ea28d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Music>k__BackingField:
-    Guid:
-      Data1: -773822302
-      Data2: 1327754600
-      Data3: -1567933275
-      Data4: -1791646787
-    Path: event:/Music/GreenField
+  kvSounds:
+  - name: music
+    sound:
+      Guid:
+        Data1: -773822302
+        Data2: 1327754600
+        Data3: -1567933275
+        Data4: -1791646787
+      Path: event:/Music/GreenField
+  - name: kill
+    sound:
+      Guid:
+        Data1: 1770021683
+        Data2: 1279940943
+        Data3: -1286438470
+        Data4: -1000770336
+      Path: event:/SFX/Creature/Enemy/Kill
+  - name: death
+    sound:
+      Guid:
+        Data1: -2010746685
+        Data2: 1234076019
+        Data3: -150611047
+        Data4: -169537033
+      Path: event:/SFX/Creature/Player/Death
+  - name: chest
+    sound:
+      Guid:
+        Data1: 1872318670
+        Data2: 1167195280
+        Data3: 841277876
+        Data4: -411390933
+      Path: event:/SFX/Envirenment/PickUp Chest
+  - name: healthPotion
+    sound:
+      Guid:
+        Data1: 2092178283
+        Data2: 1239493761
+        Data3: -140712317
+        Data4: -558813666
+      Path: event:/SFX/Envirenment/PickUp HealthPotion
+  - name: item
+    sound:
+      Guid:
+        Data1: -1313317918
+        Data2: 1155029043
+        Data3: -802025085
+        Data4: 978664159
+      Path: event:/SFX/Envirenment/PickUp Item
+  - name: levelUp
+    sound:
+      Guid:
+        Data1: 1024194196
+        Data2: 1091587508
+        Data3: -343918951
+        Data4: -846637070
+      Path: event:/SFX/Envirenment/PickUp Level Up
+  - name: magnet
+    sound:
+      Guid:
+        Data1: -1537140039
+        Data2: 1306437991
+        Data3: 1852231091
+        Data4: -544595713
+      Path: event:/SFX/Envirenment/PickUp Magnet
+  - name: manaPotion
+    sound:
+      Guid:
+        Data1: 1658425080
+        Data2: 1151756558
+        Data3: 172445360
+        Data4: -1690940766
+      Path: event:/SFX/Envirenment/PickUp ManaPotion
+  - name: money
+    sound:
+      Guid:
+        Data1: 665635078
+        Data2: 1088074983
+        Data3: -110542719
+        Data4: -928604392
+      Path: event:/SFX/Envirenment/PickUp Money
+  - name: multiplier
+    sound:
+      Guid:
+        Data1: -416797995
+        Data2: 1329897464
+        Data3: 1165423294
+        Data4: 1172560640
+      Path: event:/SFX/Envirenment/PickUp Multiplier
+  - name: redSkull
+    sound:
+      Guid:
+        Data1: -206741256
+        Data2: 1117015821
+        Data3: 37969582
+        Data4: 425289491
+      Path: event:/SFX/Envirenment/PickUp RedSkull
+  - name: timeFreeze
+    sound:
+      Guid:
+        Data1: 1469634223
+        Data2: 1315374875
+        Data3: 1088066228
+        Data4: -1201048314
+      Path: event:/SFX/Envirenment/PickUp TimeFreeze
+  - name: button
+    sound:
+      Guid:
+        Data1: 1757303671
+        Data2: 1130913106
+        Data3: 1880956067
+        Data4: 922418245
+      Path: event:/SFX/UI/UI Button
+  - name: backButton
+    sound:
+      Guid:
+        Data1: -1604285782
+        Data2: 1136272021
+        Data3: 76669115
+        Data4: -1189052848
+      Path: event:/SFX/UI/UI Back Button
+  - name: damage
+    sound:
+      Guid:
+        Data1: 1154741498
+        Data2: 1131208634
+        Data3: 1595381178
+        Data4: -982964871
+      Path: event:/SFX/Creature/Damage
+  - name: spellFailed
+    sound:
+      Guid:
+        Data1: 1750850141
+        Data2: 1185185507
+        Data3: 707735203
+        Data4: -1254962366
+      Path: event:/SFX/Creature/Player/SpellFailed
+  kvsSounds:
+  - name: elemental
+    sounds:
+    - Guid:
+        Data1: 1239457638
+        Data2: 1190350909
+        Data3: -145466488
+        Data4: 1800892518
+      Path: event:/SFX/Creature/Burning
+    - Guid:
+        Data1: 962933479
+        Data2: 1268379022
+        Data3: 1918866606
+        Data4: 1480659207
+      Path: event:/SFX/Creature/Poison
+    - Guid:
+        Data1: -1898456718
+        Data2: 1195943453
+        Data3: -675794524
+        Data4: 1324064001
+      Path: event:/SFX/Creature/Stun
+    - Guid:
+        Data1: 1294343282
+        Data2: 1143003385
+        Data3: -1472775270
+        Data4: 420895812
+      Path: event:/SFX/Creature/Push
+  - name: shape
+    sounds:
+    - Guid:
+        Data1: -1538340473
+        Data2: 1242477438
+        Data3: -1583706991
+        Data4: 305078079
+      Path: event:/SFX/Effects/Dot
+    - Guid:
+        Data1: 143827375
+        Data2: 1079193451
+        Data3: 1307170736
+        Data4: -1137372241
+      Path: event:/SFX/Effects/Circle
+    - Guid:
+        Data1: 1565804724
+        Data2: 1331861699
+        Data3: -146108264
+        Data4: 1258225735
+      Path: event:/SFX/Effects/Line
+    - Guid:
+        Data1: 1825972738
+        Data2: 1163256943
+        Data3: 486999220
+        Data4: -946725449
+      Path: event:/SFX/Effects/Arrow
 --- !u!1 &482144831
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,6 +464,7 @@ Transform:
   - {fileID: 919283854}
   - {fileID: 461018401}
   - {fileID: 1852350036}
+  - {fileID: 1039282479}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -832,6 +1016,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0a57c459c57b6a40b4010c845d18915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1039282478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1039282479}
+  - component: {fileID: 1039282480}
+  m_Layer: 0
+  m_Name: AdsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1039282479
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039282478}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 482144832}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1039282480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039282478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d188e1a057117c4a9fa3940e0c4e75e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1113222355

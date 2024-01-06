@@ -64,6 +64,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  soundOnPick: manaPotion
   manaRestores: 75
 --- !u!212 &7535651583214915212
 SpriteRenderer:

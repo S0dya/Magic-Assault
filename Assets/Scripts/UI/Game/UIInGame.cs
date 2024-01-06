@@ -212,6 +212,12 @@ public class UIInGame : SingletonMonobehaviour<UIInGame>
     }
     public void ToggleJoystickVisibility(float val) => joysticksCG.alpha = val;
 
+    //restore hp for player on replay game
+    public void RestoreHP()
+    {
+        player.RestoreHP(player.maxHp);
+    }
+
     //pick ups on no upgrades
     public void UsePickUpUpgrade(UpgradeType upgradeType)
     {

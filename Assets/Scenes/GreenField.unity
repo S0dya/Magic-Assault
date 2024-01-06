@@ -196,7 +196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e134c9188ed7105449e0fb0310a81482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
   uiInGame: {fileID: 229356975}
   uiInGameStats: {fileID: 1333477717}
   bgCg: {fileID: 3035957}
@@ -212,6 +211,7 @@ MonoBehaviour:
   - {fileID: 1188970354}
   - {fileID: 1211145100}
   - {fileID: 1779999447}
+  watchAdButton: {fileID: 2110077025}
   survivedAmountText: {fileID: 1508304744}
   goldAmountText: {fileID: 524258815}
   levelAmountText: {fileID: 1992900321}
@@ -5558,7 +5558,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 540, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &446194737
@@ -11084,7 +11084,7 @@ CanvasGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072278257}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
@@ -18633,7 +18633,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 540, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1763560224
@@ -22494,38 +22494,7 @@ MonoBehaviour:
       enemyChoose:
         enemiesChoose: []
       sizeMultiplier: 2
-  - wave:
-      enemies:
-      - {fileID: 6611707122270337637, guid: 6a920137f93b3da4e82704be8ceb12ab, type: 3}
-      setsEnemiesOnChoose: 0
-      enemiesChoose: []
-      time: 1
-      amount: 1
-    hasCrowd: 0
-    waveCrowd:
-      enemy: {fileID: 0}
-      setsEnemyOnChoose: 1
-      enemyChoose:
-        enemiesChoose: []
-      time: 60
-      amount: 10
-      AmountOfChords: 0
-    hasCircleCrowd: 0
-    waveCircleCrowd:
-      enemy: {fileID: 0}
-      setsEnemyOnChoose: 1
-      enemyChoose:
-        enemiesChoose: []
-      time: 60
-      amount: 10
-      radius: 10
-    hasMiniBoss: 1
-    waveMiniBoss:
-      enemy: {fileID: 7874836842616660359, guid: ffe9f0692f3c34c48a3c6fc9dac4c976, type: 3}
-      setsEnemyOnChoose: 0
-      enemyChoose:
-        enemiesChoose: []
-      sizeMultiplier: 2
+  deathPrefab: {fileID: 6611707122270337637, guid: 19f58e35687b2b94ebcd89f4a121dc04, type: 3}
 --- !u!1 &2011374745
 GameObject:
   m_ObjectHideFlags: 0
@@ -23562,7 +23531,7 @@ CanvasGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110077021}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1

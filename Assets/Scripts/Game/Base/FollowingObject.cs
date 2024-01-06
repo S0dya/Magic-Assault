@@ -10,6 +10,7 @@ public class FollowingObject : MonoBehaviour
     [SerializeField] SO_Item thisItem;
 
     [SerializeField] UnityEvent actionOnPlayerReached;
+    [SerializeField] string soundOnPick;
 
     //local
     Transform playerTransform;
@@ -55,6 +56,7 @@ public class FollowingObject : MonoBehaviour
 
         actionOnPlayerReached.Invoke();
         UIResults.I.AddPickableItem(thisItem);
+        AudioManager.I.PlayOneShot(soundOnPick);
         Destroy(gameObject);
     }
 

@@ -285,9 +285,13 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     public void FreezeEnemies() => LoopThroughTransforms(enemyParent, FreezeEnemy);
     void FreezeEnemy(Transform transform) => transform.gameObject.GetComponent<EnemyFreeze>().Freeze();
 
-    //get enemy's transform and change their hp
+    //get enemy's transform and kill
     public void KillEnemies() => LoopThroughTransforms(enemyParent, KillEnemy);
-    void KillEnemy(Transform transform) => GetEenemy(transform).ChangeHP(-500, -1);
+    void KillEnemy(Transform transform) => GetEenemy(transform).Kill();
+
+    //same as above, but is used on last time limit reached
+    public void WapeOutEnemies() => LoopThroughTransforms(enemyParent, WapeOutEnemy);
+    void WapeOutEnemy(Transform transform) => GetEenemy(transform).Die();
 
     //on improved water set enemies to recceive damage from water
     public void SetWaterDealsDamageForEnemies() => LoopThroughTransforms(enemyParent, SetWaterDealsDamageForEnemy);
