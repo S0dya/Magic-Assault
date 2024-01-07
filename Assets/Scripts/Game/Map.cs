@@ -6,13 +6,13 @@ public class Map : SingletonMonobehaviour<Map>
 {
     [Header("Other scripts")]
     [SerializeField] LevelManager levelManager;
+    [SerializeField] int indexs;
 
     [Header("level consistency")]
     [SerializeField] GameObject[] platforms;
     [SerializeField] GameObject[] decor;
 
     [Header("Waves")]
-    [SerializeField][TextArea(30, 10)] string DescriptionOfWavesOfAMap;
     [SerializeField] MapWave[] mapWaves;
     [SerializeField] GameObject deathPrefab;
 
@@ -26,7 +26,7 @@ public class Map : SingletonMonobehaviour<Map>
     MapWaveCircleCrowdWaveEnemies curWaveCircleCrowdEnemies;
     MapWaveMiniBoss curWaveMiniBoss;
 
-    int curWaveIndex = 27;
+    int curWaveIndex;
 
     protected override void Awake()
     {
@@ -37,6 +37,7 @@ public class Map : SingletonMonobehaviour<Map>
 
     void Start()
     {
+        curWaveIndex = Random.Range(15, 25);
         Wave();
     }
 

@@ -63,14 +63,16 @@ public class ActiveUpgrades : SingletonMonobehaviour<ActiveUpgrades>
 
         if (upgradesCors[i] != null) StopCoroutine(upgradesCors[i]);
 
-        upgradesCors[i] = StartCoroutine(UpgradeCor(spells[upgrade.spellI].spells[upgrade.typeOfDaamge], 
+        upgradesCors[i] = StartCoroutine(UpgradeCor(spells[upgrade.spellI].spells[upgrade.typeOfDaamge], upgrade.typeOfDaamge,
             upgrade.amountOfSpells, upgrade.reloadTime, upgrade.timeBeforeNextSpells, upgrade.size, upgrade.upgradeEvent));
     }
 
-    IEnumerator UpgradeCor(GameObject effectPrefab, int amountOfSpells, float reloadTime, float timeBeforeNextSpells, float size, UpgradeEvent action)
+    IEnumerator UpgradeCor(GameObject effectPrefab, int typeOfDaamge, int amountOfSpells, float reloadTime, float timeBeforeNextSpells, float size, UpgradeEvent action)
     {
         while (true)
         {
+            AudioManager.I.PlayOneShot("shape", typeOfDaamge);
+
             for (int i = 0; i < amountOfSpells; i++)
             {
                 action.Invoke(effectPrefab, i, size);

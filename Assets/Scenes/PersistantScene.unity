@@ -244,13 +244,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kvSounds:
-  - name: music
+  - name: menu music
     sound:
       Guid:
-        Data1: -773822302
-        Data2: 1327754600
-        Data3: -1567933275
-        Data4: -1791646787
+        Data1: -378210350
+        Data2: 1281331531
+        Data3: 162219967
+        Data4: -1161284710
+      Path: event:/Music/Menu
+  - name: green field
+    sound:
+      Guid:
+        Data1: -938854737
+        Data2: 1161157619
+        Data3: 1551156145
+        Data4: -1635842203
       Path: event:/Music/GreenField
   - name: kill
     sound:
@@ -796,7 +804,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Loading...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1e976decdd7942744913a95257b3a350, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -860,7 +868,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &811437038

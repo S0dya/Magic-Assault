@@ -485,7 +485,6 @@ MonoBehaviour:
   - {fileID: 4066647700185313907}
   - {fileID: 4066647701591637735}
   curMana: 0
-  joystick: {fileID: 0}
   joystickInput: 0
   lastJoystickDirection: {x: 0, y: 0}
 --- !u!114 &4066647700768977680
@@ -529,7 +528,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    amountOfSpells: 1
+    amountOfSpells: 10
     reloadTime: 0.15
     timeBeforeNextSpells: 2
     size: 0.3
@@ -551,7 +550,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    amountOfSpells: 1
+    amountOfSpells: 10
     reloadTime: 0.05
     timeBeforeNextSpells: 1.25
     size: 0.25
@@ -573,7 +572,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    amountOfSpells: 1
+    amountOfSpells: 10
     reloadTime: 0.01
     timeBeforeNextSpells: 3
     size: 0.45
@@ -595,7 +594,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    amountOfSpells: 1
+    amountOfSpells: 10
     reloadTime: 0.2
     timeBeforeNextSpells: 0.8
     size: 0.2
@@ -617,7 +616,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    amountOfSpells: 1
+    amountOfSpells: 10
     reloadTime: 0.01
     timeBeforeNextSpells: 10
     size: 2

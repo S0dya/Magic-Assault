@@ -170,7 +170,7 @@ public class Creature : MonoBehaviour
         while (curTime < curTimeOfBuring)
         {
             curTime++;
-            ChangeHP(damage, 0);
+            ChangeHPWithoutSound(damage, 0);
 
             yield return new WaitForSeconds(2f);
         }
@@ -336,7 +336,7 @@ public class Creature : MonoBehaviour
     {
         while (isWet)
         {
-            ChangeHP(damageOnWet, 1);
+            ChangeHPWithoutSound(damageOnWet, 1);
 
             yield return new WaitForSeconds(2f);
         }
@@ -399,15 +399,16 @@ public class Creature : MonoBehaviour
     public void SetNormalColor() => ChangeSrColor(normalColor);//after freeze
     
     //health 
+    public void ChangeHPWithoutSound(float val, int type)
+    {
+        if (type != -1) val *= elementalDamageMultipliers[type];
+        CurHp = ChangeStat(val, CurHp, maxHp);
+    }
     public virtual void ChangeHP(float val, int type)
     {
-        if (type != -1)
-        {
-            val *= elementalDamageMultipliers[type];
-            AudioManager.I.PlayOneShot("elemental", type);
-        }
+        if (type != -1) AudioManager.I.PlayOneShot("elemental", type);
         else AudioManager.I.PlayOneShot("damage");
-        CurHp = ChangeStat(val, CurHp, maxHp);
+        ChangeHPWithoutSound(val, type);
     }
     public float ChangeStat(float val, float curStat, float maxStat)
     {

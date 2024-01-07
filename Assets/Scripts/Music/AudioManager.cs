@@ -26,8 +26,6 @@ public class AudioManager : SingletonMonobehaviour<AudioManager>
 
             eventsInstancesDict.Add(kvsSound.name, eventInstances);
         }
-
-        PlayOneShot("music");
     }
 
     

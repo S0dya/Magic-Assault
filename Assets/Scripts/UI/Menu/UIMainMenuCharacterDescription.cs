@@ -77,7 +77,7 @@ public class UIMainMenuCharacterDescription : UIPanelMenu
 
         SetInfo(characters[curCharacterI]);
 
-        ToggleBuyCharacterPanel(Settings.charactersPrices[curCharacterI] == 0);
+        ToggleBuyCharacterPanel(Settings.charactersPrices[curCharacterI] != 0);
         SetString(Settings.charactersPrices[curCharacterI], priceText);
     }
 
