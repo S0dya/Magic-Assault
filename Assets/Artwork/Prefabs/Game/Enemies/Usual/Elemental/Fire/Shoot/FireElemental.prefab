@@ -554,6 +554,18 @@ PrefabInstance:
       propertyPath: enemy
       value: 
       objectReference: {fileID: 7217926887710065900}
+    - target: {fileID: 8448527613129957880, guid: bc7882322bbba0042acb1d06b5199bcb, type: 3}
+      propertyPath: expChance
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448527613129957880, guid: bc7882322bbba0042acb1d06b5199bcb, type: 3}
+      propertyPath: expPrefab
+      value: 
+      objectReference: {fileID: 4333668395104728432, guid: 0c1a397f1f038404ea9c66f96fea6496, type: 3}
+    - target: {fileID: 8448527613129957880, guid: bc7882322bbba0042acb1d06b5199bcb, type: 3}
+      propertyPath: coinChance
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc7882322bbba0042acb1d06b5199bcb, type: 3}
 --- !u!4 &8969574327017267121 stripped

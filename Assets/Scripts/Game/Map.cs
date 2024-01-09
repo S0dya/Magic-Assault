@@ -26,7 +26,7 @@ public class Map : SingletonMonobehaviour<Map>
     MapWaveCircleCrowdWaveEnemies curWaveCircleCrowdEnemies;
     MapWaveMiniBoss curWaveMiniBoss;
 
-    int curWaveIndex;
+    int curWaveIndex = 0;
 
     protected override void Awake()
     {
@@ -37,7 +37,6 @@ public class Map : SingletonMonobehaviour<Map>
 
     void Start()
     {
-        curWaveIndex = Random.Range(15, 25);
         Wave();
     }
 
@@ -53,6 +52,8 @@ public class Map : SingletonMonobehaviour<Map>
     void Wave()
     {
         curWave = mapWaves[curWaveIndex];//set current wave 
+
+        levelManager.StopLastWave();
 
         //check additioanal conditions of a wave
         if (curWave.hasCrowd)
@@ -84,7 +85,7 @@ public class Map : SingletonMonobehaviour<Map>
 
     void LastWave()
     {
-        levelManager.WapeOutEnemies();  
+        levelManager.WapeOutEnemies();
 
         levelManager.SpawnEnemy(deathPrefab);
     }

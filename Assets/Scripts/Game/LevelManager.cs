@@ -141,8 +141,12 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     //enemy spawn cor
     public void StartSpawningEnemies(float totalTime, int amountOfEnemies, GameObject[] enemies)
     {
-        if (spawnEnemiesWaveCor != null) StopCoroutine(spawnEnemiesWaveCor);
+        StopLastWave();
         spawnEnemiesWaveCor = StartCoroutine(SpawnEnemiesWaveCor(totalTime, amountOfEnemies, enemies));
+    }
+    public void StopLastWave()
+    {
+        if (spawnEnemiesWaveCor != null) StopCoroutine(spawnEnemiesWaveCor);
     }
 
     public IEnumerator SpawnEnemiesWaveCor(float totalTime, int amountOfEnemies, GameObject[] enemies)
@@ -290,7 +294,11 @@ public class LevelManager : SingletonMonobehaviour<LevelManager>
     void KillEnemy(Transform transform) => GetEenemy(transform).Kill();
 
     //same as above, but is used on last time limit reached
-    public void WapeOutEnemies() => LoopThroughTransforms(enemyParent, WapeOutEnemy);
+    public void WapeOutEnemies()
+    {
+        LoopThroughTransforms(enemyParent, WapeOutEnemy);
+        StopLastWave();
+    }
     void WapeOutEnemy(Transform transform) => GetEenemy(transform).Die();
 
     //on improved water set enemies to recceive damage from water

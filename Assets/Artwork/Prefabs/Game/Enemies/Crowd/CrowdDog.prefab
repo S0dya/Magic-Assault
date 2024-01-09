@@ -292,6 +292,7 @@ MonoBehaviour:
   durationOfDrying: 5
   damageOnWet: 0
   timeForPush: 1
+  stunMultiplier: 1
   rb: {fileID: 2127530778173064310}
   sr: {fileID: 8488641146793470093}
   burningEffect: {fileID: 8728795977704505895}
@@ -359,7 +360,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.75
+  m_Mass: 0.25
   m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0

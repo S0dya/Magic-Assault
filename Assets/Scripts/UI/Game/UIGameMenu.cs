@@ -106,6 +106,10 @@ public class UIGameMenu : UIPanelGame
         }
     }
 
+    public void OnButtonPressed() => AudioManager.I.PlayOneShot("button");
+    public void OnCancelButtonPressed() => AudioManager.I.PlayOneShot("backButton");
+    public void OnTogglePressed() => AudioManager.I.PlayOneShot("toggle");
+
     //main methods
     void CloseCurOpenedTab()
     {

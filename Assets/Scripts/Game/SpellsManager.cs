@@ -28,9 +28,9 @@ public class SpellsManager : SingletonMonobehaviour<SpellsManager>
     Vector2[] drawPoints;
 
     [HideInInspector] public int[] curTypeOfSpell;// 0 - dot 1 - circle 2 - line 3 - arrow
-    public float[] effectManaUsage = new float[4] { 15f, 25f, 3f, 10f };
+    public float[] effectManaUsage = new float[4] { 20f, 25f, 5f, 5f };
 
-    int[] amountOfSpells = new int[4] { 5, 5, 5, 5 };
+    int[] amountOfSpells = new int[4] { 1, 1, 1, 1 };
     int arrowsAmount = 1; //3 - max
 
     //spells threshold

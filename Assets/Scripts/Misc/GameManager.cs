@@ -12,8 +12,8 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     {
         base.Awake();
 
-        //LoadData();
-        //Settings.firstTime = false;
+        LoadData();
+        Settings.firstTime = false;
     }
 
     //UI

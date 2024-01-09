@@ -83,6 +83,22 @@ PrefabInstance:
       propertyPath: elementalDamageMultipliers.Array.data[3]
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 1246126069031358448, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
+      propertyPath: expChance
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246126069031358448, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
+      propertyPath: expPrefab
+      value: 
+      objectReference: {fileID: 4333668395104728432, guid: 9a7eeb0355638a349a8278c53c858229, type: 3}
+    - target: {fileID: 1246126069031358448, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
+      propertyPath: coinChance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246126069031358448, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 4333668395104728432, guid: b2fe6c9f9af88d140b39fdcad04b0e17, type: 3}
     - target: {fileID: 4339101911170248573, guid: 171bebaefb19a3c4b8ec160831fa0bd5, type: 3}
       propertyPath: m_Radius
       value: 0.2

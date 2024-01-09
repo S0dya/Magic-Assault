@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using FMODUnity;
+using FMOD.Studio;
 
 public class UIMainMenu : SingletonMonobehaviour<UIMainMenu>
 {
@@ -13,7 +15,6 @@ public class UIMainMenu : SingletonMonobehaviour<UIMainMenu>
     [SerializeField] UIMainMenuTraining uiMainMenuTraining;
 
     [SerializeField] UIMainMenuSettings uiMainMenuSettings;
-
 
     [Header("Canvas groups")]
     [SerializeField] CanvasGroup pressToStartCG;
@@ -26,13 +27,25 @@ public class UIMainMenu : SingletonMonobehaviour<UIMainMenu>
     [Header("Money")]
     [SerializeField] TextMeshProUGUI moneyAmountText;
 
+    [Header("Press to start animation")]
+    [SerializeField] GameObject pressToSrartObj;
+
+    [Header("Logo")]
+    [SerializeField] GameObject gameLogoTextObj;
+
+    [Header("Music")]
+    [SerializeField] StudioEventEmitter eventEmitter;
 
     //local
+    LTDescr pressToStartTween;
+
     bool mapDescriptionOpen;
     bool inputsInfoOpen;
 
     void Start()
     {
+        StartPingPongAnimation();
+
         SetMoneyText();
     }
 
@@ -40,8 +53,15 @@ public class UIMainMenu : SingletonMonobehaviour<UIMainMenu>
     //main menu
     public void OnPressToStart()//switch to main menu panel
     {
+        LeanTween.cancel(pressToStartTween.id);
+
         GameManager.I.Close(pressToStartCG, 0.25f);
         GameManager.I.Open(mainMenuCG, 0.75f);
+
+        eventEmitter.enabled = true;
+        LeanTween.scale(gameLogoTextObj, Vector2.one, 1.5f).setEase(LeanTweenType.easeOutBack);
+
+        AudioManager.I.PlayOneShot("PressToStartButton");
     }
 
     public void OnPlayButton()//open chossing character and map
@@ -64,6 +84,10 @@ public class UIMainMenu : SingletonMonobehaviour<UIMainMenu>
     {
 
     }
+
+    public void OnButtonPressed() => AudioManager.I.PlayOneShot("button");
+    public void OnCancelButtonPressed() => AudioManager.I.PlayOneShot("backButton");
+    public void OnTogglePressed() => AudioManager.I.PlayOneShot("toggle");
 
     //characters panel
     public void OnConfirmCharacter()
@@ -135,5 +159,14 @@ public class UIMainMenu : SingletonMonobehaviour<UIMainMenu>
         Settings.damageMultipliers = character.floatDamageMultipliers;
         Settings.damageMultipliersMins = character.minDamageMultipliers;
         Settings.startingSpells = character.startingSpellsIndexes;
+    }
+
+    //animation
+    void StartPingPongAnimation()
+    {
+        pressToStartTween = LeanTween.scale(pressToSrartObj, new Vector2(1.1f, 1.1f), 1f).setEase(LeanTweenType.easeOutBack).setOnComplete(() => 
+        {
+            LeanTween.scale(pressToSrartObj, Vector2.one, 1.5f).setEase(LeanTweenType.easeOutBack).setOnComplete(StartPingPongAnimation);
+        });
     }
 }
