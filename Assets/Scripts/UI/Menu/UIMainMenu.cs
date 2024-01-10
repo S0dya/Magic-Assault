@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 using TMPro;
 using FMODUnity;
@@ -156,10 +157,13 @@ public class UIMainMenu : SingletonMonobehaviour<UIMainMenu>
         Settings.characterI = i;
         Settings.curSceneId = sceneId;
 
-        Settings.damageMultipliers = character.floatDamageMultipliers;
-        Settings.damageMultipliersMins = character.minDamageMultipliers;
-        Settings.startingSpells = character.startingSpellsIndexes;
+        CopyArr(character.floatDamageMultipliers, Settings.damageMultipliers);
+        CopyArr(character.minDamageMultipliers, Settings.damageMultipliersMins);
+        CopyArr(character.startingSpellsIndexes, Settings.startingSpells);
     }
+
+    void CopyArr(float[] og, float[] copy) => Array.Copy(og, copy, 4);
+    void CopyArr(int[] og, int[] copy) => Array.Copy(og, copy, 4);
 
     //animation
     void StartPingPongAnimation()

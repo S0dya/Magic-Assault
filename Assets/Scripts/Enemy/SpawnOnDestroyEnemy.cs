@@ -30,7 +30,12 @@ public class SpawnOnDestroyEnemy : MonoBehaviour
     {
         if (!enemy.isKilled) return;
 
-        if (expChance + luck > Random.value) levelManager.InstantiateExp(expPrefab, transform.position);
-        if (coinChance + luck > Random.value) levelManager.InstantiateCoin(coinPrefab, transform.position);
+        if (expChance + luck > Random.value) levelManager.InstantiateExp(expPrefab, GetRandomPos());
+        if (coinChance + luck > Random.value) levelManager.InstantiateCoin(coinPrefab, GetRandomPos());
+    }
+
+    public Vector2 GetRandomPos()
+    {
+        return (Vector2)transform.position + levelManager.GetRandomPos(0.25f, 0.25f);
     }
 }

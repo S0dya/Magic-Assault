@@ -66,7 +66,6 @@ public class UIMultipliers : UIPanelGame
             Settings.damageMultipliers[i] = (float)curVal * 0.1f;
             UIInGame.I.SetHandleSprite();
         }
-
     }
 
     //buttons 

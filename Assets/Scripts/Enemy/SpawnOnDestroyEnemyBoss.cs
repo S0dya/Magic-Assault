@@ -17,6 +17,6 @@ public class SpawnOnDestroyEnemyBoss : SpawnOnDestroyEnemy
     {
         base.OnDestroy();
 
-        levelManager.InstantiateUpgrade(upgradesPrefabs[Random.Range(0, upgradesPrefabs.Length)], transform.position);
+        levelManager.InstantiateUpgrade(upgradesPrefabs[Random.Range(0, upgradesPrefabs.Length)], GetRandomPos());
     }
 }

@@ -37,10 +37,10 @@ MonoBehaviour:
   <waterDealsDamage>k__BackingField: 0
   <luck>k__BackingField: 0
   <floatDamageMultipliers>k__BackingField:
-  - 3.1000001
-  - 0.4
-  - 0.4
-  - 0.4
+  - 2.1
+  - 0.6
+  - 0.7
+  - 0.6
   <minDamageMultipliers>k__BackingField:
   - 1.8
   - 0.4

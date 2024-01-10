@@ -63,7 +63,7 @@ MonoBehaviour:
   damageMultiplier: 0
   gameData: {fileID: 0}
   circleCol: {fileID: 1222481655471813308}
-  skipTriggersAmount: 0
+  skipTriggersAmount: 1
 --- !u!198 &2343054465367942812
 ParticleSystem:
   m_ObjectHideFlags: 0

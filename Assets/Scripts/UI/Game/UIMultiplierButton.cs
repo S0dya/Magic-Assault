@@ -25,13 +25,13 @@ public class UIMultiplierButton : MonoBehaviour, IPointerDownHandler, IPointerUp
 
     IEnumerator ButtonPressedCor()
     {
-        yield return new WaitForSecondsRealtime(0.1f);
+        yield return new WaitForSecondsRealtime(0.4f);
 
         while (true)
         {
             button.onClick.Invoke();
 
-            yield return new WaitForSecondsRealtime(0.25f);
+            yield return new WaitForSecondsRealtime(0.1f);
         }
     }
 }
