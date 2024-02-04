@@ -32,6 +32,8 @@ public class UIGameMenu : UIPanelGame
     float[] maxPlayerVals = new float[3];
 
     //bools
+    bool isMenuOpened;
+
     bool isSettingsOpen;
     bool isStatsOpen;
 
@@ -56,17 +58,28 @@ public class UIGameMenu : UIPanelGame
         for (int i = 0; i < 4; i++) SetMultipliersTexts(i, (int)(Settings.damageMultipliers[i] * 10));
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isMenuOpened) OnResumeButton();
+            else OnPauseButton();
+        }
+    }
+
     //buttons 
     public void OnPauseButton()
     {
         SetPlayerStats();
 
+        isMenuOpened = true;
         OpenTab();
     }
     public void OnResumeButton()
     {
         CloseCurOpenedTab();
         
+        isMenuOpened = false;
         CloseTab();
 
         uiInGameStats.StopHighlight();// close highlight stats highlight if its on

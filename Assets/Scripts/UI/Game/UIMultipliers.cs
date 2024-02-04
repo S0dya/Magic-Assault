@@ -74,7 +74,7 @@ public class UIMultipliers : UIPanelGame
     //main methods
     void SetMultipliers()
     {
-        curBonus = 4;
+        curBonus = 8;
         SetPositive();
         SetString(curBonus, bonusText);
 

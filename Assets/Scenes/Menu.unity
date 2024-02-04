@@ -4733,6 +4733,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransform: {fileID: 335578798}
   panelCG: {fileID: 335578799}
+  referenceResolution: {x: 1920, y: 1080}
+  startEndAnchoredPositions: []
 --- !u!1001 &344795209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6370,6 +6372,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransform: {fileID: 799243321}
   panelCG: {fileID: 493096593}
+  referenceResolution: {x: 1920, y: 1080}
+  startEndAnchoredPositions: []
   soundSliders:
   - {fileID: 1184103116}
   - {fileID: 1014035743}
@@ -6747,6 +6751,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransform: {fileID: 525411321}
   panelCG: {fileID: 525411324}
+  referenceResolution: {x: 1920, y: 1080}
+  startEndAnchoredPositions: []
   uiSettings: {fileID: 493096594}
   uiSettingToggleShow: {fileID: 418095547613871376}
 --- !u!1 &570412035
@@ -6886,6 +6892,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransform: {fileID: 570412036}
   panelCG: {fileID: 570412040}
+  referenceResolution: {x: 1920, y: 1080}
+  startEndAnchoredPositions: []
 --- !u!1 &595465022
 GameObject:
   m_ObjectHideFlags: 0
@@ -8507,6 +8515,7 @@ MonoBehaviour:
   pressToSrartObj: {fileID: 2051763699}
   gameLogoTextObj: {fileID: 1336851419}
   eventEmitter: {fileID: 1806107278}
+  optionsOpen: 0
 --- !u!1001 &729029614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9750,6 +9759,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransform: {fileID: 824536966}
   panelCG: {fileID: 824536967}
+  referenceResolution: {x: 1920, y: 1080}
+  startEndAnchoredPositions: []
 --- !u!1 &830482711
 GameObject:
   m_ObjectHideFlags: 0
@@ -9885,6 +9896,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransform: {fileID: 830482712}
   panelCG: {fileID: 830482713}
+  referenceResolution: {x: 1920, y: 1080}
+  startEndAnchoredPositions: []
 --- !u!1 &836867529
 GameObject:
   m_ObjectHideFlags: 0
@@ -13327,6 +13340,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransform: {fileID: 1107047905}
   panelCG: {fileID: 1107047906}
+  referenceResolution: {x: 1920, y: 1080}
+  startEndAnchoredPositions: []
 --- !u!1 &1128800915
 GameObject:
   m_ObjectHideFlags: 0
@@ -15243,6 +15258,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransform: {fileID: 1312921254}
   panelCG: {fileID: 1312921256}
+  referenceResolution: {x: 1920, y: 1080}
+  startEndAnchoredPositions: []
   maps:
   - {fileID: 11400000, guid: 940cd2f8bbfbb4249ac11223823128e7, type: 2}
   - {fileID: 11400000, guid: 940cd2f8bbfbb4249ac11223823128e7, type: 2}
@@ -24481,6 +24498,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransform: {fileID: 2101240348}
   panelCG: {fileID: 2101240350}
+  referenceResolution: {x: 1920, y: 1080}
+  startEndAnchoredPositions: []
   uiMainMenu: {fileID: 722411056}
   characters:
   - {fileID: 11400000, guid: 64d51521486ff9a4fb1ec65dfeb11450, type: 2}

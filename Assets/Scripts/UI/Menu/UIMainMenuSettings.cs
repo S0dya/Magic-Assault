@@ -84,6 +84,8 @@ public class UIMainMenuSettings : UISettings
     public void OnBackButton()
     {
         CloseTab();
+
+        UIMainMenu.I.optionsOpen = false;
     }
 
     //sliders

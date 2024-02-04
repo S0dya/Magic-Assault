@@ -472,9 +472,9 @@ MonoBehaviour:
   amountOfTimeForRestoringMana: 0.25
   amountOfRestoringMana: 5
   canRestoreHp: 0
-  amountOfTimeBeforeRestoringHp: 2
-  amountOfTimeForRestoringHp: 0.25
-  amountOfRestoringHp: 2
+  amountOfTimeBeforeRestoringHp: 6
+  amountOfTimeForRestoringHp: 2.5
+  amountOfRestoringHp: 0.5
   animator: {fileID: 4066647700768977695}
   shadowPrefabs:
   - {fileID: 1267837696066258129, guid: c56cbd82630570a4d9bb9f25d06afced, type: 3}

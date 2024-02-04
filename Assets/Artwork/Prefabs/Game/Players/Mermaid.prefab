@@ -121,7 +121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4066647700768977682, guid: 8e0f55b291b31494688ec26747a16c86, type: 3}
       propertyPath: amountOfRestoringHp
-      value: 4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4066647700768977682, guid: 8e0f55b291b31494688ec26747a16c86, type: 3}
       propertyPath: averageTimeOfBurning
@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 4730825793723749789}
     - target: {fileID: 4066647700768977682, guid: 8e0f55b291b31494688ec26747a16c86, type: 3}
       propertyPath: amountOfTimeForRestoringHp
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4066647700768977682, guid: 8e0f55b291b31494688ec26747a16c86, type: 3}
       propertyPath: shadowPrefabs.Array.data[0]
@@ -153,7 +153,7 @@ PrefabInstance:
       objectReference: {fileID: 1267837696066258129, guid: 52a2603347c9a714fa1af3a4beb5921f, type: 3}
     - target: {fileID: 4066647700768977682, guid: 8e0f55b291b31494688ec26747a16c86, type: 3}
       propertyPath: amountOfTimeBeforeRestoringHp
-      value: 1.25
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4066647700768977682, guid: 8e0f55b291b31494688ec26747a16c86, type: 3}
       propertyPath: amountOfTimeBeforeRestoringMana

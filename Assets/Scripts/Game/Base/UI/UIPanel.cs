@@ -16,13 +16,13 @@ public class UIPanel : MonoBehaviour
     //local
     float[] startEndX;
     float[] startEndY;
-    
+
     //inheriting
     protected float[] StartEndX { get { return startEndX; } set { startEndX = value; } }
     protected float[] StartEndY { get { return startEndY; } set { startEndY = value; } }
 
-    protected virtual void Start() => panelTransform.anchoredPosition = new Vector2(startEndX[0], startEndY[0]); //hide panel 
-
+    protected virtual void Start() => panelTransform.anchoredPosition = new Vector2(startEndX[0], startEndY[0]);
+    
     public void MoveTab(int i, float speed) => GameManager.I.MoveTransform(panelTransform, startEndX[i], startEndY[i], speed);
 
     public void SetString(int val, TextMeshProUGUI text) => text.text = val.ToString();

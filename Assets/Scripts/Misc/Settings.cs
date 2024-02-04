@@ -32,8 +32,8 @@ public static class Settings
     //menu
     public static int money = 0;
 
-    public static float width = Screen.width;
-    public static float height = Screen.height;
+    public static float width = 1080;
+    public static float height = 1920;
 
     //get height and width in world space
     public static float worldHeight = Camera.main.orthographicSize * 3f;

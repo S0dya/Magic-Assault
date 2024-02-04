@@ -161,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4066647700768977682, guid: 8e0f55b291b31494688ec26747a16c86, type: 3}
       propertyPath: amountOfTimeBeforeRestoringHp
-      value: 1.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4066647700768977682, guid: 8e0f55b291b31494688ec26747a16c86, type: 3}
       propertyPath: amountOfTimeBeforeRestoringMana

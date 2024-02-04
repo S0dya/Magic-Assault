@@ -40,14 +40,24 @@ public class UIMainMenu : SingletonMonobehaviour<UIMainMenu>
     //local
     LTDescr pressToStartTween;
 
-    bool mapDescriptionOpen;
     bool inputsInfoOpen;
+    bool mapDescriptionOpen;
+    bool characterDescriptionOpen;
+    [HideInInspector] public bool optionsOpen;
 
     void Start()
     {
         StartPingPongAnimation();
 
         SetMoneyText();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnBack();
+        }
     }
 
     //buttons
@@ -68,6 +78,7 @@ public class UIMainMenu : SingletonMonobehaviour<UIMainMenu>
     public void OnPlayButton()//open chossing character and map
     {
         characterDescription.OpenTab();
+        characterDescriptionOpen = true;
         ToggleMainMenuHeaderButtons(false);
     }
 
@@ -79,6 +90,7 @@ public class UIMainMenu : SingletonMonobehaviour<UIMainMenu>
     public void OnOptionsButton()
     {
         uiMainMenuSettings.OpenTab();
+        optionsOpen = true;
     }
 
     public void OnStatisticsButton()
@@ -121,10 +133,19 @@ public class UIMainMenu : SingletonMonobehaviour<UIMainMenu>
             mapDescription.CloseTab();
             mapDescriptionOpen = false;
         }
-        else
+        else if (characterDescriptionOpen)
         {
             characterDescription.CloseTab();
             ToggleMainMenuHeaderButtons(true);
+            characterDescriptionOpen = false;
+        }
+        else if (optionsOpen)
+        {
+            uiMainMenuSettings.OnBackButton();
+        }
+        else
+        {
+            OnQuitButton();
         }
     }
 
