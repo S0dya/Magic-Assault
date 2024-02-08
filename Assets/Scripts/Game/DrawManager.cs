@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,6 +38,9 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
 
     float maxSizeOfCircleSpell = 4.5f;
 
+    //actions
+    Action updateAction;
+
     //cors
     Coroutine checkJoystickInputCor;
     Coroutine changeSizeOfLineCor;
@@ -52,18 +56,28 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
     void Start()
     {
         lineLength = Settings.isQualityMedium ? 0.3f : 0.15f;
+
+#if UNITY_ANDROID || UNITY_IOS
+        updateAction = TouchInput;
+#else
+        updateAction = MouseInput;
+#endif
     }
 
     void Update()
     {
         if (isOnUI) return;
 
+        updateAction.Invoke();
+    }
+    void TouchInput()
+    {
         touchesCount = Input.touchCount;
 
         //check if there is no input and if input is not related to joystick
         if (!inputChecked && touchesCount == 1 && checkJoystickInputCor == null)
         {
-            checkJoystickInputCor = StartCoroutine(CheckJoystickInputCor());
+            checkJoystickInputCor = StartCoroutine(CheckJoystickInputCor(touchesCount == 1));
         }
 
         //draw
@@ -89,17 +103,43 @@ public class DrawManager : SingletonMonobehaviour<DrawManager>
             }
         }
     }
+    void MouseInput()
+    {
+        if (!inputChecked && Input.GetMouseButton(0) && checkJoystickInputCor == null)
+        {
+            checkJoystickInputCor = StartCoroutine(CheckJoystickInputCor(Input.GetMouseButton(0)));
+        }
 
-    IEnumerator CheckJoystickInputCor()
+        if (isInput)
+        {
+            Vector2 inputPos = cam.ScreenToWorldPoint(Input.mousePosition);
+            if (Vector2.Distance(inputPos, lineRenderer.GetPosition(positionCount - 1)) > lineLength)
+            {
+                DrawLine(inputPos);
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                RecogniseShape();
+                StopCreatingSpell();
+
+                if (reloadingCor != null) StopCoroutine(reloadingCor);
+                reloadingCor = StartCoroutine(ReloadingCor());
+            }
+        }
+    }
+
+    IEnumerator CheckJoystickInputCor(bool inputVal)
     {
         yield return null;
 
         inputChecked = true;
-        if (!player.joystickInput && touchesCount == 1)
+        if (!player.joystickInput && inputVal)
         {
             isInput = true;
             changeSizeOfLineCor = StartCoroutine(ChangeSizeOfLineCor());
-            DrawLine(cam.ScreenToWorldPoint(Input.GetTouch(0).position));
+            //DrawLine(cam.ScreenToWorldPoint(Input.GetTouch(0).position));
+            DrawLine(cam.ScreenToWorldPoint(Input.mousePosition));
         }
 
         checkJoystickInputCor = null;
