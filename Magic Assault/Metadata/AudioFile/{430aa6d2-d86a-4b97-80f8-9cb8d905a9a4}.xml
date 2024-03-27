@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{430aa6d2-d86a-4b97-80f8-9cb8d905a9a4}">
+		<property name="assetPath">
+			<value>SFX/Elemental/Explosion (2).ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.36453514739229026</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{3d160a81-d6dd-41b0-b9cd-419fdeabd108}</destination>
+		</relationship>
+	</object>
+</objects>

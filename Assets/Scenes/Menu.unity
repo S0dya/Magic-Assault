@@ -4640,7 +4640,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 10.000001, y: 0}
+  m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 19.999998, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &335578799
@@ -4733,8 +4733,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransform: {fileID: 335578798}
   panelCG: {fileID: 335578799}
-  referenceResolution: {x: 1920, y: 1080}
-  startEndAnchoredPositions: []
 --- !u!1001 &344795209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6372,8 +6370,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransform: {fileID: 799243321}
   panelCG: {fileID: 493096593}
-  referenceResolution: {x: 1920, y: 1080}
-  startEndAnchoredPositions: []
   soundSliders:
   - {fileID: 1184103116}
   - {fileID: 1014035743}
@@ -6751,8 +6747,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransform: {fileID: 525411321}
   panelCG: {fileID: 525411324}
-  referenceResolution: {x: 1920, y: 1080}
-  startEndAnchoredPositions: []
   uiSettings: {fileID: 493096594}
   uiSettingToggleShow: {fileID: 418095547613871376}
 --- !u!1 &570412035
@@ -6892,8 +6886,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransform: {fileID: 570412036}
   panelCG: {fileID: 570412040}
-  referenceResolution: {x: 1920, y: 1080}
-  startEndAnchoredPositions: []
 --- !u!1 &595465022
 GameObject:
   m_ObjectHideFlags: 0
@@ -8454,8 +8446,8 @@ Canvas:
   m_GameObject: {fileID: 722411051}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1461138266}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -9666,7 +9658,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 10.000001, y: 0}
+  m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 19.999998, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &824536967
@@ -9759,8 +9751,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransform: {fileID: 824536966}
   panelCG: {fileID: 824536967}
-  referenceResolution: {x: 1920, y: 1080}
-  startEndAnchoredPositions: []
 --- !u!1 &830482711
 GameObject:
   m_ObjectHideFlags: 0
@@ -9803,7 +9793,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 10.000001, y: 0}
+  m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 19.999998, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &830482713
@@ -9896,8 +9886,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransform: {fileID: 830482712}
   panelCG: {fileID: 830482713}
-  referenceResolution: {x: 1920, y: 1080}
-  startEndAnchoredPositions: []
 --- !u!1 &836867529
 GameObject:
   m_ObjectHideFlags: 0
@@ -13247,7 +13235,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 10.000001, y: 0}
+  m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 19.999998, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1107047906
@@ -13340,8 +13328,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransform: {fileID: 1107047905}
   panelCG: {fileID: 1107047906}
-  referenceResolution: {x: 1920, y: 1080}
-  startEndAnchoredPositions: []
 --- !u!1 &1128800915
 GameObject:
   m_ObjectHideFlags: 0
@@ -15258,8 +15244,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransform: {fileID: 1312921254}
   panelCG: {fileID: 1312921256}
-  referenceResolution: {x: 1920, y: 1080}
-  startEndAnchoredPositions: []
   maps:
   - {fileID: 11400000, guid: 940cd2f8bbfbb4249ac11223823128e7, type: 2}
   - {fileID: 11400000, guid: 940cd2f8bbfbb4249ac11223823128e7, type: 2}
@@ -16591,7 +16575,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1461138267}
   - component: {fileID: 1461138266}
-  - component: {fileID: 1461138265}
   - component: {fileID: 1461138268}
   m_Layer: 0
   m_Name: MenuCamera
@@ -16600,14 +16583,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1461138265
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1461138264}
-  m_Enabled: 1
 --- !u!20 &1461138266
 Camera:
   m_ObjectHideFlags: 0
@@ -16689,7 +16664,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -17400,8 +17375,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2109262323}
   m_HandleRect: {fileID: 2109262322}
   m_Direction: 0
-  m_Value: -0.00000016912878
-  m_Size: 0.7422287
+  m_Value: 0.00000016912861
+  m_Size: 0.7422285
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -23043,8 +23018,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1267746989}
   m_HandleRect: {fileID: 1267746988}
   m_Direction: 0
-  m_Value: -0.00000016912878
-  m_Size: 0.7422287
+  m_Value: 0.00000016912861
+  m_Size: 0.7422285
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -24498,8 +24473,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTransform: {fileID: 2101240348}
   panelCG: {fileID: 2101240350}
-  referenceResolution: {x: 1920, y: 1080}
-  startEndAnchoredPositions: []
   uiMainMenu: {fileID: 722411056}
   characters:
   - {fileID: 11400000, guid: 64d51521486ff9a4fb1ec65dfeb11450, type: 2}

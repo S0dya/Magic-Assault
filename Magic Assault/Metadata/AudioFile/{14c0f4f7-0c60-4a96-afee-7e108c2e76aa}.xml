@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{14c0f4f7-0c60-4a96-afee-7e108c2e76aa}">
+		<property name="assetPath">
+			<value>SFX/Enemy/Snare__001.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.35814058956916101</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{3d160a81-d6dd-41b0-b9cd-419fdeabd108}</destination>
+		</relationship>
+	</object>
+</objects>
